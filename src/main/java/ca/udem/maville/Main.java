@@ -23,16 +23,120 @@ public class Main {
 
     private static void prompt() {System.out.print("Entrez le chiffre correspondant à votre choix et appuyez sur la touche 'Entrer' : ");}
 
-    private static void errorCase(int min, int max) {
-        int choice = -1;
-        do {
+    private static int ask(int min, int max) {
+        prompt();
+        int choice = sc.nextInt();
+
+        while(choice < min || choice > max) {
             System.out.print("Veuillez entrer un chiffre valide : ");
             try {
                 choice = sc.nextInt();
             } catch (Exception e) {
-                errorCase(min, max);
+                return ask(min, max);
             }
-        } while(choice < min || choice > max);
+        }
+
+        return choice;
+    }
+
+
+
+    private static void menu(String profile) {
+        if (profile.equals("resident")) {
+            System.out.println("----- Menu principal -----");
+            System.out.println(
+                    "1. Voir tous les projets en cours\n" +
+                    "2. Signaler un problème\n" +
+                    "3. Voir les notifications\n" +
+                    "0. Mettre fin à l'application\n"
+            );
+
+            int choice = ask(0, 3);
+
+            switch (choice) {
+                case 0 :
+                    System.exit(0);
+                    break;
+                default :
+                    System.exit(0);
+                    break;
+            }
+        }
+        else if (profile.equals("provider")) {
+            System.out.println("----- Menu principal -----");
+            System.out.println(
+                    "1. Projets\n" +
+                    "2. Offres\n" +
+                    "3. Voir les notifications\n" +
+                    "0. Mettre fin à l'application\n"
+            );
+
+            int choice = ask(0, 3);
+
+            switch (choice) {
+                case 1 :
+                    System.out.println("----- Section Projets -----");
+                    System.out.println(
+                            "1. Voir tous les projets en cours\n" +
+                            "2. Projets personnels\n" +
+                            "0. Retourner au menu principal\n"
+                    );
+
+                    int choice1 = ask(0, 2);
+
+                    switch (choice1) {
+                        case 1 :
+                            System.exit(0);
+                            break;
+                        case 2 :
+                            System.out.println("----- Section Projets personnels -----");
+                            System.out.println(
+                                    "1. Consulter un projet\n" +
+                                    "2. Modifier les informations d'un projet\n" +
+                                    "0. Retourner au menu principal\n"
+                            );
+
+                            int choice2 = ask(0, 2);
+
+                            switch (choice2) {
+                                case 0 :
+                                    menu("provider");
+                                    break;
+                                default :
+                                    System.exit(0);
+                                    break;
+                            }
+                            break;
+                        case 0 :
+                            menu("provider");
+                            break;
+                    }
+
+                    break;
+                case 2 :
+                    System.out.println("----- Section Offres -----");
+                    System.out.println(
+                            "1. Voir toutes les offres\n" +
+                            "2. Déposer une nouvelle candidature\n" +
+                            "3. Consulter l'état d'une candidature\n" +
+                            "4. Modifier les informations d'une candidature\n" +
+                            "5. Supprimer une candidature\n" +
+                            "0. Retourner au menu principal\n"
+                    );
+
+                    int choice2 = ask(0, 5);
+                    switch (choice2) {
+                        case 0 :
+                            menu("provider");
+                            break;
+                        default :
+                            System.exit(0);
+                            break;
+                    }
+                default:
+                    System.exit(0);
+            }
+        }
     }
     
     
@@ -41,23 +145,26 @@ public class Main {
         System.out.println(motto);
 
         // Profile choice
-        System.out.println("----- Connexion -----\nQuel est votre type de profil ?\n1. Résident\n2. Prestataire\n0. Mettre fin à l'application\n");
-        prompt();
-        int choice = sc.nextInt();
+        System.out.println("----- Connexion -----");
+        System.out.println("Quel est votre type de profil ?\n" +
+                "1. Résident\n" +
+                "2. Prestataire\n" +
+                "0. Mettre fin à l'application\n"
+        );
+
+        int choice = ask(0, 2);
         
 
         switch (choice) {
             case 1:
-                System.out.println("----- Menu principal -----");
+                menu("resident");
                 break;
             case 2:
-                System.out.println("----- Menu principal -----");
+                menu("provider");
                 break;
             case 0:
                 System.exit(0);
                 break;
-            default:
-                errorCase(0, 2);
         }
 
     }
