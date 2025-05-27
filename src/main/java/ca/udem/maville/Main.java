@@ -43,7 +43,7 @@ public class Main {
 
     private static void menu(String profile) {
         if (profile.equals("resident")) {
-            System.out.println("----- Menu principal -----");
+            System.out.println("\n----- Menu principal -----");
             System.out.println(
                     "1. Voir tous les projets en cours\n" +
                     "2. Signaler un problème\n" +
@@ -63,7 +63,7 @@ public class Main {
             }
         }
         else if (profile.equals("provider")) {
-            System.out.println("----- Menu principal -----");
+            System.out.println("\n----- Menu principal -----");
             System.out.println(
                     "1. Projets\n" +
                     "2. Offres\n" +
@@ -75,7 +75,7 @@ public class Main {
 
             switch (choice) {
                 case 1 :
-                    System.out.println("----- Section Projets -----");
+                    System.out.println("\n----- Section Projets -----");
                     System.out.println(
                             "1. Voir tous les projets en cours\n" +
                             "2. Projets personnels\n" +
@@ -89,7 +89,7 @@ public class Main {
                             System.exit(0);
                             break;
                         case 2 :
-                            System.out.println("----- Section Projets personnels -----");
+                            System.out.println("\n----- Section Projets personnels -----");
                             System.out.println(
                                     "1. Consulter un projet\n" +
                                     "2. Modifier les informations d'un projet\n" +
@@ -114,7 +114,7 @@ public class Main {
 
                     break;
                 case 2 :
-                    System.out.println("----- Section Offres -----");
+                    System.out.println("\n----- Section Offres -----");
                     System.out.println(
                             "1. Voir toutes les offres\n" +
                             "2. Déposer une nouvelle candidature\n" +
@@ -145,7 +145,7 @@ public class Main {
         System.out.println(motto);
 
         // Profile choice
-        System.out.println("----- Connexion -----");
+        System.out.println("\n----- Connexion -----");
         System.out.println("Quel est votre type de profil ?\n" +
                 "1. Résident\n" +
                 "2. Prestataire\n" +
