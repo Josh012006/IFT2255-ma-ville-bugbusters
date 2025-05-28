@@ -22,3 +22,140 @@ body, html {
         max-width: 100%;
     }
 }
+
+h4 {
+  text-align: center;
+}
+
+.placeholder {
+    width: 100%;
+    margin-bottom: 2rem;
+    border: 1.5px solid #0157AC;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    font-size: 0.9rem;
+    justify-content: center;
+    min-height: 80px;
+    margin-bottom: 2rem;
+    align-items: center;
+    display: grid;
+}
+
+section {
+    margin: 4rem 0;
+}
+
+.placeholder p {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+
+.placeholder p + p {
+  border-top: 1px solid #0157AC;
+}
+
+
+
+dl.glossaire {
+  margin: 2rem 0;
+}
+
+.glossaire dt {
+  position: relative;
+  display: inline-block;
+  background-color: #0157AC;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  margin-bottom: -0.5rem; 
+  z-index: 2;
+  font-size: 0.9rem
+}
+
+.glossaire dd {
+  position: relative;
+  background-color: #f0f0f0;
+  margin: 0 0 0.5rem 0;    
+  padding: 1rem;
+  border-radius: 0.25rem;
+  margin-top: -0.5rem;  
+  z-index: 1;
+  margin-left: 1.5%;
+  font-size: 0.9rem
+}
+
+.glossaire dt + dd {
+  margin-top: 0;  
+  border: 1.5px solid #0157AC;
+}
+
+
+
+.contenant {
+  display: flex;
+  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.cartes.personnes {
+    background: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 1rem;
+    flex: 1;             
+    min-width: 250px;
+    background-color: #f0f0f0;
+    border: 1.5px solid #0157AC;
+    flex: 0 0 calc((100% - 2rem) / 3);
+    
+  
+}
+
+.cartes.personnes p {
+  margin: 0 0 0.75rem;
+  line-height: 1.4;
+}
+
+
+.liste {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.liste li {
+  position: relative;
+  padding-left: 2.5em;   
+  margin-bottom: 0.75rem; 
+  font-size: 0.95rem;
+  font-size: 0.9rem;
+}
+
+.liste li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0157AC, #FDCEA1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+footer {
+  background-color: #f0f0f0;
+  text-align: center;
+  padding: 1rem 0;
+  border-top: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+
