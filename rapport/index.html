@@ -12,8 +12,209 @@
     <img src="images/udem_logo.png" alt="Université de Montréal" style="width: 10rem;">
     <hr>
 
-    <h1>Titre</h1>
-    <p>Bla bla bla je suis un rapport.</p>
+    <h1>Rapport du projet MaVille</h1>
+
+    <section id="cadre">
+    <h2>Cadre du projet</h2>
+
+    <h3>Description du projet</h3>
+
+    <div class="placeholder">
+        <h4>Contexte</h4>
+        <p>
+            Montréal, ville en pleine expansion, est ponctuée de chantiers privés et publics. 
+            Cette dynamique s’accompagne toutefois de frustrations : les routes sont fréquemment barrées sans avertissement, en raison d’un système d’information trop manuel et lent. 
+            Les citoyens se voient alors contraints de contacter directement le bureau de la STPM pour signaler les désagréments ou demander à être prévenus des prochains travaux dans leur secteur.
+            Lorsqu’un résident fait remonter un problème, l’agent l’enregistre dans un fichier Excel en tenant compte des priorités. 
+            Les prestataires sont alors sollicités pour vérifier s’ils peuvent intervenir sur ces chantiers. 
+            Ils peuvent aussi repérer eux-mêmes les travaux qui les intéressent et, si le budget le permet, les agents valident la demande et lancent la planification (dates de début et de fin etc...).
+            Enfin, toutes les informations sont systématiquement transmises aux habitants ayant exprimé le souhait d’être informés, garantissant un suivi personnalisé et une meilleure coordination.
+        </p>
+
+        <h4>Problème à résoudre</h4>
+        <ul>
+            <li>Système de gestion trop manuelle</li>
+            <li>Centralisation des informations (appels, courriels, excel etc...)</li>
+            <li>Communication avec les prestataires (qui doivent se déplacer pour trouver des travaux)</li>
+            <li>Redondance des signalements de problème</li>
+            <li>Aucun suivi en temps réel des travaux par des citoyens</li>
+            <li>Système de notification non-automatique</li>
+            <li>Risque de perte de données (la limite qu'il y a dans le stockage excel)</li>
+            <li>Manque de visibilité de l'avancée des signalements par les citoyens</li>
+            <li>Aucune historique des interventions dans les signalements</li>
+        </ul>
+
+        <h4>Proposition</h4>
+        <p>
+            Histoire de répondre aux limites actuelles du système de gestion des travaux publics, nous proposons la création de Maville.
+            Cette application vise à centraliser, automatiser et faciliter les échanges entre des les résidents, les agents de la STPM et les prestataires.
+            <br>
+            L'application permettra aux citoyens de signaler facilement un problème d'infrastructure en précisant, sa nature, sa localisation et
+            les coordonnées.
+            <br>
+            Les prestataires pourront consulter les signalements, soumettre des projets d'interventions et suivre l'état de leurs candidatures.
+            <br>
+            Les agents du STPM auront le rôle de valider les propositions en fonction du budget, d'attribuer les priorités aux signalements et 
+            de suivre l'évolution des projets.
+            <br>
+            Un système de notification automatisées s'assurera que les personnes concernées (résidents, agents, prestataires etc...) soient tenus 
+            informés des changements quelconques (validation, modification, retard, complication, fin de travaux etc...).
+            <br>
+            Tout ceci fera un gain de temps, d'efficacité, une bonne transparence et une meilleure coordination.
+        </p>
+    </div>
+    </section>
+
+<section id="hypothèse">
+    <h3>Hypothèses émise dans l'élaboration</h3>
+    <div class="placeholder">
+    <ul>
+        <li>Un projet ne peut contenir qu'un problème à la fois</li>
+        <li>Un prestataire ne peut modifier sa candidature qu'avant la validation de son projet</li>
+        <li>Les notifications sont automatiquements envoyés aux citoyens ayant demandés à être averti d'un problème</li>
+        <li>Un agent peut consulter et modifier les fiches de projet</li>
+        <li>Les projets sont classés par priorités</li>
+        <li>Les agents de la STPM attribuent les priorités aux projets et se chargent également de les valider</li>
+        <li>Les prestataires ont uniquement accès aux problèmes, pas aux informations personnelles des résidents</li>
+        <li>Un même problème signalé plusieurs fois est regroupé sous un même identifiant</li>
+        <li>Les signalements contiennent les informations concernant la localisations, la date etc...</li>
+        <li>Les prestataires doivent tenir les agents à jour concernant l'état des projets en cours</li>
+    </ul>
+    </div>
+</section>
+
+<section id="equipe">
+    <h3>Equipe</h3>
+    <div class="contenant">
+        <div class="cartes personnes">
+            <ul class="liste">
+                <li>Nom : Cyreanne Andrianefa</li>
+                <li>Matricule : 20236570</li>
+                <li>Discord : cyreanne</li>
+                <li>GitHub : cyreanne0</li>
+            </ul>
+        </div>
+
+        <div class="cartes personnes">
+            <ul class="liste">
+                <li>Nom : Lallia Diakite</li>
+                <li>Matricule : 20256054</li>
+                <li>Discord : lallia_28808</li>
+                <li>GitHub : </li>
+            </ul>
+        </div>
+
+        <div class="cartes personnes">
+            <ul class="liste">
+                <li>Nom : Roxanne Cabedoce</li>
+                <li>Matricule : ########</li>
+                <li>Discord : ########</li>
+                <li>GitHub : ########</li>
+            </ul>
+        </div>
+
+        <div class="cartes personnes">
+            <ul class="liste">
+                <li>Nom : ########</li>
+                <li>Matricule : ########</li>
+                <li>Discord : ########</li>
+                <li>GitHub : ########</li>
+            </ul>
+        </div>
+
+        <div class="cartes personnes">
+            <ul class="liste">
+                <li>Nom : ########</li>
+                <li>Matricule : ########</li>
+                <li>Discord : ########</li>
+                <li>GitHub : ########</li>
+            </ul>
+        </div>
+    </section>
+</section>
+
+    <h2>Modélisation du domaine</h2>
+    <section id="glossaire">
+        <h3>Glossaire</h3>
+        <dl class="glossaire">
+            <dt>Residents</dt>
+            <dd>Personnes habitant à Montréal et utilisant l'application pour signaler les problèmes</dd>
+
+            <dt>Problème</dt>
+            <dd>Anomalie observée dans un espace public frequenté par les résidents (ex : trou dans la chaussée etc...)</dd>
+
+            <dt>Prestataires</dt>
+            <dd>Entreprises proposant un projet pour règler un problème</dd>
+
+            <dt>Projet</dt>
+            <dd>Proposition d'intervention validée, avec prestataire, coût etc...</dd>
+
+            <dt>STPM</dt>
+            <dd>Service des Travaux Publics de Montreal responsable de la gestion des projets</dd>
+
+            <dt>Fiche problème</dt>
+            <dd>Enregistrement des details d'un problème signalé (description complète)</dd>
+
+            <dt>candidature</dt>
+            <dd>Proposition faite par un prestataire pour règler un problème</dd>
+
+            <dt>Priorité</dt>
+            <dd>Niveau d'urgence attribué aux problèmes</dd>
+
+            <dt>Notification</dt>
+            <dd>Messages envoyés aux utilisateurs pour les informer des avancées des travaux ou des problèmes presents</dd>
+
+            <dt>Entrave</dt>
+            <dd>Tout ce qui gène la circulation</dd>
+
+            <dt>Signalement</dt>
+            <dd>Action effectué par un resident pour informer le STPM de l'existence d'un problème sur la voie publique</dd>
+
+            <dt>Application MaVille</dt>
+            <dd>Application developpée pour améliorer la gestion des signalements, des projets, des notifications...</dd>
+        </dl>
+    </section>
+
+    <section id="DiagrammeAct">
+        <h3>Diagramme d'activités du processus métier</h3>
+        <div class="placeholder">[ESPACE RÉSERVÉ AU DIAGRAMME]</div>
+    </section>
+
+    <section id="DiagrammeClasse">
+        <h3>Diagramme de classes du domaine</h3>
+        <div class="placeholder">[ESPACE RÉSERVÉ AU DIAGRAMME]</div>
+    </section>
+
+    <h2>Modélisation des exigences</h2>
+    <section id="BesoinsNonFunct">
+        <h3>Besoins non-fonctionnels</h3>
+        <dl class="glossaire">
+            <dt>1</dt>
+            <dd>description</dd>
+
+            <dt>2</dt>
+            <dd>description</dd>
+
+            <dt>3</dt>
+            <dd>description</dd>
+
+            <dt>4</dt>
+            <dd>description</dd>
+
+            <dt>5</dt>
+            <dd>description</dd>
+        </dl>
+    </section>
+
+    <section id="BesoinsFunct">
+        <h3>Besoins fonctionnels</h3>
+        <div class="placeholder">[ESPACE RÉSERVÉ AU DIAGRAMME]</div>
+    </section>
+
 </div>
+<footer>
+    <p>&copy; 2025 BugBusters. Tous droits réservés.</p>
+    <p>DM1 IFT2255 - UdeM</p>
+</footer>
 </body>
 </html>
