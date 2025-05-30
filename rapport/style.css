@@ -28,22 +28,45 @@ h4 {
 }
 
 .placeholder {
-    width: 100%;
+    width: auto;
     min-height: 80px;
     border: 1.5px solid #0157AC;
     border-radius: 0.5rem;
     overflow: hidden;
     background-color: #f0f0f0;
     font-size: 0.9rem;
-    display: flex;
-    justify-content: center;  /* centre horizontalement */
-    align-items: center;      /* centre verticalement */
-    margin-bottom: 2rem;      /* espace entre blocs */
+    justify-content: center;  
+    margin-bottom: 2rem;     
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 1000px;
+    text-align: justify;
+    flex-wrap: wrap;
+    display: block;
 }
 
+.placeholder .bloc {
+  flex: 1;
+  min-width: 280px;
+  max-width: 380px;
+}
+
+.placeholder .bloc h4 {
+  text-align: center;
+}
+
+.placeholder .bloc ul {
+  padding-left: 1.2rem;
+}
+
+
 .placeholder img {
+  display: block;
+  margin: 0 auto;
   max-width: 100%;
-  max-height: 100%;
+  height: auto; 
   object-fit: contain;
 }
 
@@ -103,8 +126,6 @@ dl.glossaire {
   margin-top: 0;  
   border: 1.5px solid #0157AC;
 }
-
-
 
 .contenant {
   display: flex;
