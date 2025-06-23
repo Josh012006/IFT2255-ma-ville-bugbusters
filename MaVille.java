@@ -17,8 +17,6 @@ public class MaVille {
         problemes.add(new Probleme("Trottoir fissuré", "Villeray", "luc@exemple.com"));
         problemes.add(new Probleme("Feu de circulation brisé", "Hochelaga", "samira@exemple.com"));
 
-    }
-
     public void lancer(){
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -49,7 +47,7 @@ public class MaVille {
     
     public void menuResident(Scanner scanner){
         while (true){
-            System.out.println("\n=== Menu Résident ===");
+            System.out.printl("\n=== Menu Résident ===");
             System.out.println("1. Consulter les travaux");
             System.out.println("2. Rechercher des travaux");
             System.out.println("3. S’abonner à une rue/quartier");
@@ -57,7 +55,7 @@ public class MaVille {
             System.out.println("5. Signaler un problème");
             System.out.println("6. Retour");
 
-            String choix = scanner.nextLine();
+            String choix = scanner.nextLine()
             switch (choix) {
                 case "1":afficherTravaux(); break;
                 case "2": rechercherTravaux(scanner); break;

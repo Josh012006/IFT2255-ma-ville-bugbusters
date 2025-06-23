@@ -1,16 +1,17 @@
 //import java.util.Scanner;
 import java.util.*;
 
+
 public class MaVille {
     private List<Probleme> problemes = new ArrayList<>();
     private List<Projet> projets = new ArrayList<>();
     private List<String> notifications = new ArrayList<>();
 
-    public static void main (String[] args) {
+   /* public static void main (String[] args) {
         MaVille app = new MaVille();
         app.initialiserDonnees();
         app.lancer();
-    }
+    }*/
 
     public void initialiserDonnees() {
         problemes.add(new Probleme("Nid de poule rue Ontario", "Plateau", "pierre@exemple.com"));
