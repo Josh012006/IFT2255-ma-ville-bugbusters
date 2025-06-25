@@ -1,11 +1,20 @@
 package ca.udem.maville.server.controllers;
 
 import ca.udem.maville.server.Database;
+import io.javalin.http.Context;
 
 public class PrestataireController {
     public Database database;
 
     public PrestataireController(Database database) {
         this.database = database;
+    }
+
+    public void getAll(Context ctx) {
+
+    }
+
+    public void get(Context ctx) {
+
     }
 }
