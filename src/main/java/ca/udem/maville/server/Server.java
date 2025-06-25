@@ -16,7 +16,17 @@ public class Server {
     }
 
     public void start() {
+        // Création de la base de données
         database = new Database();
+
+        // Création des instances de controllers
+        CandidatureController candidatureController = new CandidatureController(database);
+        SignalementController signalementController = new SignalementController(database);
+        ProjectController projectController = new ProjectController(database);
+        ProblemController problemController = new ProblemController(database);
+        NotificationController notificationController = new NotificationController(database);
+        ResidentController residentController = new ResidentController(database);
+        PrestataireController prestataireController = new PrestataireController(database);
 
         // Intitialisation du serveur sur le port
         Javalin app = Javalin.create(config -> {
@@ -27,91 +37,91 @@ public class Server {
 
                 path("/candidature", () -> {
                     path("/getAll/{id}", () -> {
-                        get(CandidatureController::getAll);
+                        get(candidatureController::getAll);
                     });
-                    post(CandidatureController::create);
+                    post(candidatureController::create);
                     path("/{id}", () -> {
-                        get(CandidatureController::get);
-                        patch(CandidatureController::patch);
-                        put(CandidatureController::update);
-                        delete(CandidatureController::delete);
+                        get(candidatureController::get);
+                        patch(candidatureController::patch);
+                        put(candidatureController::update);
+                        delete(candidatureController::delete);
                     });
                 });
 
                 path("/signalement", () -> {
                     path("/getAll/{id}", () -> {
-                        get(SignalementController::getAll);
+                        get(signalementController::getAll);
                     });
-                    post(SignalementController::create);
+                    post(signalementController::create);
                     path("/{id}", () -> {
-                        get(SignalementController::get);
-                        put(SignalementController::update);
-                        patch(SignalementController::patch);
-                        delete(SignalementController::delete);
+                        get(signalementController::get);
+                        put(signalementController::update);
+                        patch(signalementController::patch);
+                        delete(signalementController::delete);
                     });
                 });
 
                 path("/probleme", () -> {
                     path("/getAll/{id}", () -> {
-                        get(ProblemController::getAll);
+                        get(problemController::getAll);
                     });
                     path("/getCandidatures/{id}", () -> {
-                        get(ProblemController::getAllCandidatures);
+                        get(problemController::getAllCandidatures);
                     });
-                    post(ProblemController::create);
+                    post(problemController::create);
                     path("/{id}", () -> {
-                        get(ProblemController::get);
-                        put(ProblemController::update);
-                        patch(ProblemController::patch);
-                        delete(ProblemController::delete);
+                        get(problemController::get);
+                        put(problemController::update);
+                        patch(problemController::patch);
+                        delete(problemController::delete);
                     });
                 });
 
                 path("/projet", () -> {
                     path("/getAll", () -> {
-                        get(ProjectController::getAll);
+                        get(projectController::getAll);
                     });
                     path("/getByPrestataire/{id}", () -> {
-                        get(ProjectController::getByPrestataire);
+                        get(projectController::getByPrestataire);
                     });
                     path("/getByType/{type}", () -> {
-                        get(ProjectController::getByType);
+                        get(projectController::getByType);
                     });
                     path("/getByRegion/{region}", () -> {
-                        get(ProjectController::getByRegion);
+                        get(projectController::getByRegion);
                     });
-                    post(ProjectController::create);
+                    post(projectController::create);
                     path("/{id}", () -> {
-                        get(ProjectController::get);
-                        put(ProjectController::update);
-                        patch(ProjectController::patch);
-                        delete(ProjectController::delete);
+                        get(projectController::get);
+                        put(projectController::update);
+                        patch(projectController::patch);
+                        delete(projectController::delete);
                     });
                 });
 
 
                 path("/notification", () -> {
                     path("/getAll/{id}", () -> {
-                        get(NotificationController::getAll);
+                        get(notificationController::getAll);
                     });
-                    post(NotificationController::create);
+                    post(notificationController::create);
                 });
 
                 path("/resident", () -> {
                     path("/getAll", () -> {
-                        get(ResidentController::getAll);
+                        get(residentController::getAll);
                     });
                     path("/{id}", () -> {
-                        get(ResidentController::get);
+                        get(residentController::get);
                     });
                 });
 
                 path("/prestataire", () -> {
                     path("/getAll", () -> {
-                        get(PrestataireController::getAll);
+                        get(prestataireController::getAll);
                     });
                     path("/{id}", () -> {
-                        get(PrestataireController::get);
+                        get(prestataireController::get);
                     });
                 });
 
