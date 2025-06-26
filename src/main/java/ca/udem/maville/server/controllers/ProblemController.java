@@ -13,10 +13,6 @@ public class ProblemController {
         this.urlHead = urlHead;
     }
 
-    public void getAll(Context ctx) {
-
-    }
-
     public void getAllCandidatures(Context ctx) {
 
     }

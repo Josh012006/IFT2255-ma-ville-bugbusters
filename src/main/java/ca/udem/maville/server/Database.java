@@ -100,7 +100,7 @@ public class Database {
                 String description = "Ce projet devrait affecter les rues " + ruesAffectees +
                         ". Mais pas d'inquiétude, ils ont pour but d'améliorer votre expérience de vie. " +
                         "Merci de votre confiance.";
-                project.addProperty("title", title);
+                project.addProperty("titreProjet", title);
                 project.addProperty("description", description);
 
                 // Ajouter le projet formalisé à la liste des projets

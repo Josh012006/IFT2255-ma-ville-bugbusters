@@ -64,10 +64,6 @@ public class Server {
                 });
 
                 path("/probleme", () -> {
-                    // getAll pour le résident
-                    path("/getAll", () -> {
-                        get(problemController::getAll);
-                    });
                     path("/getCandidatures/{id}", () -> {
                         get(problemController::getAllCandidatures);
                     });
