@@ -13,10 +13,20 @@ public class NotificationController {
     }
 
     public void getAll(Context ctx) {
+        try {
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
     }
 
     public void create(Context ctx) {
+        try {
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
     }
 }

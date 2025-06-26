@@ -127,20 +127,49 @@ public class CandidatureController {
     }
 
     public void get(Context ctx) {
+        try {
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
     }
 
     public void patch(Context ctx) {
+        try {
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
     }
 
     public void update(Context ctx) {
+        try {
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
     }
 
     public void delete(Context ctx) {
+        try {
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
     }
+
+
+
+
+
+
+
+
+
 
     // Une fonction qui après avoir attendue un certain temps valide ou refuse la candidature.
     // Elle crée un projet si nécessaire et envoie une notification pour préciser au prestataire la décision prise.

@@ -13,17 +13,27 @@ public class PrestataireController {
     }
 
     public void getAll(Context ctx) {
+        try {
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
     }
 
     public void get(Context ctx) {
+        try {
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
     }
 
     public void patch(Context ctx) {
-
-        // Logique minimale de patch. Il faudra encore récupérer les informations dans le body
-        // On suivra le template suivant:
+        try {
+            // Logique minimale de patch. Il faudra encore récupérer les informations dans le body
+            // On suivra le template suivant:
 
 //        app.patch("/prestataires/:id", ctx -> {
 //            String id = ctx.pathParam("id");
@@ -62,7 +72,7 @@ public class PrestataireController {
 //        });
 
 
-        //        String strPrestataire = database.prestataires.get(idPrestataire);
+            //        String strPrestataire = database.prestataires.get(idPrestataire);
 //
 //        if (strPrestataire == null) {
 //            // Ça serait bizarre qu'il n'existe pas parce qu'il faudrait qu'il existe pour
@@ -78,9 +88,18 @@ public class PrestataireController {
 //
 //        // Enregistrer la modification au prestataire
 //        database.prestataires.put(idPrestataire, prestataire.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
     }
 
     public void update(Context ctx) {
+        try {
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
     }
 }
