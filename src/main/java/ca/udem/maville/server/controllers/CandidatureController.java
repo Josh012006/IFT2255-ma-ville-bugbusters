@@ -74,6 +74,15 @@ public class CandidatureController {
         newCandidature.addProperty("statut", "enAttente");
 
         // Todo: Ajouter la candidature à la liste pour le prestataire concerné
+        String prestataire = database.prestataires.get(idPrestataire);
+
+        if (prestataire == null) {
+            // Ca serait bizarre qu'il n'existe pas parce qu'il faudrait qu'il existe pour
+            // pouvoir déposer une candidature
+            ctx.status(505).result("{\"message\": \"Une erreur est survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+            return;
+        }
+
 
 
         // Todo: Faire la logique d'acceptation ou de rejet aléatoire de la candidature par le serveur dans un autre Thread
