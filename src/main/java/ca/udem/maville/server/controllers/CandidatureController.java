@@ -2,6 +2,7 @@ package ca.udem.maville.server.controllers;
 
 import ca.udem.maville.hooks.UseRequest;
 import ca.udem.maville.server.Database;
+import ca.udem.maville.utils.ControllerHelper;
 import ca.udem.maville.utils.RandomGeneration;
 import ca.udem.maville.utils.RequestType;
 import ca.udem.maville.utils.UniqueID;
@@ -11,7 +12,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.javalin.http.Context;
 
-import java.util.ArrayList;
+import java.util.Map;
+
+
 import java.util.concurrent.CompletableFuture;
 
 public class CandidatureController {
@@ -23,23 +26,31 @@ public class CandidatureController {
         this.urlHead = urlHead;
     }
 
-    // Une méthod qui récupère toutes les candidatures d'un prestataire en utilisant son id.
+    // Une méthode qui récupère toutes les candidatures d'un prestataire en utilisant son id.
     public void getAll(Context ctx) {
         try {
             String idUser = ctx.pathParam("user");
 
-            // Récupérer le prestataire
-            String user = database.prestataires.get(idUser);
+            // Envoyer une requête pour récupérer le prestataire
 
-            if (user == null) {
-                // Renvoyer un message d'erreur avec un code not found
-                ctx.status(404).result("{\"message\": \"Aucun prestataire avec un tel ID retrouvé.\"}").contentType("application/json");
-                return;
+            String responseUser = UseRequest.sendRequest(this.urlHead + "/prestataire/" + idUser , RequestType.GET, null);
+
+            if(responseUser == null) {
+                throw new Exception("Une erreur est survenue lors de la récupération du prestataire. Réponse nulle.");
             }
 
-            // Récupérer la liste des ids de ses candidatures
-            JsonElement element = JsonParser.parseString(user);
-            JsonObject prestataire = element.getAsJsonObject();
+            JsonElement elemUser = JsonParser.parseString(responseUser);
+            JsonObject jsonUser = elemUser.getAsJsonObject();
+
+            int statuscode = jsonUser.get("status").getAsInt();
+            if (statuscode == 404) {
+                ctx.status(404).result("{\"message\": \"Aucun prestataire avec un tel ID retrouvé.\"}").contentType("application/json");
+                return;
+            } else if(statuscode != 200) {
+                throw new Exception("Une erreur est survenue lors de la récupération du prestataire. Message d'erreur: " + jsonUser.get("data").getAsJsonObject().get("message").getAsString());
+            }
+
+            JsonObject prestataire = jsonUser.get("data").getAsJsonObject();
 
             JsonArray candidatures = prestataire.get("candidatures").getAsJsonArray();
 
@@ -48,7 +59,9 @@ public class CandidatureController {
             for (JsonElement candidatureId : candidatures) {
                 String candidatureIdString = candidatureId.getAsString();
                 String candidature = database.candidatures.get(candidatureIdString);
-                data.add(candidature);
+                if(candidature != null) {
+                    data.add(candidature);
+                }
             }
 
             // Renvoyer les candidatures trouvées dans un tableau
@@ -59,6 +72,8 @@ public class CandidatureController {
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
         }
     }
+
+
 
     public void create(Context ctx) {
         try {
@@ -126,26 +141,119 @@ public class CandidatureController {
         }
     }
 
+
+
     public void get(Context ctx) {
         try {
+            String id = ctx.pathParam("id");
+            String strCandidature = database.candidatures.get(id);
+
+            if (strCandidature == null) {
+                ctx.status(404).result("{\"message\": \"Candidature non retrouvée.\"}").contentType("application/json");
+                return;
+            }
+
+            JsonObject jsonCandidature = JsonParser.parseString(strCandidature).getAsJsonObject();
+
+            // Renvoyer la candidature
+            ctx.status(200).json(jsonCandidature).contentType("application/json");
 
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
         }
     }
+
+
 
     public void patch(Context ctx) {
         try {
+            String id = ctx.pathParam("id");
+            boolean replace = Boolean.parseBoolean(ctx.queryParam("replace"));
+
+            JsonObject updates = JsonParser.parseString(ctx.body()).getAsJsonObject();
+            JsonObject candidature = JsonParser.parseString(database.candidatures.get(id)).getAsJsonObject();
+
+            for (Map.Entry<String, JsonElement> entry : updates.entrySet()) {
+                String key = entry.getKey();
+                JsonElement value = entry.getValue();
+
+                if (value.isJsonArray()) {
+                    JsonArray nouvelles = value.getAsJsonArray();
+
+                    if (replace || !candidature.has(key)) {
+                        // Remplacer complètement
+                        candidature.add(key, nouvelles);
+                    } else {
+                        // Ajouter sans doublons
+                        JsonArray existantes = candidature.getAsJsonArray(key);
+                        for (JsonElement elem : nouvelles) {
+                            if (!existantes.contains(elem)) {
+                                existantes.add(elem);
+                            }
+                        }
+                    }
+
+                } else {
+                    // Champ simple → remplacement direct
+                    if(!ControllerHelper.sameTypeJson(candidature.get(key), value)) {
+                        ctx.status(400).result("{\"message\": \"Le champ " + key + " envoyé n'a pas le bon type.\"}").contentType("application/json");
+                    }
+                    candidature.add(key, value);
+                }
+            }
+
+            // Message de succès
+            database.candidatures.put(id, candidature.toString());
+            ctx.status(200).json(candidature).contentType("application/json");
 
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
         }
     }
+
+
 
     public void update(Context ctx) {
         try {
+            String id = ctx.pathParam("id");
+
+            String strCandidature = database.candidatures.get(id);
+
+            if (strCandidature == null) {
+                ctx.status(404).result("{\"message\": \"Candidature non retrouvée.\"}").contentType("application/json");
+                return;
+            }
+
+            // Traiter la nouvelle candidature
+            String rawJson = ctx.body();
+
+            JsonElement element = JsonParser.parseString(rawJson);
+
+            // Vérifie si c'est bien un objet
+            if (!element.isJsonObject()) {
+                ctx.status(400).result("{\"message\": \"Format JSON invalide.\"}").contentType("application/json");
+                return;
+            }
+
+            // Vérifier que toutes les entrées sont là
+            JsonObject newCandidature = element.getAsJsonObject();
+
+            JsonObject actualCandidature = JsonParser.parseString(strCandidature).getAsJsonObject();
+
+            if(!ControllerHelper.sameKeysSameTypes(actualCandidature, newCandidature)) {
+                return;
+            }
+
+            // M'assurer que l'id reste le même
+            JsonObject updatedCandidature = newCandidature;
+            updatedCandidature.addProperty("id", id);
+
+            database.candidatures.put(id, updatedCandidature.toString());
+
+            // Renvoyer le nouvel objet
+            ctx.status(200).json(updatedCandidature).contentType("application/json");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -153,9 +261,22 @@ public class CandidatureController {
         }
     }
 
+
+
     public void delete(Context ctx) {
         try {
+            String id = ctx.pathParam("id");
+            String strCandidature = database.candidatures.get(id);
 
+            if (strCandidature == null) {
+                ctx.status(404).result("{\"message\": \"Candidature non retrouvée.\"}").contentType("application/json");
+                return;
+            }
+
+            database.candidatures.remove(id);
+
+            // Renvoyer la réponse de succès
+            ctx.status(200).result("{\"message\": \"Suppression réalisée avec succès.\"}").contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
