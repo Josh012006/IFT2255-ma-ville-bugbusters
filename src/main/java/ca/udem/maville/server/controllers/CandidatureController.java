@@ -73,24 +73,34 @@ public class CandidatureController {
         newCandidature.addProperty("id", id);
         newCandidature.addProperty("statut", "enAttente");
 
-        // Todo: Ajouter la candidature à la liste pour le prestataire concerné
-        String prestataire = database.prestataires.get(idPrestataire);
+        // Ajouter la nouvelle candidature à la base de données
+        database.candidatures.put(id, newCandidature.toString());
 
-        if (prestataire == null) {
-            // Ca serait bizarre qu'il n'existe pas parce qu'il faudrait qu'il existe pour
-            // pouvoir déposer une candidature
+        // Ajouter la candidature à la liste pour le prestataire concerné
+        String strPrestataire = database.prestataires.get(idPrestataire);
+
+        if (strPrestataire == null) {
+            // Ça serait bizarre qu'il n'existe pas parce qu'il faudrait qu'il existe pour
+            // pouvoir déposer une candidature.
             ctx.status(505).result("{\"message\": \"Une erreur est survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
             return;
         }
 
+        JsonElement elemPrestataire = JsonParser.parseString(strPrestataire);
+        JsonObject prestataire = elemPrestataire.getAsJsonObject();
+
+        prestataire.get("candidatures").getAsJsonArray().add(id);
+
+        // Enregistrer la modification au prestataire
+        database.prestataires.put(idPrestataire, prestataire.toString());
 
 
         // Todo: Faire la logique d'acceptation ou de rejet aléatoire de la candidature par le serveur dans un autre Thread
         // Todo: Ne pas oublier d'envoyer une notification avec une raison aléatoire en cas de refus
         // Todo: Faire un petit moment avant de le faire pour simuler une attente
 
-        // Renvoyer le message de succès
-        ctx.status(201).result("{\"message\": \"Candidature créée avec succès.\"}").contentType("application/json");
+        // Renvoyer la candidature comme succès
+        ctx.status(201).json(newCandidature).contentType("application/json");
     }
 
     public void get(Context ctx) {
