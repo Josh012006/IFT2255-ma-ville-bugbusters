@@ -11,6 +11,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.javalin.http.Context;
 
+import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
 public class CandidatureController {
@@ -24,10 +25,10 @@ public class CandidatureController {
 
     // Une méthod qui récupère toutes les candidatures d'un prestataire en utilisant son id.
     public void getAll(Context ctx) {
-        String id = ctx.pathParam("id");
+        String idUser = ctx.pathParam("user");
 
         // Récupérer le prestataire
-        String user = database.prestataires.get(id);
+        String user = database.prestataires.get(idUser);
 
         if (user == null) {
             // Renvoyer un message d'erreur avec un code not found
@@ -83,23 +84,23 @@ public class CandidatureController {
         // Ajouter la nouvelle candidature à la base de données
         database.candidatures.put(id, newCandidature.toString());
 
-        // Ajouter la candidature à la liste pour le prestataire concerné
-        String strPrestataire = database.prestataires.get(idPrestataire);
-
-        if (strPrestataire == null) {
-            // Ça serait bizarre qu'il n'existe pas parce qu'il faudrait qu'il existe pour
-            // pouvoir déposer une candidature.
-            ctx.status(505).result("{\"message\": \"Une erreur est survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
-            return;
-        }
-
-        JsonElement elemPrestataire = JsonParser.parseString(strPrestataire);
-        JsonObject prestataire = elemPrestataire.getAsJsonObject();
-
-        prestataire.get("candidatures").getAsJsonArray().add(id);
-
-        // Enregistrer la modification au prestataire
-        database.prestataires.put(idPrestataire, prestataire.toString());
+        // Todo: Ajouter la candidature à la liste pour le prestataire concerné
+//        String strPrestataire = database.prestataires.get(idPrestataire);
+//
+//        if (strPrestataire == null) {
+//            // Ça serait bizarre qu'il n'existe pas parce qu'il faudrait qu'il existe pour
+//            // pouvoir déposer une candidature.
+//            ctx.status(505).result("{\"message\": \"Une erreur est survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+//            return;
+//        }
+//
+//        JsonElement elemPrestataire = JsonParser.parseString(strPrestataire);
+//        JsonObject prestataire = elemPrestataire.getAsJsonObject();
+//
+//        prestataire.get("candidatures").getAsJsonArray().add(id);
+//
+//        // Enregistrer la modification au prestataire
+//        database.prestataires.put(idPrestataire, prestataire.toString());
 
 
         // Lancer la logique d'acceptation ou de refus aléatoire d'une candidature
@@ -150,15 +151,36 @@ public class CandidatureController {
                 // Todo: Envoyer une requête pour créer une notification: "Votre candidature pour titreProjet a été acceptée.
                 //  Veuillez consulter votre liste des projets"
             } else {
-                // Todo: Envoyer une requête pour créer une notification de refus pour une raison aléatoire
-                String[] refusalReasons = {"", "", "", "Ressources humaines et matérielles inadéquates."};
+                // Choisir une raison aléatoire de refus
+                String[] refusalReasons = {"Soumission financière non compétitive.",
+                        "Soumission financière non compétitive.", "Non-conformité aux normes ou aux méthodes imposées.", "Délais de réalisation trop longs.",
+                        "Ressources humaines et matérielles inadéquates."};
 
-                String randomRefusalReason = refusalReasons[RandomGeneration.getRandomUniformInt(0, 4)];
+                String randomRefusalReason = refusalReasons[RandomGeneration.getRandomUniformInt(0, 5)];
 
-                String response = UseRequest.sendRequest(this.urlHead + "/notification", RequestType.POST, );
+                // Envoyer une requête afin de créer une notification pour l'utilisateur concerné
+                String response = UseRequest.sendRequest(this.urlHead + "/notification/" + candidature.get("prestataire").getAsString() + "?userType=prestataire",
+                        RequestType.POST, "{\"message\": \""+ randomRefusalReason +"\"}");
+
+                if(response == null) {
+                    System.out.println("Une erreur est survenue lors de la création de la notification de refus. Réponse nulle.");
+                    return;
+                }
+
+                JsonElement json = JsonParser.parseString(response);
+                JsonObject jsonObject = json.getAsJsonObject();
+
+                int statusCode = jsonObject.get("status").getAsInt();
+                if (statusCode != 201) {
+                    System.out.println("Une erreur est survenue lors de la création de la notification de refus. Message d'erreur: " + jsonObject.get("message").getAsString());
+                    return;
+                }
+                else {
+                    System.out.println("Notification de refus créee avec succès.");
+                }
             }
 
-            System.out.println("Candidature " + id + " " + candidature.get("statut").getAsString());
+            System.out.println("Candidature " + id + " a reçu correctement statut: " + candidature.get("statut").getAsString());
 
         } catch (InterruptedException e) {
             // Réinterrompre le thread

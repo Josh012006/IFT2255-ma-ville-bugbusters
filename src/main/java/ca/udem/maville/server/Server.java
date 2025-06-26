@@ -38,7 +38,7 @@ public class Server {
             config.router.apiBuilder(() -> {
 
                 path("/candidature", () -> {
-                    path("/getAll/{id}", () -> {
+                    path("/getAll/{user}", () -> {
                         get(candidatureController::getAll);
                     });
                     post(candidatureController::create);
@@ -51,7 +51,7 @@ public class Server {
                 });
 
                 path("/signalement", () -> {
-                    path("/getAll/{id}", () -> {
+                    path("/getAll/{user}", () -> {
                         get(signalementController::getAll);
                     });
                     post(signalementController::create);
@@ -64,7 +64,8 @@ public class Server {
                 });
 
                 path("/probleme", () -> {
-                    path("/getAll/{id}", () -> {
+                    // getAll pour le résident
+                    path("/getAll", () -> {
                         get(problemController::getAll);
                     });
                     path("/getCandidatures/{id}", () -> {
@@ -83,7 +84,7 @@ public class Server {
                     path("/getAll", () -> {
                         get(projectController::getAll);
                     });
-                    path("/getByPrestataire/{id}", () -> {
+                    path("/getByPrestataire/{user}", () -> {
                         get(projectController::getByPrestataire);
                     });
                     path("/getByType/{type}", () -> {
@@ -103,10 +104,12 @@ public class Server {
 
 
                 path("/notification", () -> {
-                    path("/getAll/{id}", () -> {
+                    path("/getAll/{user}", () -> {
                         get(notificationController::getAll);
                     });
-                    post(notificationController::create);
+                    path("/{user}", () -> {
+                        post(notificationController::create);
+                    });
                 });
 
                 path("/resident", () -> {
