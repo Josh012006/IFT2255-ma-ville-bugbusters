@@ -5,9 +5,11 @@ import io.javalin.http.Context;
 
 public class NotificationController {
     public Database database;
+    public String urlHead;
 
-    public NotificationController(Database database) {
+    public NotificationController(Database database, String urlHead) {
         this.database = database;
+        this.urlHead = urlHead;
     }
 
     public void getAll(Context ctx) {

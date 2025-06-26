@@ -20,13 +20,15 @@ public class Server {
         database = new Database();
 
         // Création des instances de controllers
-        CandidatureController candidatureController = new CandidatureController(database);
-        SignalementController signalementController = new SignalementController(database);
-        ProjectController projectController = new ProjectController(database);
-        ProblemController problemController = new ProblemController(database);
-        NotificationController notificationController = new NotificationController(database);
-        ResidentController residentController = new ResidentController(database);
-        PrestataireController prestataireController = new PrestataireController(database);
+        String urlHead = "http://localhost:" + port + "/api";
+
+        CandidatureController candidatureController = new CandidatureController(database, urlHead);
+        SignalementController signalementController = new SignalementController(database, urlHead);
+        ProjectController projectController = new ProjectController(database, urlHead);
+        ProblemController problemController = new ProblemController(database, urlHead);
+        NotificationController notificationController = new NotificationController(database, urlHead);
+        ResidentController residentController = new ResidentController(database, urlHead);
+        PrestataireController prestataireController = new PrestataireController(database, urlHead);
 
         // Intitialisation du serveur sur le port
         Javalin app = Javalin.create(config -> {
@@ -113,6 +115,8 @@ public class Server {
                     });
                     path("/{id}", () -> {
                         get(residentController::get);
+                        put(residentController::update);
+                        patch(residentController::patch);
                     });
                 });
 
@@ -122,6 +126,8 @@ public class Server {
                     });
                     path("/{id}", () -> {
                         get(prestataireController::get);
+                        put(prestataireController::update);
+                        patch(prestataireController::patch);
                     });
                 });
 

@@ -6,9 +6,11 @@ import io.javalin.http.Context;
 public class SignalementController {
 
     public Database database;
+    public String urlHead;
 
-    public SignalementController(Database database) {
+    public SignalementController(Database database, String urlHead) {
         this.database = database;
+        this.urlHead = urlHead;
     }
 
     public void getAll(Context ctx) {

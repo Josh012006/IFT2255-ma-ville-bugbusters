@@ -1,6 +1,9 @@
 package ca.udem.maville.server.controllers;
 
+import ca.udem.maville.hooks.UseRequest;
 import ca.udem.maville.server.Database;
+import ca.udem.maville.utils.RandomGeneration;
+import ca.udem.maville.utils.RequestType;
 import ca.udem.maville.utils.UniqueID;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -8,11 +11,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.javalin.http.Context;
 
+import java.util.concurrent.CompletableFuture;
+
 public class CandidatureController {
     public Database database;
+    public String urlHead;
 
-    public CandidatureController(Database database) {
+    public CandidatureController(Database database, String urlHead) {
         this.database = database;
+        this.urlHead = urlHead;
     }
 
     // Une méthod qui récupère toutes les candidatures d'un prestataire en utilisant son id.
@@ -95,9 +102,12 @@ public class CandidatureController {
         database.prestataires.put(idPrestataire, prestataire.toString());
 
 
-        // Todo: Faire la logique d'acceptation ou de rejet aléatoire de la candidature par le serveur dans un autre Thread
-        // Todo: Ne pas oublier d'envoyer une notification avec une raison aléatoire en cas de refus
-        // Todo: Faire un petit moment avant de le faire pour simuler une attente
+        // Lancer la logique d'acceptation ou de refus aléatoire d'une candidature
+        // en arrière-plan sans bloquer aucun Thread.
+        CompletableFuture.runAsync(() -> {
+            this.validateCandidature(newCandidature);
+        });
+
 
         // Renvoyer la candidature comme succès
         ctx.status(201).json(newCandidature).contentType("application/json");
@@ -117,5 +127,44 @@ public class CandidatureController {
 
     public void delete(Context ctx) {
 
+    }
+
+    // Une fonction qui après avoir attendue un certain temps valide ou refuse la candidature.
+    // Elle crée un projet si nécessaire et envoie une notification pour préciser au prestataire la décision prise.
+    private void validateCandidature(JsonObject candidature) {
+        try {
+            // Simule une attente de traitement (ex: 3 secondes)
+            Thread.sleep(2500);
+
+            // Logique de validation aléatoire
+            boolean accepted = Math.random() < 0.85;
+            candidature.addProperty("statut", accepted ? "acceptée" : "refusée");
+
+            // Mise à jour dans la "base de données"
+            String id = candidature.get("id").getAsString();
+            database.candidatures.put(id, candidature.toString());
+
+            if (accepted) {
+                // Todo: Rassembler les informations et envoyer une requête pour créer un projet
+
+                // Todo: Envoyer une requête pour créer une notification: "Votre candidature pour titreProjet a été acceptée.
+                //  Veuillez consulter votre liste des projets"
+            } else {
+                // Todo: Envoyer une requête pour créer une notification de refus pour une raison aléatoire
+                String[] refusalReasons = {"", "", "", "Ressources humaines et matérielles inadéquates."};
+
+                String randomRefusalReason = refusalReasons[RandomGeneration.getRandomUniformInt(0, 4)];
+
+                String response = UseRequest.sendRequest(this.urlHead + "/notification", RequestType.POST, );
+            }
+
+            System.out.println("Candidature " + id + " " + candidature.get("statut").getAsString());
+
+        } catch (InterruptedException e) {
+            // Réinterrompre le thread
+            Thread.currentThread().interrupt();
+            System.err.println("Le traitement de validation a été interrompu.");
+        }
+        // Todo: Ne pas oublier d'envoyer une notification avec une raison aléatoire en cas de refus
     }
 }

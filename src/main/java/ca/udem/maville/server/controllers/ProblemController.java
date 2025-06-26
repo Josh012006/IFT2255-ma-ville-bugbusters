@@ -6,9 +6,11 @@ import io.javalin.http.Context;
 public class ProblemController {
 
     public Database database;
+    public String urlHead;
 
-    public ProblemController(Database database) {
+    public ProblemController(Database database, String urlHead) {
         this.database = database;
+        this.urlHead = urlHead;
     }
 
     public void getAll(Context ctx) {
