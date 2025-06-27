@@ -44,6 +44,7 @@ public class Server {
                     post(candidatureController::create);
                     path("/{id}", () -> {
                         get(candidatureController::get);
+                        // Nécessite un queryParameter replace = true | false
                         patch(candidatureController::patch);
                         put(candidatureController::update);
                         delete(candidatureController::delete);
@@ -58,6 +59,7 @@ public class Server {
                     path("/{id}", () -> {
                         get(signalementController::get);
                         put(signalementController::update);
+                        // Nécessite un queryParameter replace = true | false
                         patch(signalementController::patch);
                         delete(signalementController::delete);
                     });
@@ -71,6 +73,7 @@ public class Server {
                     path("/{id}", () -> {
                         get(problemController::get);
                         put(problemController::update);
+                        // Nécessite un queryParameter replace = true | false
                         patch(problemController::patch);
                         delete(problemController::delete);
                     });
@@ -93,6 +96,7 @@ public class Server {
                     path("/{id}", () -> {
                         get(projectController::get);
                         put(projectController::update);
+                        // Nécessite un queryParameter replace = true | false
                         patch(projectController::patch);
                         delete(projectController::delete);
                     });
@@ -100,6 +104,7 @@ public class Server {
 
 
                 path("/notification", () -> {
+                    // Nécessitent tous deux un queryParameter userType = prestataire | resident
                     path("/getAll/{user}", () -> {
                         get(notificationController::getAll);
                     });
@@ -115,6 +120,7 @@ public class Server {
                     path("/{id}", () -> {
                         get(residentController::get);
                         put(residentController::update);
+                        // Nécessite un queryParameter replace = true | false
                         patch(residentController::patch);
                     });
                 });
@@ -126,6 +132,7 @@ public class Server {
                     path("/{id}", () -> {
                         get(prestataireController::get);
                         put(prestataireController::update);
+                        // Nécessite un queryParameter replace = true | false
                         patch(prestataireController::patch);
                     });
                 });
