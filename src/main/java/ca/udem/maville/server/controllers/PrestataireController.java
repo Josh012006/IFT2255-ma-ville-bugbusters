@@ -2,6 +2,8 @@ package ca.udem.maville.server.controllers;
 
 import ca.udem.maville.server.Database;
 import ca.udem.maville.utils.ControllerHelper;
+import ca.udem.maville.utils.Quartier;
+import ca.udem.maville.utils.TypesTravaux;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -17,6 +19,50 @@ public class PrestataireController {
     public PrestataireController(Database database, String urlHead) {
         this.database = database;
         this.urlHead = urlHead;
+    }
+
+    public void getInterested(Context ctx) {
+        try {
+            String regionParam = ctx.pathParam("region");
+            String typeParam = ctx.pathParam("type");
+
+            if (regionParam.isEmpty()) {
+                ctx.status(400).result("{\"message\": \"Le quartier est nécessaire. Veuillez le préciser dans le path.\"}").contentType("application/json");
+                return;
+            }
+
+            if (typeParam.isEmpty()) {
+                ctx.status(400).result("{\"message\": \"Le type de travail est nécessaire. Veuillez le préciser dans le path.\"}").contentType("application/json");
+                return;
+            }
+
+            Quartier regionEnum = Quartier.valueOf(regionParam);
+            String region = regionEnum.getLabel();
+            TypesTravaux typeEnum = TypesTravaux.valueOf(typeParam);
+            String type = typeEnum.getLabel();
+
+            JsonArray jsonPrestataires = new JsonArray();
+
+            for(String strPrestataire : database.prestataires.values()) {
+                if(strPrestataire != null) {
+                    JsonObject jsonPrestataire = JsonParser.parseString(strPrestataire).getAsJsonObject();
+                    if(ControllerHelper.containsValue(jsonPrestataire.get("quartiers").getAsJsonArray(), region)
+                            || ControllerHelper.containsValue(jsonPrestataire.get("typesTravaux").getAsJsonArray(), type)) {
+                        jsonPrestataires.add(jsonPrestataire);
+                    }
+                }
+            }
+
+            // Renvoyer le résident
+            ctx.status(200).json(jsonPrestataires).contentType("application/json");
+
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            ctx.status(404).result("{\"message\": \"Quartier ou type travail inconnu.\"}").contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
     }
 
     public void get(Context ctx) {
@@ -47,6 +93,7 @@ public class PrestataireController {
 
             JsonObject updates = JsonParser.parseString(ctx.body()).getAsJsonObject();
             String strPrestataire = database.prestataires.get(id);
+
             if(strPrestataire == null) {
                 ctx.status(404).result("{\"message\": \"Prestataire non retrouvé.\"}").contentType("application/json");
                 return;
@@ -54,33 +101,11 @@ public class PrestataireController {
 
             JsonObject prestataire = JsonParser.parseString(strPrestataire).getAsJsonObject();
 
-            for (Map.Entry<String, JsonElement> entry : updates.entrySet()) {
-                String key = entry.getKey();
-                JsonElement value = entry.getValue();
+            // Appeler la logique de patch
+            boolean ok = ControllerHelper.patchLogic(updates, replace, prestataire, ctx);
 
-                if (value.isJsonArray()) {
-                    JsonArray nouvelles = value.getAsJsonArray();
-
-                    if (replace || !prestataire.has(key)) {
-                        // Remplacer complètement
-                        prestataire.add(key, nouvelles);
-                    } else {
-                        // Ajouter sans doublons
-                        JsonArray existantes = prestataire.getAsJsonArray(key);
-                        for (JsonElement elem : nouvelles) {
-                            if (!existantes.contains(elem)) {
-                                existantes.add(elem);
-                            }
-                        }
-                    }
-
-                } else {
-                    // Champ simple → remplacement direct
-                    if(!ControllerHelper.sameTypeJson(prestataire.get(key), value)) {
-                        ctx.status(400).result("{\"message\": \"Le champ " + key + " envoyé n'a pas le bon type.\"}").contentType("application/json");
-                    }
-                    prestataire.add(key, value);
-                }
+            if(!ok) {
+                return;
             }
 
             // Message de succès

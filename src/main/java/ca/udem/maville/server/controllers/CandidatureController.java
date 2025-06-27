@@ -2,16 +2,14 @@ package ca.udem.maville.server.controllers;
 
 import ca.udem.maville.hooks.UseRequest;
 import ca.udem.maville.server.Database;
-import ca.udem.maville.utils.ControllerHelper;
-import ca.udem.maville.utils.RandomGeneration;
-import ca.udem.maville.utils.RequestType;
-import ca.udem.maville.utils.UniqueID;
+import ca.udem.maville.utils.*;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.javalin.http.Context;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 
@@ -181,33 +179,11 @@ public class CandidatureController {
 
             JsonObject candidature = JsonParser.parseString(strCandidature).getAsJsonObject();
 
-            for (Map.Entry<String, JsonElement> entry : updates.entrySet()) {
-                String key = entry.getKey();
-                JsonElement value = entry.getValue();
+            // Appeler la logique de patch
+            boolean ok = ControllerHelper.patchLogic(updates, replace, candidature, ctx);
 
-                if (value.isJsonArray()) {
-                    JsonArray nouvelles = value.getAsJsonArray();
-
-                    if (replace || !candidature.has(key)) {
-                        // Remplacer complètement
-                        candidature.add(key, nouvelles);
-                    } else {
-                        // Ajouter sans doublons
-                        JsonArray existantes = candidature.getAsJsonArray(key);
-                        for (JsonElement elem : nouvelles) {
-                            if (!existantes.contains(elem)) {
-                                existantes.add(elem);
-                            }
-                        }
-                    }
-
-                } else {
-                    // Champ simple → remplacement direct
-                    if(!ControllerHelper.sameTypeJson(candidature.get(key), value)) {
-                        ctx.status(400).result("{\"message\": \"Le champ " + key + " envoyé n'a pas le bon type.\"}").contentType("application/json");
-                    }
-                    candidature.add(key, value);
-                }
+            if(!ok) {
+                return;
             }
 
             // Message de succès
@@ -332,7 +308,7 @@ public class CandidatureController {
                 projectToCreate.addProperty("titreProjet", candidature.get("titreProjet").getAsString());
 
                 // Récupérer le quartier et les abonnés à partir de la ficheProbleme
-                String idFicheProblem = candidature.get("ficheProblem").getAsString();
+                String idFicheProblem = candidature.get("ficheProbleme").getAsString();
 
                 if(idFicheProblem == null) {
                     System.out.println("Erreur lors de la création du projet : ID de la fiche problème manquant.");
@@ -368,9 +344,10 @@ public class CandidatureController {
 
                 if(projetResponse == null) {
                     System.out.println("Une erreur est survenue lors de la création du projet. Réponse nulle.");
+                    return;
                 }
 
-                JsonElement elemProjet = JsonParser.parseString(ficheResponse);
+                JsonElement elemProjet = JsonParser.parseString(projetResponse);
                 JsonObject jsonProjet = elemProjet.getAsJsonObject();
 
                 int statusCodeProjet = jsonProjet.get("status").getAsInt();
@@ -398,9 +375,65 @@ public class CandidatureController {
                 if (statusCode != 201) {
                     System.out.println("Une erreur est survenue lors de la création de la notification d'acceptation. Message d'erreur: " + jsonObject.get("data").getAsJsonObject().get("message").getAsString());
                     return;
-                }
-                else {
+                } else {
                     System.out.println("Notification d'acceptation créee avec succès.");
+                }
+
+                // Récupérer les résidents et les abonnés pour leur envoyer une notification
+                String responseRegionResidents = UseRequest.sendRequest(this.urlHead + "/getByRegion/" + Quartier.fromLabel(quartier), RequestType.GET, null);
+
+                if(responseRegionResidents == null) {
+                    System.out.println("Une erreur est survenue lors de la récupération des résidents de la région. Réponse nulle.");
+                    return;
+                }
+
+                JsonElement jsonRegionResidents = JsonParser.parseString(responseRegionResidents);
+                JsonObject jsonObjectRegionResidents = jsonRegionResidents.getAsJsonObject();
+
+                int statusCodeRegionResidents = jsonObjectRegionResidents.get("status").getAsInt();
+                if (statusCodeRegionResidents != 200) {
+                    System.out.println("Une erreur est survenue lors de la récupération des résidents de la région. Message d'erreur: " + jsonObjectRegionResidents.get("data").getAsJsonObject().get("message").getAsString());
+                    return;
+                }
+
+                JsonArray regionResidents = jsonObjectRegionResidents.get("data").getAsJsonArray();
+
+                // Regrouper les potentielles personnes à qui il faut envoyer la notification
+                ArrayList<JsonObject> people = new ArrayList<>();
+
+                for (JsonElement element : abonnes) {
+                    people.add(element.getAsJsonObject());
+                }
+                for (JsonElement element : regionResidents) {
+                    people.add(element.getAsJsonObject());
+                }
+
+                // Enlever les duplicatas
+                ArrayList<JsonObject> peopleToSendNotifTo = ControllerHelper.removeDuplicates(people);
+
+                // Faire une boucle et envoyer une notification à chacun. On ne se préoccupe pas que ça marche pour tout
+                // le monde.
+
+                String bodyResidentsNotif = "{\"message\": \"De nouveaux travaux sont prévus dans votre quartier entre le " + DateManagement.formatDate(newProject.get("dateDebut").getAsString()) + " et le" +
+                        DateManagement.formatDate(newProject.get("dateFin").getAsString()) + ". Les rues affectées sont les suivantes: " + newProject.get("ruesAffectees").getAsString() + ". Merci de nous faire confiance.\"}";
+
+                for(JsonObject person : peopleToSendNotifTo) {
+                    String resIndividual = UseRequest.sendRequest(this.urlHead + "/notification/" + person.get("id").getAsString() + "?userType=resident",
+                            RequestType.POST, bodyResidentsNotif);
+
+                    if(resIndividual == null) {
+                        System.out.println("Une erreur est survenue lors de l'envoi de la notification à chaque résidents pour les avertir du projet. Réponse nulle.");
+                        continue;
+                    }
+
+                    JsonElement jsonIndividual = JsonParser.parseString(resIndividual);
+                    JsonObject jsonObjectIndividual = jsonIndividual.getAsJsonObject();
+
+                    int statusCodeIndividual = jsonObjectIndividual.get("status").getAsInt();
+                    if (statusCodeIndividual != 201) {
+                        System.out.println("Une erreur est survenue lors de l'envoi de la notification au résident pour l'avertir du projet. Message d'erreur: " + jsonObjectIndividual.get("data").getAsJsonObject().get("message").getAsString());
+                    }
+
                 }
 
             } else {
@@ -442,6 +475,7 @@ public class CandidatureController {
             Thread.currentThread().interrupt();
             System.err.println("Le traitement de validation a été interrompu.");
         } catch (Exception e) {
+            System.out.println("Une erreur lors d ela validation de la candidature.");
             e.printStackTrace();
         }
     }

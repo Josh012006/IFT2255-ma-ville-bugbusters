@@ -1,8 +1,13 @@
 package ca.udem.maville.utils;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import io.javalin.http.Context;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 public final class ControllerHelper {
 
@@ -44,4 +49,70 @@ public final class ControllerHelper {
         if (e.isJsonObject()) return "object";
         return "unknown";
     }
+
+
+    // Enlève les duplicatas
+    public static ArrayList<JsonObject> removeDuplicates(ArrayList<JsonObject> tab) {
+        ArrayList<JsonObject> result = new ArrayList<>();
+
+        ArrayList<String> seenIDs = new ArrayList<>();
+
+        for (JsonObject o : tab) {
+            String oID = o.get("id").getAsString();
+            if (!seenIDs.contains(oID)) {
+                result.add(o);
+                seenIDs.add(oID);
+            }
+        }
+
+        return result;
+
+    }
+
+
+    // Vérifie qu'une string est dans un JsonArray
+    public static boolean containsValue(JsonArray array, String valeur) {
+        for (JsonElement element : array) {
+            if (element.getAsString().equals(valeur)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    // Faire la logique de patch pour le controller. Permet d'éviter la répétition de code
+    public static boolean patchLogic(JsonObject updates, boolean replace, JsonObject toPatch, Context ctx) {
+        for (Map.Entry<String, JsonElement> entry : updates.entrySet()) {
+            String key = entry.getKey();
+            JsonElement value = entry.getValue();
+
+            if (value.isJsonArray()) {
+                JsonArray nouvelles = value.getAsJsonArray();
+
+                if (replace || !toPatch.has(key)) {
+                    // Remplacer complètement
+                    toPatch.add(key, nouvelles);
+                } else {
+                    // Ajouter sans doublons
+                    JsonArray existantes = toPatch.getAsJsonArray(key);
+                    for (JsonElement elem : nouvelles) {
+                        if (!ControllerHelper.containsValue(existantes, elem.getAsString())) {
+                            existantes.add(elem);
+                        }
+                    }
+                }
+
+            } else {
+                // Champ simple → remplacement direct
+                if(!ControllerHelper.sameTypeJson(toPatch.get(key), value)) {
+                    ctx.status(400).result("{\"message\": \"Le champ " + key + " envoyé n'a pas le bon type.\"}").contentType("application/json");
+                    return false;
+                }
+                toPatch.add(key, value);
+            }
+        }
+        return true;
+    }
+
 }

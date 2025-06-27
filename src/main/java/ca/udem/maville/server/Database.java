@@ -86,7 +86,7 @@ public class Database {
                 // Gérer le cas du champ typeTravaux
                 String reason = obj.get("reason_category").getAsString();
                 TypesTravaux typeTravail = getTypeTravail(reason, TypesTravaux.values());
-                project.addProperty("typeTravaux", typeTravail.name());
+                project.addProperty("typeTravaux", typeTravail.getLabel());
 
 
                 // Générer le coût de manière aléatoire entre 2 000 000 $  et 9 700 000 $

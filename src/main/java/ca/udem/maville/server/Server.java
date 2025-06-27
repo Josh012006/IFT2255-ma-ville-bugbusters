@@ -118,6 +118,9 @@ public class Server {
                 });
 
                 path("/resident", () -> {
+                    path("/getByRegion/{region}", () -> {
+                        get(residentController::getByRegion);
+                    });
                     path("/{id}", () -> {
                         get(residentController::get);
                         put(residentController::update);
@@ -127,6 +130,9 @@ public class Server {
                 });
 
                 path("/prestataire", () -> {
+                    path("/getInterested/{region}/{type}", () -> {
+                        get(prestataireController::getInterested);
+                    });
                     path("/{id}", () -> {
                         get(prestataireController::get);
                         put(prestataireController::update);

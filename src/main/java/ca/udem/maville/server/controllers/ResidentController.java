@@ -2,6 +2,7 @@ package ca.udem.maville.server.controllers;
 
 import ca.udem.maville.server.Database;
 import ca.udem.maville.utils.ControllerHelper;
+import ca.udem.maville.utils.Quartier;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -18,6 +19,42 @@ public class ResidentController {
     public ResidentController(Database database, String urlHead) {
         this.database = database;
         this.urlHead = urlHead;
+    }
+
+
+    public void getByRegion(Context ctx) {
+        try {
+            String regionParam = ctx.pathParam("region");
+
+            if (regionParam.isEmpty()) {
+                ctx.status(400).result("{\"message\": \"Le quartier est nécessaire. Veuillez le préciser dans le path.\"}").contentType("application/json");
+                return;
+            }
+
+            Quartier regionEnum = Quartier.valueOf(regionParam);
+            String region = regionEnum.getLabel();
+
+            JsonArray jsonResidents = new JsonArray();
+
+            for(String strResident : database.residents.values()) {
+                if(strResident != null) {
+                    JsonObject jsonResident = JsonParser.parseString(strResident).getAsJsonObject();
+                    if(jsonResident.get("quartier").getAsString().equals(region)) {
+                        jsonResidents.add(jsonResident);
+                    }
+                }
+            }
+
+            // Renvoyer le résident
+            ctx.status(200).json(jsonResidents).contentType("application/json");
+
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            ctx.status(404).result("{\"message\": \"Quartier inconnu.\"}").contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
     }
 
     public void get(Context ctx) {
@@ -55,33 +92,11 @@ public class ResidentController {
 
             JsonObject resident = JsonParser.parseString(strResident).getAsJsonObject();
 
-            for (Map.Entry<String, JsonElement> entry : updates.entrySet()) {
-                String key = entry.getKey();
-                JsonElement value = entry.getValue();
+            // Appeler la logique de patch
+            boolean ok = ControllerHelper.patchLogic(updates, replace, resident, ctx);
 
-                if (value.isJsonArray()) {
-                    JsonArray nouvelles = value.getAsJsonArray();
-
-                    if (replace || !resident.has(key)) {
-                        // Remplacer complètement
-                        resident.add(key, nouvelles);
-                    } else {
-                        // Ajouter sans doublons
-                        JsonArray existantes = resident.getAsJsonArray(key);
-                        for (JsonElement elem : nouvelles) {
-                            if (!existantes.contains(elem)) {
-                                existantes.add(elem);
-                            }
-                        }
-                    }
-
-                } else {
-                    // Champ simple → remplacement direct
-                    if(!ControllerHelper.sameTypeJson(resident.get(key), value)) {
-                        ctx.status(400).result("{\"message\": \"Le champ " + key + " envoyé n'a pas le bon type.\"}").contentType("application/json");
-                    }
-                    resident.add(key, value);
-                }
+            if(!ok) {
+                return;
             }
 
             // Message de succès
