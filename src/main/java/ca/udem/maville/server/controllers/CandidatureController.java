@@ -172,7 +172,14 @@ public class CandidatureController {
             boolean replace = Boolean.parseBoolean(ctx.queryParam("replace"));
 
             JsonObject updates = JsonParser.parseString(ctx.body()).getAsJsonObject();
-            JsonObject candidature = JsonParser.parseString(database.candidatures.get(id)).getAsJsonObject();
+            String strCandidature = database.candidatures.get(id);
+
+            if (strCandidature == null) {
+                ctx.status(404).result("{\"message\": \"Candidature non retrouvée.\"}").contentType("application/json");
+                return;
+            }
+
+            JsonObject candidature = JsonParser.parseString(strCandidature).getAsJsonObject();
 
             for (Map.Entry<String, JsonElement> entry : updates.entrySet()) {
                 String key = entry.getKey();
@@ -243,6 +250,7 @@ public class CandidatureController {
             JsonObject actualCandidature = JsonParser.parseString(strCandidature).getAsJsonObject();
 
             if(!ControllerHelper.sameKeysSameTypes(actualCandidature, newCandidature)) {
+                ctx.status(400).result("{\"message\": \"Format d'objet ne correspondant pas à celui d'une candidature. Vérifiez que les champs envoyés sont corrects et que les types sont bons.\"}").contentType("application/json");
                 return;
             }
 

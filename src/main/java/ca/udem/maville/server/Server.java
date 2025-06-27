@@ -66,6 +66,10 @@ public class Server {
                 });
 
                 path("/probleme", () -> {
+                    // Pour que les prestataires puissent voir les problèmes
+                    path("/getAll", () -> {
+                        get(problemController::getAll);
+                    });
                     path("/getCandidatures/{id}", () -> {
                         get(problemController::getAllCandidatures);
                     });
@@ -114,9 +118,6 @@ public class Server {
                 });
 
                 path("/resident", () -> {
-                    path("/getAll", () -> {
-                        get(residentController::getAll);
-                    });
                     path("/{id}", () -> {
                         get(residentController::get);
                         put(residentController::update);
@@ -126,9 +127,6 @@ public class Server {
                 });
 
                 path("/prestataire", () -> {
-                    path("/getAll", () -> {
-                        get(prestataireController::getAll);
-                    });
                     path("/{id}", () -> {
                         get(prestataireController::get);
                         put(prestataireController::update);

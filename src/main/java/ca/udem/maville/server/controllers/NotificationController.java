@@ -124,6 +124,7 @@ public class NotificationController {
             }
 
             // Renvoyer la notification pour marquer le succès
+            database.notifications.put(notifID, newNotif.toString());
             ctx.status(201).json(newNotif).contentType("application/json");
 
         } catch (Exception e) {
