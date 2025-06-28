@@ -21,6 +21,13 @@ public class NotificationController {
         this.urlHead = urlHead;
     }
 
+    /**
+     * Cette route permet de récupérer toutes les notifications d'un utilisateur.
+     * Le paramètre de path user contient l'id de l'utilisateur.
+     * Elle nécessite un queryParameter userType = resident | prestataire qui permet de savoir
+     * de quel type d'utilisateur il s'agit.
+     * @param ctx qui représente le contexte de la requête.
+     */
     public void getAll(Context ctx) {
         try {
             String idUser = ctx.pathParam("user");
@@ -65,7 +72,7 @@ public class NotificationController {
                 String notifIdString = notifId.getAsString();
                 String notification = database.notifications.get(notifIdString);
                 if(notification != null) {
-                    data.add(notification);
+                    data.add(JsonParser.parseString(notification).getAsJsonObject());
                 }
             }
 
@@ -79,6 +86,16 @@ public class NotificationController {
         }
     }
 
+    /**
+     * Cette route permet de créer une nouvelle notification pour un utilisateur.
+     * Le paramètre de path user contient l'id de l'utilisateur.
+     * Elle nécessite un queryParameter userType = resident | prestataire qui permet de savoir
+     * de quel type d'utilisateur il s'agit.
+     * Le body doit contenir les informations suivantes :
+     * - message: qui représente le message de la notification à envoyer
+     * Elle s'assure automatiquement de créer les champs id et dateNotification
+     * @param ctx qui représente le contexte de la requête.
+     */
     public void create(Context ctx) {
         try {
             String idUser = ctx.pathParam("user");

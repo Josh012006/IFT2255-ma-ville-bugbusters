@@ -9,6 +9,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.javalin.http.Context;
 
+import java.time.Instant;
 import java.util.ArrayList;
 
 
@@ -23,7 +24,11 @@ public class CandidatureController {
         this.urlHead = urlHead;
     }
 
-    // Une méthode qui récupère toutes les candidatures d'un prestataire en utilisant son id.
+    /**
+     * Cette route permet de récupérer toutes les candidatures d'un prestaire.
+     * Le paramètre de path user représente l'id du prestataire.
+     * @param ctx qui représente le contexte de la requête
+     */
     public void getAll(Context ctx) {
         try {
             String idUser = ctx.pathParam("user");
@@ -57,7 +62,7 @@ public class CandidatureController {
                 String candidatureIdString = candidatureId.getAsString();
                 String candidature = database.candidatures.get(candidatureIdString);
                 if(candidature != null) {
-                    data.add(candidature);
+                    data.add(JsonParser.parseString(candidature).getAsJsonObject());
                 }
             }
 
@@ -71,7 +76,24 @@ public class CandidatureController {
     }
 
 
-
+    /**
+     * Cette route permet de créer une nouvelle candidature pour un prestataire.
+     * Le body doit contenir toutes informations nécessaires notamment :
+     * - prestataire: qui est l'id du prestataire qui dépose la candidature. Très important.
+     * - ficheProbleme: qui est l'id de la fiche problème concernée
+     * - numeroEntreprise: qui représente le numéro d'entreprise du prestataire
+     * - titreProjet: qui est le titre du projet proposé
+     * - description: La description du projet proposé
+     * - typeTravaux: qui représente le type travail à réaliser sous forme Label
+     * - coutEstime: Le cout proposé pour le projet
+     * - dateDebut: qui doit être sous format ISO
+     * - dateFin: qui doit être sous format ISO
+     * - ruesAffectees: Les rues affectées par les travaux sous forme de String
+     * Elle s'occupe automatiquement d'assigner les champs id, statut et dateSoumission
+     * Elle implémente aussi une validation aléatoire de la candidature à travers la méthode
+     * {@link #validateCandidature(JsonObject)}
+     * @param ctx représente le contexte de la requête
+     */
     public void create(Context ctx) {
         try {
             // Récupérer les informations sur la nouvelle candidature
@@ -97,6 +119,8 @@ public class CandidatureController {
 
             newCandidature.addProperty("id", id);
             newCandidature.addProperty("statut", "enAttente");
+            newCandidature.addProperty("dateSoumission", Instant.now().toString());
+
 
             // Ajouter la nouvelle candidature à la base de données
             database.candidatures.put(id, newCandidature.toString());
@@ -139,7 +163,11 @@ public class CandidatureController {
     }
 
 
-
+    /**
+     * Cette route permet de récupérer une candidature en particulier à
+     * partir de son id.
+     * @param ctx représente le contexte de la requête.
+     */
     public void get(Context ctx) {
         try {
             String id = ctx.pathParam("id");
@@ -162,7 +190,16 @@ public class CandidatureController {
     }
 
 
-
+    /**
+     * Cette route permet de modifier seulement partiellement les informations
+     * d'une candidature, connaissant son id.
+     * Le body doit contenir les champs à modifier avec la nouvelle information.
+     * Assurez vous que la nouvelle information a le bon type.
+     * Elle nécessite également un queryParameter replace = true | false qui est utile pour les tableaux
+     * notamment pour savoir s'il faut juste ajouter les éléments ou remplacer le tableau en entier.
+     * La modification n'est possible que si la candidature n'a pas encore été traitée.
+     * @param ctx qui représente le contexte de la requête.
+     */
     public void patch(Context ctx) {
         try {
             String id = ctx.pathParam("id");
@@ -202,7 +239,15 @@ public class CandidatureController {
     }
 
 
-
+    /**
+     * Cette route permet de remplacer complètement une candidature existante
+     * par une autre avec de nouvelles informations, connaissant son id.
+     * Le body doit contenir la nouvelle candidature avec tous les champs présents et ayant le bon type Json.
+     * La modification n'est possible que si la candidature n'est pas encore traitées.
+     * Je précise que l'objet envoyé en body doit vraiment tout contenir. Contrairement à la fonction
+     * {@link #create(Context)}, cette fonction ne génère aucune information automatiquement.
+     * @param ctx qui représente le contexte de la requête.
+     */
     public void update(Context ctx) {
         try {
             String id = ctx.pathParam("id");
@@ -257,7 +302,10 @@ public class CandidatureController {
     }
 
 
-
+    /**
+     * Cette route permet de supprimer une candidature à partir de son id
+     * @param ctx qui représente le contexte de la requête.
+     */
     public void delete(Context ctx) {
         try {
             String id = ctx.pathParam("id");
@@ -279,16 +327,14 @@ public class CandidatureController {
     }
 
 
-
-
-
-
-
-
-
-
-    // Une fonction qui après avoir attendue un certain temps valide ou refuse la candidature.
-    // Elle crée un projet si nécessaire et envoie une notification pour préciser au prestataire la décision prise.
+    /**
+     * Une fonction qui après avoir attendue un certain temps (1.5s) valide ou refuse la candidature.
+     * En cas d'acceptation, elle crée un nouveau projet. La création du projet inclut l'envoi des notifications
+     * aux résidents ayant signalé le problème et au prestataire ayant proposé la candidature. {@link ProjectController#create(Context)}
+     * En cas de refus, une raison aléatoire de refus est choisie et une notification explicative est envoyée
+     * au prestataire.
+     * @param candidature qui représente la nouvelle candidature à valider
+     */
     private void validateCandidature(JsonObject candidature) {
         try {
             // Simule une attente de traitement
@@ -307,13 +353,12 @@ public class CandidatureController {
 
                 JsonObject projectToCreate = new JsonObject();
 
-                projectToCreate.addProperty("statut", "enCours");
                 projectToCreate.addProperty("dateDebut", candidature.get("dateDebut").getAsString());
                 projectToCreate.addProperty("dateFin", candidature.get("dateFin").getAsString());
 
                 projectToCreate.addProperty("prestataire", candidature.get("prestataire").getAsString());
                 projectToCreate.addProperty("ruesAffectees", candidature.get("ruesAffectees").getAsString() );
-                projectToCreate.addProperty("typesTravaux", candidature.get("typesTravaux").getAsString());
+                projectToCreate.addProperty("typeTravaux", candidature.get("typeTravaux").getAsString());
                 projectToCreate.addProperty("cout", candidature.get("coutEstime").getAsString());
                 projectToCreate.addProperty("description", candidature.get("description").getAsString());
                 projectToCreate.addProperty("titreProjet", candidature.get("titreProjet").getAsString());
@@ -354,7 +399,7 @@ public class CandidatureController {
                 JsonArray abonnesSignal = data.get("residents").getAsJsonArray();
 
                 // Récupérer les résidents du quartier
-                String responseRegionResidents = UseRequest.sendRequest(this.urlHead + "/getByRegion/" + Quartier.fromLabel(quartier), RequestType.GET, null);
+                String responseRegionResidents = UseRequest.sendRequest(this.urlHead + "/resident/getByRegion/" + Quartier.fromLabel(quartier), RequestType.GET, null);
 
                 if(responseRegionResidents == null) {
                     System.out.println("Une erreur est survenue lors de la récupération des résidents de la région. Réponse nulle.");
@@ -388,7 +433,7 @@ public class CandidatureController {
                 // Enregistrer l'information sur le projet
                 JsonArray abonnesJsonArray = new JsonArray();
                 for (JsonObject abonne : abonnesList) {
-                    abonnesJsonArray.add(abonne);
+                    abonnesJsonArray.add(abonne.get("id").getAsString());
                 }
                 projectToCreate.add("abonnes", abonnesJsonArray);
 

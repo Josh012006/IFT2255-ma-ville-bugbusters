@@ -25,6 +25,11 @@ public class SignalementController {
         this.urlHead = urlHead;
     }
 
+    /**
+     * Cette route permet de récupérer tous les signalements d'un résident.
+     * Le paramètre de path user représente l'id du résident.
+     * @param ctx qui représente le contexte de la requête
+     */
     public void getAll(Context ctx) {
         try {
             String idUser = ctx.pathParam("user");
@@ -57,7 +62,7 @@ public class SignalementController {
                 String signalIdString = signalId.getAsString();
                 String signal = database.signalements.get(signalIdString);
                 if(signal != null) {
-                    data.add(signal);
+                    data.add(JsonParser.parseString(signal).getAsJsonObject());
                 }
             }
 
@@ -69,6 +74,20 @@ public class SignalementController {
         }
     }
 
+    /**
+     * Cette route permet de créer un nouveau signalement pour un résident.
+     * Le body doit contenir toutes informations nécessaires notamment :
+     * - typeProbleme: qui représente le type travail requis sous forme Label
+     * - quartier: qui représente le quartier affecté. Il est sous forme Label
+     * - localisation: ici on s'intéressera principalement à la rue ou à l'adresse du résident
+     * - description: la description du problème rencontré
+     * - resident: l'id du résident faisant le signalement. Très important
+     * Elle s'occupe automatiquement d'assigner les champs id, statut et dateSignalement
+     * Elle implémente aussi un traitement automatique du signalement pour créer la fiche problème
+     * avec une assignation aléatoire de priorité.
+     * {@link #manageSignal(JsonObject)}
+     * @param ctx représente le contexte de la requête
+     */
     public void create(Context ctx) {
         try {
             // Récupérer les informations sur le nouveau signalement
@@ -136,6 +155,11 @@ public class SignalementController {
         }
     }
 
+    /**
+     * Cette route permet de récupérer un signalement en particulier à
+     * partir de son id.
+     * @param ctx représente le contexte de la requête.
+     */
     public void get(Context ctx) {
         try {
             String id = ctx.pathParam("id");
@@ -156,6 +180,16 @@ public class SignalementController {
         }
     }
 
+    /**
+     * Cette route permet de modifier seulement partiellement les informations
+     * d'un signalement, connaissant son id.
+     * Le body doit contenir les champs à modifier avec la nouvelle information.
+     * Assurez vous que la nouvelle information a le bon type.
+     * Elle nécessite également un queryParameter replace = true | false qui est utile pour les tableaux
+     * notamment pour savoir s'il faut juste ajouter les éléments ou remplacer le tableau en entier.
+     * La modification n'est possible que si le signalement n'a pas encore été traité.
+     * @param ctx qui représente le contexte de la requête.
+     */
     public void patch(Context ctx) {
         try {
             // La modification est possible seulement si pas encore traité
@@ -166,7 +200,7 @@ public class SignalementController {
             String strSignal = database.signalements.get(id);
 
             if (strSignal == null) {
-                ctx.status(404).result("{\"message\": \"Signalement non retrouvée.\"}").contentType("application/json");
+                ctx.status(404).result("{\"message\": \"Signalement non retrouvé.\"}").contentType("application/json");
                 return;
             }
 
@@ -195,6 +229,15 @@ public class SignalementController {
         }
     }
 
+    /**
+     * Cette route permet de remplacer complètement un signalement existant
+     * par un autre avec de nouvelles informations, connaissant son id.
+     * Le body doit contenir le nouveau signalement avec tous les champs présents et ayant le bon type Json.
+     * La modification n'est possible que si le signalement n'est pas encore traité.
+     * Je précise que l'objet envoyé en body doit vraiment tout contenir. Contrairement à la fonction
+     * {@link #create(Context)}, cette fonction ne génère aucune information automatiquement.
+     * @param ctx qui représente le contexte de la requête.
+     */
     public void update(Context ctx) {
         try {
             String id = ctx.pathParam("id");
@@ -247,6 +290,10 @@ public class SignalementController {
         }
     }
 
+    /**
+     * Cette route permet de supprimer un signalement à partir de son id
+     * @param ctx qui représente le contexte de la requête.
+     */
     public void delete(Context ctx) {
         try {
             String id = ctx.pathParam("id");
@@ -267,8 +314,14 @@ public class SignalementController {
         }
     }
 
-    // Une fonction qui après avoir attendu un certain temps attribue une priorité aléatoire
-    // au problème et crée une fiche problème
+    /**
+     * Une fonction qui après avoir attendu un certain temps (1.5s) attribue une priorité aléatoire
+     * au problème. Cette priorité est choisie avec une tendance plus pousée à faible et moyen.
+     * Elle crée ensuite une fiche problème. La création de la fiche problème inclut l'envoi d'une notification
+     * à tous les résidents ayant fait des signalements en rapport et aussi à tous les prestataires
+     * qui pourraient être intéressés par le problème. Voir {@link ProblemController#create(Context)}.
+     * @param signal qui représente le nouveau signalement à traiter
+     */
     private void manageSignal(JsonObject signal) {
 
         try {
@@ -315,6 +368,7 @@ public class SignalementController {
             }
 
             System.out.println("Fiche problème créée avec succès.");
+
         } catch (InterruptedException e) {
             // Réinterrompre le thread
             Thread.currentThread().interrupt();

@@ -78,6 +78,7 @@ public class Database {
                 project.addProperty("dateDebut", date_debut);
                 project.addProperty("dateFin", date_fin);
 
+                // Todo: Pas juste prendre le organizationname mais aussi le prestataire id
                 String prestataire = obj.get("organizationname").getAsString();
                 project.addProperty("prestataire", prestataire);
 

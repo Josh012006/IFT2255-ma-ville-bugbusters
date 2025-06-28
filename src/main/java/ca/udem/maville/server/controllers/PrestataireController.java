@@ -21,6 +21,13 @@ public class PrestataireController {
         this.urlHead = urlHead;
     }
 
+    /**
+     * Cette route permet de récupérer tous les prestataires qui pourraient être intéressés
+     * par un problème déclaré.
+     * Le paramètre de path region contient le nom du quartier où le problème est situé. Il doit sous forme de l'enum.
+     * Le paramètre de path type contient le nom du type de travail requis. Il doit être sous forme enum.
+     * @param ctx qui représente le contexte de la requête
+     */
     public void getInterested(Context ctx) {
         try {
             String regionParam = ctx.pathParam("region");
@@ -65,6 +72,11 @@ public class PrestataireController {
         }
     }
 
+    /**
+     * Cette route permet de récupérer les informations sur un prestataire donné
+     * en fonction de son id.
+     * @param ctx qui représente le contexte de la requête.
+     */
     public void get(Context ctx) {
         try {
             String id = ctx.pathParam("id");
@@ -86,6 +98,15 @@ public class PrestataireController {
         }
     }
 
+    /**
+     * Cette route permet de modifier seulement partiellement les informations
+     * d'un prestataire, connaissant son id.
+     * Le body doit contenir les champs à modifier avec la nouvelle information.
+     * Assurez vous que la nouvelle information a le bon type.
+     * Elle nécessite également un queryParameter replace = true | false qui est utile pour les tableaux
+     * notamment pour savoir s'il faut juste ajouter les éléments ou remplacer le tableau en entier.
+     * @param ctx qui représente le contexte de la requête.
+     */
     public void patch(Context ctx) {
         try {
             String id = ctx.pathParam("id");
@@ -117,7 +138,13 @@ public class PrestataireController {
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
         }
     }
-
+    /**
+     * Cette route permet de remplacer complètement un prestataire enregistré
+     * par un autre avec de nouvelles informations, connaissant son id.
+     * Le body doit contenir le nouveau prestataire avec tous les champs présents et ayant le bon type Json.
+     * Je précise que l'objet envoyé en body doit vraiment tout contenir.
+     * @param ctx qui représente le contexte de la requête.
+     */
     public void update(Context ctx) {
         try {
             String id = ctx.pathParam("id");
