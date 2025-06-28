@@ -100,7 +100,7 @@ public class NotificationController {
 
             // Faire le patch pour ajouter la notification pour l'utilisateur concerné
             String toSend = "{\"notifications\": [\"" + notifID + "\"]}";
-            String responseUser = null;
+            String responseUser;
 
             if(userType.equals("prestataire")) {
                 responseUser = UseRequest.sendRequest(this.urlHead + "/prestataire/" + idUser , RequestType.PATCH, toSend);

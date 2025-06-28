@@ -24,7 +24,7 @@ public class ProblemController {
 
     public void create(Context ctx) {
         try {
-            // Ne pas manquer d'envoyer une notification aux prestataires intéressés
+            // Ne pas manquer d'envoyer une notification aux prestataires intéressés et une notification de traitement au résident
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");

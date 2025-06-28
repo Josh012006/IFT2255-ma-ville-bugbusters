@@ -51,6 +51,7 @@ public class Database {
             ArrayList<JsonObject> projects = normalize(rawProjects);
 
             for (JsonObject project : projects) {
+                System.out.println(project.toString());
                 projets.put(project.get("id").getAsString(), project.toString());
             }
         }

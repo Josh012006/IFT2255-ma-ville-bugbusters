@@ -4,11 +4,15 @@ import ca.udem.maville.hooks.UseRequest;
 import ca.udem.maville.server.Database;
 import ca.udem.maville.utils.ControllerHelper;
 import ca.udem.maville.utils.RequestType;
+import ca.udem.maville.utils.UniqueID;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.javalin.http.Context;
+
+import java.time.Instant;
+import java.util.concurrent.CompletableFuture;
 
 public class SignalementController {
 
@@ -66,9 +70,64 @@ public class SignalementController {
 
     public void create(Context ctx) {
         try {
-            // Todo: Ne pas oublier d'ajouter aux signalements du résident et d'envoyer une notification de traitement.
-            //  Ensuite, dans un Thread séparé, assigner une prorité aléatoire et créer une ficheProblème et envoyer le message aux prestataires qui peuvent être
-            //  intéressés.
+            // Récupérer les informations sur le nouveau signalement
+            String rawJson = ctx.body();
+
+            JsonElement element = JsonParser.parseString(rawJson);
+
+            // Vérifie si c'est bien un objet
+            if (!element.isJsonObject()) {
+                ctx.status(400).result("{\"message\": \"Format JSON invalide.\"}").contentType("application/json");
+                return;
+            }
+
+            // Modifier l'objet pour ajouter un id et toute information nécessaire
+            JsonObject newSignal = element.getAsJsonObject();
+
+            String idResident = newSignal.has("resident") ? newSignal.get("resident").getAsString() : null;
+            if (idResident == null) {
+                ctx.status(400).result("{\"message\": \"ID du résident manquant!\"}").contentType("application/json");
+                return;
+            }
+            String id = UniqueID.generateUniqueID();
+
+            newSignal.addProperty("id", id);
+            newSignal.addProperty("statut", "enAttente");
+            newSignal.addProperty("dateSignalement", Instant.now().toString());
+
+            // Ajouter le nouveau signalement à la base de données
+            database.signalements.put(id, newSignal.toString());
+
+            // Ajouter le signalement à la liste pour le résident concerné
+            JsonObject patchBody = new JsonObject();
+            JsonArray toAdd = new JsonArray();
+            toAdd.add(id);
+            patchBody.add("signalements", toAdd);
+
+            // Envoyer la requête pour modifier la liste des signalements
+            String response = UseRequest.sendRequest(this.urlHead + "/resident/" + idResident + "?replace=false", RequestType.PATCH, patchBody.toString());
+
+            if(response == null) {
+                throw new Exception("Une erreur est survenue lors de l'ajout du signalement pour le résident. Réponse nulle.");
+            }
+
+            JsonElement elemSignal = JsonParser.parseString(response);
+            JsonObject jsonSignal = elemSignal.getAsJsonObject();
+
+            int statusCodeSignal = jsonSignal.get("status").getAsInt();
+            if (statusCodeSignal != 200) {
+                throw new Exception("Une erreur est survenue lors de l'ajout du signalement pour le résident. Message d'erreur: " + jsonSignal.get("data").getAsJsonObject().get("message").getAsString());
+            }
+
+            // Lancer la logique traitement du signalement et d'attribution de priorité aléatoire
+            // en arrière-plan sans bloquer aucun Thread.
+            CompletableFuture.runAsync(() -> {
+                this.manageSignal(newSignal);
+            });
+
+
+            // Renvoyer le signalement avec un message de succès
+            ctx.status(201).json(newSignal).contentType("application/json");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -206,4 +265,17 @@ public class SignalementController {
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
         }
     }
+
+    // Une fonction qui après avoir attendu un certain temps attribue une priorité aléatoire
+    // au problème et crée une fiche problème
+    private void manageSignal(JsonObject signal) {
+        // Todo: Assigner une priorité aléatoire
+
+        // Todo: Envoyer une requête pour créer une ficheProblème
+    }
 }
+
+
+
+
+

@@ -16,6 +16,9 @@ public class Server {
     }
 
     public void start() {
+
+        System.out.println("Server started.");
+
         // Création de la base de données
         database = new Database();
 
@@ -92,6 +95,7 @@ public class Server {
                     });
                     post(projectController::create);
                     path("/{id}", () -> {
+                        // Les updates sont nécessaires par exemple pour ajouter des abonnés
                         get(projectController::get);
                         put(projectController::update);
                         // Nécessite un queryParameter replace = true | false

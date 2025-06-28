@@ -118,8 +118,8 @@ public class CandidatureController {
             JsonElement elemCandidature = JsonParser.parseString(response);
             JsonObject jsonCandidature = elemCandidature.getAsJsonObject();
 
-            int statusCodeProjet = jsonCandidature.get("status").getAsInt();
-            if (statusCodeProjet != 200) {
+            int statusCodeCandidature = jsonCandidature.get("status").getAsInt();
+            if (statusCodeCandidature != 200) {
                 throw new Exception("Une erreur est survenue lors de l'ajout de la candidature pour le prestataire. Message d'erreur: " + jsonCandidature.get("data").getAsJsonObject().get("message").getAsString());
             }
 
