@@ -51,6 +51,8 @@ public class ProjectController {
 
     public void create(Context ctx) {
         try {
+            // Envoyer une notification aux résidents
+            // Ne pas oublier de prendre des informations sur la ficheProbleme (voir candidature)
 
         } catch (Exception e) {
             e.printStackTrace();

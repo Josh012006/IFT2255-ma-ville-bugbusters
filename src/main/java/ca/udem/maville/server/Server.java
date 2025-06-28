@@ -66,20 +66,14 @@ public class Server {
                 });
 
                 path("/probleme", () -> {
-                    // Pour que les prestataires puissent voir les problèmes
-                    path("/getAll", () -> {
+                    // Pour que les prestataires puissent voir les problèmes qui peuvent
+                    // les intéresser on aura donc besoin de query parameters
+                    path("/getInteresting", () -> {
                         get(problemController::getAll);
-                    });
-                    path("/getCandidatures/{id}", () -> {
-                        get(problemController::getAllCandidatures);
                     });
                     post(problemController::create);
                     path("/{id}", () -> {
                         get(problemController::get);
-                        put(problemController::update);
-                        // Nécessite un queryParameter replace = true | false
-                        patch(problemController::patch);
-                        delete(problemController::delete);
                     });
                 });
 

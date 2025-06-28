@@ -49,7 +49,7 @@ public class NotificationController {
 
             int statuscode = jsonUser.get("status").getAsInt();
             if (statuscode == 404) {
-                ctx.status(404).result("{\"message\": \"Aucun " + userType + "avec un tel ID retrouvé.\"}").contentType("application/json");
+                ctx.status(404).result("{\"message\": \"Aucun " + userType + " avec un tel ID retrouvé.\"}").contentType("application/json");
                 return;
             } else if(statuscode != 200) {
                 throw new Exception("Une erreur est survenue lors de la récupération du prestataire. Message d'erreur: " + jsonUser.get("data").getAsJsonObject().get("message").getAsString());

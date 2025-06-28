@@ -53,7 +53,7 @@ public class PrestataireController {
                 }
             }
 
-            // Renvoyer le résident
+            // Renvoyer les prestataires
             ctx.status(200).json(jsonPrestataires).contentType("application/json");
 
         } catch (IllegalArgumentException e) {

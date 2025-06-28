@@ -45,7 +45,7 @@ public class ResidentController {
                 }
             }
 
-            // Renvoyer le résident
+            // Renvoyer les résidents
             ctx.status(200).json(jsonResidents).contentType("application/json");
 
         } catch (IllegalArgumentException e) {

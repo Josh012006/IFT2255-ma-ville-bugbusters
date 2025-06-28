@@ -179,6 +179,12 @@ public class CandidatureController {
 
             JsonObject candidature = JsonParser.parseString(strCandidature).getAsJsonObject();
 
+            // La modification est possible seulement si pas encore traité
+            if(!candidature.get("statut").getAsString().equals("enAttente")) {
+                ctx.status(400).result("{\"message\": \"Impossible de modifier une candidature déjà traitée. Veuillez vérifier vos notifications.\"}").contentType("application/json");
+                return;
+            }
+
             // Appeler la logique de patch
             boolean ok = ControllerHelper.patchLogic(updates, replace, candidature, ctx);
 
@@ -224,6 +230,12 @@ public class CandidatureController {
             JsonObject newCandidature = element.getAsJsonObject();
 
             JsonObject actualCandidature = JsonParser.parseString(strCandidature).getAsJsonObject();
+
+            // La modification est possible seulement si pas encore traité
+            if(!actualCandidature.get("statut").getAsString().equals("enAttente")) {
+                ctx.status(400).result("{\"message\": \"Impossible de modifier une candidature déjà traitée. Veuillez vérifier vos notifications.\"}").contentType("application/json");
+                return;
+            }
 
             if(!ControllerHelper.sameKeysSameTypes(actualCandidature, newCandidature)) {
                 ctx.status(400).result("{\"message\": \"Format d'objet ne correspondant pas à celui d'une candidature. Vérifiez que les champs envoyés sont corrects et que les types sont bons.\"}").contentType("application/json");
@@ -334,10 +346,54 @@ public class CandidatureController {
                 JsonObject data = jsonFiche.get("data").getAsJsonObject();
 
                 String quartier = data.get("quartier").getAsString();
-                JsonArray abonnes = data.get("residents").getAsJsonArray();
-
                 projectToCreate.addProperty("quartier", quartier);
-                projectToCreate.add("abonnes", abonnes);
+
+
+
+                // Former les abonnés à partir de ceux qui étaient déjà abonnés à la fiche problème mais aussi
+                // à partir de tous les résidents du quartier. Sans duplicata.
+                JsonArray abonnesSignal = data.get("residents").getAsJsonArray();
+
+                // Récupérer les résidents du quartier
+                String responseRegionResidents = UseRequest.sendRequest(this.urlHead + "/getByRegion/" + Quartier.fromLabel(quartier), RequestType.GET, null);
+
+                if(responseRegionResidents == null) {
+                    System.out.println("Une erreur est survenue lors de la récupération des résidents de la région. Réponse nulle.");
+                    return;
+                }
+
+                JsonElement jsonRegionResidents = JsonParser.parseString(responseRegionResidents);
+                JsonObject jsonObjectRegionResidents = jsonRegionResidents.getAsJsonObject();
+
+                int statusCodeRegionResidents = jsonObjectRegionResidents.get("status").getAsInt();
+                if (statusCodeRegionResidents != 200) {
+                    System.out.println("Une erreur est survenue lors de la récupération des résidents de la région. Message d'erreur: " + jsonObjectRegionResidents.get("data").getAsJsonObject().get("message").getAsString());
+                    return;
+                }
+
+                JsonArray regionResidents = jsonObjectRegionResidents.get("data").getAsJsonArray();
+
+                // Regrouper les potentiels abonnés
+                ArrayList<JsonObject> people = new ArrayList<>();
+
+                for (JsonElement element : abonnesSignal) {
+                    people.add(element.getAsJsonObject());
+                }
+                for (JsonElement element : regionResidents) {
+                    people.add(element.getAsJsonObject());
+                }
+
+                // Enlever les duplicatas
+                ArrayList<JsonObject> abonnesList = ControllerHelper.removeDuplicates(people);
+
+                // Enregistrer l'information sur le projet
+                JsonArray abonnesJsonArray = new JsonArray();
+                for (JsonObject abonne : abonnesList) {
+                    abonnesJsonArray.add(abonne);
+                }
+                projectToCreate.add("abonnes", abonnesJsonArray);
+
+
 
                 // Envoyer la requête pour créer un projet
                 String projetResponse = UseRequest.sendRequest(this.urlHead + "/projet", RequestType.POST, projectToCreate.toString());
@@ -358,7 +414,8 @@ public class CandidatureController {
 
                 JsonObject newProject = jsonProjet.get("data").getAsJsonObject();
 
-                // Envoyer une requête afin de créer une notification pour l'utilisateur concerné
+                // Todo: Penser à déplacer ça aussi au niveau de la création de projet
+                //  Envoyer une requête afin de créer une notification pour le prestataire concerné
                 String response = UseRequest.sendRequest(this.urlHead + "/notification/" + candidature.get("prestataire").getAsString() + "?userType=prestataire",
                         RequestType.POST, "{\"message\": \"Votre candidature pour projet " + newProject.get("titreProjet").getAsString() + " a été acceptée. Veuillez consulter" +
                                 " votre liste des projets pour plus d'informations.\"}");
@@ -373,51 +430,22 @@ public class CandidatureController {
 
                 int statusCode = jsonObject.get("status").getAsInt();
                 if (statusCode != 201) {
+                    // Todo: Changer les messages
                     System.out.println("Une erreur est survenue lors de la création de la notification d'acceptation. Message d'erreur: " + jsonObject.get("data").getAsJsonObject().get("message").getAsString());
                     return;
                 } else {
                     System.out.println("Notification d'acceptation créee avec succès.");
                 }
 
-                // Récupérer les résidents et les abonnés pour leur envoyer une notification
-                String responseRegionResidents = UseRequest.sendRequest(this.urlHead + "/getByRegion/" + Quartier.fromLabel(quartier), RequestType.GET, null);
 
-                if(responseRegionResidents == null) {
-                    System.out.println("Une erreur est survenue lors de la récupération des résidents de la région. Réponse nulle.");
-                    return;
-                }
-
-                JsonElement jsonRegionResidents = JsonParser.parseString(responseRegionResidents);
-                JsonObject jsonObjectRegionResidents = jsonRegionResidents.getAsJsonObject();
-
-                int statusCodeRegionResidents = jsonObjectRegionResidents.get("status").getAsInt();
-                if (statusCodeRegionResidents != 200) {
-                    System.out.println("Une erreur est survenue lors de la récupération des résidents de la région. Message d'erreur: " + jsonObjectRegionResidents.get("data").getAsJsonObject().get("message").getAsString());
-                    return;
-                }
-
-                JsonArray regionResidents = jsonObjectRegionResidents.get("data").getAsJsonArray();
-
-                // Regrouper les potentielles personnes à qui il faut envoyer la notification
-                ArrayList<JsonObject> people = new ArrayList<>();
-
-                for (JsonElement element : abonnes) {
-                    people.add(element.getAsJsonObject());
-                }
-                for (JsonElement element : regionResidents) {
-                    people.add(element.getAsJsonObject());
-                }
-
-                // Enlever les duplicatas
-                ArrayList<JsonObject> peopleToSendNotifTo = ControllerHelper.removeDuplicates(people);
-
-                // Faire une boucle et envoyer une notification à chacun. On ne se préoccupe pas que ça marche pour tout
-                // le monde.
+                // Todo: Déplacer cette logique dans la partie de création
+                //  Faire une boucle et envoyer une notification à chacun des abonnés. On ne se préoccupe pas que ça marche pour tout
+                //  le monde.
 
                 String bodyResidentsNotif = "{\"message\": \"De nouveaux travaux sont prévus dans votre quartier entre le " + DateManagement.formatDate(newProject.get("dateDebut").getAsString()) + " et le" +
                         DateManagement.formatDate(newProject.get("dateFin").getAsString()) + ". Les rues affectées sont les suivantes: " + newProject.get("ruesAffectees").getAsString() + ". Merci de nous faire confiance.\"}";
 
-                for(JsonObject person : peopleToSendNotifTo) {
+                for(JsonObject person : abonnesList) {
                     String resIndividual = UseRequest.sendRequest(this.urlHead + "/notification/" + person.get("id").getAsString() + "?userType=resident",
                             RequestType.POST, bodyResidentsNotif);
 

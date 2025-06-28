@@ -22,18 +22,9 @@ public class ProblemController {
         }
     }
 
-    public void getAllCandidatures(Context ctx) {
-        try {
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
-        }
-    }
-
     public void create(Context ctx) {
         try {
-
+            // Ne pas manquer d'envoyer une notification aux prestataires intéressés
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
@@ -41,33 +32,6 @@ public class ProblemController {
     }
 
     public void get(Context ctx) {
-        try {
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
-        }
-    }
-
-    public void patch(Context ctx) {
-        try {
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
-        }
-    }
-
-    public void update(Context ctx) {
-        try {
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
-        }
-    }
-
-    public void delete(Context ctx) {
         try {
 
         } catch (Exception e) {
