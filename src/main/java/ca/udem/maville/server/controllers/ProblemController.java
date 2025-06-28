@@ -24,6 +24,7 @@ public class ProblemController {
 
     public void create(Context ctx) {
         try {
+            // S'assurer de la création du statut date et id
             // Ne pas manquer d'envoyer une notification aux prestataires intéressés et une notification de traitement au résident
         } catch (Exception e) {
             e.printStackTrace();

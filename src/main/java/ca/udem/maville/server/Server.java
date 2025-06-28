@@ -70,8 +70,10 @@ public class Server {
 
                 path("/probleme", () -> {
                     // Pour que les prestataires puissent voir les problèmes qui peuvent
-                    // les intéresser on aura donc besoin de query parameters
-                    path("/getInteresting", () -> {
+                    // les intéresser. J'utilise leur id pour récupérer les qurtiers et les types
+                    // travaux pour faire le filtrage
+                    // Afficher seulement ceux qui sont non traités
+                    path("/getInteresting/{user}", () -> {
                         get(problemController::getAll);
                     });
                     post(problemController::create);

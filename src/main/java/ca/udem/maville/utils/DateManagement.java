@@ -3,9 +3,10 @@ package ca.udem.maville.utils;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-public class DateManagement {
+public final class DateManagement {
 
-    public static String formatDate(String isoDate) {
+    // Passe d'une date au format ISO à une date de type dd/mm/yyyy
+    public static String formatIsoDate(String isoDate) {
 
         // Étape 1 : Parser la chaîne ISO en Instant (UTC)
         Instant instant = Instant.parse(isoDate);
@@ -19,5 +20,20 @@ public class DateManagement {
         String dateFormatee = dateTime.format(formatter);
 
         return dateFormatee;
+    }
+
+    // Passe d'une date au format dd/mm/yyyy à un format ISO
+    public static String formatDateFR(String dateFR) {
+        // Définir le format d'entrée
+        DateTimeFormatter formatterEntree = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        // Parser la date en LocalDate
+        LocalDate date = LocalDate.parse(dateFR, formatterEntree);
+
+        // Convertir en ZonedDateTime à minuit UTC
+        ZonedDateTime dateTimeUTC = date.atStartOfDay(ZoneOffset.UTC);
+
+        // Retourner au format ISO
+        return dateTimeUTC.toString(); // ISO 8601
     }
 }

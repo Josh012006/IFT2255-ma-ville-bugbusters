@@ -10,7 +10,6 @@ import com.google.gson.JsonParser;
 import io.javalin.http.Context;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 
 import java.util.concurrent.CompletableFuture;
@@ -292,8 +291,8 @@ public class CandidatureController {
     // Elle crée un projet si nécessaire et envoie une notification pour préciser au prestataire la décision prise.
     private void validateCandidature(JsonObject candidature) {
         try {
-            // Simule une attente de traitement (ex: 3 secondes)
-            Thread.sleep(2500);
+            // Simule une attente de traitement
+            Thread.sleep(1500);
 
             // Logique de validation aléatoire
             boolean accepted = Math.random() < 0.85;
@@ -442,8 +441,8 @@ public class CandidatureController {
                 //  Faire une boucle et envoyer une notification à chacun des abonnés. On ne se préoccupe pas que ça marche pour tout
                 //  le monde.
 
-                String bodyResidentsNotif = "{\"message\": \"De nouveaux travaux sont prévus dans votre quartier entre le " + DateManagement.formatDate(newProject.get("dateDebut").getAsString()) + " et le" +
-                        DateManagement.formatDate(newProject.get("dateFin").getAsString()) + ". Les rues affectées sont les suivantes: " + newProject.get("ruesAffectees").getAsString() + ". Merci de nous faire confiance.\"}";
+                String bodyResidentsNotif = "{\"message\": \"De nouveaux travaux sont prévus dans votre quartier entre le " + DateManagement.formatIsoDate(newProject.get("dateDebut").getAsString()) + " et le" +
+                        DateManagement.formatIsoDate(newProject.get("dateFin").getAsString()) + ". Les rues affectées sont les suivantes: " + newProject.get("ruesAffectees").getAsString() + ". Merci de nous faire confiance.\"}";
 
                 for(JsonObject person : abonnesList) {
                     String resIndividual = UseRequest.sendRequest(this.urlHead + "/notification/" + person.get("id").getAsString() + "?userType=resident",
@@ -503,7 +502,7 @@ public class CandidatureController {
             Thread.currentThread().interrupt();
             System.err.println("Le traitement de validation a été interrompu.");
         } catch (Exception e) {
-            System.out.println("Une erreur lors d ela validation de la candidature.");
+            System.out.println("Une erreur lors de la validation de la candidature.");
             e.printStackTrace();
         }
     }

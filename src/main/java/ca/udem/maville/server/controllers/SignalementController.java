@@ -3,6 +3,7 @@ package ca.udem.maville.server.controllers;
 import ca.udem.maville.hooks.UseRequest;
 import ca.udem.maville.server.Database;
 import ca.udem.maville.utils.ControllerHelper;
+import ca.udem.maville.utils.RandomGeneration;
 import ca.udem.maville.utils.RequestType;
 import ca.udem.maville.utils.UniqueID;
 import com.google.gson.JsonArray;
@@ -269,11 +270,62 @@ public class SignalementController {
     // Une fonction qui après avoir attendu un certain temps attribue une priorité aléatoire
     // au problème et crée une fiche problème
     private void manageSignal(JsonObject signal) {
-        // Todo: Assigner une priorité aléatoire
 
-        // Todo: Envoyer une requête pour créer une ficheProblème
+        try {
+            // Simule une attente de traitement
+            Thread.sleep(1500);
+
+            // Assigner une priorité aléatoire entre 0, 1 et 2 (faible, moyenne, élevée)
+            // avec une tendance plus grande à 0 et 1
+            int[] priorites = {0, 0, 0, 0, 1, 1, 2};
+            int randomPriorite = priorites[RandomGeneration.getRandomUniformInt(0, 7)];
+
+            // Rassembler les informations pour la fiche problème
+            JsonObject problemToCreate = new JsonObject();
+
+            problemToCreate.addProperty("typeTravaux", signal.get("typeProbleme").getAsString());
+            problemToCreate.addProperty("localisation", signal.get("localisation").getAsString());
+            problemToCreate.addProperty("description", signal.get("description").getAsString());
+            problemToCreate.addProperty("quartier", signal.get("quartier").getAsString());
+            problemToCreate.addProperty("priorite", randomPriorite);
+
+            JsonArray signals = new JsonArray();
+            signals.add(signal.get("id").getAsString());
+            problemToCreate.add("signalements", signals);
+            JsonArray residents = new JsonArray();
+            residents.add(signal.get("resident").getAsString());
+            problemToCreate.add("residents", residents);
+
+
+            // Envoyer une requête pour créer une fiche problème
+            String problemResponse = UseRequest.sendRequest(this.urlHead + "/probleme", RequestType.POST, problemToCreate.toString());
+
+            if(problemResponse == null) {
+                System.out.println("Une erreur est survenue lors de la création de la fiche problème. Réponse nulle.");
+                return;
+            }
+
+            JsonElement elemProblem = JsonParser.parseString(problemResponse);
+            JsonObject jsonProblem = elemProblem.getAsJsonObject();
+
+            int statusCodeProblem = jsonProblem.get("status").getAsInt();
+            if (statusCodeProblem != 201) {
+                System.out.println("Une erreur est survenue lors de la création de la fiche problème. Message d'erreur: " + jsonProblem.get("data").getAsJsonObject().get("message").getAsString());
+                return;
+            }
+
+            System.out.println("Fiche problème créée avec succès.");
+        } catch (InterruptedException e) {
+            // Réinterrompre le thread
+            Thread.currentThread().interrupt();
+            System.err.println("Le traitement du signalement a été interrompu.");
+        } catch (Exception e) {
+            System.out.println("Une erreur lors du traitement du signalement.");
+            e.printStackTrace();
+        }
     }
 }
+
 
 
 
