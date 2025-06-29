@@ -19,7 +19,6 @@ public class Prestataire extends Utilisateur{
         this.typesTravaux = typesTravaux;
         this.candidatures = new ArrayList<>();
     }
-
     
 
     public ArrayList<Candidature> getCandidatures() {

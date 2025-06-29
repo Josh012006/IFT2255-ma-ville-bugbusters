@@ -1,5 +1,6 @@
 package ca.udem.maville.client.users;
 import java.util.*;
+
 public abstract class Utilisateur  {
 
     protected String id ;

@@ -43,7 +43,7 @@ public class FicheProbleme {
     public String getLocalisation() { return localisation; }
 
     public String getDescription() { return description; }
-
+  
     public int getPriorite() { return priorite; }
 
     public ArrayList<Signalement> getSignalements() { return signalements; }

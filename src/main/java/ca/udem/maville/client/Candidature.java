@@ -1,6 +1,7 @@
 package ca.udem.maville.client;
 import java.time.LocalDate;
 import java.time.LocalTime;
+
 import java.util.*;
 
 import ca.udem.maville.StatutCandidature;
@@ -34,11 +35,11 @@ public class Candidature {
         this.description = description;
         this.typeTravaux = typeTravaux;
         this.ruesAffectees = ruesAffectees;
+
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.coutEstime = coutEstime;
     }
-
    
 
     // Getters
@@ -66,5 +67,6 @@ public class Candidature {
     public double getCoutEstime() { return coutEstime; }
 
     public String getNumeroEntreprise() { return numeroEntreprise; }
+
 
 }
