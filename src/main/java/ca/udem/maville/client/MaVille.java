@@ -1,6 +1,22 @@
 package ca.udem.maville.client;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import ca.udem.maville.client.users.Prestataire;
+import ca.udem.maville.client.users.PrioriteProbleme;
+import ca.udem.maville.client.users.Quartier;
+import ca.udem.maville.client.users.Resident;
+import ca.udem.maville.client.users.TypeTravaux;
+import ca.udem.maville.client.users.Utilisateur;
+import ca.udem.maville.hooks.UseRequest;
+import ca.udem.maville.utils.RequestType;
 
 public class MaVille {
 
@@ -21,151 +37,148 @@ public class MaVille {
             "                       c’est un espace vivant que vous façonnez chaque jour.\"\n\n                                 Bienvenue dans \uD83C\uDF06 MaVille\n";
 
 
-    private static void prompt() {System.out.print("Entrez le chiffre correspondant à votre choix et appuyez sur la touche 'Entrer' : ");}
-
-    private static int ask(int min, int max) {
-        prompt();
-        int choice = sc.nextInt();
-
-        while(choice < min || choice > max) {
-            System.out.print("Veuillez entrer un chiffre valide : ");
-            try {
-                choice = sc.nextInt();
-            } catch (Exception e) {
-                return ask(min, max);
-            }
-        }
-
-        return choice;
-    }
-
-
-
-    private static void menu(String profile) {
-        if (profile.equals("resident")) {
-            System.out.println("\n----- Menu principal -----");
-            System.out.println(
-                    "1. Voir tous les projets en cours\n" +
-                            "2. Signaler un problème\n" +
-                            "3. Voir les notifications\n" +
-                            "0. Mettre fin à l'application\n"
-            );
-
-            int choice = ask(0, 3);
-
-            switch (choice) {
-                case 0 :
-                    System.exit(0);
-                    break;
-                default :
-                    System.exit(0);
-                    break;
-            }
-        }
-        else if (profile.equals("provider")) {
-            System.out.println("\n----- Menu principal -----");
-            System.out.println(
-                    "1. Projets\n" +
-                            "2. Offres\n" +
-                            "3. Voir les notifications\n" +
-                            "0. Mettre fin à l'application\n"
-            );
-
-            int choice = ask(0, 3);
-
-            switch (choice) {
-                case 1 :
-                    System.out.println("\n----- Section Projets -----");
-                    System.out.println(
-                            "1. Voir tous les projets en cours\n" +
-                                    "2. Projets personnels\n" +
-                                    "0. Retourner au menu principal\n"
-                    );
-
-                    int choice1 = ask(0, 2);
-
-                    switch (choice1) {
-                        case 1 :
-                            System.exit(0);
+            private static final List<Resident> residents = new ArrayList<>();
+            private static final List<Prestataire> prestataires = new ArrayList<>();
+            private static final List<FicheProbleme> fiches = new ArrayList<>();
+            private static final List<Projet> projets = new ArrayList<>();
+            public static final String urlHead = "http://localhost:7070/api";
+        
+           /*  public static void main(String[] args) {
+                System.out.println(introText);
+                System.out.println(motto);
+                initialiserDonnees();
+                menuPrincipal();
+            }*/
+        
+            public static void demarrer() {
+                while (true) {
+                    System.out.println("\n=== Menu principal ===");
+                    System.out.println("1. Se connecter en tant que Résident");
+                    System.out.println("2. Se connecter en tant que Prestataire");
+                    System.out.println("0. Quitter");
+                    System.out.print("Choix : ");
+        
+                    String choix = sc.nextLine();
+                    switch (choix) {
+                        case "1":
+                            menuResident();
                             break;
-                        case 2 :
-                            System.out.println("\n----- Section Projets personnels -----");
-                            System.out.println(
-                                    "1. Consulter un projet\n" +
-                                            "2. Modifier les informations d'un projet\n" +
-                                            "0. Retourner au menu principal\n"
-                            );
-
-                            int choice2 = ask(0, 2);
-
-                            switch (choice2) {
-                                case 0 :
-                                    menu("provider");
-                                    break;
-                                default :
-                                    System.exit(0);
-                                    break;
-                            }
+                        case "2":
+                            menuPrestataire();
                             break;
-                        case 0 :
-                            menu("provider");
-                            break;
+                        case "0":
+                            System.out.println("Merci d'avoir utilisé MaVille !");
+                            return;
+                        default:
+                            System.out.println("Choix invalide. Réessayez.");
                     }
-
-                    break;
-                case 2 :
-                    System.out.println("\n----- Section Offres -----");
-                    System.out.println(
-                            "1. Voir toutes les offres\n" +
-                                    "2. Déposer une nouvelle candidature\n" +
-                                    "3. Consulter l'état d'une candidature\n" +
-                                    "4. Modifier les informations d'une candidature\n" +
-                                    "5. Supprimer une candidature\n" +
-                                    "0. Retourner au menu principal\n"
-                    );
-
-                    int choice2 = ask(0, 5);
-                    switch (choice2) {
-                        case 0 :
-                            menu("provider");
-                            break;
-                        default :
-                            System.exit(0);
-                            break;
-                    }
-                default:
-                    System.exit(0);
+                }
             }
-        }
-    }
 
+        
+            private static void menuResident() {
 
-    public static void main(String[] args) {
-        System.out.println(introText);
-        System.out.println(motto);
+                // Récupérer le user
+                String responseUser = UseRequest.sendRequest(urlHead + "/resident/7e57d004-2b97-0e7a-b45f-5387367791cd" , RequestType.GET, null);
 
-        // Profile choice
-        System.out.println("\n----- Connexion -----");
-        System.out.println("Quel est votre type de profil ?\n" +
-                "1. Résident\n" +
-                "2. Prestataire\n" +
-                "0. Mettre fin à l'application\n"
-        );
+                if(responseUser == null) {
+                   
+                    System.out.println("Une erreur est survenue lors de la récupération de l'utilisateur. Réponse nulle.Menu Resident");
+                }
 
-        int choice = ask(0, 2);
+                JsonElement elemUser = JsonParser.parseString(responseUser);
+                JsonObject jsonUser = elemUser.getAsJsonObject();
 
+                int statuscode = jsonUser.get("status").getAsInt();
+                if (statuscode == 404) {
+                  System.out.println("Utilisateur non trouver Menu Principal");
 
-        switch (choice) {
-            case 1:
-                menu("resident");
-                break;
-            case 2:
-                menu("provider");
-                break;
-            case 0:
-                System.exit(0);
-                break;
-        }
+                } else if(statuscode != 200) {
+                    System.out.println("Une erreur est survenue lors de la récupération du prestataire. Message d'erreur: " + jsonUser.get("data").getAsJsonObject().get("message").getAsString());
+                }
+                Gson gson = new Gson();
+                Resident resident = gson.fromJson(jsonUser.get("data").getAsJsonObject(), Resident.class);
+                
+                while (true) {
+                    System.out.println("\n[Menu Résident]");
+                    System.out.println("1. Signaler un problème");
+                    System.out.println("2. Voir mes signalements");
+                    System.out.println("3. Consulter les projets");
+                    System.out.println("4. Voir mes notifications");
+                    System.out.println("0. Retour au menu principal");
+                    System.out.print("Choix : ");
+                    String choix = sc.nextLine();
+                    switch (choix) {
+                        case "1":
+                            resident.signalerProbleme();
+                            break;
+                        case "2":
+                            System.out.println(" Liste de vos signalements:");
+                            resident.recupererSignalements();
+                            break;
+                        case "3":
+                            System.out.println("[Simulation] Liste des projets en cours...");
+                            break;
+                        case "4":
+                            System.out.println("[Simulation] Vos notifications...");
+                            break;
+                        case "0":
+                            return;
+                        default:
+                            System.out.println("Choix invalide. Réessayez.");
+                    }
+                }
+            }
+        
+            private static void menuPrestataire() {
+                while (true) {
+                    System.out.println("\n[Menu Prestataire]");
+                    System.out.println("1. Consulter les fiches disponibles");
+                    System.out.println("2. Soumettre une candidature");
+                    System.out.println("3. Modifier un projet");
+                    System.out.println("4. Voir mes notifications");
+                    System.out.println("0. Retour au menu principal");
+                    System.out.print("Choix : ");
+                    String choix = sc.nextLine();
+                    switch (choix) {
+                        case "1":
+                            System.out.println("[Simulation] Liste des fiches disponibles...");
+                            break;
+                        case "2":
+                            System.out.println("[Simulation] Soumission de candidature...");
+                            break;
+                        case "3":
+                            System.out.println("[Simulation] Modification de projet...");
+                            break;
+                        case "4":
+                            System.out.println("[Simulation] Vos notifications...");
+                            break;
+                        case "0":
+                            return;
+                        default:
+                            System.out.println("Choix invalide. Réessayez.");
+                    }
+                }
+            }
+        
+        /*   
+        
+            private static void initialiserDonnees() {
+                residents.add(new Resident("Alice", "alice@example.com", "123 rue Ontario", "H2X 1Y4"));
+                residents.add(new Resident("Bob", "bob@example.com", "456 avenue du Parc", "H2W 2N2"));
+                residents.add(new Resident("Clara", "clara@example.com", "789 boul. Saint-Laurent", "H2Y 3Z3"));
+        
+                prestataires.add(new Prestataire("Entreprise ABC", "abc@travaux.com", "NE123456",
+                        List.of(Quartier.VILLE_MARIE, Quartier.LE_PLATEAU_MONT_ROYAL),
+                        List.of(TypeTravaux.TRAVAUX_ROUTIERS)));
+        
+                prestataires.add(new Prestataire("Groupe BTP", "btp@chantier.ca", "NE654321",
+                        List.of(Quartier.LASALLE, Quartier.ROSEMONT_LA_PETITE_PATRIE),
+                        List.of(TypeTravaux.CONSTRUCTION_RENOVATION)));
+        
+                prestataires.add(new Prestataire("Signal Pro", "signal@eclairage.net", "NE777777",
+                        List.of(Quartier.SAINT_LAURENT),
+                        List.of(TypeTravaux.SIGNALISATION_ECLAIRAGE)));*/
 
-    }
+          //  }
 }
