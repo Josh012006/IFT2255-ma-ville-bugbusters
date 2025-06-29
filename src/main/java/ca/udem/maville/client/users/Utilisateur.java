@@ -1,29 +1,27 @@
 package ca.udem.maville.client.users;
 import java.util.*;
-public abstract class Utilisateur implements Notifiable {
 
+public abstract class Utilisateur  {
+
+    protected String id ;
     protected String nom;
     protected String adresseCourriel;
-    protected List<Notification> notifications;
+    protected ArrayList<String> notifications; 
 
-    public Utilisateur(String nom, String adresseCourriel) {
+    public Utilisateur(String id, String nom, String adresseCourriel) {
+        this.id = id;
         this.nom = nom;
         this.adresseCourriel = adresseCourriel;
         this.notifications = new ArrayList<>();
     }
 
-    // Interface Notifiable
-    @Override
-    public void recevoirNotification(Notification notif) {
-        notifications.add(notif);
-    }
-
-    @Override
-    public List<Notification> consulterNotifications() {
+   // recup aux backend
+    public ArrayList<Notification> consulterNotifications() {
         return notifications;
     }
 
     // Getters
+    public String getID() { return id;}
     public String getNom() { return nom; }
     public String getAdresseCourriel() { return adresseCourriel; }
 }

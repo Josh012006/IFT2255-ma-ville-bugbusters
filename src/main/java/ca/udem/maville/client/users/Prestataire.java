@@ -1,50 +1,39 @@
 package ca.udem.maville.client.users;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import ca.udem.maville.client.Candidature;
 
 public class Prestataire extends Utilisateur{
-    private String numeroEntreprise;
-    private List<Quartier> quartiers;
-    private List<TypeTravaux> typesTravaux;
-    private List<Candidature> candidatures;
 
-    public Prestataire(String nom, String email, String numeroEntreprise,
-                       List<Quartier> quartiers, List<TypeTravaux> typesTravaux) {
-        super(nom, email);
+    private String numeroEntreprise;
+    private ArrayList<String> quartiers;
+    private ArrayList<String> typesTravaux;
+    private ArrayList<String> candidatures;
+
+    public Prestataire(String id,String nom, String adresseCourriel, String numeroEntreprise,
+                       ArrayList<String> quartiers, ArrayList<String> typesTravaux) {
+        super(id,nom, adresseCourriel);
         this.numeroEntreprise = numeroEntreprise;
         this.quartiers = quartiers;
         this.typesTravaux = typesTravaux;
         this.candidatures = new ArrayList<>();
     }
+    
 
-    public void soumettreCandidature(Candidature c) {
-        candidatures.add(c);
-    }
-
-    public void modifierCandidature(Candidature c) {
-        // À adapter selon ton besoin, ici c’est symbolique
-    }
-
-    public void annulerCandidature(Candidature c) {
-        candidatures.remove(c);
-    }
-
-    public List<Candidature> getCandidatures() {
-        return candidatures;
+    public ArrayList<Candidature> getCandidatures() {
+        return candidatures; // Chercher les candidatures au niveau du Backend
     }
 
     public String getNumeroEntreprise() {
         return numeroEntreprise;
     }
 
-    public List<Quartier> getQuartiers() {
+    public ArrayList<String> getQuartiers() {
         return quartiers;
     }
 
-    public List<TypeTravaux> getTypesTravaux() {
+    public ArrayList<String> getTypesTravaux() {
         return typesTravaux;
     }
 }

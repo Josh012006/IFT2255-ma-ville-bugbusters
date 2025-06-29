@@ -49,7 +49,7 @@ public class SignalementController {
                 ctx.status(404).result("{\"message\": \"Aucun résident avec un tel ID retrouvé.\"}").contentType("application/json");
                 return;
             } else if(statuscode != 200) {
-                throw new Exception("Une erreur est survenue lors de la récupération du prestataire. Message d'erreur: " + jsonUser.get("data").getAsJsonObject().get("message").getAsString());
+                throw new Exception("Une erreur est survenue lors de la récupération du résident. Message d'erreur: " + jsonUser.get("data").getAsJsonObject().get("message").getAsString());
             }
 
             JsonObject user = jsonUser.get("data").getAsJsonObject();

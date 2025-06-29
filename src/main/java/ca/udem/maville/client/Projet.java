@@ -1,56 +1,69 @@
 package ca.udem.maville.client;
 
-import java.time.LocalDate;
+import java.util.*;
 
+import ca.udem.maville.StatutProjet;
 import ca.udem.maville.client.users.Prestataire;
 
 public class Projet {
-    private String titre;
+    private String id;
+    private String ruesAffectees;
+    private ArrayList<String> abonnes;
+    private String titreProjet;
     private String description;
-    private TypeTravaux typeTravaux;
-    private StatutProjet statut;
-    private LocalDate dateDebut;
-    private LocalDate dateFinPrevue;
-    private LocalDate dateFinEffective;
-    private FicheProbleme ficheProbleme;
-    private Prestataire prestataire;
+    private String typeTravaux;
+    private String statut;
+    private Date dateDebut;
+    private Date dateFin;
+    private String ficheProbleme;
+    private String prestataire;
+    private String quartier;
+    private double cout;
 
     // Constructeur
-    public Projet(String titre, String description, TypeTravaux typeTravaux, LocalDate dateDebut, LocalDate dateFinPrevue,
-                  FicheProbleme ficheProbleme, Prestataire prestataire) {
-        this.titre = titre;
+    public Projet(String id,String titreProjet,String ruesAffectees, String description, String typeTravaux,Date dateDebut, Date dateFin,
+                  String ficheProbleme, String prestataire, String quartier, double cout) {
+        this.id = id;
+        this.ruesAffectees = ruesAffectees;
+        this.abonnes = new ArrayList<>();
+        this.titreProjet = titreProjet;
         this.description = description;
         this.typeTravaux = typeTravaux;
         this.dateDebut = dateDebut;
-        this.dateFinPrevue = dateFinPrevue;
+        this.dateFin = dateFin;
         this.ficheProbleme = ficheProbleme;
+        this.quartier = quartier;
+        this.cout = cout;
         this.prestataire = prestataire;
-        this.statut = StatutProjet.enCours;
+        this.statut = "enCours";
     }
 
-    // Méthodes
-    public void mettreAJour(String desc, LocalDate dateFin, StatutProjet statut) {
-        this.description = desc;
-        this.dateFinEffective = dateFin;
-        this.statut = statut;
-    }
+   
 
     // Getters
-    public String getTitre() { return titre; }
+    public String getTitreProjet() { return titreProjet; }
+
+    public double getCout() { return cout; }
+
+    public String getID() { return id; }
+
+    public String getRuesAffectees() { return ruesAffectees; }
+
+    public String getQuartier() { return quartier; }
 
     public String getDescription() { return description; }
 
-    public TypeTravaux getTypeTravaux() { return typeTravaux; }
+    public String getTypeTravaux() { return typeTravaux; }
 
-    public StatutProjet getStatut() { return statut; }
+    public String getStatut() { return statut; }
 
-    public LocalDate getDateDebut() { return dateDebut; }
+    public Date getDateDebut() { return dateDebut; }
 
-    public LocalDate getDateFinPrevue() { return dateFinPrevue; }
+    public Date getDateFin() { return dateFin; }
 
-    public LocalDate getDateFinEffective() { return dateFinEffective; }
+    public String getFicheProbleme() { return ficheProbleme; }
 
-    public FicheProbleme getFicheProbleme() { return ficheProbleme; }
+    public ArrayList<Resident> getAbonnes() { return abonnes; }
 
     public Prestataire getPrestataire() { return prestataire; }
 }

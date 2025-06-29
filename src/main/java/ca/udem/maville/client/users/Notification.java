@@ -2,29 +2,25 @@ package ca.udem.maville.client.users;
 import java.util.Date;
 
 public class Notification {
-    private String description;
+    private String id;
+    private String message;
     private Date dateNotification;
-    private TypeNotification typeNotification;
-    private TypeTravaux typeTravaux;
-    private Quartier quartier;
+   
 
-    public Notification(String description, TypeNotification typeNotification,
-                        TypeTravaux typeTravaux, Quartier quartier) {
-        this.description = description;
-        this.dateNotification = new Date();
-        this.typeNotification = typeNotification;
-        this.typeTravaux = typeTravaux;
-        this.quartier = quartier;
+    public Notification(String message,String id , Date dateNotification) {
+        this.id = id;
+        this.message = message;
+
+        this.dateNotification = dateNotification;
     }
 
     // Getters
-    public String getDescription() { return description; }
+
+    public String getID (){ return id;}
+
+    public String getMessage() { return message; }
 
     public Date getDateNotification() { return dateNotification; }
 
-    public TypeNotification getTypeNotification() { return typeNotification; }
-
-    public TypeTravaux getTypeTravaux() { return typeTravaux; }
-
-    public Quartier getQuartier() { return quartier; }
+   
 }

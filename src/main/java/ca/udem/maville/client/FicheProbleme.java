@@ -5,63 +5,53 @@ import java.util.List;
 
 
 public class FicheProbleme {
-    private TypeTravaux typeTravaux;
+    private String typeTravaux;
     private String localisation;
+    private String quartier;
     private String description;
-    private PrioriteProbleme priorite;
-    private List<Signalement> signalements;
-    private StatutProbleme statut;
-    private int nombreSignalement;
+    private int priorite;
+    private ArrayList<String> signalements;
+    private String statut;
+    private String id;
     private Date dateCreationFiche;
-    private List<Candidature> candidatures;
+    private ArrayList<String> residents;
 
     // Constructeur
-    public FicheProbleme(TypeTravaux typeTravaux, String localisation, String description, PrioriteProbleme priorite) {
+    public FicheProbleme(String id,String typeTravaux, String localisation, String description, int priorite,String quartier) {
         this.typeTravaux = typeTravaux;
+        this.quartier = quartier;
+        this.id = id;
         this.localisation = localisation;
         this.description = description;
         this.priorite = priorite;
-        this.statut = StatutProbleme.enAttente;
+        this.statut = "enAttente";
         this.signalements = new ArrayList<>();
-        this.candidatures = new ArrayList<>();
-        this.nombreSignalement = 0;
+        this.residents = new ArrayList<>();
+    
         this.dateCreationFiche = new Date();
     }
 
-    // Ajouter un signalement
-    public void ajouterSignalement(Signalement s) {
-        this.signalements.add(s);
-        this.nombreSignalement++;
-        s.setFicheProblemeAssociee(this);
-    }
 
-    // Changer le statut
-    public void changerStatut(StatutProbleme nouveauStatut) {
-        this.statut = nouveauStatut;
-    }
-
-    // Ajouter une candidature
-    public void soumettreCandidature(Candidature c) {
-        this.candidatures.add(c);
-    }
 
     // Getters
-    public TypeTravaux getTypeTravaux() { return typeTravaux; }
+    public String getTypeTravaux() { return typeTravaux; }
+
+    public String getID() { return id; }
+
+    public String getQuartier() { return quartier; }
 
     public String getLocalisation() { return localisation; }
 
     public String getDescription() { return description; }
+  
+    public int getPriorite() { return priorite; }
 
-    public PrioriteProbleme getPriorite() { return priorite; }
+    public ArrayList<Signalement> getSignalements() { return signalements; }
 
-    public List<Signalement> getSignalements() { return signalements; }
-
-    public StatutProbleme getStatut() { return statut; }
-
-    public int getNombreSignalement() { return nombreSignalement; }
+    public String getStatut() { return statut; }
 
     public Date getDateCreationFiche() { return dateCreationFiche; }
 
-    public List<Candidature> getCandidatures() { return candidatures; }
+    public ArrayList<Resident> getResidents() { return residents; } // recup resident 
 }
 

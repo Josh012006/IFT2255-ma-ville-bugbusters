@@ -4,11 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import ca.udem.maville.client.users.Prestataire;
 import ca.udem.maville.client.users.PrioriteProbleme;
 import ca.udem.maville.client.users.Quartier;
 import ca.udem.maville.client.users.Resident;
 import ca.udem.maville.client.users.TypeTravaux;
+import ca.udem.maville.client.users.Utilisateur;
+import ca.udem.maville.hooks.UseRequest;
+import ca.udem.maville.utils.RequestType;
 
 public class MaVille {
 
@@ -33,20 +41,20 @@ public class MaVille {
             private static final List<Prestataire> prestataires = new ArrayList<>();
             private static final List<FicheProbleme> fiches = new ArrayList<>();
             private static final List<Projet> projets = new ArrayList<>();
+            public static final String urlHead = "http://localhost:7070/api";
         
-            public static void main(String[] args) {
+           /*  public static void main(String[] args) {
                 System.out.println(introText);
                 System.out.println(motto);
                 initialiserDonnees();
                 menuPrincipal();
-            }
+            }*/
         
-            private static void menuPrincipal() {
+            public static void demarrer() {
                 while (true) {
                     System.out.println("\n=== Menu principal ===");
                     System.out.println("1. Se connecter en tant que Résident");
                     System.out.println("2. Se connecter en tant que Prestataire");
-                    System.out.println("3. Se connecter en tant qu’Agent STPM");
                     System.out.println("0. Quitter");
                     System.out.print("Choix : ");
         
@@ -58,9 +66,6 @@ public class MaVille {
                         case "2":
                             menuPrestataire();
                             break;
-                        case "3":
-                            menuAgent();
-                            break;
                         case "0":
                             System.out.println("Merci d'avoir utilisé MaVille !");
                             return;
@@ -69,8 +74,31 @@ public class MaVille {
                     }
                 }
             }
+
         
             private static void menuResident() {
+
+                // Récupérer le user
+                String responseUser = UseRequest.sendRequest(urlHead + "/resident/7e57d004-2b97-0e7a-b45f-5387367791cd" , RequestType.GET, null);
+
+                if(responseUser == null) {
+                   
+                    System.out.println("Une erreur est survenue lors de la récupération de l'utilisateur. Réponse nulle.Menu Resident");
+                }
+
+                JsonElement elemUser = JsonParser.parseString(responseUser);
+                JsonObject jsonUser = elemUser.getAsJsonObject();
+
+                int statuscode = jsonUser.get("status").getAsInt();
+                if (statuscode == 404) {
+                  System.out.println("Utilisateur non trouver Menu Principal");
+
+                } else if(statuscode != 200) {
+                    System.out.println("Une erreur est survenue lors de la récupération du prestataire. Message d'erreur: " + jsonUser.get("data").getAsJsonObject().get("message").getAsString());
+                }
+                Gson gson = new Gson();
+                Resident resident = gson.fromJson(jsonUser.get("data").getAsJsonObject(), Resident.class);
+                
                 while (true) {
                     System.out.println("\n[Menu Résident]");
                     System.out.println("1. Signaler un problème");
@@ -82,10 +110,11 @@ public class MaVille {
                     String choix = sc.nextLine();
                     switch (choix) {
                         case "1":
-                            System.out.println("[Simulation] Signaler un problème...");
+                            resident.signalerProbleme();
                             break;
                         case "2":
-                            System.out.println("[Simulation] Liste de vos signalements...");
+                            System.out.println(" Liste de vos signalements:");
+                            resident.recupererSignalements();
                             break;
                         case "3":
                             System.out.println("[Simulation] Liste des projets en cours...");
@@ -132,57 +161,7 @@ public class MaVille {
                 }
             }
         
-        /*   private static void menuAgent() {
-        while (true) {
-            System.out.println("\n[Menu Agent STPM]");
-            System.out.println("1. Voir toutes les fiches problèmes");
-            System.out.println("2. Valider/refuser des candidatures");
-            System.out.println("3. Attribuer des priorités aléatoires");
-            System.out.println("0. Retour au menu principal");
-            System.out.print("Choix : ");
-            String choix = sc.nextLine();
-            switch (choix) {
-                case "1":
-                    for (FicheProbleme fiche : fiches) {
-                        System.out.println("\n- Fiche: " + fiche.getDescription() + " (Priorité: " + fiche.getPriorite() + ", Statut: " + fiche.getStatut() + ")");
-                    }
-                    break;
-                case "2":
-                    for (FicheProbleme fiche : fiches) {
-                        for (Candidature c : fiche.getCandidatures()) {
-                            System.out.println("\nCandidature: " + c.getTitreProjet() + " | Prestataire: " + c.getNumEntreprise() + " | Statut: " + c.getStatut());
-                            if (c.getStatut() == StatutCandidature.enAttente) {
-                                System.out.print("Accepter (A) / Refuser (R) ? ");
-                                String reponse = sc.nextLine();
-                                if (reponse.equalsIgnoreCase("A")) {
-                                    c.changerStatut(StatutCandidature.acceptee);
-                                    System.out.println("✔ Acceptée");
-                                } else if (reponse.equalsIgnoreCase("R")) {
-                                    c.changerStatut(StatutCandidature.refusee);
-                                    System.out.println("✘ Refusée");
-                                } else {
-                                    System.out.println("Réponse invalide. Ignorée.");
-                                }
-                            }
-                        }
-                    }
-                    break;
-                case "3":
-                    Random rand = new Random();
-                    PrioriteProbleme[] niveaux = PrioriteProbleme.values();
-                    for (FicheProbleme fiche : fiches) {
-                        PrioriteProbleme p = niveaux[rand.nextInt(niveaux.length)];
-                        fiche.changerPriorite(p);
-                        System.out.println("Fiche: " + fiche.getDescription() + " ➝ Nouvelle priorité: " + p);
-                    }
-                    break;
-                case "0":
-                    return;
-                default:
-                    System.out.println("Choix invalide. Réessayez.");
-            }
-        }
-    }
+        /*   
         
             private static void initialiserDonnees() {
                 residents.add(new Resident("Alice", "alice@example.com", "123 rue Ontario", "H2X 1Y4"));

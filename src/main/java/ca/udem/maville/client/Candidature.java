@@ -2,79 +2,71 @@ package ca.udem.maville.client;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import java.util.*;
+
+import ca.udem.maville.StatutCandidature;
 import ca.udem.maville.client.users.Prestataire;
 
 public class Candidature {
-    private LocalDate dateSoumission;
-    private LocalTime heureSoumission;
-    private StatutCandidature statut;
-    private Prestataire prestataire;
-    private FicheProbleme ficheProbleme;
-    private String numEntreprise;
+    private String id;
+    private Date dateSoumission;
+    private String statut;
+    private String prestataire;
+    private String ficheProbleme;
+    private String numeroEntreprise;
     private String titreProjet;
-    private String descriptionProjet;
-    private TypeTravaux[] typesTravaux;
-    private String lieu;
-    private LocalDate dateDebut;
-    private LocalDate dateFin;
+    private String description;
+    private String typeTravaux;
+    private Date dateDebut;
+    private Date dateFin;
+    private String ruesAffectees;
     private double coutEstime;
 
     // Constructeur
-    public Candidature(Prestataire prestataire, FicheProbleme ficheProbleme, String titreProjet, String descriptionProjet,
-                       TypeTravaux[] typesTravaux, String lieu, LocalDate dateDebut, LocalDate dateFin, double coutEstime) {
-        this.dateSoumission = LocalDate.now();
-        this.heureSoumission = LocalTime.now();
-        this.statut = StatutCandidature.enAttente;
+    public Candidature(String id,String ruesAffectees,String numeroEntreprise,String prestataire, String ficheProbleme, String titreProjet, String description,
+                       String typeTravaux, Date dateDebut,Date dateSoumission, Date dateFin, double coutEstime) {
+        this.dateSoumission = dateSoumission;
+        this.statut = "enAttente";
         this.prestataire = prestataire;
         this.ficheProbleme = ficheProbleme;
-        this.numEntreprise = prestataire.getNumeroEntreprise();
+        this.numeroEntreprise = numeroEntreprise;
         this.titreProjet = titreProjet;
-        this.descriptionProjet = descriptionProjet;
-        this.typesTravaux = typesTravaux;
-        this.lieu = lieu;
+        this.id = id;
+        this.description = description;
+        this.typeTravaux = typeTravaux;
+        this.ruesAffectees = ruesAffectees;
+
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.coutEstime = coutEstime;
     }
-
-    // Méthodes
-    public void annuler() {
-        this.statut = StatutCandidature.refusee;
-    }
-
-    public boolean validerSoumission() {
-        return statut == StatutCandidature.enAttente;
-    }
-
-    public void changerStatut(StatutCandidature nouveau) {
-        this.statut = nouveau;
-    }
+   
 
     // Getters
-    public LocalDate getDateSoumission() { return dateSoumission; }
+    public Date getDateSoumission() { return dateSoumission; }
 
-    public LocalTime getHeureSoumission() { return heureSoumission; }
+    public String getStatut() { return statut; }
 
-    public StatutCandidature getStatut() { return statut; }
+    public Prestataire getPrestataire() { return prestataire; } //recup
 
-    public Prestataire getPrestataire() { return prestataire; }
-
-    public FicheProbleme getFicheProbleme() { return ficheProbleme; }
+    public FicheProbleme getFicheProbleme() { return ficheProbleme; } // recup
 
     public String getTitreProjet() { return titreProjet; }
 
-    public String getDescriptionProjet() { return descriptionProjet; }
+    public String getDescription() { return description; }
 
-    public TypeTravaux[] getTypesTravaux() { return typesTravaux; }
+    public String getRuesAffectees() { return ruesAffectees; }
 
-    public String getLieu() { return lieu; }
+    public String getTypeTravaux() { return typeTravaux; }
 
-    public LocalDate getDateDebut() { return dateDebut; }
 
-    public LocalDate getDateFin() { return dateFin; }
+    public Date getDateDebut() { return dateDebut; }
+
+    public Date getDateFin() { return dateFin; }
 
     public double getCoutEstime() { return coutEstime; }
 
-    public String getNumEntreprise() { return numEntreprise; }
+    public String getNumeroEntreprise() { return numeroEntreprise; }
+
 
 }
