@@ -94,7 +94,7 @@ public class CandidatureController {
      * - dateDebut: qui doit être sous format ISO
      * - dateFin: qui doit être sous format ISO
      * - ruesAffectees: Les rues affectées par les travaux sous forme de String
-     * Elle s'occupe automatiquement d'assigner les champs id, statut et dateSoumission
+     * Elle s'occupe automatiquement d'assigner les champs id, statut et dateSoumission et de récupérer le quartier
      * Elle implémente aussi une validation aléatoire de la candidature à travers la méthode
      * {@link #validateCandidature(JsonObject)}
      * @param ctx représente le contexte de la requête
@@ -125,6 +125,35 @@ public class CandidatureController {
             newCandidature.addProperty("id", id);
             newCandidature.addProperty("statut", "enAttente");
             newCandidature.addProperty("dateSoumission", Instant.now().toString());
+
+            // Rechercher la fiche problème pour avoir l'information sur le quartier
+            String idFicheProblem = newCandidature.get("ficheProbleme").getAsString();
+
+            if(idFicheProblem == null) {
+                logger.info("Erreur lors de la création du projet : ID de la fiche problème manquant.");
+                return;
+            }
+
+            String ficheResponse = UseRequest.sendRequest(this.urlHead + "/probleme/" + idFicheProblem, RequestType.GET, null);
+
+            if(ficheResponse == null) {
+                logger.info("Une erreur est survenue lors de la recherche de la fiche problème. Réponse nulle.");
+                return;
+            }
+
+            JsonElement elemFiche = JsonParser.parseString(ficheResponse);
+            JsonObject jsonFiche = elemFiche.getAsJsonObject();
+
+            int statusCodeFiche = jsonFiche.get("status").getAsInt();
+            if (statusCodeFiche != 200) {
+                logger.info("Une erreur est survenue lors de la recherche de la fiche problème. Message d'erreur: " + jsonFiche.get("data").getAsJsonObject().get("message").getAsString());
+                return;
+            }
+
+            JsonObject data = jsonFiche.get("data").getAsJsonObject();
+
+            String quartier = data.get("quartier").getAsString();
+            newCandidature.addProperty("quartier", quartier);
 
 
             // Ajouter la nouvelle candidature à la base de données
@@ -369,6 +398,7 @@ public class CandidatureController {
                 projectToCreate.addProperty("description", candidature.get("description").getAsString());
                 projectToCreate.addProperty("titreProjet", candidature.get("titreProjet").getAsString());
                 projectToCreate.addProperty("ficheProbleme", candidature.get("ficheProbleme").getAsString());
+                projectToCreate.addProperty("nbRapports", 0);
 
                 // Récupérer le quartier et les abonnés à partir de la ficheProbleme
                 String idFicheProblem = candidature.get("ficheProbleme").getAsString();
@@ -398,6 +428,7 @@ public class CandidatureController {
 
                 String quartier = data.get("quartier").getAsString();
                 projectToCreate.addProperty("quartier", quartier);
+                projectToCreate.addProperty("priorite", data.get("priorite").getAsInt());
 
 
 

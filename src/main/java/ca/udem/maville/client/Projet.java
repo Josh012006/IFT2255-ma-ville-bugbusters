@@ -23,9 +23,13 @@ public class Projet {
     private String quartier;
     private double cout;
 
+    private int priorite;
+    private int nbRapports;
+
+
     // Constructeur
     public Projet(String id, String titreProjet, String ruesAffectees, String description, String typeTravaux, Date dateDebut, Date dateFin,
-                  String ficheProbleme, String prestataire, String nomPrestataire, String quartier, double cout) {
+                  String ficheProbleme, String prestataire, String nomPrestataire, String quartier, double cout, int priorite) {
         this.id = id;
         this.ruesAffectees = ruesAffectees;
         this.abonnes = new ArrayList<>();
@@ -40,6 +44,8 @@ public class Projet {
         this.prestataire = prestataire;
         this.nomPrestataire = nomPrestataire;
         this.statut = "enCours";
+        this.priorite = priorite;
+        this.nbRapports = 0;
     }
 
 
@@ -48,6 +54,7 @@ public class Projet {
         Gson gson = AdaptedGson.getGsonInstance();
         Projet p = gson.fromJson(projet, Projet.class);
 
+        System.out.println("ID: " + p.getID());
         System.out.println("Projet: " + p.getTitreProjet());
         System.out.println("Prestataire: " + p.getNomPrestataire());
         System.out.println("Quartier: " + p.getQuartier());
@@ -55,12 +62,13 @@ public class Projet {
         System.out.println("Période de réalisation: Du " + DateManagement.formatIsoDate(p.getDateDebut().toInstant().toString()) + " au " + DateManagement.formatIsoDate(p.getDateFin().toInstant().toString()));
         System.out.println("Type de travaux: " + p.getTypeTravaux());
         System.out.println("Statut: " + p.getStatut());
+        System.out.println("Priorité: " + ((p.getPriorite() == 0) ? "faible" : (p.getPriorite() == 1) ? "moyenne" : "élevée"));
         System.out.println("Description: " + p.getDescription() + "\n");
 
     }
 
 
-    public static void consulterProjets() {
+    public static void consulterProjets(String idUser) {
 
         Scanner s = new Scanner(System.in);
 
@@ -183,6 +191,43 @@ public class Projet {
                 default:
                     System.out.println("Choix invalide. Veuillez recommencer la procédure.");
             }
+
+            System.out.println("\nSouhaitez-vous vous abonner à un projet en particulier ?");
+            System.out.println("1. Oui");
+            System.out.println("2. Non");
+            System.out.print("Choix: ");
+
+            String choix = s.nextLine();
+            switch (choix) {
+                case "1":
+                    System.out.println("\nVeuillez entrer l'ID du projet auquel vous voulez vous abonner");
+                    String id = s.nextLine();
+                    String response1 = UseRequest.sendRequest(MaVille.urlHead + "/projet/" + id + "?replace=false", RequestType.PATCH, "{\"abonnes\": [\"" + idUser + "\"]}");
+                    if(response1 == null) {
+                        System.out.println("\nUne erreur est survenue lors de la récupération des projets! Veuillez réessayer plus tard.");
+                        return;
+                    }
+                    JsonElement elem1 = JsonParser.parseString(response);
+                    JsonObject json1 = elem1.getAsJsonObject();
+
+                    if(json1.get("status").getAsInt() == 404) {
+                        System.out.println("\nAucun projet avec un tel ID retrouvé.");
+                        return;
+                    } else if(json1.get("status").getAsInt() != 200) {
+                        System.out.println("\nUne erreur est survenue lors de la récupération des projets! Veuillez réessayer plus tard.");
+                        return;
+                    }
+
+                    System.out.println("Abonnement réalisé avec succès. A partir de maintenant, vous recevrez toutes les notifications en lien avec des changements sur ce projet.");
+
+                    break;
+                case "2":
+                    break;
+                default:
+                    System.out.println("Choix invalide. Veuillez recommencer la procédure.");
+                    break;
+            }
+
         } catch (Exception e) {
             System.out.println("Choix invalide. Veuillez recommencer la procédure.");
         }
@@ -216,10 +261,18 @@ public class Projet {
 
     public String getFicheProbleme() { return ficheProbleme; }
 
+    public int getPriorite() { return priorite; }
+
+    public int getNbRapports() {
+        return nbRapports;
+    }
+
     // Setters
     public void setStatut(String statut) {
         this.statut = statut;
     }
+
+    public void setNbRapports(int nbRapports) {this.nbRapports = nbRapports;}
 
     public void addAbonne(String idAbonne) {
         abonnes.add(idAbonne);
