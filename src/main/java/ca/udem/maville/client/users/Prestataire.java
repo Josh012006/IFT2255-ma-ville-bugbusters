@@ -1,15 +1,13 @@
 package ca.udem.maville.client.users;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 import ca.udem.maville.client.*;
 import ca.udem.maville.hooks.UseRequest;
-import ca.udem.maville.utils.AdaptedGson;
-import ca.udem.maville.utils.DateManagement;
-import ca.udem.maville.utils.RequestType;
-import ca.udem.maville.utils.TypesTravaux;
+import ca.udem.maville.utils.*;
 import com.google.gson.*;
 
 public class Prestataire extends Utilisateur {
@@ -43,6 +41,179 @@ public class Prestataire extends Utilisateur {
         candidatures.add(idCandidature);
     }
 
+
+    public void afficherCand(JsonObject cand) {
+        Gson gson = AdaptedGson.getGsonInstance();
+        Candidature c = gson.fromJson(cand, Candidature.class);
+
+        System.out.println("ID: " + c.getID());
+        System.out.println("Titre projet: " + c.getTitreProjet());
+        System.out.println("Quartier: " + c.getQuartier());
+        System.out.println("Rues affectées: " + c.getRuesAffectees());
+        System.out.println("Période de réalisation: Du " + DateManagement.formatIsoDate(c.getDateDebut().toInstant().toString()) + " au " + DateManagement.formatIsoDate(c.getDateFin().toInstant().toString()));
+        System.out.println("Type de travaux: " + c.getTypeTravaux());
+        System.out.println("Coût estimé: " + c.getCoutEstime());
+        System.out.println("Statut: " + c.getStatut());
+        System.out.println("Description: " + c.getDescription() + "\n");
+    }
+
+    public void voirCandidatures() {
+        String responseCand = UseRequest.sendRequest(MaVille.urlHead + "/candidature/getAll/" + this.id, RequestType.GET, null);
+
+        if(responseCand == null) {
+            System.out.println("\nUne erreur est survenue lors de la récupération de vos candidatures. Veuillez réessayer plus tard.");
+            return ;
+        }
+
+        JsonElement elemCand = JsonParser.parseString(responseCand);
+        JsonObject jsonCand = elemCand.getAsJsonObject();
+
+        int statuscodeCand = jsonCand.get("status").getAsInt();
+        if (statuscodeCand != 200) {
+            System.out.println("Une erreur est survenue lors de la récupération de vos candidatures. Veuillez réessayer plus tard.");
+        }
+
+        JsonArray jsonCands = jsonCand.get("data").getAsJsonArray();
+        if(jsonCands.isEmpty()) {
+            System.out.println("\nVous n'avez aucune candidature enregistrée.");
+            return;
+        }
+
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("\nSouhaitez-vous filtrer les candidatures ?");
+        System.out.println("1. Par type de travaux.");
+        System.out.println("2. Par quartier.");
+        System.out.println("3. Par date de début.");
+        System.out.println("4. Voir toutes les candidatures.");
+        System.out.print("Choix: ");
+        String filtreChoisi = s.nextLine();
+
+        try {
+            switch (filtreChoisi) {
+                case "1":
+
+                    System.out.println("\nVeuillez choisir le type de travaux que vous cherchez:");
+
+                    ArrayList<TypesTravaux> tab = new ArrayList<>(Arrays.asList(TypesTravaux.values()));
+
+                    for (TypesTravaux t : tab) {
+                        System.out.println(tab.indexOf(t) + ". " + t.getLabel());
+                    }
+
+                    System.out.print("Choix: ");
+
+                    String choice = s.nextLine();
+                    int choix = Integer.parseInt(choice);
+
+                    String type = tab.get(choix).getLabel();
+
+
+                    ArrayList<JsonObject> toShow = new ArrayList<>();
+
+                    for (JsonElement p : jsonCands) {
+                        JsonObject pObj = p.getAsJsonObject();
+                        if (pObj.get("typeTravaux").getAsString().equals(type)) {
+                            toShow.add(pObj);
+                        }
+                    }
+
+                    if (toShow.isEmpty()) {
+                        System.out.println("\nAucune candidature de ce type trouvé.");
+                    } else {
+                        System.out.println("\n----- Candidatures trouvés -----\n");
+                        for (JsonObject p : toShow) {
+                            afficherCand(p);
+                        }
+                    }
+
+                    break;
+
+
+                case "2":
+                    System.out.println("\nVeuillez choisir le Quartier Recherchez:");
+
+                    ArrayList<Quartier> tab1 = new ArrayList<>(Arrays.asList(Quartier.values()));
+
+                    for (Quartier q : tab1) {
+                        System.out.println(tab1.indexOf(q) + ". " + q.getLabel());
+                    }
+
+                    System.out.print("Choix : ");
+
+                    String choice1 = s.nextLine();
+                    int choix1 = Integer.parseInt(choice1);
+
+                    String quartier = tab1.get(choix1).getLabel();
+
+
+                    ArrayList<JsonObject> toShow1 = new ArrayList<>();
+
+                    for (JsonElement p : jsonCands) {
+                        JsonObject pObj = p.getAsJsonObject();
+                        if (pObj.get("quartier").getAsString().equals(quartier)) {
+                            toShow1.add(pObj);
+                        }
+                    }
+
+                    if (toShow1.isEmpty()) {
+                        System.out.println("\nAucune candidature trouvée pour ce quartier.");
+                    } else {
+                        System.out.println("\n------ Candidatures trouvées -----\n");
+                        for (JsonObject p : toShow1) {
+                            afficherCand(p);
+                        }
+                    }
+
+                    break;
+
+
+                case "3":
+                    System.out.println("\nVeuillez préciser la date au plus tôt à partir de laquelle le projet doit débuter. Utilisez le format dd/mm/yyyy: ");
+                    String choice2 = s.nextLine();
+
+                    String isoDate = DateManagement.formatDateFR(choice2);
+
+                    ArrayList<JsonObject> toShow2 = new ArrayList<>();
+
+                    for (JsonElement p : jsonCands) {
+                        JsonObject pObj = p.getAsJsonObject();
+                        ZonedDateTime filter = ZonedDateTime.parse(isoDate);
+                        ZonedDateTime d = ZonedDateTime.parse(pObj.get("dateDebut").getAsString());
+                        if (d.isAfter(filter)) {
+                            toShow2.add(pObj);
+                        }
+                    }
+
+                    if (toShow2.isEmpty()) {
+                        System.out.println("\nAucune candidature qui répond à ce critère trouvée.");
+                    } else {
+                        System.out.println("\n------ Candidatures trouvées -----\n");
+                        for (JsonObject p : toShow2) {
+                            afficherCand(p);
+                        }
+                    }
+
+                    break;
+                case "4":
+
+                    System.out.println("\n----- Candidatures trouvées -----\n");
+
+                    for (JsonElement p : jsonCands) {
+                        JsonObject pObj = p.getAsJsonObject();
+                        afficherCand(pObj);
+                    }
+                    break;
+
+                default:
+                    System.out.println("Choix invalide. Veuillez recommencer la procédure.");
+                    break;
+            }
+
+        } catch(Exception e) {
+            System.out.println("Choix invalide. Veuillez recommencer la procédure.");
+        }
+    }
     
 
     public void voirFichesDisponibles() {
@@ -87,6 +258,25 @@ public class Prestataire extends Utilisateur {
             String priorite = (signal.getPriorite() == 0) ? "faible" : (signal.getPriorite() == 1) ? "moyenne" : "élevée";
             System.out.println("Priorité: " + priorite);
             System.out.println("Date de Création de la fiche problème: " + DateManagement.formatIsoDate(signal.getDateCreationFiche().toInstant().toString()) + "\n");
+        }
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("\nVoulez-vous soumettre une candidature?");
+        System.out.println("1. Oui");
+        System.out.println("2. Non");
+        System.out.print("Choix: ");
+        String choix = sc.nextLine();
+
+        switch (choix) {
+            case "1":
+                System.out.println("\n----- Soumission de candidature -----\n");
+                this.soumettreCandidature();
+                break;
+            case "2":
+                break;
+            case "3":
+                System.out.println("Choix invalide. Veuillez reprendre la procédure.");
+                break;
         }
 
     }
@@ -180,7 +370,7 @@ public class Prestataire extends Utilisateur {
             JsonObject jsonCand = elemCand.getAsJsonObject();
 
             int statuscode = jsonCand.get("status").getAsInt();
-            if(statuscode != 200) {
+            if(statuscode != 201) {
                 System.out.println("\nUne erreur est survenue lors de la création de la candidature! Veuillez réessayer plus tard.");
                 return;
             }
@@ -229,6 +419,7 @@ public class Prestataire extends Utilisateur {
             System.out.println("Période de réalisation: Du " + DateManagement.formatIsoDate(p.getDateDebut().toInstant().toString()) + " au " + DateManagement.formatIsoDate(p.getDateFin().toInstant().toString()));
             System.out.println("Type de travaux: " + p.getTypeTravaux());
             System.out.println("Statut: " + p.getStatut());
+            System.out.println("Priorité: " + ((p.getPriorite() == 0) ? "faible" : (p.getPriorite() == 1) ? "moyenne" : "élevée"));
             System.out.println("Description: " + p.getDescription() + "\n");
         }
 

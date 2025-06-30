@@ -18,10 +18,11 @@ public class Candidature {
     private Date dateFin;
     private String ruesAffectees;
     private double coutEstime;
+    private String quartier;
 
     // Constructeur
     public Candidature(String id, String ruesAffectees, String numeroEntreprise, String prestataire, String nomPrestataire, String ficheProbleme, String titreProjet, String description,
-                       String typeTravaux, Date dateDebut, Date dateFin, double coutEstime) {
+                       String typeTravaux, Date dateDebut, Date dateFin, double coutEstime, String quartier) {
 
         this.dateSoumission = new Date();
         this.statut = "enAttente";
@@ -37,6 +38,7 @@ public class Candidature {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.coutEstime = coutEstime;
+        this.quartier = quartier;
     }
    
 
@@ -55,6 +57,10 @@ public class Candidature {
 
     public String getID() {
         return id;
+    }
+
+    public String getQuartier() {
+        return quartier;
     }
 
     public String getStatut() { return statut; }

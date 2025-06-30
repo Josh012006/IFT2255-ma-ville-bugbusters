@@ -166,44 +166,44 @@ public class Database {
 
         // Initialiser des candidatures
         Candidature cand1 = new Candidature(UniqueID.generateUniqueID(), prob1.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob1.getID(), "Réhabilitation de l'abribus et du quai - Ontario", "Réparation complète de l’abribus, du quai fissuré et remplacement de la signalisation défectueuse.",
-                prob1.getTypeTravaux(), DateManagement.getDateIso(2025, 7, 15), DateManagement.getDateIso(2025, 8, 5), 18500.75);
+                prob1.getTypeTravaux(), DateManagement.getDateIso(2025, 7, 15), DateManagement.getDateIso(2025, 8, 5), 18500.75, prob1.getQuartier());
         cand1.setStatut("accepté");
         Candidature cand2 = new Candidature(UniqueID.generateUniqueID(), prob2.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob2.getID(), "Réfection localisée de la chaussée - rue Ontario", "Bouchage des cavités et resurfaçage partiel de la chaussée pour sécuriser la circulation.",
-                prob2.getTypeTravaux(), DateManagement.getDateIso(2025, 6, 20), DateManagement.getDateIso(2025, 6, 27), 7400);
+                prob2.getTypeTravaux(), DateManagement.getDateIso(2025, 6, 20), DateManagement.getDateIso(2025, 6, 27), 7400, prob2.getQuartier());
         cand2.setStatut("accepté");
         Candidature cand3 = new Candidature(UniqueID.generateUniqueID(), prob3.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob3.getID(), "Remise en état de l’éclairage public", "Remplacement des lampadaires défectueux et mise à niveau des luminaires pour améliorer la visibilité nocturne.",
-                prob3.getTypeTravaux(), DateManagement.getDateIso(2025, 7, 1), DateManagement.getDateIso(2025, 7, 10), 12200.45);
+                prob3.getTypeTravaux(), DateManagement.getDateIso(2025, 7, 1), DateManagement.getDateIso(2025, 7, 10), 12200.45, prob3.getQuartier());
         cand3.setStatut("accepté");
         Candidature cand4 = new Candidature(UniqueID.generateUniqueID(), prob4.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob4.getID(), "Réparation du mobilier urbain - secteur résidentiel", "Réparation et remplacement de bancs, poubelles, panneaux et supports à vélo endommagés dans le quartier.",
-                prob4.getTypeTravaux(), DateManagement.getDateIso(2025, 6, 25), DateManagement.getDateIso(2025, 7, 2), 5300);
+                prob4.getTypeTravaux(), DateManagement.getDateIso(2025, 6, 25), DateManagement.getDateIso(2025, 7, 2), 5300, prob4.getQuartier());
         cand4.setStatut("accepté");
         Candidature cand5 = new Candidature(UniqueID.generateUniqueID(), prob5.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob5.getID(), "Réparation urgente de conduite sous chaussée", "Réparation d’une conduite d’eau rompue sous la chaussée et reconstruction de la portion affaissée.",
-                prob5.getTypeTravaux(), DateManagement.getDateIso(2025, 6, 28), DateManagement.getDateIso(2025, 7, 8), 28750.6);
+                prob5.getTypeTravaux(), DateManagement.getDateIso(2025, 6, 28), DateManagement.getDateIso(2025, 7, 8), 28750.6, prob5.getQuartier());
         cand5.setStatut("accepté");
         Candidature cand6 = new Candidature(UniqueID.generateUniqueID(), prob6.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob6.getID(), "Modernisation des rails de tramway", "Remplacement des rails et câblages électriques défectueux sur une portion du réseau de transport léger.",
-                prob6.getTypeTravaux(), DateManagement.getDateIso(2025, 7, 12), DateManagement.getDateIso(2025, 8, 3), 89500.9);
+                prob6.getTypeTravaux(), DateManagement.getDateIso(2025, 7, 12), DateManagement.getDateIso(2025, 8, 3), 89500.9, prob6.getQuartier());
         Candidature cand7 = new Candidature(UniqueID.generateUniqueID(), prob11.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob11.getID(), "Réfection d’une conduite d’eau souterraine - Ontario", "Excavation, remplacement de la conduite fissurée et stabilisation du sol pour éviter un affaissement.",
-                prob11.getTypeTravaux(), DateManagement.getDateIso(2025, 7, 5), DateManagement.getDateIso(2025, 7, 15), 19480.25);
+                prob11.getTypeTravaux(), DateManagement.getDateIso(2025, 7, 5), DateManagement.getDateIso(2025, 7, 15), 19480.25, prob11.getQuartier());
         cand7.setStatut("refusé");
 
         // Inititaliser des projets
         Projet projet1 = new Projet(UniqueID.generateUniqueID(), cand1.getTitreProjet(), cand1.getRuesAffectees(), cand1.getDescription(), cand1.getTypeTravaux(), cand1.getDateDebut(), cand1.getDateFin(),
-                cand1.getFicheProbleme(), cand1.getPrestataire(), cand1.getNomPrestataire(), prob1.getQuartier(), cand1.getCoutEstime());
+                cand1.getFicheProbleme(), cand1.getPrestataire(), cand1.getNomPrestataire(), prob1.getQuartier(), cand1.getCoutEstime(), prob1.getPriorite());
         projet1.addAbonne(resident1.getID());
         projet1.addAbonne(resident3.getID());
         Projet projet2 = new Projet(UniqueID.generateUniqueID(), cand2.getTitreProjet(), cand2.getRuesAffectees(), cand2.getDescription(), cand2.getTypeTravaux(), cand2.getDateDebut(), cand2.getDateFin(),
-                cand2.getFicheProbleme(), cand2.getPrestataire(), cand2.getNomPrestataire(), prob2.getQuartier(), cand2.getCoutEstime());
+                cand2.getFicheProbleme(), cand2.getPrestataire(), cand2.getNomPrestataire(), prob2.getQuartier(), cand2.getCoutEstime(), prob2.getPriorite());
         projet2.addAbonne(resident1.getID());
         projet2.addAbonne(resident3.getID());
         Projet projet3 = new Projet(UniqueID.generateUniqueID(), cand3.getTitreProjet(), cand3.getRuesAffectees(), cand3.getDescription(), cand3.getTypeTravaux(), cand3.getDateDebut(), cand3.getDateFin(),
-                cand3.getFicheProbleme(), cand3.getPrestataire(), cand3.getNomPrestataire(), prob3.getQuartier(), cand3.getCoutEstime());
+                cand3.getFicheProbleme(), cand3.getPrestataire(), cand3.getNomPrestataire(), prob3.getQuartier(), cand3.getCoutEstime(), prob3.getPriorite());
         projet3.addAbonne(resident2.getID());
         Projet projet4 = new Projet(UniqueID.generateUniqueID(), cand4.getTitreProjet(), cand4.getRuesAffectees(), cand4.getDescription(), cand4.getTypeTravaux(), cand4.getDateDebut(), cand4.getDateFin(),
-                cand4.getFicheProbleme(), cand4.getPrestataire(), cand4.getNomPrestataire(), prob4.getQuartier(), cand4.getCoutEstime());
+                cand4.getFicheProbleme(), cand4.getPrestataire(), cand4.getNomPrestataire(), prob4.getQuartier(), cand4.getCoutEstime(), prob4.getPriorite());
         projet4.setStatut("suspendu");
         projet4.addAbonne(resident2.getID());
         Projet projet5 = new Projet(UniqueID.generateUniqueID(), cand5.getTitreProjet(), cand5.getRuesAffectees(), cand5.getDescription(), cand5.getTypeTravaux(), cand5.getDateDebut(), cand5.getDateFin(),
-                cand5.getFicheProbleme(), cand5.getPrestataire(), cand5.getNomPrestataire(), prob5.getQuartier(), cand5.getCoutEstime());
+                cand5.getFicheProbleme(), cand5.getPrestataire(), cand5.getNomPrestataire(), prob5.getQuartier(), cand5.getCoutEstime(), prob5.getPriorite());
         projet5.setStatut("annulé");
         projet5.addAbonne(resident1.getID());
         projet5.addAbonne(resident3.getID());
