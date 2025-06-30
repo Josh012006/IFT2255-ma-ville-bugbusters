@@ -2,6 +2,7 @@ package ca.udem.maville.utils;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public final class DateManagement {
 
@@ -16,7 +17,7 @@ public final class DateManagement {
         ZonedDateTime dateTime = instant.atZone(ZoneId.of("America/Toronto"));
 
         // Étape 3 : Formater au format "dd/MM/yyyy"
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         String dateFormatee = dateTime.format(formatter);
 
         return dateFormatee;
@@ -24,16 +25,26 @@ public final class DateManagement {
 
     // Passe d'une date au format dd/mm/yyyy à un format ISO
     public static String formatDateFR(String dateFR) {
-        // Définir le format d'entrée
+        // 1. Définir le format d'entrée
         DateTimeFormatter formatterEntree = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        // Parser la date en LocalDate
+        // 2. Parser la date en LocalDate
         LocalDate date = LocalDate.parse(dateFR, formatterEntree);
 
-        // Convertir en ZonedDateTime à minuit UTC
-        ZonedDateTime dateTimeUTC = date.atStartOfDay(ZoneOffset.UTC);
+        // 3. Convertir en ZonedDateTime à 01:00 UTC
+        ZonedDateTime dateTimeUTC = date.atStartOfDay(ZoneOffset.UTC).plusHours(1);
 
-        // Retourner au format ISO
-        return dateTimeUTC.toString(); // ISO 8601
+        // 4. Formatter au format ISO avec heures, minutes et secondes
+        DateTimeFormatter formatterSortie = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssX");
+
+        return dateTimeUTC.format(formatterSortie);
+    }
+
+    // Permet de former un objet Date adéquat
+    public static Date getDateIso(int year, int month, int day) {
+        LocalDate localDate = LocalDate.of(year, month, day);
+        ZonedDateTime zonedDateTime = localDate.atStartOfDay(ZoneId.of("UTC"));
+
+        return Date.from(zonedDateTime.toInstant());
     }
 }

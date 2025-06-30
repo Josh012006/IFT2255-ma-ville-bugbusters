@@ -12,16 +12,20 @@ import io.javalin.http.Context;
 import java.time.Instant;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+
 
 import java.util.concurrent.CompletableFuture;
 
 public class CandidatureController {
     public Database database;
     public String urlHead;
+    public Logger logger;
 
-    public CandidatureController(Database database, String urlHead) {
+    public CandidatureController(Database database, String urlHead, Logger logger) {
         this.database = database;
         this.urlHead = urlHead;
+        this.logger = logger;
     }
 
     /**
@@ -80,6 +84,7 @@ public class CandidatureController {
      * Cette route permet de créer une nouvelle candidature pour un prestataire.
      * Le body doit contenir toutes informations nécessaires notamment :
      * - prestataire: qui est l'id du prestataire qui dépose la candidature. Très important.
+     * - nomPrestataire: qui représente le nom de l'entreprise
      * - ficheProbleme: qui est l'id de la fiche problème concernée
      * - numeroEntreprise: qui représente le numéro d'entreprise du prestataire
      * - titreProjet: qui est le titre du projet proposé
@@ -338,7 +343,7 @@ public class CandidatureController {
     private void validateCandidature(JsonObject candidature) {
         try {
             // Simule une attente de traitement
-            Thread.sleep(1500);
+            Thread.sleep(500);
 
             // Logique de validation aléatoire
             boolean accepted = Math.random() < 0.85;
@@ -357,24 +362,26 @@ public class CandidatureController {
                 projectToCreate.addProperty("dateFin", candidature.get("dateFin").getAsString());
 
                 projectToCreate.addProperty("prestataire", candidature.get("prestataire").getAsString());
+                projectToCreate.addProperty("nomPrestataire", candidature.get("nomPrestataire").getAsString());
                 projectToCreate.addProperty("ruesAffectees", candidature.get("ruesAffectees").getAsString() );
                 projectToCreate.addProperty("typeTravaux", candidature.get("typeTravaux").getAsString());
-                projectToCreate.addProperty("cout", candidature.get("coutEstime").getAsString());
+                projectToCreate.addProperty("cout", candidature.get("coutEstime").getAsDouble());
                 projectToCreate.addProperty("description", candidature.get("description").getAsString());
                 projectToCreate.addProperty("titreProjet", candidature.get("titreProjet").getAsString());
+                projectToCreate.addProperty("ficheProbleme", candidature.get("ficheProbleme").getAsString());
 
                 // Récupérer le quartier et les abonnés à partir de la ficheProbleme
                 String idFicheProblem = candidature.get("ficheProbleme").getAsString();
 
                 if(idFicheProblem == null) {
-                    System.out.println("Erreur lors de la création du projet : ID de la fiche problème manquant.");
+                    logger.info("Erreur lors de la création du projet : ID de la fiche problème manquant.");
                     return;
                 }
 
                 String ficheResponse = UseRequest.sendRequest(this.urlHead + "/probleme/" + idFicheProblem, RequestType.GET, null);
 
                 if(ficheResponse == null) {
-                    System.out.println("Une erreur est survenue lors de la recherche de la fiche problème. Réponse nulle.");
+                    logger.info("Une erreur est survenue lors de la recherche de la fiche problème. Réponse nulle.");
                     return;
                 }
 
@@ -383,7 +390,7 @@ public class CandidatureController {
 
                 int statusCodeFiche = jsonFiche.get("status").getAsInt();
                 if (statusCodeFiche != 200) {
-                    System.out.println("Une erreur est survenue lors de la recherche de la fiche problème. Message d'erreur: " + jsonFiche.get("data").getAsJsonObject().get("message").getAsString());
+                    logger.info("Une erreur est survenue lors de la recherche de la fiche problème. Message d'erreur: " + jsonFiche.get("data").getAsJsonObject().get("message").getAsString());
                     return;
                 }
 
@@ -402,7 +409,7 @@ public class CandidatureController {
                 String responseRegionResidents = UseRequest.sendRequest(this.urlHead + "/resident/getByRegion/" + Quartier.fromLabel(quartier), RequestType.GET, null);
 
                 if(responseRegionResidents == null) {
-                    System.out.println("Une erreur est survenue lors de la récupération des résidents de la région. Réponse nulle.");
+                    logger.info("Une erreur est survenue lors de la récupération des résidents de la région. Réponse nulle.");
                     return;
                 }
 
@@ -411,29 +418,29 @@ public class CandidatureController {
 
                 int statusCodeRegionResidents = jsonObjectRegionResidents.get("status").getAsInt();
                 if (statusCodeRegionResidents != 200) {
-                    System.out.println("Une erreur est survenue lors de la récupération des résidents de la région. Message d'erreur: " + jsonObjectRegionResidents.get("data").getAsJsonObject().get("message").getAsString());
+                    logger.info("Une erreur est survenue lors de la récupération des résidents de la région. Message d'erreur: " + jsonObjectRegionResidents.get("data").getAsJsonObject().get("message").getAsString());
                     return;
                 }
 
                 JsonArray regionResidents = jsonObjectRegionResidents.get("data").getAsJsonArray();
 
                 // Regrouper les potentiels abonnés
-                ArrayList<JsonObject> people = new ArrayList<>();
+                ArrayList<String> people = new ArrayList<>();
 
                 for (JsonElement element : abonnesSignal) {
-                    people.add(element.getAsJsonObject());
+                    people.add(element.getAsString());
                 }
                 for (JsonElement element : regionResidents) {
-                    people.add(element.getAsJsonObject());
+                    people.add(element.getAsJsonObject().get("id").getAsString());
                 }
 
                 // Enlever les duplicatas
-                ArrayList<JsonObject> abonnesList = ControllerHelper.removeDuplicates(people);
+                ArrayList<String> abonnesList = ControllerHelper.removeDuplicates(people);
 
                 // Enregistrer l'information sur le projet
                 JsonArray abonnesJsonArray = new JsonArray();
-                for (JsonObject abonne : abonnesList) {
-                    abonnesJsonArray.add(abonne.get("id").getAsString());
+                for (String abonne : abonnesList) {
+                    abonnesJsonArray.add(abonne);
                 }
                 projectToCreate.add("abonnes", abonnesJsonArray);
 
@@ -443,7 +450,7 @@ public class CandidatureController {
                 String projetResponse = UseRequest.sendRequest(this.urlHead + "/projet", RequestType.POST, projectToCreate.toString());
 
                 if(projetResponse == null) {
-                    System.out.println("Une erreur est survenue lors de la création du projet. Réponse nulle.");
+                    logger.info("Une erreur est survenue lors de la création du projet. Réponse nulle.");
                     return;
                 }
 
@@ -452,7 +459,7 @@ public class CandidatureController {
 
                 int statusCodeProjet = jsonProjet.get("status").getAsInt();
                 if (statusCodeProjet != 201) {
-                    System.out.println("Une erreur est survenue lors de la création du projet. Message d'erreur: " + jsonProjet.get("data").getAsJsonObject().get("message").getAsString());
+                    logger.info("Une erreur est survenue lors de la création du projet. Message d'erreur: " + jsonProjet.get("data").getAsJsonObject().get("message").getAsString());
                     return;
                 }
 
@@ -470,7 +477,7 @@ public class CandidatureController {
                                 "raison suivante: " + randomRefusalReason +"\"}");
 
                 if(response == null) {
-                    System.out.println("Une erreur est survenue lors de la création de la notification de refus. Réponse nulle.");
+                    logger.info("Une erreur est survenue lors de la création de la notification de refus. Réponse nulle.");
                     return;
                 }
 
@@ -479,23 +486,23 @@ public class CandidatureController {
 
                 int statusCode = jsonObject.get("status").getAsInt();
                 if (statusCode != 201) {
-                    System.out.println("Une erreur est survenue lors de la création de la notification de refus. Message d'erreur: " + jsonObject.get("data").getAsJsonObject().get("message").getAsString());
+                    logger.info("Une erreur est survenue lors de la création de la notification de refus. Message d'erreur: " + jsonObject.get("data").getAsJsonObject().get("message").getAsString());
                     return;
                 }
                 else {
-                    System.out.println("Notification de refus créée avec succès.");
+                    logger.info("Notification de refus créée avec succès.");
                 }
 
             }
 
-            System.out.println("Candidature " + id + " a reçu correctement statut: " + candidature.get("statut").getAsString());
+            logger.info("Candidature " + id + " a reçu correctement statut: " + candidature.get("statut").getAsString());
 
         } catch (InterruptedException e) {
             // Réinterrompre le thread
             Thread.currentThread().interrupt();
-            System.err.println("Le traitement de validation a été interrompu.");
+            logger.warn("Le traitement de validation a été interrompu.");
         } catch (Exception e) {
-            System.out.println("Une erreur lors de la validation de la candidature.");
+            logger.info("Une erreur lors de la validation de la candidature.");
             e.printStackTrace();
         }
     }

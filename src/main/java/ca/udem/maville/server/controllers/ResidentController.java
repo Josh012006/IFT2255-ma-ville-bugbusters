@@ -9,16 +9,19 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.javalin.http.Context;
 
-import java.util.Map;
+import org.slf4j.Logger;
 
 public class ResidentController {
 
     public Database database;
     public String urlHead;
+    public Logger logger;
 
-    public ResidentController(Database database, String urlHead) {
+
+    public ResidentController(Database database, String urlHead, Logger logger) {
         this.database = database;
         this.urlHead = urlHead;
+        this.logger = logger;
     }
 
 

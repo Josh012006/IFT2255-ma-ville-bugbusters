@@ -11,6 +11,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.javalin.http.Context;
+import org.slf4j.Logger;
+
 
 import java.time.Instant;
 import java.util.concurrent.CompletableFuture;
@@ -19,10 +21,13 @@ public class SignalementController {
 
     public Database database;
     public String urlHead;
+    public Logger logger;
 
-    public SignalementController(Database database, String urlHead) {
+
+    public SignalementController(Database database, String urlHead, Logger logger) {
         this.database = database;
         this.urlHead = urlHead;
+        this.logger = logger;
     }
 
     /**
@@ -326,7 +331,7 @@ public class SignalementController {
 
         try {
             // Simule une attente de traitement
-            Thread.sleep(1500);
+            Thread.sleep(500);
 
             // Assigner une priorité aléatoire entre 0, 1 et 2 (faible, moyenne, élevée)
             // avec une tendance plus grande à 0 et 1
@@ -354,7 +359,7 @@ public class SignalementController {
             String problemResponse = UseRequest.sendRequest(this.urlHead + "/probleme", RequestType.POST, problemToCreate.toString());
 
             if(problemResponse == null) {
-                System.out.println("Une erreur est survenue lors de la création de la fiche problème. Réponse nulle.");
+                logger.info("Une erreur est survenue lors de la création de la fiche problème. Réponse nulle.");
                 return;
             }
 
@@ -363,18 +368,18 @@ public class SignalementController {
 
             int statusCodeProblem = jsonProblem.get("status").getAsInt();
             if (statusCodeProblem != 201) {
-                System.out.println("Une erreur est survenue lors de la création de la fiche problème. Message d'erreur: " + jsonProblem.get("data").getAsJsonObject().get("message").getAsString());
+                logger.info("Une erreur est survenue lors de la création de la fiche problème. Message d'erreur: " + jsonProblem.get("data").getAsJsonObject().get("message").getAsString());
                 return;
             }
 
-            System.out.println("Fiche problème créée avec succès.");
+            logger.info("Fiche problème créée avec succès.");
 
         } catch (InterruptedException e) {
             // Réinterrompre le thread
             Thread.currentThread().interrupt();
             System.err.println("Le traitement du signalement a été interrompu.");
         } catch (Exception e) {
-            System.out.println("Une erreur lors du traitement du signalement.");
+            logger.info("Une erreur lors du traitement du signalement.");
             e.printStackTrace();
         }
     }

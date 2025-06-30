@@ -1,9 +1,8 @@
 package ca.udem.maville.client;
 import java.util.Date;
 
-import ca.udem.maville.client.users.Resident;
-
 public class Signalement {
+
     private String id;
     private String quartier;
     private String typeProbleme;
@@ -14,21 +13,25 @@ public class Signalement {
     private Date dateSignalement;
 
     // Constructeur
-    public Signalement(String typeProbleme, String localisation, String description, String resident, Date dateSignalement, String quartier,String id) {
+    public Signalement(String typeProbleme, String localisation, String description, String resident, String quartier, String id) {
         this.typeProbleme = typeProbleme;
         this.quartier = quartier;
         this.id = id;
         this.localisation = localisation;
         this.description = description;
         this.resident = resident;
-        this.dateSignalement = dateSignalement;
+        this.dateSignalement = new Date();
         this.statut = "enAttente";
     }
 
 
     public String getID() {return id;}
 
-    public String getQuartier() {return quartier;}
+    public String getResident() {
+        return resident;
+    }
+
+    public String getQuartier() { return quartier; }
 
     public String getTypeProbleme() {
         return typeProbleme;
@@ -48,5 +51,11 @@ public class Signalement {
 
     public Date getDateSignalement() {
         return dateSignalement;
+    }
+
+
+    // Setters
+    public void setStatut(String statut) {
+        this.statut = statut;
     }
 }

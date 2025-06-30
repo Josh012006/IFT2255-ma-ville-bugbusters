@@ -12,14 +12,19 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.javalin.http.Context;
 
+import org.slf4j.Logger;
+
 public class ProjectController {
 
     public Database database;
     public String urlHead;
+    public Logger logger;
 
-    public ProjectController(Database database, String urlHead) {
+
+    public ProjectController(Database database, String urlHead, Logger logger) {
         this.database = database;
         this.urlHead = urlHead;
+        this.logger = logger;
     }
 
     /**
@@ -72,6 +77,7 @@ public class ProjectController {
      * Cette route permet de créer un nouveau projet pour un prestataire donné.
      * Le body doit contenir toutes informations nécessaires notamment :
      * - prestataire: qui est l'id du prestataire auquel le projet appartient
+     * - nomPrestataire: qui représente le nom de l'entreprise à laquelle le projet appartient
      * - ficheProbleme: qui est l'id de la fiche problème concernée
      * - quartier: qui représente le quartier affecté par les travaux
      * - titreProjet: qui est le titre du projet
@@ -154,12 +160,12 @@ public class ProjectController {
                     DateManagement.formatIsoDate(newProject.get("dateFin").getAsString()) + ". Les rues affectées sont les suivantes: " + newProject.get("ruesAffectees").getAsString() + ". Merci de nous faire confiance.\"}";
 
             for(JsonElement personElement : newProject.get("abonnes").getAsJsonArray()) {
-                JsonObject person = personElement.getAsJsonObject();
-                String resIndividual = UseRequest.sendRequest(this.urlHead + "/notification/" + person.get("id").getAsString() + "?userType=resident",
+                String person = personElement.getAsString();
+                String resIndividual = UseRequest.sendRequest(this.urlHead + "/notification/" + person + "?userType=resident",
                         RequestType.POST, bodyResidentsNotif);
 
                 if(resIndividual == null) {
-                    System.out.println("Une erreur est survenue lors de l'envoi de la notification à chaque résidents pour les avertir du projet. Réponse nulle.");
+                    logger.info("Une erreur est survenue lors de l'envoi de la notification à chaque résidents pour les avertir du projet. Réponse nulle.");
                     continue;
                 }
 
@@ -168,7 +174,7 @@ public class ProjectController {
 
                 int statusCodeIndividual = jsonObjectIndividual.get("status").getAsInt();
                 if (statusCodeIndividual != 201) {
-                    System.out.println("Une erreur est survenue lors de l'envoi de la notification au résident pour l'avertir du projet. Message d'erreur: " + jsonObjectIndividual.get("data").getAsJsonObject().get("message").getAsString());
+                    logger.info("Une erreur est survenue lors de l'envoi de la notification au résident pour l'avertir du projet. Message d'erreur: " + jsonObjectIndividual.get("data").getAsJsonObject().get("message").getAsString());
                 }
 
             }
@@ -239,6 +245,33 @@ public class ProjectController {
 
             // Message de succès
             database.projets.put(id, projet.toString());
+
+            // Faire une boucle et envoyer une notification à chacun des abonnés. On ne se préoccupe pas
+            // que ça marche pour tout le monde.
+
+            String bodyResidentsNotif = "{\"message\": \"Le projet " + projet.get("titreProjet").getAsString() + " a été modifié. Veuillez voir la liste des projets pour plus d'informations.\"}";
+
+            for(JsonElement personElement : projet.get("abonnes").getAsJsonArray()) {
+                String person = personElement.getAsString();
+                String resIndividual = UseRequest.sendRequest(this.urlHead + "/notification/" + person + "?userType=resident",
+                        RequestType.POST, bodyResidentsNotif);
+
+                if(resIndividual == null) {
+                    logger.info("Une erreur est survenue lors de l'envoi de la notification à chaque résidents pour les avertir des modifications au projet. Réponse nulle.");
+                    continue;
+                }
+
+                JsonElement jsonIndividual = JsonParser.parseString(resIndividual);
+                JsonObject jsonObjectIndividual = jsonIndividual.getAsJsonObject();
+
+                int statusCodeIndividual = jsonObjectIndividual.get("status").getAsInt();
+                if (statusCodeIndividual != 201) {
+                    logger.info("Une erreur est survenue lors de l'envoi de la notification au résident pour l'avertir des modifications au projet. Message d'erreur: " + jsonObjectIndividual.get("data").getAsJsonObject().get("message").getAsString());
+                }
+
+            }
+
+
             ctx.status(200).json(projet).contentType("application/json");
 
         } catch (Exception e) {
@@ -257,7 +290,69 @@ public class ProjectController {
      */
     public void update(Context ctx) {
         try {
+            String id = ctx.pathParam("id");
 
+            String strProjet = database.projets.get(id);
+
+            if (strProjet == null) {
+                ctx.status(404).result("{\"message\": \"Projet non retrouvé.\"}").contentType("application/json");
+                return;
+            }
+
+            // Traiter le nouveau projet
+            String rawJson = ctx.body();
+
+            JsonElement element = JsonParser.parseString(rawJson);
+
+            // Vérifie si c'est bien un objet
+            if (!element.isJsonObject()) {
+                ctx.status(400).result("{\"message\": \"Format JSON invalide.\"}").contentType("application/json");
+                return;
+            }
+
+            // Vérifier que toutes les entrées sont là
+            JsonObject newProjet = element.getAsJsonObject();
+
+            JsonObject actualProjet = JsonParser.parseString(strProjet).getAsJsonObject();
+
+            if(!ControllerHelper.sameKeysSameTypes(actualProjet, newProjet)) {
+                ctx.status(400).result("{\"message\": \"Format d'objet ne correspondant pas à celui d'un projet. Vérifiez que les champs envoyés sont corrects et que les types sont bons.\"}").contentType("application/json");
+                return;
+            }
+
+            // M'assurer que l'id reste le même
+            JsonObject updatedProjet = newProjet;
+            updatedProjet.addProperty("id", id);
+
+            database.projets.put(id, updatedProjet.toString());
+
+            // Faire une boucle et envoyer une notification à chacun des abonnés. On ne se préoccupe pas
+            // que ça marche pour tout le monde.
+
+            String bodyResidentsNotif = "{\"message\": \"Le projet " + updatedProjet.get("titreProjet").getAsString() + " a été modifié. Veuillez voir la liste des projets pour plus d'informations.\"}";
+
+            for(JsonElement personElement : updatedProjet.get("abonnes").getAsJsonArray()) {
+                String person = personElement.getAsString();
+                String resIndividual = UseRequest.sendRequest(this.urlHead + "/notification/" + person + "?userType=resident",
+                        RequestType.POST, bodyResidentsNotif);
+
+                if(resIndividual == null) {
+                    logger.info("Une erreur est survenue lors de l'envoi de la notification à chaque résidents pour les avertir des modifications au projet. Réponse nulle.");
+                    continue;
+                }
+
+                JsonElement jsonIndividual = JsonParser.parseString(resIndividual);
+                JsonObject jsonObjectIndividual = jsonIndividual.getAsJsonObject();
+
+                int statusCodeIndividual = jsonObjectIndividual.get("status").getAsInt();
+                if (statusCodeIndividual != 201) {
+                    logger.info("Une erreur est survenue lors de l'envoi de la notification au résident pour l'avertir des modifications au projet. Message d'erreur: " + jsonObjectIndividual.get("data").getAsJsonObject().get("message").getAsString());
+                }
+
+            }
+
+            // Renvoyer le nouvel objet
+            ctx.status(200).json(updatedProjet).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
