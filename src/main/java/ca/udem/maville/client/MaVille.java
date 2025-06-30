@@ -1,20 +1,15 @@
 package ca.udem.maville.client;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
+import ca.udem.maville.utils.AdaptedGson;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import ca.udem.maville.client.users.Prestataire;
-import ca.udem.maville.client.users.PrioriteProbleme;
-import ca.udem.maville.client.users.Quartier;
 import ca.udem.maville.client.users.Resident;
-import ca.udem.maville.client.users.TypeTravaux;
-import ca.udem.maville.client.users.Utilisateur;
 import ca.udem.maville.hooks.UseRequest;
 import ca.udem.maville.utils.RequestType;
 
@@ -37,148 +32,148 @@ public class MaVille {
             "                       c’est un espace vivant que vous façonnez chaque jour.\"\n\n                                 Bienvenue dans \uD83C\uDF06 MaVille\n";
 
 
-            private static final List<Resident> residents = new ArrayList<>();
-            private static final List<Prestataire> prestataires = new ArrayList<>();
-            private static final List<FicheProbleme> fiches = new ArrayList<>();
-            private static final List<Projet> projets = new ArrayList<>();
-            public static final String urlHead = "http://localhost:7070/api";
-        
-           /*  public static void main(String[] args) {
-                System.out.println(introText);
-                System.out.println(motto);
-                initialiserDonnees();
-                menuPrincipal();
-            }*/
-        
-            public static void demarrer() {
-                while (true) {
-                    System.out.println("\n=== Menu principal ===");
-                    System.out.println("1. Se connecter en tant que Résident");
-                    System.out.println("2. Se connecter en tant que Prestataire");
-                    System.out.println("0. Quitter");
-                    System.out.print("Choix : ");
-        
-                    String choix = sc.nextLine();
-                    switch (choix) {
-                        case "1":
-                            menuResident();
-                            break;
-                        case "2":
-                            menuPrestataire();
-                            break;
-                        case "0":
-                            System.out.println("Merci d'avoir utilisé MaVille !");
-                            return;
-                        default:
-                            System.out.println("Choix invalide. Réessayez.");
-                    }
-                }
+    public static final String urlHead = "http://localhost:7070/api";
+
+
+    public static void demarrer() throws InterruptedException {
+        // Faire une attente minme pour s'assurer que les initialisations au niveau du serveur sont faites
+        System.out.println("Démarrage de l'application...");
+        Thread.sleep(4000);
+
+        System.out.println(introText);
+        System.out.println(motto);
+
+        while (true) {
+            System.out.println("\n===== Menu principal =====");
+            System.out.println("1. Se connecter en tant que Résident");
+            System.out.println("2. Se connecter en tant que Prestataire");
+            System.out.println("0. Quitter");
+            System.out.print("Choix : ");
+
+            String choix = sc.nextLine();
+            switch (choix) {
+                case "1":
+                    menuResident();
+                    break;
+                case "2":
+                    menuPrestataire();
+                    break;
+                case "0":
+                    System.out.println("\nMerci d'avoir utilisé MaVille!");
+                    return;
+                default:
+                    System.out.println("Choix invalide. Veuillez réessayer.");
             }
+        }
+    }
 
-        
-            private static void menuResident() {
 
-                // Récupérer le user
-                String responseUser = UseRequest.sendRequest(urlHead + "/resident/7e57d004-2b97-0e7a-b45f-5387367791cd" , RequestType.GET, null);
+    private static void menuResident() {
 
-                if(responseUser == null) {
-                   
-                    System.out.println("Une erreur est survenue lors de la récupération de l'utilisateur. Réponse nulle.Menu Resident");
-                }
+        // Récupérer le résident
+        String responseUser = UseRequest.sendRequest(urlHead + "/resident/7e57d004-2b97-0e7a-b45f-5387367791cd" , RequestType.GET, null);
 
-                JsonElement elemUser = JsonParser.parseString(responseUser);
-                JsonObject jsonUser = elemUser.getAsJsonObject();
+        if(responseUser == null) {
+            System.out.println("Une erreur est survenue! Veuillez réessayer plus tard.");
+            return;
+        }
 
-                int statuscode = jsonUser.get("status").getAsInt();
-                if (statuscode == 404) {
-                  System.out.println("Utilisateur non trouver Menu Principal");
+        JsonElement elemUser = JsonParser.parseString(responseUser);
+        JsonObject jsonUser = elemUser.getAsJsonObject();
 
-                } else if(statuscode != 200) {
-                    System.out.println("Une erreur est survenue lors de la récupération du prestataire. Message d'erreur: " + jsonUser.get("data").getAsJsonObject().get("message").getAsString());
-                }
-                Gson gson = new Gson();
-                Resident resident = gson.fromJson(jsonUser.get("data").getAsJsonObject(), Resident.class);
-                
-                while (true) {
-                    System.out.println("\n[Menu Résident]");
-                    System.out.println("1. Signaler un problème");
-                    System.out.println("2. Voir mes signalements");
-                    System.out.println("3. Consulter les projets");
-                    System.out.println("4. Voir mes notifications");
-                    System.out.println("0. Retour au menu principal");
-                    System.out.print("Choix : ");
-                    String choix = sc.nextLine();
-                    switch (choix) {
-                        case "1":
-                            resident.signalerProbleme();
-                            break;
-                        case "2":
-                            System.out.println(" Liste de vos signalements:");
-                            resident.recupererSignalements();
-                            break;
-                        case "3":
-                            System.out.println("[Simulation] Liste des projets en cours...");
-                            break;
-                        case "4":
-                            System.out.println("[Simulation] Vos notifications...");
-                            break;
-                        case "0":
-                            return;
-                        default:
-                            System.out.println("Choix invalide. Réessayez.");
-                    }
-                }
+        if(jsonUser.get("status").getAsInt() != 200) {
+            System.out.println("Une erreur est survenue! Veuillez réessayer plus tard.");
+            return;
+        }
+
+        Gson gson = AdaptedGson.getGsonInstance();
+        Resident resident = gson.fromJson(jsonUser.get("data").getAsJsonObject(), Resident.class);
+
+        while (true) {
+            System.out.println("\n===== Menu Résident =====");
+            System.out.println("1. Signaler un problème");
+            System.out.println("2. Voir mes signalements");
+            System.out.println("3. Consulter les projets");
+            System.out.println("4. Voir mes notifications");
+            System.out.println("0. Retour au menu principal");
+            System.out.print("Choix: ");
+
+            String choix = sc.nextLine();
+
+            switch (choix) {
+                case "1":
+                    System.out.println("\n----- Signalement d'un problème -----\n");
+                    resident.signalerProbleme();
+                    break;
+                case "2":
+                    resident.recupererSignalements();
+                    break;
+                case "3":
+                    Projet.consulterProjets();
+                    break;
+                case "4":
+                    resident.consulterNotifications();
+                    break;
+                case "0":
+                    return;
+                default:
+                    System.out.println("Choix invalide. Veuillez réessayer.");
             }
-        
-            private static void menuPrestataire() {
-                while (true) {
-                    System.out.println("\n[Menu Prestataire]");
-                    System.out.println("1. Consulter les fiches disponibles");
-                    System.out.println("2. Soumettre une candidature");
-                    System.out.println("3. Modifier un projet");
-                    System.out.println("4. Voir mes notifications");
-                    System.out.println("0. Retour au menu principal");
-                    System.out.print("Choix : ");
-                    String choix = sc.nextLine();
-                    switch (choix) {
-                        case "1":
-                            System.out.println("[Simulation] Liste des fiches disponibles...");
-                            break;
-                        case "2":
-                            System.out.println("[Simulation] Soumission de candidature...");
-                            break;
-                        case "3":
-                            System.out.println("[Simulation] Modification de projet...");
-                            break;
-                        case "4":
-                            System.out.println("[Simulation] Vos notifications...");
-                            break;
-                        case "0":
-                            return;
-                        default:
-                            System.out.println("Choix invalide. Réessayez.");
-                    }
-                }
-            }
-        
-        /*   
-        
-            private static void initialiserDonnees() {
-                residents.add(new Resident("Alice", "alice@example.com", "123 rue Ontario", "H2X 1Y4"));
-                residents.add(new Resident("Bob", "bob@example.com", "456 avenue du Parc", "H2W 2N2"));
-                residents.add(new Resident("Clara", "clara@example.com", "789 boul. Saint-Laurent", "H2Y 3Z3"));
-        
-                prestataires.add(new Prestataire("Entreprise ABC", "abc@travaux.com", "NE123456",
-                        List.of(Quartier.VILLE_MARIE, Quartier.LE_PLATEAU_MONT_ROYAL),
-                        List.of(TypeTravaux.TRAVAUX_ROUTIERS)));
-        
-                prestataires.add(new Prestataire("Groupe BTP", "btp@chantier.ca", "NE654321",
-                        List.of(Quartier.LASALLE, Quartier.ROSEMONT_LA_PETITE_PATRIE),
-                        List.of(TypeTravaux.CONSTRUCTION_RENOVATION)));
-        
-                prestataires.add(new Prestataire("Signal Pro", "signal@eclairage.net", "NE777777",
-                        List.of(Quartier.SAINT_LAURENT),
-                        List.of(TypeTravaux.SIGNALISATION_ECLAIRAGE)));*/
+        }
+    }
 
-          //  }
+    private static void menuPrestataire() {
+
+        // Récupérer le prestataire
+        String responseUser = UseRequest.sendRequest(urlHead + "/prestataire/a3d78c70b0f84b8dbff1913b5d213e38" , RequestType.GET, null);
+
+        if(responseUser == null) {
+            System.out.println("Une erreur est survenue! Veuillez réessayer plus tard.");
+            return;
+        }
+
+        JsonElement elemUser = JsonParser.parseString(responseUser);
+        JsonObject jsonUser = elemUser.getAsJsonObject();
+
+        if(jsonUser.get("status").getAsInt() != 200) {
+            System.out.println("Une erreur est survenue! Veuillez réessayer plus tard.");
+            return;
+        }
+
+        Gson gson = AdaptedGson.getGsonInstance();
+        Prestataire prestataire = gson.fromJson(jsonUser.get("data").getAsJsonObject(), Prestataire.class);
+
+        while (true) {
+            System.out.println("\n===== Menu Prestataire =====");
+            System.out.println("1. Consulter les fiches disponibles concernant mon domaine d'expertise");
+            System.out.println("2. Soumettre une candidature");
+            System.out.println("3. Voir et modifier un projet");
+            System.out.println("4. Voir mes notifications");
+            System.out.println("0. Retour au menu principal");
+            System.out.print("Choix: ");
+
+            String choix = sc.nextLine();
+
+            switch (choix) {
+                case "1":
+                    prestataire.voirFichesDisponibles();
+                    break;
+                case "2":
+                    System.out.println("\n----- Soumission de candidature -----\n");
+                    prestataire.soumettreCandidature();
+                    break;
+                case "3":
+                    prestataire.modifierProjet();
+                    break;
+                case "4":
+                    prestataire.consulterNotifications();
+                    break;
+                case "0":
+                    return;
+                default:
+                    System.out.println("Choix invalide. Veuillez réessayer.");
+            }
+        }
+    }
+
 }

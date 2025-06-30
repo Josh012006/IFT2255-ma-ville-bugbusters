@@ -1,10 +1,10 @@
 package ca.udem.maville.client;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 public class FicheProbleme {
+
     private String typeTravaux;
     private String localisation;
     private String quartier;
@@ -17,7 +17,7 @@ public class FicheProbleme {
     private ArrayList<String> residents;
 
     // Constructeur
-    public FicheProbleme(String id,String typeTravaux, String localisation, String description, int priorite,String quartier) {
+    public FicheProbleme(String id, String typeTravaux, String localisation, String description, int priorite, String quartier) {
         this.typeTravaux = typeTravaux;
         this.quartier = quartier;
         this.id = id;
@@ -27,7 +27,6 @@ public class FicheProbleme {
         this.statut = "enAttente";
         this.signalements = new ArrayList<>();
         this.residents = new ArrayList<>();
-    
         this.dateCreationFiche = new Date();
     }
 
@@ -46,12 +45,17 @@ public class FicheProbleme {
   
     public int getPriorite() { return priorite; }
 
-    public ArrayList<Signalement> getSignalements() { return signalements; }
-
     public String getStatut() { return statut; }
 
     public Date getDateCreationFiche() { return dateCreationFiche; }
 
-    public ArrayList<Resident> getResidents() { return residents; } // recup resident 
+    // Setters
+    public void addSignalement(String signalement) {
+        signalements.add(signalement);
+    }
+
+    public void addResident(String resident) {
+        residents.add(resident);
+    }
 }
 

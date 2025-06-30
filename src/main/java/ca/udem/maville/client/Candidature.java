@@ -1,17 +1,14 @@
 package ca.udem.maville.client;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 import java.util.*;
 
-import ca.udem.maville.StatutCandidature;
-import ca.udem.maville.client.users.Prestataire;
-
 public class Candidature {
+
     private String id;
     private Date dateSoumission;
     private String statut;
     private String prestataire;
+    private String nomPrestataire;
     private String ficheProbleme;
     private String numeroEntreprise;
     private String titreProjet;
@@ -23,11 +20,13 @@ public class Candidature {
     private double coutEstime;
 
     // Constructeur
-    public Candidature(String id,String ruesAffectees,String numeroEntreprise,String prestataire, String ficheProbleme, String titreProjet, String description,
-                       String typeTravaux, Date dateDebut,Date dateSoumission, Date dateFin, double coutEstime) {
-        this.dateSoumission = dateSoumission;
+    public Candidature(String id, String ruesAffectees, String numeroEntreprise, String prestataire, String nomPrestataire, String ficheProbleme, String titreProjet, String description,
+                       String typeTravaux, Date dateDebut, Date dateFin, double coutEstime) {
+
+        this.dateSoumission = new Date();
         this.statut = "enAttente";
         this.prestataire = prestataire;
+        this.nomPrestataire = nomPrestataire;
         this.ficheProbleme = ficheProbleme;
         this.numeroEntreprise = numeroEntreprise;
         this.titreProjet = titreProjet;
@@ -35,7 +34,6 @@ public class Candidature {
         this.description = description;
         this.typeTravaux = typeTravaux;
         this.ruesAffectees = ruesAffectees;
-
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.coutEstime = coutEstime;
@@ -45,11 +43,21 @@ public class Candidature {
     // Getters
     public Date getDateSoumission() { return dateSoumission; }
 
+    public String getNomPrestataire() { return nomPrestataire; }
+
+    public String getPrestataire() {
+        return prestataire;
+    }
+
+    public String getFicheProbleme() {
+        return ficheProbleme;
+    }
+
+    public String getID() {
+        return id;
+    }
+
     public String getStatut() { return statut; }
-
-    public Prestataire getPrestataire() { return prestataire; } //recup
-
-    public FicheProbleme getFicheProbleme() { return ficheProbleme; } // recup
 
     public String getTitreProjet() { return titreProjet; }
 
@@ -59,7 +67,6 @@ public class Candidature {
 
     public String getTypeTravaux() { return typeTravaux; }
 
-
     public Date getDateDebut() { return dateDebut; }
 
     public Date getDateFin() { return dateFin; }
@@ -67,6 +74,11 @@ public class Candidature {
     public double getCoutEstime() { return coutEstime; }
 
     public String getNumeroEntreprise() { return numeroEntreprise; }
+
+
+
+    // Setters
+    public void setStatut(String statut) { this.statut = statut; }
 
 
 }

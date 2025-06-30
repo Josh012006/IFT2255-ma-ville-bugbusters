@@ -1,0 +1,32 @@
+<configuration>
+
+    <!-- Appender console pour le client -->
+    <appender name="CLIENT_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Appender fichier pour le serveur -->
+    <appender name="SERVER_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>src/main/java/ca/udem/maville/server/logs/server.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logger pour le serveur : vers fichier seulement -->
+    <logger name="ca.udem.maville.server" level="INFO" additivity="false">
+        <appender-ref ref="SERVER_FILE" />
+    </logger>
+
+    <!-- Logger pour le client : vers console uniquement -->
+    <logger name="ca.udem.maville.client" level="DEBUG" additivity="false">
+        <appender-ref ref="CLIENT_CONSOLE" />
+    </logger>
+
+    <!-- Logger racine désactivé (pas de logs inattendus) -->
+    <root level="OFF" />
+</configuration>

@@ -12,13 +12,17 @@ import io.javalin.http.Context;
 
 import java.time.Instant;
 
+import org.slf4j.Logger;
+
 public class NotificationController {
     public Database database;
     public String urlHead;
+    public Logger logger;
 
-    public NotificationController(Database database, String urlHead) {
+    public NotificationController(Database database, String urlHead, Logger logger) {
         this.database = database;
         this.urlHead = urlHead;
+        this.logger = logger;
     }
 
     /**

@@ -1,14 +1,22 @@
 package ca.udem.maville.server;
 
 import ca.udem.maville.server.controllers.*;
+import ca.udem.maville.utils.AdaptedGson;
 import io.javalin.Javalin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import static io.javalin.apibuilder.ApiBuilder.*;
 
 
 public class Server {
 
     private int port = 7070;
+    private Javalin app;
     Database database;
+
+    static final Logger logger = LoggerFactory.getLogger(Server.class);
+
     CandidatureController candidatureController;
     SignalementController signalementController;
     ProjectController projectController;
@@ -24,25 +32,25 @@ public class Server {
 
     public void start() {
 
-        System.out.println("Server started.");
-
         // Création de la base de données
         database = new Database();
 
         // Création des instances de controllers
         String urlHead = "http://localhost:" + port + "/api";
 
-        candidatureController = new CandidatureController(database, urlHead);
-        signalementController = new SignalementController(database, urlHead);
-        projectController = new ProjectController(database, urlHead);
-        problemController = new ProblemController(database, urlHead);
-        notificationController = new NotificationController(database, urlHead);
-        residentController = new ResidentController(database, urlHead);
-        prestataireController = new PrestataireController(database, urlHead);
+        candidatureController = new CandidatureController(database, urlHead, logger);
+        signalementController = new SignalementController(database, urlHead, logger);
+        projectController = new ProjectController(database, urlHead, logger);
+        problemController = new ProblemController(database, urlHead, logger);
+        notificationController = new NotificationController(database, urlHead, logger);
+        residentController = new ResidentController(database, urlHead, logger);
+        prestataireController = new PrestataireController(database, urlHead, logger);
 
         // Intitialisation du serveur sur le port
-        Javalin app = Javalin.create(config -> {
+        app = Javalin.create(config -> {
             config.router.contextPath = "/api";
+
+            config.jsonMapper(new AdaptedGson.GsonMapper());
 
             // Ajout des controllers
             // Pour chacun, voir la JavaDoc au dessus de la fonction dans
@@ -140,15 +148,9 @@ public class Server {
         // Appelle aussi serverStopping et serverStopped
         Runtime.getRuntime().addShutdownHook(new Thread(app::stop));
 
-        app.events(event -> {
-            event.serverStopping(() -> {
-                // Nettoyage ici
-                System.out.println("Nettoyage avant l'arrêt...");
-            });
-            event.serverStopped(() -> {
-                System.out.println("Serveur arrêté.");
-            });
-        });
+    }
 
+    public void stop() {
+        app.stop();
     }
 }

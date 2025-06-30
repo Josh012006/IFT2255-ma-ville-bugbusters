@@ -9,6 +9,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.javalin.http.Context;
 
+import org.slf4j.Logger;
+
 import java.time.Instant;
 import java.util.ArrayList;
 
@@ -16,10 +18,13 @@ public class ProblemController {
 
     public Database database;
     public String urlHead;
+    public Logger logger;
 
-    public ProblemController(Database database, String urlHead) {
+
+    public ProblemController(Database database, String urlHead, Logger logger) {
         this.database = database;
         this.urlHead = urlHead;
+        this.logger = logger;
     }
 
     /**
@@ -137,7 +142,7 @@ public class ProblemController {
                         RequestType.PATCH, "{\"statut\": \"traité\"}");
 
                 if(response == null) {
-                    System.out.println("Une erreur est survenue lors du changement de statut du signalement. Réponse nulle.");
+                    logger.info("Une erreur est survenue lors du changement de statut du signalement. Réponse nulle.");
                     continue;
                 }
 
@@ -146,7 +151,7 @@ public class ProblemController {
 
                 int statusCode = jsonObject.get("status").getAsInt();
                 if (statusCode != 200) {
-                    System.out.println("Une erreur est survenue lors changement de statut du signalement. Message d'erreur: " + jsonObject.get("data").getAsJsonObject().get("message").getAsString());
+                    logger.info("Une erreur est survenue lors changement de statut du signalement. Message d'erreur: " + jsonObject.get("data").getAsJsonObject().get("message").getAsString());
                 }
             }
 
@@ -160,7 +165,7 @@ public class ProblemController {
                     RequestType.POST, bodyMessage);
 
                 if(response == null) {
-                    System.out.println("Une erreur est survenue lors de l'envoi de la notification au résident pour l'avertir du traitement du signalement. Réponse nulle.");
+                    logger.info("Une erreur est survenue lors de l'envoi de la notification au résident pour l'avertir du traitement du signalement. Réponse nulle.");
                     continue;
                 }
 
@@ -169,7 +174,7 @@ public class ProblemController {
 
                 int statusCode = jsonObject.get("status").getAsInt();
                 if (statusCode != 201) {
-                    System.out.println("Une erreur est survenue lors de l'envoi de la notification au résident pour l'avertir du traitement du signalement. Message d'erreur: " + jsonObject.get("data").getAsJsonObject().get("message").getAsString());
+                    logger.info("Une erreur est survenue lors de l'envoi de la notification au résident pour l'avertir du traitement du signalement. Message d'erreur: " + jsonObject.get("data").getAsJsonObject().get("message").getAsString());
                 }
             }
 
@@ -199,7 +204,7 @@ public class ProblemController {
                         RequestType.POST, bodyMessage);
 
                 if(response == null) {
-                    System.out.println("Une erreur est survenue lors de l'envoi de la notification au prestataire pour l'avertir du nouveau problème. Réponse nulle.");
+                    logger.info("Une erreur est survenue lors de l'envoi de la notification au prestataire pour l'avertir du nouveau problème. Réponse nulle.");
                     continue;
                 }
 
@@ -208,7 +213,7 @@ public class ProblemController {
 
                 int statusCode = jsonObject.get("status").getAsInt();
                 if (statusCode != 201) {
-                    System.out.println("Une erreur est survenue lors de l'envoi de la notification au prestataire pour l'avertir du nouveau problème. Message d'erreur: " + jsonObject.get("data").getAsJsonObject().get("message").getAsString());
+                    logger.info("Une erreur est survenue lors de l'envoi de la notification au prestataire pour l'avertir du nouveau problème. Message d'erreur: " + jsonObject.get("data").getAsJsonObject().get("message").getAsString());
                 }
             }
 

@@ -4,76 +4,55 @@ import ca.udem.maville.utils.RequestType;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import org.jetbrains.annotations.NotNull;
 
-import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URI;
-import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 
-
 public final class UseRequest {
+
     public static String sendRequest(String urlName, RequestType requestMethod, String body) {
         try {
-            URI uri = new URI(urlName);
-            URL url = uri.toURL();
+            URI uri = URI.create(urlName);
 
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod(requestMethod.name());
-            conn.setDoOutput(true); // Important pour autoriser l'envoi de données
+            HttpClient client = HttpClient.newHttpClient();
 
-            if (requestMethod != RequestType.GET && body != null) {
-                conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                try (OutputStream os = conn.getOutputStream()) {
-                    byte[] input = body.getBytes("UTF-8");
-                    os.write(input, 0, input.length);
-                }
+            HttpRequest.Builder requestBuilder = HttpRequest.newBuilder()
+                    .uri(uri)
+                    .header("Content-Type", "application/json; charset=UTF-8");
+
+            // Choix de la méthode HTTP
+            if (requestMethod == RequestType.GET) {
+                requestBuilder.GET();
+            } else {
+                HttpRequest.BodyPublisher bodyPublisher =
+                        (body != null) ? HttpRequest.BodyPublishers.ofString(body, StandardCharsets.UTF_8)
+                                : HttpRequest.BodyPublishers.noBody();
+
+                // Utilise .method(name, bodyPublisher) pour supporter PATCH
+                requestBuilder.method(requestMethod.name(), bodyPublisher);
             }
 
-            //Getting the response code
-            int responseCode = conn.getResponseCode();
+            HttpRequest request = requestBuilder.build();
 
-            //Getting the response body
-            StringBuilder responseBuilder = getStringBuilder(conn, responseCode);
-            String responseString = responseBuilder.toString();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            int status = responseCode;
-            JsonElement data = JsonParser.parseString(responseString);
+            int status = response.statusCode();
+            String responseBody = response.body();
 
-            // Création du nouvel objet JSON de réponse
+            JsonElement data = JsonParser.parseString(responseBody);
+
             JsonObject responseJson = new JsonObject();
             responseJson.addProperty("status", status);
-            responseJson.add("data", data);     // Ajoute l'objet JSON "data" directement
+            responseJson.add("data", data);
 
-            // Pour obtenir la chaîne JSON finale
-            String jsonResponseString = responseJson.toString();
-
-            return jsonResponseString;
+            return responseJson.toString();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
-    }
-
-    @NotNull
-    private static StringBuilder getStringBuilder(HttpURLConnection conn, int responseCode) throws IOException {
-        InputStream responseBody = null;
-
-        if(responseCode != HttpURLConnection.HTTP_OK) {
-            responseBody = conn.getErrorStream();
-        }
-        else {
-            responseBody = conn.getInputStream();
-        }
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(responseBody, StandardCharsets.UTF_8));
-        StringBuilder responseBuilder = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            responseBuilder.append(line);
-        }
-        return responseBuilder;
     }
 }

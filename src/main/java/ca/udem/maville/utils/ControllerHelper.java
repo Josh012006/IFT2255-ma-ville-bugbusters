@@ -52,16 +52,15 @@ public final class ControllerHelper {
 
 
     // Enlève les duplicatas
-    public static ArrayList<JsonObject> removeDuplicates(ArrayList<JsonObject> tab) {
-        ArrayList<JsonObject> result = new ArrayList<>();
+    public static ArrayList<String> removeDuplicates(ArrayList<String> tab) {
+        ArrayList<String> result = new ArrayList<>();
 
         ArrayList<String> seenIDs = new ArrayList<>();
 
-        for (JsonObject o : tab) {
-            String oID = o.get("id").getAsString();
-            if (!seenIDs.contains(oID)) {
+        for (String o : tab) {
+            if (!seenIDs.contains(o)) {
                 result.add(o);
-                seenIDs.add(oID);
+                seenIDs.add(o);
             }
         }
 
