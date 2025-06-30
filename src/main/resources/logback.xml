@@ -22,6 +22,11 @@
         <appender-ref ref="SERVER_FILE" />
     </logger>
 
+    <!-- Logger pour les logs HTTP (requêtes et réponses) -->
+    <logger name="HTTP" level="INFO" additivity="false">
+        <appender-ref ref="SERVER_FILE" />
+    </logger>
+
     <!-- Logger pour le client : vers console uniquement -->
     <logger name="ca.udem.maville.client" level="DEBUG" additivity="false">
         <appender-ref ref="CLIENT_CONSOLE" />

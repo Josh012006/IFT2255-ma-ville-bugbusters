@@ -145,6 +145,44 @@ public class Server {
             });
         }).start(this.port);
 
+        app.before(ctx -> {
+            Logger logger = LoggerFactory.getLogger("HTTP");
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("\n--- Requête reçue ---\n");
+            sb.append("Méthode: ").append(ctx.method()).append("\n");
+            sb.append("URL: ").append(ctx.fullUrl()).append("\n");
+            sb.append("Headers:\n");
+
+            ctx.headerMap().forEach((k, v) -> sb.append("  ").append(k).append(": ").append(v).append("\n"));
+
+            if (!ctx.body().isEmpty()) {
+                sb.append("Body:\n").append(ctx.body()).append("\n");
+            }
+
+            sb.append("---------------------\n");
+
+            logger.info(sb.toString());
+        });
+
+        app.after(ctx -> {
+            Logger logger = LoggerFactory.getLogger("HTTP");
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("\n--- Réponse envoyée ---\n");
+            sb.append("Status: ").append(ctx.status()).append("\n");
+
+            // Tu peux logger ctx.result() si tu renvoies un string, ou encoder en JSON si besoin
+            if (ctx.result() != null) {
+                sb.append("Body:\n").append(ctx.result()).append("\n");
+            }
+
+            sb.append("------------------------\n");
+
+            logger.info(sb.toString());
+        });
+
+
         // Appelle aussi serverStopping et serverStopped
         Runtime.getRuntime().addShutdownHook(new Thread(app::stop));
 
