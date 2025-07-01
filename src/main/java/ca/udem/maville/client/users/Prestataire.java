@@ -331,7 +331,11 @@ public class Prestataire extends Utilisateur {
             String typeTravaux = tab.get(choix).getLabel();
 
             System.out.println("\nQuel sera le cout de ce projet. Ne séparez pas les chiffres par des espaces: ");
-            Double coutEstime = Double.parseDouble(sc.nextLine());
+            double coutEstime = Double.parseDouble(sc.nextLine());
+            if(coutEstime < 0) {
+                System.out.println("\nLe coût ne peux pas être négatif.");
+                throw new Exception("Le coût ne peux pas être négatif.");
+            }
 
             System.out.println("\nVeuillez entrer la date de début des travaux. Utilisez le format dd/MM/yyyy: ");
             String dateDebut = DateManagement.formatDateFR(sc.nextLine());
