@@ -34,8 +34,8 @@ public class MaVille {
                 "       _\\/\\\\\\_____________\\/\\\\\\_\\//\\\\\\\\\\\\\\\\/\\\\______\\//\\\\\\_______\\/\\\\\\__/\\\\\\\\\\\\\\\\\\__/\\\\\\\\\\\\\\\\\\__\\//\\\\\\\\\\\\\\\\\\\\_ \n" +
                 "        _\\///______________\\///___\\////////\\//________\\///________\\///__\\/////////__\\/////////____\\//////////__\n";
 
-        final String motto = "                   \"Une ville n’est pas seulement des rues et des immeubles,\n" +
-                "                       c’est un espace vivant que vous façonnez chaque jour.\"\n\n                                 Bienvenue dans \uD83C\uDF06 MaVille\n";
+        final String motto = "                   \"Une ville n'est pas seulement des rues et des immeubles,\n" +
+                "                       c'est un espace vivant que vous façonnez chaque jour.\"\n\n                                 Bienvenue dans \uD83C\uDF06 MaVille\n";
 
         // Faire une attente minime pour s'assurer que les initialisations au niveau du serveur sont faites
         System.out.println("Démarrage de l'application...");

@@ -69,25 +69,25 @@ public class Database {
 
 
         // Initialiser des signalements
-        Signalement signal1 = new Signalement("Construction Ou Rénovation", "123 rue Ontario", "Le bâtiment présente des fissures importantes dans les murs, des infiltrations d’eau, ou une fondation affaissée. Cela compromet la stabilité et la sécurité de l’édifice.",
+        Signalement signal1 = new Signalement("Construction Ou Rénovation", "123 rue Ontario", "Le bâtiment présente des fissures importantes dans les murs, des infiltrations d'eau, ou une fondation affaissée. Cela compromet la stabilité et la sécurité de l'édifice.",
                 "7e57d004-2b97-0e7a-b45f-5387367791cd", "Ville-Marie", "b9e45c5f-72ac-4e8c-b38e-36f22c92db3e");
 
-        Signalement signal2 = new Signalement("Travaux Liés Aux Transports En Commun", "123 rue Ontario", "L’abribus est endommagé, un quai est fissuré, un escalier ou un ascenseur est hors service, ou la signalisation est défectueuse.",
+        Signalement signal2 = new Signalement("Travaux Liés Aux Transports En Commun", "123 rue Ontario", "L'abribus est endommagé, un quai est fissuré, un escalier ou un ascenseur est hors service, ou la signalisation est défectueuse.",
                 "7e57d004-2b97-0e7a-b45f-5387367791cd", "Ville-Marie", "3fa31d9c-2d4f-4e8a-81c6-f6a2c8497e97");
         signal2.setStatut("traité");
 
-        Signalement signal3 = new Signalement("Travaux Routiers", "123 rue Ontario", "Des cavités ou trous apparaissent sur la chaussée, causant des risques pour les automobilistes et cyclistes, souvent dus à l’usure saisonnière.",
+        Signalement signal3 = new Signalement("Travaux Routiers", "123 rue Ontario", "Des cavités ou trous apparaissent sur la chaussée, causant des risques pour les automobilistes et cyclistes, souvent dus à l'usure saisonnière.",
                 "7e57d004-2b97-0e7a-b45f-5387367791cd", "Ville-Marie", "5d0c3f0f-b47a-4e1f-b8a7-2e8d9db14d0a");
         signal3.setStatut("traité");
 
         Signalement signal4 = new Signalement("Entretien Urbain", resident2.getAdresse(), "Des ordures, encombrants, branches ou débris de construction sont laissés sur le domaine public (rue, trottoir, terrain vague), créant des risques pour la santé ou la circulation.",
                 resident2.getID(), resident2.getQuartier(), "8e3b2c66-d50d-49c3-9d3f-110e85de2351");
 
-        Signalement signal5 = new Signalement("Travaux Routiers", "123 rue Ontario", "Des trous ou affaissements se forment sur la surface de la route, représentant un danger pour les automobilistes et les cyclistes. Ce phénomène est généralement attribuable à l’usure liée aux variations saisonnières et aux cycles de gel et de dégel.",
+        Signalement signal5 = new Signalement("Travaux Routiers", "123 rue Ontario", "Des trous ou affaissements se forment sur la surface de la route, représentant un danger pour les automobilistes et les cyclistes. Ce phénomène est généralement attribuable à l'usure liée aux variations saisonnières et aux cycles de gel et de dégel.",
                 resident3.getID(), resident3.getQuartier(), "7f51f182-b84f-4a7b-8192-e6b3c92d1bb9");
         signal5.setStatut("traité");
 
-        Signalement signal6 = new Signalement("Travaux De Signalisation Et Eclairage", resident2.getAdresse(), "Plusieurs lampadaires sont hors service ou offrent un éclairage insuffisant, ce qui nuit à la visibilité et augmente les risques d’accidents, particulièrement la nuit ou par mauvais temps.",
+        Signalement signal6 = new Signalement("Travaux De Signalisation Et Eclairage", resident2.getAdresse(), "Plusieurs lampadaires sont hors service ou offrent un éclairage insuffisant, ce qui nuit à la visibilité et augmente les risques d'accidents, particulièrement la nuit ou par mauvais temps.",
                 resident2.getID(), resident2.getQuartier(), "89e79fc6-c4ea-43f0-89e0-7dba26fa3e17");
         signal6.setStatut("traité");
 
@@ -97,7 +97,7 @@ public class Database {
                 resident2.getID(), resident2.getQuartier(), "3f12d12d-53a1-41a4-89ad-f7062736d650");
         signal7.setStatut("traité");
 
-        Signalement signal13 = new Signalement("Travaux Souterrains", resident2.getAdresse(), "Une canalisation d’égout est obstruée par des racines, des débris ou des graisses, ou elle s’est effondrée en raison de son ancienneté.",
+        Signalement signal13 = new Signalement("Travaux Souterrains", resident2.getAdresse(), "Une canalisation d'égout est obstruée par des racines, des débris ou des graisses, ou elle s'est effondrée en raison de son ancienneté.",
                 resident2.getID(), resident2.getQuartier(), UniqueID.generateUniqueID());
         signal13.setStatut("traité");
 
@@ -105,7 +105,7 @@ public class Database {
                 resident2.getID(), resident2.getQuartier(), UniqueID.generateUniqueID());
         signal14.setStatut("traité");
 
-        Signalement signal8 = new Signalement("Travaux Routiers", resident3.getAdresse(), "Une conduite d’eau ou d’égout s’est rompue sous la chaussée, causant une fuite, un affaissement ou une inondation.",
+        Signalement signal8 = new Signalement("Travaux Routiers", resident3.getAdresse(), "Une conduite d'eau ou d'égout s'est rompue sous la chaussée, causant une fuite, un affaissement ou une inondation.",
                 resident3.getID(), resident3.getQuartier(), "01e05d6a-50c9-4477-b7bb-778ad587c37d");
         signal8.setStatut("traité");
 
@@ -121,7 +121,7 @@ public class Database {
                 "7e57d004-2b97-0e7a-b45f-5387367791cd", "Ville-Marie", UniqueID.generateUniqueID());
         signal11.setStatut("traité");
 
-        Signalement signal12 = new Signalement("Travaux Souterrains", "123 rue Ontario", "Une conduite d’eau souterraine est fissurée ou rompue, causant une perte d’eau importante, un affaissement du sol ou une baisse de pression pour les résidents.",
+        Signalement signal12 = new Signalement("Travaux Souterrains", "123 rue Ontario", "Une conduite d'eau souterraine est fissurée ou rompue, causant une perte d'eau importante, un affaissement du sol ou une baisse de pression pour les résidents.",
                 "7e57d004-2b97-0e7a-b45f-5387367791cd", "Ville-Marie", UniqueID.generateUniqueID());
         signal12.setStatut("traité");
 
@@ -165,24 +165,24 @@ public class Database {
         prob10.addSignalement(signal11.getID());
 
         // Initialiser des candidatures
-        Candidature cand1 = new Candidature(UniqueID.generateUniqueID(), prob1.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob1.getID(), "Réhabilitation de l'abribus et du quai - Ontario", "Réparation complète de l’abribus, du quai fissuré et remplacement de la signalisation défectueuse.",
+        Candidature cand1 = new Candidature(UniqueID.generateUniqueID(), prob1.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob1.getID(), "Réhabilitation de l'abribus et du quai - Ontario", "Réparation complète de l'abribus, du quai fissuré et remplacement de la signalisation défectueuse.",
                 prob1.getTypeTravaux(), DateManagement.getDateIso(2025, 7, 15), DateManagement.getDateIso(2025, 8, 5), 18500.75, prob1.getQuartier());
         cand1.setStatut("accepté");
         Candidature cand2 = new Candidature(UniqueID.generateUniqueID(), prob2.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob2.getID(), "Réfection localisée de la chaussée - rue Ontario", "Bouchage des cavités et resurfaçage partiel de la chaussée pour sécuriser la circulation.",
                 prob2.getTypeTravaux(), DateManagement.getDateIso(2025, 6, 20), DateManagement.getDateIso(2025, 6, 27), 7400, prob2.getQuartier());
         cand2.setStatut("accepté");
-        Candidature cand3 = new Candidature(UniqueID.generateUniqueID(), prob3.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob3.getID(), "Remise en état de l’éclairage public", "Remplacement des lampadaires défectueux et mise à niveau des luminaires pour améliorer la visibilité nocturne.",
+        Candidature cand3 = new Candidature(UniqueID.generateUniqueID(), prob3.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob3.getID(), "Remise en état de l'éclairage public", "Remplacement des lampadaires défectueux et mise à niveau des luminaires pour améliorer la visibilité nocturne.",
                 prob3.getTypeTravaux(), DateManagement.getDateIso(2025, 7, 1), DateManagement.getDateIso(2025, 7, 10), 12200.45, prob3.getQuartier());
         cand3.setStatut("accepté");
         Candidature cand4 = new Candidature(UniqueID.generateUniqueID(), prob4.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob4.getID(), "Réparation du mobilier urbain - secteur résidentiel", "Réparation et remplacement de bancs, poubelles, panneaux et supports à vélo endommagés dans le quartier.",
                 prob4.getTypeTravaux(), DateManagement.getDateIso(2025, 6, 25), DateManagement.getDateIso(2025, 7, 2), 5300, prob4.getQuartier());
         cand4.setStatut("accepté");
-        Candidature cand5 = new Candidature(UniqueID.generateUniqueID(), prob5.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob5.getID(), "Réparation urgente de conduite sous chaussée", "Réparation d’une conduite d’eau rompue sous la chaussée et reconstruction de la portion affaissée.",
+        Candidature cand5 = new Candidature(UniqueID.generateUniqueID(), prob5.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob5.getID(), "Réparation urgente de conduite sous chaussée", "Réparation d'une conduite d'eau rompue sous la chaussée et reconstruction de la portion affaissée.",
                 prob5.getTypeTravaux(), DateManagement.getDateIso(2025, 6, 28), DateManagement.getDateIso(2025, 7, 8), 28750.6, prob5.getQuartier());
         cand5.setStatut("accepté");
         Candidature cand6 = new Candidature(UniqueID.generateUniqueID(), prob6.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob6.getID(), "Modernisation des rails de tramway", "Remplacement des rails et câblages électriques défectueux sur une portion du réseau de transport léger.",
                 prob6.getTypeTravaux(), DateManagement.getDateIso(2025, 7, 12), DateManagement.getDateIso(2025, 8, 3), 89500.9, prob6.getQuartier());
-        Candidature cand7 = new Candidature(UniqueID.generateUniqueID(), prob11.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob11.getID(), "Réfection d’une conduite d’eau souterraine - Ontario", "Excavation, remplacement de la conduite fissurée et stabilisation du sol pour éviter un affaissement.",
+        Candidature cand7 = new Candidature(UniqueID.generateUniqueID(), prob11.getLocalisation(), prestataire1.getNumeroEntreprise(), prestataire1.getID(), prestataire1.getNom(), prob11.getID(), "Réfection d'une conduite d'eau souterraine - Ontario", "Excavation, remplacement de la conduite fissurée et stabilisation du sol pour éviter un affaissement.",
                 prob11.getTypeTravaux(), DateManagement.getDateIso(2025, 7, 5), DateManagement.getDateIso(2025, 7, 15), 19480.25, prob11.getQuartier());
         cand7.setStatut("refusé");
 

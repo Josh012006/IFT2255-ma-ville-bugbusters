@@ -82,6 +82,10 @@ public class Resident extends Utilisateur {
 
             System.out.println("\nDécrivez le problème rencontrez. Veuillez ne pas retourner à la ligne:");
             String description = scanner.nextLine();
+            if(description.isEmpty()) {
+                System.out.println("La description ne peut pas être vide.");
+                throw new Exception("La description ne peut pas être vide.");
+            }
 
             // Envoyer une requête pour créer un nouveau signalement
             JsonObject newSignal = new JsonObject();

@@ -315,6 +315,10 @@ public class Prestataire extends Utilisateur {
 
             System.out.println("\nDécrivez le projet que vous comptez réaliser. Veuillez l'écrire au complet, c'est-à-dire ne pas utiliser de retour à la ligne: ");
             String descriptionProblem = sc.nextLine();
+            if(descriptionProblem.isEmpty()) {
+                System.out.println("La description ne peut pas être vide.");
+                throw new Exception("La description ne peut pas être vide.");
+            }
 
             System.out.println("\nSelon vous à quel type de travail correspond ce projet: ");
 
@@ -489,13 +493,18 @@ public class Prestataire extends Utilisateur {
                 case "1":
                     System.out.println("\nVeuillez entrer la nouvelle description du projet. Veuillez l'écrire au complet, c'est-à-dire ne pas utiliser de retour à la ligne:");
                     String newDescription = sc.nextLine();
+                    if(newDescription.isEmpty()) {
+                        System.out.println("La description ne peut pas être vide.");
+                        throw new Exception("La description ne peut pas être vide.");
+                    }
                     toSend.addProperty("description", newDescription);
                     break;
                 case "2":
                     System.out.println("\nQuelle est le nouveau statut du projet:");
                     System.out.println("1. En cours");
                     System.out.println("2. Suspendu");
-                    System.out.println("3. Annulé");
+                    System.out.println("3. Terminé");
+                    System.out.println("4. Annulé");
                     System.out.print("Choix: ");
 
                     String newStatus = sc.nextLine();
@@ -507,6 +516,9 @@ public class Prestataire extends Utilisateur {
                             toSend.addProperty("statut", "suspendu");
                             break;
                         case "3":
+                            toSend.addProperty("statut", "termine");
+                            break;
+                        case "4":
                             toSend.addProperty("statut", "annule");
                             break;
                         default:
@@ -540,7 +552,6 @@ public class Prestataire extends Utilisateur {
             System.out.println("La modification a été effectuée avec succès.");
 
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.println("Choix invalide. Veuillez recommencer la procédure.");
         }
 
