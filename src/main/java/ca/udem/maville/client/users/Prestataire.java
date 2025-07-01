@@ -444,6 +444,7 @@ public class Prestataire extends Utilisateur {
             System.out.println("\nSouhaitez vous modifier un projet?");
             System.out.println("1. Oui");
             System.out.println("2. Non");
+            System.out.print("Choix: ");
 
             String choix = sc.nextLine();
 

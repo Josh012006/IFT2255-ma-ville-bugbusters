@@ -25,13 +25,28 @@ It includes features such as :
 - `rapport/`   -> The engineering report written in HTML
 - `visual_paradigm/` -> All our visual paradigm files
 
-## Install & Run
+## Install, Run & Test 
 
-These are the instructions to compile and run the app in command line.
-You can also use whatever is available from your favorite IDE.
+These are the instructions to compile, test and run the app in command line.
 
-1. Clone the repository using git (see Code button above), move to the created folder
-2. Build an executable: `mvn package`
-3. Run: `java -jar target/maVille-1.0-SNAPSHOT.jar`
+1. First you will need to clone the repository using git (see Code button above) and then move to the created folder
 
-You can also run tests: `mvn test`
+```bash
+  git clone https://github.com/IFT-2255/ift2255-ma-ville-bugbusters.git
+  cd IFT-2255/ift2255-ma-ville-bugbusters
+```
+
+
+2. To Install & Run the app
+
+```bash
+  mvn clean package
+  java -jar target/maVille-2.0-SNAPSHOT-jar-with-dependencies.jar
+```
+
+
+4. To run the JUnit Tests
+
+```bash
+  mvn test
+```

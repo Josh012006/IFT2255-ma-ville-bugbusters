@@ -156,7 +156,7 @@ public class ProjectController {
             // Faire une boucle et envoyer une notification à chacun des abonnés. On ne se préoccupe pas
             // que ça marche pour tout le monde.
 
-            String bodyResidentsNotif = "{\"message\": \"De nouveaux travaux sont prévus dans votre quartier entre le " + DateManagement.formatIsoDate(newProject.get("dateDebut").getAsString()) + " et le" +
+            String bodyResidentsNotif = "{\"message\": \"De nouveaux travaux sont prévus dans votre quartier entre le " + DateManagement.formatIsoDate(newProject.get("dateDebut").getAsString()) + " et le " +
                     DateManagement.formatIsoDate(newProject.get("dateFin").getAsString()) + ". Les rues affectées sont les suivantes: " + newProject.get("ruesAffectees").getAsString() + ". Merci de nous faire confiance.\"}";
 
             for(JsonElement personElement : newProject.get("abonnes").getAsJsonArray()) {
