@@ -44,7 +44,7 @@
         </p>
 
         <h4>Repartition du travail</h4>
-    <section id="glossaire">
+        <section id="glossaire">
         <dl class="glossaire">
             <dt>Cyreanne</dt>
             <dd>Architecture et choix de conception + Rapport et Git</dd>
@@ -74,31 +74,34 @@
                 Elle intègre aussi une architecture REST et une API fourni par la ville.
             </p>
             <ul>
-                <li>Couche de présentation gérant l'interaction avec l'utilisateur.</li>
-                <li>Couche métier contenant la logique fonctionelle.</li>
-                <li>Couche d'accés aux données se chargeant de la lecture et de l'écriture des données.</li>
+                <li>Couche client gérant l'interaction avec l'utilisateur.</li>
+                <li>Couche server contenant la logique fonctionnelle.</li>
+                <li>Couche d'accés aux données se chargeant de l'initialisation et du stockage des données.</li>
             </ul>
     
             <h4>Utilisateurs et leurs moyens de communiquer avec l'application</h4>
             <ul>
-                <li>Résidents : peuvent consulter les travaux, faire des signalements et gérer les notifications.</li>
-                <li>Prestataires : peuvent soumenttre des projets de travaux, mettre à jour les informations sur le déroulement des travaux.</li>
-                <li>Agents de la STPM : peuvent valider ou rejetter les demandes pour les projets, affecte des prioritês aux problèmes signalés.</li>
+                <li>Résident : peuvent consulter les travaux, faire des signalements et gérer les notifications.</li>
+                <li>Prestataire : peuvent soumenttre des projets de travaux, mettre à jour les informations sur le déroulement des travaux.</li>
+                <li>Agent de la STPM : peuvent valider ou rejetter les demandes pour les projets, affecte des prioritês aux problèmes signalés.
+                    Dans notre implémentation, il est représenté par le serveur qui réalise ces processus de manière automatique et aléatoire.
+                </li>
             </ul>
 
             <h4>Composants liées au style d'architecture</h4>
-            
-            <dl class="glossaire">
-                <ul>
-                    <li>Couche de présentation : affiche les menus, capte les entrées utilisateurs et redirige vers les bons cas d'utilisation</li>
-                    <li>Couche métier : traite les cas d'utilisation comme le signalement, les notifications etc...</li>
-                    <li>Couche d'accès aux données :gère les entités comme les travaux, les projets, les problèmes, les utilisateurs dans des fichiers ou dans une base de données</li>
-                </ul>
+
+            <ul>
+                <li>Couche client : affiche les menus, capte les entrées utilisateurs et redirige vers les bons cas d'utilisation</li>
+                <li>Couche métier : traite les cas d'utilisation comme le signalement, les notifications etc...</li>
+                <li>Couche d'accès aux données : gère les entités comme les travaux, les projets, les problèmes, les utilisateurs dans des fichiers ou dans une base de données</li>
+            </ul>
             
             <h4>Composants additionnelles jouant un rôle clé</h4>
             <ul>
-                <li>Gestionnaire de notifications : envoie des alertes aux utilisateurs.</li>
-                <li>Service e priorisation automatisé : attribue une priorité aux problèmes signalés.</li>
+                <li>
+                    Le composant UseRequest dans le package hooks permet de faciliter la communication entre le server et le client en
+                    centralisant la logique de requête HTTP etd e réception des réponses.
+                </li>
             </ul>
 
             <h4>Espace de stockage ou base de données</h4>
@@ -125,14 +128,14 @@
     <section id="DiagrammeClasse">
         <h3>Diagramme du domaine métier mise à jour</h3>
         <div class="placeholder">
-            <img src="" alt="diagramme de classe">
+            <img src="images/MaVille.png" alt="diagramme de classe">
         </div>
     </section>
 
     <section id="BesoinsFunct">
         <h3>Diagramme de cas d'utilisation mise à jour</h3>
         <div class="placeholder">
-            <img src="" alt="diagramme de CU">
+            <img src="images/img_diagramme_cas_utilisations.png" alt="diagramme de CU">
         </div>
     </section>
 
@@ -154,14 +157,13 @@
                 <br>Chaque Controller communique avec la base de données en impactant uniquement la Map qui le concerne. Cette division de la logique permet de réduire le couplage parce que en cas de bugs et de problème lors d'une procédure, on sait exactement à quel Controller s'adresser et ça facilite le debugging. 
                 <br>Ainsi, grâce à l'architecture en couches, la logique est répartie de manière à permettre une plus forte cohésion tout au long de l'application à travers la répartition des modules. 
                 <br>Et à travers l'architecture REST, on a un moyen plus efficace et plus centralisé de communication, ce qui réduit les relations d'interdépendances entre les classes et qui permet donc un faible couplage. Cela facilite aussi de nouvelles intégrations et des améliorations à l'application.
-
             </p>
         </div>
     </section>
 </div>
 <footer>
     <p>&copy; 2025 BugBusters. Tous droits réservés.</p>
-    <p>DM1 IFT2255 - UdeM</p>
+    <p>DM2 IFT2255 - UdeM</p>
 </footer>
 </body>
 </html>
