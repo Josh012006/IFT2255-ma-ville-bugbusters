@@ -82,11 +82,35 @@
             <h4>Utilisateurs et leurs moyens de communiquer avec l'application</h4>
             <ul>
                 <li>Résidents : peuvent consulter les travaux, faire des signalements et gérer les notifications.</li>
-                <li>Prestataires : peuvent soumenttre des projets de travaux, peuvent mettre à jour les informations sur le déroulement des travaux.</li>
+                <li>Prestataires : peuvent soumenttre des projets de travaux, mettre à jour les informations sur le déroulement des travaux.</li>
                 <li>Agents de la STPM : peuvent valider ou rejetter les demandes pour les projets, affecte des prioritês aux problèmes signalés.</li>
             </ul>
 
-            <img src="" alt="Architecture">
+            <h4>Composants liées au style d'architecture</h4>
+            
+            <dl class="glossaire">
+                <ul>
+                    <li>Couche de présentation : affiche les menus, capte les entrées utilisateurs et redirige vers les bons cas d'utilisation</li>
+                    <li>Couche métier : traite les cas d'utilisation comme le signalement, les notifications etc...</li>
+                    <li>Couche d'accès aux données :gère les entités comme les travaux, les projets, les problèmes, les utilisateurs dans des fichiers ou dans une base de données</li>
+                </ul>
+            
+            <h4>Composants additionnelles jouant un rôle clé</h4>
+            <ul>
+                <li>Gestionnaire de notifications : envoie des alertes aux utilisateurs.</li>
+                <li>Service e priorisation automatisé : attribue une priorité aux problèmes signalés.</li>
+            </ul>
+
+            <h4>Espace de stockage ou base de données</h4>
+            <p>L'application stocke :</p>
+            <ul>
+                <li>Les utilisateurs, les projets, les signalements et les problèmes etc...</li>
+            </ul>
+
+            <h4>Services externes ou API</h4>
+            <p>On va intégrer l'application à l'API de la ville, qui fournit déjà des données sur les travaux en cours.</p>
+
+            <img src="images/Architecture.png" alt="Architecture">
         </div>
     </section>
     
@@ -109,6 +133,29 @@
         <h3>Diagramme de cas d'utilisation mise à jour</h3>
         <div class="placeholder">
             <img src="" alt="diagramme de CU">
+        </div>
+    </section>
+
+    <section id="Choix design">
+        <h3>Justification du choix du design</h3>
+        <div class="placeholder">
+            <p>
+                L'architecture choisie, comme dit plus haut, est une architecture en couches qui représente aussi une architecture REST. 
+                <br>La logique a été de séparer complètement les tâches dans l'application pour permettre une meilleur cohésion.
+                <br>Nous avons trois packages principaux dans l'application. 
+                <br>Le premier est le package client. Il contient la classe MaVille et les classes Utilisateur, Prestataire, Resident, Notification, Projet, Signalement, FicheProbleme et Candidature. 
+                <br>La classe MaVille est celle avec laquelle le client (en Ligne de commande) communique. Elle lui affiche des prompts, recueille ses choix et ses entrées puis communique avec le reste de l'application pour chercher et lui renvoyer les informations dont il a besoin. 
+                <br>Ainsi, elle communique avec les autres classes du packages qui représentent chacune une entité de l'application (l'utilisateur, la fiche problème, un signalement, une candidature, etc.). Ces classes communiquent à leur tour avec le backend grâce aux deuxième package.
+                <br>Le deuxième package est le package hooks. Il contient juste la classe UseRequest qui représente une abstraction de la logique d'envoi et de réception de requêtes HTTP à une API. 
+                <br>Cette classe est conçue pour centraliser cette logique et permettre un envoi et une réception facile des données à travers toutes l'application. Elle fait donc le pont entre la partie client et le package server.
+                <br>Le troisième package est le package server. Il contient la classe Server, la Database et les controllers. Le Server, est un serveur Javalin. C'est lui qui intercepte, traite et redirige les requêtes client. 
+                <br>La classe Database comme son nom l'indique est l'endroit où on initialise les données à partir de l'API de Montréal et où on stocke les données de l'application entière. Elle contient en réalité une Map pour stocker chaque type d'entité. 
+                <br>En effet, pour chaque entité de l'application, il existe un Controller qui est chargé de s'occuper de tout ce qui la concerne. 
+                <br>Chaque Controller communique avec la base de données en impactant uniquement la Map qui le concerne. Cette division de la logique permet de réduire le couplage parce que en cas de bugs et de problème lors d'une procédure, on sait exactement à quel Controller s'adresser et ça facilite le debugging. 
+                <br>Ainsi, grâce à l'architecture en couches, la logique est répartie de manière à permettre une plus forte cohésion tout au long de l'application à travers la répartition des modules. 
+                <br>Et à travers l'architecture REST, on a un moyen plus efficace et plus centralisé de communication, ce qui réduit les relations d'interdépendances entre les classes et qui permet donc un faible couplage. Cela facilite aussi de nouvelles intégrations et des améliorations à l'application.
+
+            </p>
         </div>
     </section>
 </div>
