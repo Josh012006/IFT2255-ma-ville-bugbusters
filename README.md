@@ -33,7 +33,7 @@ These are the instructions to compile, test and run the app in command line.
 
 ```bash
   git clone https://github.com/IFT-2255/ift2255-ma-ville-bugbusters.git
-  cd IFT-2255/ift2255-ma-ville-bugbusters
+  cd ift2255-ma-ville-bugbusters
 ```
 
 
