@@ -15,8 +15,8 @@ jobs:
 
       - name: Initialisation de Java
         uses: actions/setup-java@v3
-        width: 
-          java-version: '17'
+        with: 
+          java-version: '21'
           distribution: 'temurin'
 
       - name: Compilation du code avec Maven
