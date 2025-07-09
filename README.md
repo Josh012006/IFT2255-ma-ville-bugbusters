@@ -50,3 +50,5 @@ These are the instructions to compile, test and run the app in command line.
 ```bash
   mvn test
 ```
+
+[![Compiler et tester](https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/test.yml/badge.svg)](https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/test.yml)
