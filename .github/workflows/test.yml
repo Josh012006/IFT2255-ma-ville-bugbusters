@@ -20,7 +20,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Compilation du code avec Maven
-        run: mvn clean compile 
+        run: cd backend && mvn clean compile 
 
       - name: Passer les tests unitaires
-        run: mvn test
+        run: cd backend && mvn test
