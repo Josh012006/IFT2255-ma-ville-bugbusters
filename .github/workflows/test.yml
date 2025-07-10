@@ -15,12 +15,12 @@ jobs:
 
       - name: Initialisation de Java
         uses: actions/setup-java@v3
-        width: 
+        with: 
           java-version: '21'
           distribution: 'temurin'
 
       - name: Compilation du code avec Maven
-        run: mvn clean compile 
+        run: cd backend && mvn clean compile 
 
       - name: Passer les tests unitaires
-        run: mvn test
+        run: cd backend && mvn test
