@@ -3,7 +3,10 @@ name: Compiler et tester
 on:
   push:
     branches:
-      - main
+      - main     # exécuter dès qu'il y a un push sur main
+  pull_request:
+    branches:
+      - main      # exécuter dès qu'il y a une pull request sur main
 
 jobs:
   build:
