@@ -4,7 +4,7 @@ function Home() {
     
     return (
         <div>
-            Hello! You can start the GUI development from here.
+            Hello guys! You can start the GUI development from here.
         </div>
     );
 }
