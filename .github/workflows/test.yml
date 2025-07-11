@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
    
     steps:
-      - name: Recuperation du code de la branche main
+      - name: Récupération du code de la branche main
         uses: actions/checkout@v3
 
       - name: Initialisation de Java
