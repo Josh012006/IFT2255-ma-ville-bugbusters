@@ -11,7 +11,7 @@ public class MongoConfig {
     static {
         datastore = Morphia.createDatastore(
                 MongoClients.create(serverUrl),
-                "database"
+                "maville"
         );
     }
 
