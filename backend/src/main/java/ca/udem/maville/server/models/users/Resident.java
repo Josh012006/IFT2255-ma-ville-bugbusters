@@ -1,165 +1,80 @@
-package ca.udem.maville.client.users;
+package ca.udem.maville.server.models.users;
 
-import java.util.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import dev.morphia.annotations.Entity;
+import org.bson.types.ObjectId;
 
-import ca.udem.maville.utils.*;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import java.util.ArrayList;
+import java.util.Date;
 
-import ca.udem.maville.client.MaVille;
-import ca.udem.maville.client.Signalement;
-import ca.udem.maville.hooks.UseRequest;
-
+/**
+ * Represents a Resident user in the system.
+ * Inherits from Utilisateur and adds additional attributes specific to residents,
+ * such as address, postal code, neighborhood, and date of birth.
+ *
+ * This class is stored in the "utilisateurs" collection in MongoDB
+ * using Morphia's discriminator mechanism.
+ */
+@Entity(discriminator = "resident")
 public class Resident extends Utilisateur {
 
+    /**
+     * Resident's street address.
+     */
     private String adresse;
+
+    /**
+     * Postal code for the resident's address.
+     */
     private String codePostal;
-    private ArrayList<String> signalements;
-    private ArrayList<String> abonnements;
+
+    /**
+     * Neighborhood where the resident lives.
+     */
     private String quartier;
+
+    /**
+     * Date of birth of the resident.
+     * Serialized as ISO 8601 string in JSON.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date dateNaissance;
 
-    public Resident(String id, String nom, String adresseCourriel, String adresse, String codePostal, String quartier, Date dateNaissance) {
-        super(id, nom, adresseCourriel);
+    /**
+     * No-argument constructor required by Morphia.
+     */
+    public Resident() {}
+
+    /**
+     * Constructor to initialize a Resident with all fields.
+     *
+     * @param id MongoDB identifier.
+     * @param nom Resident's name.
+     * @param adresseCourriel Resident's email address.
+     * @param abonnementsQuartier List of neighborhood subscriptions.
+     * @param adresse Street address.
+     * @param codePostal Postal code.
+     * @param quartier Neighborhood.
+     * @param dateNaissance Date of birth.
+     */
+    public Resident(ObjectId id, String nom, String adresseCourriel, ArrayList<String> abonnementsQuartier,
+                    String adresse, String codePostal, String quartier, Date dateNaissance) {
+        super(id, nom, adresseCourriel, abonnementsQuartier);
         this.adresse = adresse;
         this.codePostal = codePostal;
         this.quartier = quartier;
         this.dateNaissance = dateNaissance;
-        this.signalements = new ArrayList<>();
-        this.abonnements = new ArrayList<>();
     }
 
     // Getters
-    public String getAdresse() { return adresse; }
-
-    public String getCodePostal() { return codePostal; }
-
-    public String getQuartier() { return quartier; }
-
-    public Date getDateNaissance() { return dateNaissance; }
-
+    public String getAdresse() { return this.adresse; }
+    public String getCodePostal() { return this.codePostal; }
+    public String getQuartier() { return this.quartier; }
+    public Date getDateNaissance() { return this.dateNaissance; }
 
     // Setters
-
-    public void addAbonnement(String idProjet) {
-        abonnements.add(idProjet);
-    }
-
-    public void addSignalement(String idSignalement) {
-        signalements.add(idSignalement);
-    }
-
-
-    public void signalerProbleme() {
-        
-        try {
-
-            Scanner scanner = new Scanner(System.in);
-
-            System.out.println("\nVeuillez choisir le type de problème que vous rencontrez:");
-            ArrayList<TypesTravaux> tab = new ArrayList<>(Arrays.asList(TypesTravaux.values()));
-            for (TypesTravaux t : tab ) {
-                System.out.println( tab.indexOf(t) + ". " + t.getLabel());
-            }
-            System.out.print("Choix: ");
-            String choice = scanner.nextLine();
-            int choix = Integer.parseInt(choice);
-            String typeProbleme = tab.get(choix).getLabel();
-
-
-            System.out.println("\nVeuillez choisir le quartier concerné:");
-            ArrayList<Quartier> tab1 = new ArrayList<>(Arrays.asList(Quartier.values()));
-            for (Quartier s : tab1 ) {
-                System.out.println( tab1.indexOf(s) + ". " + s.getLabel());
-            }
-            System.out.print("Choix: ");
-            String choice1 = scanner.nextLine();
-            int choix1 = Integer.parseInt(choice1);
-            String quartier = tab1.get(choix1).getLabel();
-
-            System.out.println("\nDécrivez le problème rencontrez. Veuillez ne pas retourner à la ligne:");
-            String description = scanner.nextLine();
-            if(description.isEmpty()) {
-                System.out.println("La description ne peut pas être vide.");
-                throw new Exception("La description ne peut pas être vide.");
-            }
-
-            // Envoyer une requête pour créer un nouveau signalement
-            JsonObject newSignal = new JsonObject();
-
-            newSignal.addProperty("typeProbleme", typeProbleme);
-            newSignal.addProperty("quartier", quartier);
-            newSignal.addProperty("description", description);
-            newSignal.addProperty("localisation", this.adresse);
-            newSignal.addProperty("resident", this.id);
-
-            String responseSignal = UseRequest.sendRequest(MaVille.urlHead + "/signalement" , RequestType.POST, newSignal.toString());
-
-            if(responseSignal == null){
-                System.out.println("\nUne erreur est survenue lors de la création du signalement! Veuillez réessayer plus tard.");
-                return;
-            }
-
-            JsonElement elemSignal = JsonParser.parseString(responseSignal);
-            JsonObject jsonSignal = elemSignal.getAsJsonObject();
-
-            if(jsonSignal.get("status").getAsInt() != 201) {
-                System.out.println("\nUne erreur est survenue lors de la création du signalement! Veuillez réessayer plus tard.");
-                return;
-            }
-
-            System.out.println("\nVotre signalement a bien été reçu. Une notification vous sera envoyée lorsqu'il sera traité par un agent. Merci!");
-
-        } catch (Exception e) {
-            System.out.println("\nChoix invalide. Veuillez recommencer la procedure.");
-        };
-
-    }
-
-    public void recupererSignalements() {
-        
-        String responseSignal = UseRequest.sendRequest(MaVille.urlHead + "/signalement/getAll/" + this.id, RequestType.GET, null);
-
-        if(responseSignal == null) {
-            System.out.println("\nUne erreur est survenue lors de la récuperation de vos signalements! Veuillez réessayer plus tard.");
-            return;
-        }
-
-        JsonElement elemSignal = JsonParser.parseString(responseSignal);
-        JsonObject jsonSignal = elemSignal.getAsJsonObject();
-
-        int statuscode = jsonSignal.get("status").getAsInt();
-        if(statuscode != 200) {
-            System.out.println("\nUne erreur est survenue lors de la récupération de vos signalements! Veuillez réessayer plus tard.");
-            return;
-        }
-
-        JsonArray jsonSignals = jsonSignal.get("data").getAsJsonArray();
-        Gson gson = AdaptedGson.getGsonInstance();
-
-        if(jsonSignals.isEmpty()) {
-            System.out.println("\nAucun signalement trouvé.");
-            return;
-        }
-
-        System.out.println("\n----- Liste de vos signalements -----\n");
-
-        for (int i = jsonSignals.size() - 1; i >= 0; i--) {
-            JsonElement s = jsonSignals.get(i);
-            Signalement signal = gson.fromJson(s.getAsJsonObject(), Signalement.class);
-
-            System.out.println("Type de Problème: " + signal.getTypeProbleme());
-            System.out.println("Quartier: " + signal.getQuartier());
-            System.out.println("Description: " + signal.getDescription());
-            System.out.println("Statut: " + signal.getStatut());
-            System.out.println("Date du Signalement: " + DateManagement.formatIsoDate(signal.getDateSignalement().toInstant().toString()) + "\n");
-            
-        }
-
-    }
-  
-
+    public void setCodePostal(String codePostal) { this.codePostal = codePostal; }
+    public void setAdresse(String adresse) { this.adresse = adresse; }
+    public void setQuartier(String quartier) { this.quartier = quartier; }
+    public void setDateNaissance(Date dateNaissance) { this.dateNaissance = dateNaissance; }
 }
