@@ -1,71 +1,73 @@
-package ca.udem.maville.client.users;
-import ca.udem.maville.client.MaVille;
-import ca.udem.maville.hooks.UseRequest;
-import ca.udem.maville.utils.AdaptedGson;
-import ca.udem.maville.utils.DateManagement;
-import ca.udem.maville.utils.RequestType;
-import com.google.gson.*;
+package ca.udem.maville.server.models.users;
 
-import java.util.*;
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Id;
+import org.bson.types.ObjectId;
 
-public abstract class Utilisateur  {
+import java.util.ArrayList;
+import java.util.List;
 
-    protected String id ;
+/**
+ * Abstract base class representing a user in the system.
+ * Contains common user properties such as id, name, email address,
+ * and a list of neighborhood subscriptions.
+ *
+ * This class is stored in the "utilisateurs" MongoDB collection,
+ * and supports discriminator for inheritance mapping.
+ */
+@Entity(value = "utilisateurs", useDiscriminator = true)
+public abstract class Utilisateur {
+
+    /**
+     * Unique MongoDB identifier for the user.
+     */
+    @Id
+    protected ObjectId id;
+
+    /**
+     * Name of the user.
+     */
     protected String nom;
-    protected String adresseCourriel;
-    protected ArrayList<String> notifications; 
 
-    public Utilisateur(String id, String nom, String adresseCourriel) {
+    /**
+     * Email address of the user.
+     */
+    protected String adresseCourriel;
+
+    /**
+     * List of neighborhood subscriptions for this user.
+     */
+    protected List<String> abonnementsQuartier = new ArrayList<>();
+
+    /**
+     * No-argument constructor required by Morphia.
+     */
+    public Utilisateur() {}
+
+    /**
+     * Constructor to initialize a user with id, name, email,
+     * and list of subscribed neighborhoods.
+     *
+     * @param id MongoDB identifier.
+     * @param nom User's name.
+     * @param adresseCourriel User's email address.
+     * @param abonnementsQuartier List of neighborhood subscriptions.
+     */
+    public Utilisateur(ObjectId id, String nom, String adresseCourriel, ArrayList<String> abonnementsQuartier) {
         this.id = id;
         this.nom = nom;
         this.adresseCourriel = adresseCourriel;
-        this.notifications = new ArrayList<>();
-    }
-
-
-    public void consulterNotifications() {
-
-        String userType = "";
-        if(this.getClass() == Resident.class) {
-            userType = "resident";
-        } else {
-            userType = "prestataire";
-        }
-        String url = MaVille.urlHead + "/notification/getAll/" + this.id + "?userType=" + userType;
-        String response = UseRequest.sendRequest(url, RequestType.GET, null);
-
-        if (response == null) {
-            System.out.println("\nUne erreur est survenue lors de la récupération de vos notifications! Veuillez réessayer plus tard.");
-            return;
-        }
-
-        JsonElement elem = JsonParser.parseString(response);
-        JsonObject json = elem.getAsJsonObject();
-
-        if(json.get("status").getAsInt() != 200) {
-            System.out.println("\nUne erreur est survenue lors de la récupération de vos notifications! Veuillez réessayer plus tard.");
-            return;
-        }
-
-        JsonArray notifications = json.get("data").getAsJsonArray();
-
-        if (notifications.isEmpty()) {
-            System.out.println("\nVous n'avez aucune notification pour le moment.");
-            return;
-        }
-
-        System.out.println("\n----- Vos notifications -----");
-        for (int i = notifications.size() - 1; i >= 0; i--) {
-            JsonElement notifElem = notifications.get(i);
-            Gson gson = AdaptedGson.getGsonInstance();
-            Notification notif = gson.fromJson(notifElem.getAsJsonObject(), Notification.class);
-            System.out.println("- [" + DateManagement.formatIsoDate(notif.getDateNotification().toInstant().toString()) + "] " + notif.getMessage());
-        }
-
+        this.abonnementsQuartier = abonnementsQuartier;
     }
 
     // Getters
-    public String getID() { return id;}
-    public String getNom() { return nom; }
-    public String getAdresseCourriel() { return adresseCourriel; }
+    public ObjectId getId() { return this.id; }
+    public String getNom() { return this.nom; }
+    public String getAdresseCourriel() { return this.adresseCourriel; }
+    public List<String> getAbonnementsQuartier() { return this.abonnementsQuartier; }
+
+    // Setters
+    public void setNom(String nom) { this.nom = nom; }
+    public void setAbonnementsQuartier(List<String> abonnementsQuartier) { this.abonnementsQuartier = abonnementsQuartier; }
+    public void setAdresseCourriel(String adresseCourriel) { this.adresseCourriel = adresseCourriel; }
 }

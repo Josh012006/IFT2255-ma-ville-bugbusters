@@ -1,35 +1,143 @@
-package ca.udem.maville.client;
+package ca.udem.maville.server.models;
 
-import ca.udem.maville.hooks.UseRequest;
-import ca.udem.maville.utils.*;
-import com.google.gson.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Id;
+import org.bson.types.ObjectId;
 
 import java.util.*;
 
+/**
+ * Represents a public works project in the system.
+ * Contains all the data about the project, including location, type of work, status,
+ * associated company, related problem sheet, and lists of affected streets and subscribers.
+ *
+ * This class is mapped to the "projets" collection in MongoDB
+ * and serialized as JSON via Jackson.
+ */
+@Entity("projets")
 public class Projet {
 
-    private String id;
-    private String ruesAffectees;
-    private ArrayList<String> abonnes;
+    /**
+     * Unique identifier of the project.
+     */
+    @Id
+    private ObjectId id;
+
+    /**
+     * List of streets affected by this project.
+     */
+    private List<String> ruesAffectees;
+
+    /**
+     * List of subscribers (users interested in updates) for this project.
+     */
+    private List<ObjectId> abonnes = new ArrayList<>();
+
+    /**
+     * Title of the project.
+     */
     private String titreProjet;
+
+    /**
+     * Description of the project.
+     */
     private String description;
+
+    /**
+     * Type of work involved in the project.
+     */
     private String typeTravaux;
+
+    /**
+     * Current status of the project (e.g., in progress, completed).
+     */
     private String statut;
+
+    /**
+     * Start date of the project, serialized in ISO 8601 format.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date dateDebut;
+
+    /**
+     * End date of the project, serialized in ISO 8601 format.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date dateFin;
-    private String ficheProbleme;
-    private String prestataire;
+
+    /**
+     * Reference to the associated problem sheet.
+     */
+    private ObjectId ficheProbleme;
+
+    /**
+     * Reference to the company (service provider) executing the project.
+     */
+    private ObjectId prestataire;
+
+    /**
+     * Name of the service provider company.
+     */
     private String nomPrestataire;
+
+    /**
+     * Neighborhood where the project takes place.
+     */
     private String quartier;
+
+    /**
+     * Estimated cost of the project.
+     */
     private double cout;
 
-    private int priorite;
+    /**
+     * Priority level of the project.
+     */
+    private String priorite;
+
+    /**
+     * Number of reports (feedback or issues) related to this project.
+     */
     private int nbRapports;
 
+    /**
+     * Creation date of the project, serialized in ISO 8601 format.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    private Date createdAt;
 
-    // Constructeur
-    public Projet(String id, String titreProjet, String ruesAffectees, String description, String typeTravaux, Date dateDebut, Date dateFin,
-                  String ficheProbleme, String prestataire, String nomPrestataire, String quartier, double cout, int priorite) {
+    /**
+     * Last modification date of the project, serialized in ISO 8601 format.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    private Date updatedAt;
+
+    /**
+     * No-argument constructor required by Morphia.
+     */
+    public Projet() {}
+
+    /**
+     * Constructor to initialize a project with its main fields.
+     *
+     * @param id Unique identifier.
+     * @param titreProjet Title of the project.
+     * @param ruesAffectees List of affected streets.
+     * @param description Description of the project.
+     * @param typeTravaux Type of work.
+     * @param dateDebut Start date.
+     * @param dateFin End date.
+     * @param ficheProbleme Reference to the related problem sheet.
+     * @param prestataire Reference to the service provider.
+     * @param nomPrestataire Name of the service provider.
+     * @param quartier Neighborhood of the project.
+     * @param cout Estimated cost.
+     * @param priorite Priority level.
+     */
+    public Projet(ObjectId id, String titreProjet, List<String> ruesAffectees, String description, String typeTravaux,
+                  Date dateDebut, Date dateFin, ObjectId ficheProbleme, ObjectId prestataire, String nomPrestataire,
+                  String quartier, double cout, String priorite) {
         this.id = id;
         this.ruesAffectees = ruesAffectees;
         this.abonnes = new ArrayList<>();
@@ -43,238 +151,54 @@ public class Projet {
         this.cout = cout;
         this.prestataire = prestataire;
         this.nomPrestataire = nomPrestataire;
-        this.statut = "enCours";
+        this.statut = "en cours";
         this.priorite = priorite;
         this.nbRapports = 0;
-    }
-
-
-    public static void afficherProjet(JsonObject projet) {
-
-        Gson gson = AdaptedGson.getGsonInstance();
-        Projet p = gson.fromJson(projet, Projet.class);
-
-        System.out.println("ID: " + p.getID());
-        System.out.println("Projet: " + p.getTitreProjet());
-        System.out.println("Prestataire: " + p.getNomPrestataire());
-        System.out.println("Quartier: " + p.getQuartier());
-        System.out.println("Rues affectées: " + p.getRuesAffectees());
-        System.out.println("Période de réalisation: Du " + DateManagement.formatIsoDate(p.getDateDebut().toInstant().toString()) + " au " + DateManagement.formatIsoDate(p.getDateFin().toInstant().toString()));
-        System.out.println("Type de travaux: " + p.getTypeTravaux());
-        System.out.println("Statut: " + p.getStatut());
-        System.out.println("Priorité: " + ((p.getPriorite() == 0) ? "faible" : (p.getPriorite() == 1) ? "moyenne" : "élevée"));
-        System.out.println("Description: " + p.getDescription() + "\n");
-
-    }
-
-
-    public static void consulterProjets(String idUser) {
-
-        Scanner s = new Scanner(System.in);
-
-        System.out.println("\nSouhaitez-vous filtrer les projets ?");
-        System.out.println("1. Par type de travaux");
-        System.out.println("2. Par quartier");
-        System.out.println("3. Voir tous les projets");
-        System.out.print("Choix: ");
-        String filtreChoisi = s.nextLine();
-
-        String response = UseRequest.sendRequest(MaVille.urlHead + "/projet/getAll", RequestType.GET, null);
-        if(response == null) {
-            System.out.println("\nUne erreur est survenue lors de la récupération des projets! Veuillez réessayer plus tard.");
-            return;
-        }
-        JsonElement elem = JsonParser.parseString(response);
-        JsonObject json = elem.getAsJsonObject();
-
-        if(json.get("status").getAsInt() != 200) {
-            System.out.println("\nUne erreur est survenue lors de la récupération des projets! Veuillez réessayer plus tard.");
-            return;
-        }
-
-        JsonArray projets = json.get("data").getAsJsonArray();
-
-        if(projets.isEmpty()) {
-            System.out.println("\nAucun projet trouvé.");
-            return;
-        }
-
-
-        try {
-            switch (filtreChoisi) {
-                case "1":
-
-                    System.out.println("\nVeuillez choisir le type de travaux que vous cherchez:");
-
-                    ArrayList<TypesTravaux> tab = new ArrayList<>(Arrays.asList(TypesTravaux.values()));
-
-                    for (TypesTravaux t :tab ){
-                        System.out.println( tab.indexOf(t) + ". " + t.getLabel());
-                    }
-
-                    System.out.print("Choix: ");
-
-                    String choice = s.nextLine();
-                    int choix = Integer.parseInt(choice);
-
-                    String type = tab.get(choix).getLabel();
-
-
-                    ArrayList<JsonObject> toShow = new ArrayList<>();
-
-                    for(JsonElement p : projets) {
-                        JsonObject pObj = p.getAsJsonObject();
-                        if(pObj.get("typeTravaux").getAsString().equals(type)) {
-                            toShow.add(pObj);
-                        }
-                    }
-
-                    if(toShow.isEmpty()) {
-                        System.out.println("\nAucun projet de ce type trouvé.");
-                    } else {
-                        System.out.println("\n----- Projets trouvés -----\n");
-                        for(JsonObject p : toShow) {
-                            afficherProjet(p);
-                        }
-                    }
-
-                    break;
-
-
-                case "2":
-                    System.out.println("\nVeuillez choisir le Quartier Recherchez:");
-
-                    ArrayList<Quartier> tab1 = new ArrayList<>(Arrays.asList(Quartier.values()));
-
-                    for (Quartier q : tab1 ){
-                        System.out.println( tab1.indexOf(q) + ". " + q.getLabel());
-                    }
-
-                    System.out.print("Choix : ");
-
-                    String choice1 = s.nextLine();
-                    int choix1 = Integer.parseInt(choice1);
-
-                    String quartier = tab1.get(choix1).getLabel();
-
-
-                    ArrayList<JsonObject> toShow1 = new ArrayList<>();
-
-                    for(JsonElement p : projets) {
-                        JsonObject pObj = p.getAsJsonObject();
-                        if(pObj.get("quartier").getAsString().equals(quartier)) {
-                            toShow1.add(pObj);
-                        }
-                    }
-
-                    if(toShow1.isEmpty()) {
-                        System.out.println("\nAucun projet trouvé dans ce quartier.");
-                    } else {
-                        System.out.println("\n----- Projets trouvés -----\n");
-                        for(JsonObject p : toShow1) {
-                            afficherProjet(p);
-                        }
-                    }
-
-                    break;
-
-                case "3":
-
-                    System.out.println("\n----- Projets trouvés -----\n");
-
-                    for(JsonElement p : projets) {
-                        JsonObject pObj = p.getAsJsonObject();
-                        afficherProjet(pObj);
-                    }
-                    break;
-
-                default:
-                    System.out.println("Choix invalide. Veuillez recommencer la procédure.");
-            }
-
-            System.out.println("\nSouhaitez-vous vous abonner à un projet en particulier ?");
-            System.out.println("1. Oui");
-            System.out.println("2. Non");
-            System.out.print("Choix: ");
-
-            String choix = s.nextLine();
-            switch (choix) {
-                case "1":
-                    System.out.println("\nVeuillez entrer l'ID du projet auquel vous voulez vous abonner");
-                    String id = s.nextLine();
-                    String response1 = UseRequest.sendRequest(MaVille.urlHead + "/projet/" + id + "?replace=false", RequestType.PATCH, "{\"abonnes\": [\"" + idUser + "\"]}");
-                    if(response1 == null) {
-                        System.out.println("\nUne erreur est survenue lors de la récupération des projets! Veuillez réessayer plus tard.");
-                        return;
-                    }
-                    JsonElement elem1 = JsonParser.parseString(response);
-                    JsonObject json1 = elem1.getAsJsonObject();
-
-                    if(json1.get("status").getAsInt() == 404) {
-                        System.out.println("\nAucun projet avec un tel ID retrouvé.");
-                        return;
-                    } else if(json1.get("status").getAsInt() != 200) {
-                        System.out.println("\nUne erreur est survenue lors de la récupération des projets! Veuillez réessayer plus tard.");
-                        return;
-                    }
-
-                    System.out.println("Abonnement réalisé avec succès. A partir de maintenant, vous recevrez toutes les notifications en lien avec des changements sur ce projet.");
-
-                    break;
-                case "2":
-                    break;
-                default:
-                    System.out.println("Choix invalide. Veuillez recommencer la procédure.");
-                    break;
-            }
-
-        } catch (Exception e) {
-            System.out.println("Choix invalide. Veuillez recommencer la procédure.");
-        }
-
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
     }
 
    
 
     // Getters
-    public String getTitreProjet() { return titreProjet; }
-
-    public String getNomPrestataire() { return nomPrestataire; }
-
-    public double getCout() { return cout; }
-
-    public String getID() { return id; }
-
-    public String getRuesAffectees() { return ruesAffectees; }
-
-    public String getQuartier() { return quartier; }
-
-    public String getDescription() { return description; }
-
-    public String getTypeTravaux() { return typeTravaux; }
-
-    public String getStatut() { return statut; }
-
-    public Date getDateDebut() { return dateDebut; }
-
-    public Date getDateFin() { return dateFin; }
-
-    public String getFicheProbleme() { return ficheProbleme; }
-
-    public int getPriorite() { return priorite; }
-
+    public ObjectId getId() { return this.id; }
+    public String getTitreProjet() { return this.titreProjet; }
+    public String getNomPrestataire() { return this.nomPrestataire; }
+    public double getCout() { return this.cout; }
+    public List<ObjectId> getAbonnes() { return this.abonnes; }
+    public ObjectId getPrestataire() { return this.prestataire; }
+    public List<String> getRuesAffectees() { return this.ruesAffectees; }
+    public String getQuartier() { return this.quartier; }
+    public String getDescription() { return this.description; }
+    public String getTypeTravaux() { return this.typeTravaux; }
+    public String getStatut() { return this.statut; }
+    public Date getDateDebut() { return this.dateDebut; }
+    public Date getDateFin() { return this.dateFin; }
+    public ObjectId getFicheProbleme() { return this.ficheProbleme; }
+    public String getPriorite() { return this.priorite; }
     public int getNbRapports() {
-        return nbRapports;
+        return this.nbRapports;
     }
+    public Date getCreatedAt() { return this.createdAt; }
+    public Date getUpdatedAt() { return this.updatedAt; }
 
     // Setters
-    public void setStatut(String statut) {
-        this.statut = statut;
-    }
+    public void setTitreProjet(String titreProjet) { this.titreProjet = titreProjet; }
+    public void setNomPrestataire(String nomPrestataire) { this.nomPrestataire = nomPrestataire; }
+    public void setCout(double cout) { this.cout = cout; }
+    public void setAbonnes(List<ObjectId> abonnes) { this.abonnes = abonnes; }
+    public void setPrestataire(ObjectId prestataire) { this.prestataire = prestataire; }
+    public void setRuesAffectees(List<String> ruesAffectees) { this.ruesAffectees = ruesAffectees; }
+    public void setQuartier(String quartier) { this.quartier = quartier; }
+    public void setDescription(String description) { this.description = description; }
+    public void setTypeTravaux(String typeTravaux) { this.typeTravaux = typeTravaux; }
+    public void setStatut(String statut) { this.statut = statut; }
+    public void setDateDebut(Date dateDebut) { this.dateDebut = dateDebut; }
+    public void setDateFin(Date dateFin) { this.dateFin = dateFin; }
+    public void setFicheProbleme(ObjectId ficheProbleme) { this.ficheProbleme = ficheProbleme; }
+    public void setPriorite(String priorite) { this.priorite = priorite; }
+    public void setNbRapports(int nbRapports) { this.nbRapports = nbRapports; }
+    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+    public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }
 
-    public void setNbRapports(int nbRapports) {this.nbRapports = nbRapports;}
-
-    public void addAbonne(String idAbonne) {
-        abonnes.add(idAbonne);
-    }
 }

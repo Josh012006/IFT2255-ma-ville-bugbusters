@@ -6,8 +6,8 @@ import type { TypeTravaux } from "../types/TypesTravaux";
  * An interface that represents a Project.
  */
 export default interface Projet {
-    _id?: string,
-    ruesAffectees: string,
+    id?: string,
+    ruesAffectees: string[],
     abonnes: string[],
     titreProjet: string,
     description: string,

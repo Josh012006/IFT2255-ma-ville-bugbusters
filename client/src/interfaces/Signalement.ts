@@ -5,7 +5,7 @@ import type { TypeTravaux } from "../types/TypesTravaux";
  * An interface that represents a Resident's alert.
  */
 export default interface Signalement {
-    _id?: string,
+    id?: string,
     typeProbleme: TypeTravaux,
     localisation: string,
     description: string,

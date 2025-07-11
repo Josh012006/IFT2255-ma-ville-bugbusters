@@ -5,7 +5,7 @@ import type { TypeTravaux } from "../types/TypesTravaux";
  * An interface representing a Prestataire's candidature.
  */
 export default interface Candidature {
-    _id?: string,
+    id?: string,
     statut: "en attente" | "acceptée" | "refusée",
     prestataire: string,
     ficheProbleme: string,

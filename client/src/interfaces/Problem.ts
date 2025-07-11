@@ -6,7 +6,7 @@ import type { TypeTravaux } from "../types/TypesTravaux";
  * An interface representing a problem created by the STPM agent.
  */
 export default interface Problem {
-    _id?: string,
+    id?: string,
     typeTravaux: TypeTravaux,
     localisation: string,
     quartier: Quartier,
