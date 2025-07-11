@@ -8,50 +8,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Abstract base class representing a user in the system.
- * Contains common user properties such as id, name, email address,
- * and a list of neighborhood subscriptions.
+ * Classe de base abstraite représentant un utilisateur dans le système.
+ * Contient les propriétés communes aux utilisateurs telles que l'identifiant, le nom, l'adresse courriel
+ * et la liste des abonnements aux quartiers.
  *
- * This class is stored in the "utilisateurs" MongoDB collection,
- * and supports discriminator for inheritance mapping.
+ * Cette classe est stockée dans la collection "utilisateurs" de MongoDB,
+ * et utilise le discriminateur pour la gestion de l'héritage.
  */
 @Entity(value = "utilisateurs", useDiscriminator = true)
 public abstract class Utilisateur {
 
     /**
-     * Unique MongoDB identifier for the user.
+     * Identifiant unique MongoDB de l'utilisateur.
      */
     @Id
     protected ObjectId id;
 
     /**
-     * Name of the user.
+     * Nom de l'utilisateur.
      */
     protected String nom;
 
     /**
-     * Email address of the user.
+     * Adresse courriel de l'utilisateur.
      */
     protected String adresseCourriel;
 
     /**
-     * List of neighborhood subscriptions for this user.
+     * Liste des abonnements aux quartiers pour cet utilisateur.
      */
     protected List<String> abonnementsQuartier = new ArrayList<>();
 
     /**
-     * No-argument constructor required by Morphia.
+     * Constructeur sans argument requis par Morphia.
      */
     public Utilisateur() {}
 
     /**
-     * Constructor to initialize a user with id, name, email,
-     * and list of subscribed neighborhoods.
+     * Constructeur permettant d'initialiser un utilisateur avec son identifiant, son nom, son courriel
+     * et sa liste de quartiers abonnés.
      *
-     * @param id MongoDB identifier.
-     * @param nom User's name.
-     * @param adresseCourriel User's email address.
-     * @param abonnementsQuartier List of neighborhood subscriptions.
+     * @param id Identifiant MongoDB.
+     * @param nom Nom de l'utilisateur.
+     * @param adresseCourriel Adresse courriel de l'utilisateur.
+     * @param abonnementsQuartier Liste des quartiers abonnés.
      */
     public Utilisateur(ObjectId id, String nom, String adresseCourriel, ArrayList<String> abonnementsQuartier) {
         this.id = id;

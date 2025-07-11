@@ -8,8 +8,8 @@ import dev.morphia.annotations.Id;
 import org.bson.types.ObjectId;
 
 /**
- * Represents a notification sent to a user.
- * This class is mapped to the "notifications" collection in the database.
+ * Représente une notification envoyée à un utilisateur.
+ * Cette classe est liée à la collection "notifications" dans la base de données.
  */
 @Entity("notifications")
 public class Notification {
@@ -27,16 +27,16 @@ public class Notification {
     private Date updatedAt;
 
     /**
-     * Default constructor required for Morphia and Jackson.
+     * Constructeur par défaut requis pour Morphia et Jackson.
      */
     public Notification() {}
 
     /**
-     * Creates a new notification with the given message and user.
-     * Automatically sets the creation and update timestamps.
+     * Crée une nouvelle notification avec le message et l’utilisateur spécifiés.
+     * Définit automatiquement les dates de création et de mise à jour.
      *
-     * @param message The notification message.
-     * @param user The ObjectId of the user receiving the notification.
+     * @param message Le message de la notification.
+     * @param user L’ObjectId de l’utilisateur recevant la notification.
      */
     public Notification(String message, ObjectId user) {
         this.user = user;

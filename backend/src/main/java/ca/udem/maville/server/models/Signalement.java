@@ -7,79 +7,79 @@ import org.bson.types.ObjectId;
 import java.util.Date;
 
 /**
- * Represents a Report (Signalement) submitted by a resident regarding an issue.
- * Contains information about the problem type, location, description,
- * status, related resident, and timestamps.
+ * Représente un signalement soumis par un résident concernant un problème.
+ * Contient des informations sur le type de problème, la localisation,
+ * la description, le statut, le résident associé et les dates de création et de mise à jour.
  *
- * This class is stored in the "signalements" MongoDB collection
- * and uses Jackson for JSON serialization.
+ * Cette classe est stockée dans la collection MongoDB "signalements"
+ * et utilise Jackson pour la sérialisation JSON.
  */
 @Entity("signalements")
 public class Signalement {
 
     /**
-     * Unique identifier of the report.
+     * Identifiant unique du signalement.
      */
     private ObjectId id;
 
     /**
-     * Neighborhood where the problem is reported.
+     * Quartier où le problème a été signalé.
      */
     private String quartier;
 
     /**
-     * Type of problem reported.
+     * Type de problème signalé.
      */
     private String typeProbleme;
 
     /**
-     * Specific location of the problem.
+     * Localisation précise du problème.
      */
     private String localisation;
 
     /**
-     * Detailed description of the problem.
+     * Description détaillée du problème.
      */
     private String description;
 
     /**
-     * Current status of the report (e.g., pending, resolved).
+     * Statut actuel du signalement (ex. : en attente, résolu).
      */
     private String statut;
 
     /**
-     * Identifier of the resident who submitted the report.
+     * Identifiant du résident ayant soumis le signalement.
      */
     private ObjectId resident;
 
     /**
-     * Date when the report was created.
-     * Serialized as ISO 8601 string in JSON.
+     * Date de création du signalement.
+     * Sérialisée au format ISO 8601 en JSON.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date createdAt;
 
     /**
-     * Date when the report was last updated.
-     * Serialized as ISO 8601 string in JSON.
+     * Date de dernière mise à jour du signalement.
+     * Sérialisée au format ISO 8601 en JSON.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date updatedAt;
 
     /**
-     * No-argument constructor required by Morphia.
+     * Constructeur sans argument requis par Morphia.
      */
     public Signalement() {}
 
     /**
-     * Constructor to initialize a report with main fields.
+     * Constructeur pour initialiser un signalement avec les champs principaux.
      *
-     * @param id Unique identifier.
-     * @param typeProbleme Type of problem.
-     * @param localisation Specific location.
-     * @param description Detailed description.
-     * @param resident Resident who submitted the report.
-     * @param quartier Neighborhood of the problem.
+     * @param id Identifiant unique.
+     * @param typeProbleme Type de problème.
+     * @param localisation Localisation précise.
+     * @param description Description détaillée.
+     * @param resident Résident ayant soumis le signalement.
+     * @param quartier Quartier du problème.
      */
     public Signalement(ObjectId id, String typeProbleme, String localisation, String description, ObjectId resident,
                        String quartier) {
@@ -93,7 +93,6 @@ public class Signalement {
         this.createdAt = new Date();
         this.updatedAt = new Date();
     }
-
 
     // Getters
     public ObjectId getId() {return this.id;}

@@ -3,7 +3,8 @@ import type { TypeTravaux } from "../types/TypesTravaux";
 
 
 /**
- * An interface that represents a Project.
+ * Une interface pour représenter un Projet. Elle garde une trace du prestataire 
+ * à travers son champ prestataire.
  */
 export default interface Projet {
     id?: string,

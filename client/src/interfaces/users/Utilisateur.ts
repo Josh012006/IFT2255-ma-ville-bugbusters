@@ -2,7 +2,8 @@ import type { Quartier } from "../../types/Quartier";
 
 
 /**
- * An interface that represent a user of the app, except the STPM that only has one profile.
+ * Une interface pour représenter un utilisateur quelconque de l'application, sauf le STPM qui 
+ * a un profil déjà initialisé et non changeable.
  */
 export default interface Utilisateur {
     id?: string,

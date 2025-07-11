@@ -5,7 +5,8 @@ import Header from "./Header";
 
 
 /**
- * It represents the app's layout.
+ * Une classe qui représnete le composant définissant la mise en page de l'application (layout).
+ * Elle fait usage des composants {@link Footer} et {@link Header}
  * @returns HTMLNode
  */
 export default function MainLayout() {

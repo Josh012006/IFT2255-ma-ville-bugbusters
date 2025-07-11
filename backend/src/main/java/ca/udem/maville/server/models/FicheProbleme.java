@@ -10,90 +10,91 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Represents a Problem Report (FicheProbleme) in the system.
- * Contains details about the type of work needed, location,
- * neighborhood, description, priority, status, and related residents and reports.
+ * Représente une fiche de problème dans le système.
+ * Contient des détails sur le type de travaux nécessaires, la localisation,
+ * le quartier, la description, la priorité, le statut, ainsi que les résidents
+ * et signalements associés.
  *
- * This class is used for MongoDB storage with Morphia
- * and JSON serialization via Jackson.
+ * Cette classe est utilisée pour le stockage dans MongoDB via Morphia
+ * et pour la sérialisation JSON via Jackson.
  */
 @Entity("problemes")
 public class FicheProbleme {
 
     /**
-     * Unique MongoDB identifier.
+     * Identifiant unique MongoDB.
      */
     @Id
     private ObjectId id;
 
     /**
-     * Type of work required (e.g., repair, construction).
+     * Type de travaux requis (ex. : réparation, construction).
      */
     private String typeTravaux;
 
     /**
-     * Specific location of the problem.
+     * Localisation précise du problème.
      */
     private String localisation;
 
     /**
-     * Neighborhood where the problem is located.
+     * Quartier où se situe le problème.
      */
     private String quartier;
 
     /**
-     * Detailed description of the problem.
+     * Description détaillée du problème.
      */
     private String description;
 
     /**
-     * Priority level of the problem (e.g., low, medium, high).
+     * Niveau de priorité du problème (ex. : faible, moyen, élevé).
      */
     private String priorite;
 
     /**
-     * List of ObjectIds referencing related reports (signalements).
+     * Liste des identifiants des signalements associés.
      */
     private List<ObjectId> signalements = new ArrayList<>();
 
     /**
-     * Current status of the problem report (e.g., pending, resolved).
+     * Statut actuel de la fiche de problème (ex. : en attente, résolu).
      */
     private String statut;
 
     /**
-     * List of ObjectIds referencing residents concerned by this problem.
+     * Liste des identifiants des résidents concernés par ce problème.
      */
     private List<ObjectId> residents = new ArrayList<>();
 
     /**
-     * Date when the problem report was created.
-     * Serialized as ISO 8601 string in JSON.
+     * Date de création de la fiche de problème.
+     * Sérialisée au format ISO 8601 dans le JSON.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date createdAt;
 
     /**
-     * Date when the problem report was last updated.
-     * Serialized as ISO 8601 string in JSON.
+     * Date de dernière mise à jour de la fiche de problème.
+     * Sérialisée au format ISO 8601 dans le JSON.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date updatedAt;
 
     /**
-     * No-argument constructor required by Morphia.
+     * Constructeur sans argument requis par Morphia.
      */
     public FicheProbleme() {}
 
     /**
-     * Constructor to initialize a problem report with the main fields.
+     * Constructeur permettant d'initialiser une fiche de problème avec les champs principaux.
      *
-     * @param id MongoDB identifier.
-     * @param typeTravaux Type of work required.
-     * @param localisation Specific location of the problem.
-     * @param description Detailed description of the problem.
-     * @param priorite Priority level.
-     * @param quartier Neighborhood.
+     * @param id Identifiant MongoDB.
+     * @param typeTravaux Type de travaux requis.
+     * @param localisation Localisation précise du problème.
+     * @param description Description détaillée du problème.
+     * @param priorite Niveau de priorité.
+     * @param quartier Quartier concerné.
      */
     public FicheProbleme(ObjectId id, String typeTravaux, String localisation, String description, String priorite,
                          String quartier) {
@@ -107,8 +108,6 @@ public class FicheProbleme {
         this.createdAt = new Date();
         this.updatedAt = new Date();
     }
-
-
 
     // Getters
     public String getTypeTravaux() { return this.typeTravaux; }
@@ -136,4 +135,3 @@ public class FicheProbleme {
     public void setSignalements(List<ObjectId> signalements) { this.signalements = signalements; }
 
 }
-

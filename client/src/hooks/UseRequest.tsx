@@ -3,19 +3,19 @@ import axios from "axios";
 type requestType = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 
 /**
- * This is a hook that is useful to send asynchronous request to our server side.
- * It requires three main arguments to function correctly:
+ * Ceci est un hook utile pour envoyer des requêtes asynchrones vers notre serveur.
+ * Il nécessite trois arguments principaux pour fonctionner correctement :
  * 
- * @param url it is the url of the request to our server. Don't forget the / at the start
- * @param method this indicates the HTTP method corresponding to this request
- * @param body that is optional. For request that are not of the GET type, this parameter indicates the body content
- *             to send to the server. It should be a stringified JSON object obtained by using the method
- *             JSON.stringify(myObject); where myObject is the information to send to the server.
- * @returns the result of the request. It is a JSON object that mainly contains 
- *          two interesting fields :
- *              - status: that is an integer saying what the request status is
- *              - data: that is the data returned by the server. It is already 
- *                      parsed so you can use it directly as a JSON object
+ * @param url c'est l'URL de la requête vers notre serveur. N'oubliez pas le / au début.
+ * @param method indique la méthode HTTP correspondant à cette requête.
+ * @param body (optionnel). Pour les requêtes qui ne sont pas de type GET, ce paramètre correspond au contenu
+ *             du corps de la requête à envoyer au serveur. Il doit s'agir d'un objet JSON transformé en chaîne
+ *             à l'aide de la méthode JSON.stringify(monObjet); où monObjet est l'information à transmettre au serveur.
+ * @returns le résultat de la requête. C'est un objet JSON qui contient principalement
+ *          deux champs intéressants :
+ *              - status : un entier indiquant le statut de la requête
+ *              - data : les données retournées par le serveur. Elles sont déjà
+ *                       analysées (parsées), vous pouvez donc les utiliser directement comme un objet JSON.
  */
 export async function useRequest(url: string, method: requestType, body?: string) {
 
@@ -53,4 +53,3 @@ export async function useRequest(url: string, method: requestType, body?: string
         console.log("Une erreur dans useRequest: " + error);
     }
 }
-

@@ -11,8 +11,25 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 
+
+/**
+ * Une classe utilitaire pour faciliter et centraliser la logique d'envoi des requêtes HTTP.
+ * Elle permet de faire des requête et de gérer les réponses à travers sa méthode sendRequest.
+ */
 public final class UseRequest {
 
+    /**
+     * Il s'agit d'une méthode pour envoyer une requête à un serveur, n'importe lequel et recevoir sa réponse.
+     * Elle permet de centraliser cette logique pour ne pas avoir à la répéter à plusieurs
+     * endroits dans le code.
+     *
+     * @param urlName qui représente le path auquel la requête est envoyée.
+     * @param requestMethod qui représente la méthode HTTP de la requête
+     * @param body qui est l'information à envoyer au serveur sous forme de chaine JSON
+     * @return une chaine JSON avec deux champs:
+     *         - status: qui définit le statut de la requête
+     *         - data: qui représente l'information ou la réponse renvoyée par le serveur.
+     */
     public static String sendRequest(String urlName, RequestType requestMethod, String body) {
         try {
             URI uri = URI.create(urlName);
