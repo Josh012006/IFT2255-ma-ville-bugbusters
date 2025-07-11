@@ -30,6 +30,9 @@ public class NotificationController {
      * @param ctx qui représente le contexte de la requête.
      */
     public void getAll(Context ctx) {
+
+        // Todo: Il faudra créer un cas pour le STPM. On va chnager la manière de raisonner. La notification gardera l'id
+        //  du user et pour le STPM, l'id sera STPM tout simplement. Donc plus besoin de garder les notifications sur l'utilisateur
         try {
             String idUser = ctx.pathParam("user");
             String userType = ctx.queryParam("userType");

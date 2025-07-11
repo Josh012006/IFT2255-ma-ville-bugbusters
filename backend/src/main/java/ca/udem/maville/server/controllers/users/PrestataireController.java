@@ -29,6 +29,7 @@ public class PrestataireController {
      * @param ctx qui représente le contexte de la requête
      */
     public void getInterested(Context ctx) {
+        // Todo: Changer la logique de getInterested pour match les abonnements
         try {
             String regionParam = ctx.pathParam("region");
             String typeParam = ctx.pathParam("type");

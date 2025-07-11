@@ -1,5 +1,9 @@
 
 
+/**
+ * The initial page that the user sees directly when he enters the app.
+ * @returns HTMLNode
+ */
 function Home() {
     
     return (
