@@ -12,5 +12,6 @@ public class STPMController {
         this.logger = logger;
     }
 
-    // Todo: Implémenter les bonnes fonctions
+    // Todo: Déplacer la logique d'affectation de priorité
+    //  et d'acceptation ou de refus de proposition de projet ici
 }
