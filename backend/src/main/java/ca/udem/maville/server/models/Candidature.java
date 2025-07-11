@@ -10,120 +10,120 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Represents an application (Candidature) for a construction or renovation project.
- * Contains information about the service provider, project details, schedule,
- * financial estimates, and affected streets.
+ * Représente une candidature pour un projet de construction ou de rénovation.
+ * Contient des informations sur le prestataire, les détails du projet, le calendrier,
+ * les estimations financières et les rues concernées.
  *
- * This class is used for storage in MongoDB via Morphia
- * and for JSON serialization/deserialization via Jackson.
+ * Cette classe est utilisée pour le stockage dans MongoDB via Morphia
+ * et pour la sérialisation/désérialisation JSON via Jackson.
  */
 @Entity("candidatures")
 public class Candidature {
 
     /**
-     * Unique MongoDB identifier.
+     * Identifiant unique MongoDB.
      */
     @Id
     private ObjectId id;
 
     /**
-     * Current status of the application (e.g., "pending", "accepted", "rejected").
+     * Statut actuel de la candidature (ex. : "en attente", "acceptée", "rejetée").
      */
     private String statut;
 
     /**
-     * Identifier of the service provider associated with this application.
+     * Identifiant du prestataire associé à cette candidature.
      */
     private ObjectId prestataire;
 
     /**
-     * Name of the service provider.
+     * Nom du prestataire.
      */
     private String nomPrestataire;
 
     /**
-     * Identifier of the related problem report.
+     * Identifiant du rapport de problème associé.
      */
     private ObjectId ficheProbleme;
 
     /**
-     * Business number of the service provider.
+     * Numéro d'entreprise du prestataire.
      */
     private String numeroEntreprise;
 
     /**
-     * Title of the project for which the application is submitted.
+     * Titre du projet pour lequel la candidature est soumise.
      */
     private String titreProjet;
 
     /**
-     * Detailed description of the project or proposed work.
+     * Description détaillée du projet ou des travaux proposés.
      */
     private String description;
 
     /**
-     * Type of work to be performed (e.g., "repair", "construction").
+     * Type de travaux à réaliser (ex. : "réparation", "construction").
      */
     private String typeTravaux;
 
     /**
-     * Scheduled start date of the project.
-     * Serialized as ISO 8601 string in JSON.
+     * Date de début prévue du projet.
+     * Sérialisée au format ISO 8601 dans le JSON.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date dateDebut;
 
     /**
-     * Scheduled end date of the project.
-     * Serialized as ISO 8601 string in JSON.
+     * Date de fin prévue du projet.
+     * Sérialisée au format ISO 8601 dans le JSON.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date dateFin;
 
     /**
-     * List of streets affected by the project.
+     * Liste des rues affectées par le projet.
      */
     private List<String> ruesAffectees;
 
     /**
-     * Estimated cost of the project.
+     * Coût estimé du projet.
      */
     private double coutEstime;
 
     /**
-     * Date when the application was created.
-     * Serialized as ISO 8601 string in JSON.
+     * Date de création de la candidature.
+     * Sérialisée au format ISO 8601 dans le JSON.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date createdAt;
 
     /**
-     * Date when the application was last updated.
-     * Serialized as ISO 8601 string in JSON.
+     * Date de dernière mise à jour de la candidature.
+     * Sérialisée au format ISO 8601 dans le JSON.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date updatedAt;
 
     /**
-     * No-argument constructor required by Morphia.
+     * Constructeur sans argument requis par Morphia.
      */
     public Candidature() {}
 
     /**
-     * Main constructor to initialize an application.
+     * Constructeur principal pour initialiser une candidature.
      *
-     * @param id MongoDB identifier of the application.
-     * @param ruesAffectees List of affected streets.
-     * @param numeroEntreprise Business number of the service provider.
-     * @param prestataire Identifier of the service provider.
-     * @param nomPrestataire Name of the service provider.
-     * @param ficheProbleme Identifier of the related problem report.
-     * @param titreProjet Project title.
-     * @param description Detailed description of the project.
-     * @param typeTravaux Type of work to be performed.
-     * @param dateDebut Scheduled start date.
-     * @param dateFin Scheduled end date.
-     * @param coutEstime Estimated project cost.
+     * @param id Identifiant MongoDB de la candidature.
+     * @param ruesAffectees Liste des rues affectées.
+     * @param numeroEntreprise Numéro d'entreprise du prestataire.
+     * @param prestataire Identifiant du prestataire.
+     * @param nomPrestataire Nom du prestataire.
+     * @param ficheProbleme Identifiant du rapport de problème associé.
+     * @param titreProjet Titre du projet.
+     * @param description Description détaillée du projet.
+     * @param typeTravaux Type de travaux à réaliser.
+     * @param dateDebut Date de début prévue.
+     * @param dateFin Date de fin prévue.
+     * @param coutEstime Coût estimé du projet.
      */
     public Candidature(ObjectId id, ArrayList<String> ruesAffectees, String numeroEntreprise, ObjectId prestataire,
                        String nomPrestataire, ObjectId ficheProbleme, String titreProjet, String description,
@@ -146,95 +146,36 @@ public class Candidature {
         this.updatedAt = new Date();
     }
 
-
     // Getters
-    public ObjectId getId() {
-        return this.id;
-    }
-    public String getStatut() {
-        return this.statut;
-    }
-    public ObjectId getPrestataire() {
-        return this.prestataire;
-    }
-    public String getNomPrestataire() {
-        return this.nomPrestataire;
-    }
-    public ObjectId getFicheProbleme() {
-        return this.ficheProbleme;
-    }
-    public String getNumeroEntreprise() {
-        return this.numeroEntreprise;
-    }
-    public String getTitreProjet() {
-        return this.titreProjet;
-    }
-    public String getDescription() {
-        return this.description;
-    }
-    public String getTypeTravaux() {
-        return this.typeTravaux;
-    }
-    public Date getDateDebut() {
-        return this.dateDebut;
-    }
-    public Date getDateFin() {
-        return this.dateFin;
-    }
-    public List<String> getRuesAffectees() {
-        return this.ruesAffectees;
-    }
-    public double getCoutEstime() {
-        return this.coutEstime;
-    }
-    public Date getCreatedAt() {
-        return this.createdAt;
-    }
-    public Date getUpdatedAt() {
-        return this.updatedAt;
-    }
+    public ObjectId getId() { return this.id; }
+    public String getStatut() { return this.statut; }
+    public ObjectId getPrestataire() { return this.prestataire; }
+    public String getNomPrestataire() { return this.nomPrestataire; }
+    public ObjectId getFicheProbleme() { return this.ficheProbleme; }
+    public String getNumeroEntreprise() { return this.numeroEntreprise; }
+    public String getTitreProjet() { return this.titreProjet; }
+    public String getDescription() { return this.description; }
+    public String getTypeTravaux() { return this.typeTravaux; }
+    public Date getDateDebut() { return this.dateDebut; }
+    public Date getDateFin() { return this.dateFin; }
+    public List<String> getRuesAffectees() { return this.ruesAffectees; }
+    public double getCoutEstime() { return this.coutEstime; }
+    public Date getCreatedAt() { return this.createdAt; }
+    public Date getUpdatedAt() { return this.updatedAt; }
 
     // Setters
-    public void setStatut(String statut) {
-        this.statut = statut;
-    }
-    public void setPrestataire(ObjectId prestataire) {
-        this.prestataire = prestataire;
-    }
-    public void setNomPrestataire(String nomPrestataire) {
-        this.nomPrestataire = nomPrestataire;
-    }
-    public void setFicheProbleme(ObjectId ficheProbleme) {
-        this.ficheProbleme = ficheProbleme;
-    }
-    public void setNumeroEntreprise(String numeroEntreprise) {
-        this.numeroEntreprise = numeroEntreprise;
-    }
-    public void setTitreProjet(String titreProjet) {
-        this.titreProjet = titreProjet;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    public void setTypeTravaux(String typeTravaux) {
-        this.typeTravaux = typeTravaux;
-    }
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
-    }
-    public void setRuesAffectees(List<String> ruesAffectees) {
-        this.ruesAffectees = ruesAffectees;
-    }
-    public void setCoutEstime(double coutEstime) {
-        this.coutEstime = coutEstime;
-    }
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+    public void setStatut(String statut) { this.statut = statut; }
+    public void setPrestataire(ObjectId prestataire) { this.prestataire = prestataire; }
+    public void setNomPrestataire(String nomPrestataire) { this.nomPrestataire = nomPrestataire; }
+    public void setFicheProbleme(ObjectId ficheProbleme) { this.ficheProbleme = ficheProbleme; }
+    public void setNumeroEntreprise(String numeroEntreprise) { this.numeroEntreprise = numeroEntreprise; }
+    public void setTitreProjet(String titreProjet) { this.titreProjet = titreProjet; }
+    public void setDescription(String description) { this.description = description; }
+    public void setTypeTravaux(String typeTravaux) { this.typeTravaux = typeTravaux; }
+    public void setDateDebut(Date dateDebut) { this.dateDebut = dateDebut; }
+    public void setDateFin(Date dateFin) { this.dateFin = dateFin; }
+    public void setRuesAffectees(List<String> ruesAffectees) { this.ruesAffectees = ruesAffectees; }
+    public void setCoutEstime(double coutEstime) { this.coutEstime = coutEstime; }
+    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+    public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }
 }

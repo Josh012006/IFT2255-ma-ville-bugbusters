@@ -7,53 +7,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents a Service Provider (Prestataire) user in the system.
- * Inherits from Utilisateur and includes additional attributes such as
- * business number, neighborhoods served, types of work offered,
- * and subscription types.
+ * Représente un utilisateur de type Prestataire dans le système.
+ * Hérite de la classe Utilisateur et inclut des attributs supplémentaires tels que
+ * le numéro d'entreprise, les quartiers desservis, les types de travaux proposés
+ * et les types d'abonnements.
  *
- * This class uses Morphia's discriminator mechanism for MongoDB storage
- * under the "utilisateurs" collection.
+ * Cette classe utilise le mécanisme de discriminateur de Morphia pour le stockage
+ * dans MongoDB sous la collection "utilisateurs".
  */
 @Entity(discriminator = "prestataire")
 public class Prestataire extends Utilisateur {
 
     /**
-     * Business number of the service provider.
+     * Numéro d'entreprise du prestataire.
      */
     private String numeroEntreprise;
 
     /**
-     * List of neighborhoods served by the service provider.
+     * Liste des quartiers desservis par le prestataire.
      */
     private List<String> quartiers;
 
     /**
-     * List of types of work the service provider offers.
+     * Liste des types de travaux proposés par le prestataire.
      */
     private List<String> typesTravaux;
 
     /**
-     * List of subscription types for the service provider.
+     * Liste des types d'abonnements du prestataire.
      */
     private List<String> abonnementsType = new ArrayList<>();
 
     /**
-     * No-argument constructor required by Morphia.
+     * Constructeur sans arguments requis par Morphia.
      */
     public Prestataire() {}
 
     /**
-     * Constructor to initialize a service provider with all fields.
+     * Constructeur permettant d'initialiser un prestataire avec tous ses champs.
      *
-     * @param id MongoDB identifier.
-     * @param nom Service provider's name.
-     * @param adresseCourriel Email address.
-     * @param abonnementsQuartier List of subscribed neighborhoods.
-     * @param numeroEntreprise Business number.
-     * @param quartiers Neighborhoods served.
-     * @param typesTravaux Types of work offered.
-     * @param abonnementsType Subscription types.
+     * @param id Identifiant MongoDB.
+     * @param nom Nom du prestataire.
+     * @param adresseCourriel Adresse courriel.
+     * @param abonnementsQuartier Liste des quartiers abonnés.
+     * @param numeroEntreprise Numéro d'entreprise.
+     * @param quartiers Quartiers desservis.
+     * @param typesTravaux Types de travaux proposés.
+     * @param abonnementsType Types d'abonnements.
      */
     public Prestataire(ObjectId id, String nom, String adresseCourriel, ArrayList<String> abonnementsQuartier,
                        String numeroEntreprise, ArrayList<String> quartiers, ArrayList<String> typesTravaux,

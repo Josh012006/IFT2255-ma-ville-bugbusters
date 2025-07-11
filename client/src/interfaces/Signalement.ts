@@ -2,7 +2,9 @@ import type { Quartier } from "../types/Quartier";
 import type { TypeTravaux } from "../types/TypesTravaux";
 
 /**
- * An interface that represents a Resident's alert.
+ * Une interface pour représneter un Signalement d'un Résident.
+ * Elle garde une trace du Résident concerné à travers son champ 
+ * resident.
  */
 export default interface Signalement {
     id?: string,

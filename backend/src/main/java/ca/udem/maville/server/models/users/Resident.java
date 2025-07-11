@@ -8,54 +8,55 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Represents a Resident user in the system.
- * Inherits from Utilisateur and adds additional attributes specific to residents,
- * such as address, postal code, neighborhood, and date of birth.
+ * Représente un utilisateur résident dans le système.
+ * Hérite de la classe Utilisateur et ajoute des attributs supplémentaires
+ * propres aux résidents, tels que l'adresse, le code postal, le quartier
+ * et la date de naissance.
  *
- * This class is stored in the "utilisateurs" collection in MongoDB
- * using Morphia's discriminator mechanism.
+ * Cette classe est stockée dans la collection "utilisateurs" de MongoDB
+ * en utilisant le mécanisme de discriminateur de Morphia.
  */
 @Entity(discriminator = "resident")
 public class Resident extends Utilisateur {
 
     /**
-     * Resident's street address.
+     * Adresse du résident.
      */
     private String adresse;
 
     /**
-     * Postal code for the resident's address.
+     * Code postal de l'adresse du résident.
      */
     private String codePostal;
 
     /**
-     * Neighborhood where the resident lives.
+     * Quartier où habite le résident.
      */
     private String quartier;
 
     /**
-     * Date of birth of the resident.
-     * Serialized as ISO 8601 string in JSON.
+     * Date de naissance du résident.
+     * Sérialisée sous forme de chaîne ISO 8601 dans le JSON.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date dateNaissance;
 
     /**
-     * No-argument constructor required by Morphia.
+     * Constructeur sans argument requis par Morphia.
      */
     public Resident() {}
 
     /**
-     * Constructor to initialize a Resident with all fields.
+     * Constructeur permettant d'initialiser un résident avec tous ses champs.
      *
-     * @param id MongoDB identifier.
-     * @param nom Resident's name.
-     * @param adresseCourriel Resident's email address.
-     * @param abonnementsQuartier List of neighborhood subscriptions.
-     * @param adresse Street address.
-     * @param codePostal Postal code.
-     * @param quartier Neighborhood.
-     * @param dateNaissance Date of birth.
+     * @param id Identifiant MongoDB.
+     * @param nom Nom du résident.
+     * @param adresseCourriel Adresse courriel du résident.
+     * @param abonnementsQuartier Liste des quartiers abonnés.
+     * @param adresse Adresse du résident.
+     * @param codePostal Code postal.
+     * @param quartier Quartier de résidence.
+     * @param dateNaissance Date de naissance.
      */
     public Resident(ObjectId id, String nom, String adresseCourriel, ArrayList<String> abonnementsQuartier,
                     String adresse, String codePostal, String quartier, Date dateNaissance) {

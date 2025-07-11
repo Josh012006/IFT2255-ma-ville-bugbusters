@@ -4,7 +4,8 @@ import type { TypeTravaux } from "../../types/TypesTravaux";
 import type Utilisateur from "./Utilisateur";
 
 /**
- * An interface that represents the Prestataire. It is a subtype of the Utilisateur interface.
+ * Une interface pour représenter un Prestataire. Elle hérite de
+ * l'interface {@link Utilisateur}
  */
 export interface Prestataire extends Utilisateur {
     numeroEntreprise: string,

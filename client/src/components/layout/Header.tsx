@@ -1,6 +1,6 @@
 
 /**
- * The whole app's header. It defines the app layout.
+ * Le header de l'application. Il définit la mise en page (layout) de l'application.
  * @returns HTMLNode
  */
 export default function Header() {

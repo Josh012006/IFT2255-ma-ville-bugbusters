@@ -8,132 +8,133 @@ import org.bson.types.ObjectId;
 import java.util.*;
 
 /**
- * Represents a public works project in the system.
- * Contains all the data about the project, including location, type of work, status,
- * associated company, related problem sheet, and lists of affected streets and subscribers.
+ * Représente un projet de travaux publics dans le système.
+ * Contient toutes les données relatives au projet, y compris la localisation,
+ * le type de travaux, le statut, l'entreprise associée, la fiche problème liée,
+ * ainsi que les listes des rues affectées et des abonnés.
  *
- * This class is mapped to the "projets" collection in MongoDB
- * and serialized as JSON via Jackson.
+ * Cette classe est mappée à la collection "projets" dans MongoDB
+ * et sérialisée en JSON via Jackson.
  */
 @Entity("projets")
 public class Projet {
 
     /**
-     * Unique identifier of the project.
+     * Identifiant unique du projet.
      */
     @Id
     private ObjectId id;
 
     /**
-     * List of streets affected by this project.
+     * Liste des rues affectées par ce projet.
      */
     private List<String> ruesAffectees;
 
     /**
-     * List of subscribers (users interested in updates) for this project.
+     * Liste des abonnés (utilisateurs intéressés par les mises à jour) pour ce projet.
      */
     private List<ObjectId> abonnes = new ArrayList<>();
 
     /**
-     * Title of the project.
+     * Titre du projet.
      */
     private String titreProjet;
 
     /**
-     * Description of the project.
+     * Description du projet.
      */
     private String description;
 
     /**
-     * Type of work involved in the project.
+     * Type de travaux impliqués dans le projet.
      */
     private String typeTravaux;
 
     /**
-     * Current status of the project (e.g., in progress, completed).
+     * Statut actuel du projet (ex. : en cours, terminé).
      */
     private String statut;
 
     /**
-     * Start date of the project, serialized in ISO 8601 format.
+     * Date de début du projet, sérialisée au format ISO 8601.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date dateDebut;
 
     /**
-     * End date of the project, serialized in ISO 8601 format.
+     * Date de fin du projet, sérialisée au format ISO 8601.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date dateFin;
 
     /**
-     * Reference to the associated problem sheet.
+     * Référence à la fiche problème associée.
      */
     private ObjectId ficheProbleme;
 
     /**
-     * Reference to the company (service provider) executing the project.
+     * Référence à l'entreprise (prestataire) réalisant le projet.
      */
     private ObjectId prestataire;
 
     /**
-     * Name of the service provider company.
+     * Nom de l'entreprise prestataire.
      */
     private String nomPrestataire;
 
     /**
-     * Neighborhood where the project takes place.
+     * Quartier où le projet se déroule.
      */
     private String quartier;
 
     /**
-     * Estimated cost of the project.
+     * Coût estimé du projet.
      */
     private double cout;
 
     /**
-     * Priority level of the project.
+     * Niveau de priorité du projet.
      */
     private String priorite;
 
     /**
-     * Number of reports (feedback or issues) related to this project.
+     * Nombre de rapports (retours ou problèmes) liés à ce projet.
      */
     private int nbRapports;
 
     /**
-     * Creation date of the project, serialized in ISO 8601 format.
+     * Date de création du projet, sérialisée au format ISO 8601.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date createdAt;
 
     /**
-     * Last modification date of the project, serialized in ISO 8601 format.
+     * Date de dernière modification du projet, sérialisée au format ISO 8601.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date updatedAt;
 
     /**
-     * No-argument constructor required by Morphia.
+     * Constructeur sans argument requis par Morphia.
      */
     public Projet() {}
 
     /**
-     * Constructor to initialize a project with its main fields.
+     * Constructeur permettant d'initialiser un projet avec ses champs principaux.
      *
-     * @param id Unique identifier.
-     * @param titreProjet Title of the project.
-     * @param ruesAffectees List of affected streets.
-     * @param description Description of the project.
-     * @param typeTravaux Type of work.
-     * @param dateDebut Start date.
-     * @param dateFin End date.
-     * @param ficheProbleme Reference to the related problem sheet.
-     * @param prestataire Reference to the service provider.
-     * @param nomPrestataire Name of the service provider.
-     * @param quartier Neighborhood of the project.
-     * @param cout Estimated cost.
-     * @param priorite Priority level.
+     * @param id Identifiant unique.
+     * @param titreProjet Titre du projet.
+     * @param ruesAffectees Liste des rues affectées.
+     * @param description Description du projet.
+     * @param typeTravaux Type de travaux.
+     * @param dateDebut Date de début.
+     * @param dateFin Date de fin.
+     * @param ficheProbleme Référence à la fiche problème associée.
+     * @param prestataire Référence au prestataire.
+     * @param nomPrestataire Nom du prestataire.
+     * @param quartier Quartier du projet.
+     * @param cout Coût estimé.
+     * @param priorite Niveau de priorité.
      */
     public Projet(ObjectId id, String titreProjet, List<String> ruesAffectees, String description, String typeTravaux,
                   Date dateDebut, Date dateFin, ObjectId ficheProbleme, ObjectId prestataire, String nomPrestataire,
@@ -158,8 +159,6 @@ public class Projet {
         this.updatedAt = new Date();
     }
 
-   
-
     // Getters
     public ObjectId getId() { return this.id; }
     public String getTitreProjet() { return this.titreProjet; }
@@ -176,9 +175,7 @@ public class Projet {
     public Date getDateFin() { return this.dateFin; }
     public ObjectId getFicheProbleme() { return this.ficheProbleme; }
     public String getPriorite() { return this.priorite; }
-    public int getNbRapports() {
-        return this.nbRapports;
-    }
+    public int getNbRapports() { return this.nbRapports; }
     public Date getCreatedAt() { return this.createdAt; }
     public Date getUpdatedAt() { return this.updatedAt; }
 
@@ -200,5 +197,4 @@ public class Projet {
     public void setNbRapports(int nbRapports) { this.nbRapports = nbRapports; }
     public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
     public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }
-
 }

@@ -1,6 +1,6 @@
 
 /**
- * The whole app's footer. It defines the app layout.
+ * Le footer de l'application. Il définit la mise en page (layout) de l'application.
  * @returns HTMLNode
  */
 export default function Footer() {

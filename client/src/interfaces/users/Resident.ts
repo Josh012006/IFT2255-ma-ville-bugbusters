@@ -3,7 +3,8 @@ import type Utilisateur from "./Utilisateur";
 
 
 /**
-  * An interface that represents the Resident. It is a subtype of the Utilisateur interface.
+ * Une interface pour représenter un Résident. Elle hérite de
+ * l'interface {@link Utilisateur}
  */
 export default interface Resident extends Utilisateur {
     adresse: string,
