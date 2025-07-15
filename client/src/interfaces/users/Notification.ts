@@ -9,6 +9,7 @@ export default interface Notification {
     id?: string,
     user: string,
     message: string,
+    statut?: "lue" | "non lue",
     createdAt?: Date,
     updatedAt?: Date,
 }

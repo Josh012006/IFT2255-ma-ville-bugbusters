@@ -10,7 +10,7 @@ import dev.morphia.Morphia;
  */
 public class MongoConfig {
     private static final Datastore datastore;
-    private static final String serverUrl = "mongodb://localhost:27017";
+    private static final String serverUrl = "mongodb+srv://josuesmjrmongan:ssdYqr1XI8hM7XA2@dm3.8s6gipw.mongodb.net/?retryWrites=true&w=majority&appName=DM3";
 
     static {
         datastore = Morphia.createDatastore(

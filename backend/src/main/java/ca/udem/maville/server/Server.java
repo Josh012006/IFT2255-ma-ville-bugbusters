@@ -4,8 +4,6 @@ import ca.udem.maville.server.controllers.*;
 import ca.udem.maville.server.controllers.users.NotificationController;
 import ca.udem.maville.server.controllers.users.PrestataireController;
 import ca.udem.maville.server.controllers.users.ResidentController;
-import ca.udem.maville.server.controllers.users.STPMController;
-import ca.udem.maville.utils.AdaptedGson;
 import io.javalin.Javalin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +25,6 @@ public class Server {
     NotificationController notificationController;
     ResidentController residentController;
     PrestataireController prestataireController;
-    STPMController stpmController;
 
     public Server() {}
     public Server(int port) {
@@ -46,19 +43,17 @@ public class Server {
         notificationController = new NotificationController(urlHead, logger);
         residentController = new ResidentController(urlHead, logger);
         prestataireController = new PrestataireController(urlHead, logger);
-        stpmController = new STPMController(urlHead, logger);
 
         // Intitialisation du serveur sur le port
         app = Javalin.create(config -> {
             config.router.contextPath = "/api";
-
-            config.jsonMapper(new AdaptedGson.GsonMapper());
 
             // Ajout des controllers
             // Pour chacun, voir la JavaDoc au dessus de la fonction dans
             // la définition du controller pour voir les éléments requis.
             config.router.apiBuilder(() -> {
 
+                // Todo: Corriger les routes et les fonctions des controllers
                 path("/candidature", () -> {
                     path("/getAll/{user}", () -> {
                         get(candidatureController::getAll);
@@ -143,8 +138,6 @@ public class Server {
                         put(prestataireController::update);
                     });
                 });
-
-                // Todo: Ajouter les routes pour STPM et corriger les routes pour les autres
 
             });
         }).start(this.port);

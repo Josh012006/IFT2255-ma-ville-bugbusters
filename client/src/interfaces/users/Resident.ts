@@ -11,5 +11,5 @@ export default interface Resident extends Utilisateur {
     codePostal: string,
     quartier: Quartier,
     dateNaissance: Date,
-    // abonnementsRue: Rues[], // En parler davantage après
+    abonnementsRue: string[], // On garde une trace des chaines de caractères entrées par le résident
 }

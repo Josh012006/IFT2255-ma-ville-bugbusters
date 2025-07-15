@@ -1,9 +1,9 @@
 package ca.udem.maville.hooks;
 
 import ca.udem.maville.utils.RequestType;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -59,13 +59,18 @@ public final class UseRequest {
             int status = response.statusCode();
             String responseBody = response.body();
 
-            JsonElement data = JsonParser.parseString(responseBody);
+            ObjectMapper mapper = new ObjectMapper();
 
-            JsonObject responseJson = new JsonObject();
-            responseJson.addProperty("status", status);
-            responseJson.add("data", data);
+            // Parser la chaîne JSON en JsonNode
+            JsonNode data = mapper.readTree(responseBody);
 
-            return responseJson.toString();
+            // Créer un objet JSON avec le statut et les données
+            ObjectNode responseJson = mapper.createObjectNode();
+            responseJson.put("status", status);
+            responseJson.set("data", data);
+
+            // Retourner la chaîne JSON
+            return mapper.writeValueAsString(responseJson);
 
         } catch (Exception e) {
             e.printStackTrace();
