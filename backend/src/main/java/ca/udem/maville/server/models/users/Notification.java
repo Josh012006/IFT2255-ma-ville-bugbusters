@@ -14,16 +14,41 @@ import org.bson.types.ObjectId;
 @Entity("notifications")
 public class Notification {
 
+    /**
+     * Identifiant unique de la notification
+     */
     @Id
     private ObjectId id;
 
+    /**
+     * Identifiant MongoDB de l'utilisateur concerné
+     */
     private ObjectId user;
+    /**
+     * Le message de la notifiaction
+     */
     private String message;
+    /**
+     * Le statut de la notification : lue ou non lue
+     */
     private String statut;
+    /**
+     * Une url au cas où il y a un besoin de redirection
+     * vers une autre page côté client
+     */
+    private String url;
 
+    /**
+     * Date de création de la notification.
+     * Sérialisée au format ISO 8601 dans le JSON.
+     */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date createdAt;
 
+    /**
+     * Date de dernière mise à jour de la notification.
+     * Sérialisée au format ISO 8601 dans le JSON.
+     */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date updatedAt;
 
@@ -38,10 +63,12 @@ public class Notification {
      *
      * @param message Le message de la notification.
      * @param user L’ObjectId de l’utilisateur recevant la notification.
+     * @param url Url optionnel à inclure pour une redirection vers une page spécifique côté client
      */
-    public Notification(String message, ObjectId user) {
+    public Notification(String message, ObjectId user, String url) {
         this.user = user;
         this.message = message;
+        this.url = url;
         this.statut = "non lue";
         this.createdAt = new Date();
         this.updatedAt = new Date();
@@ -54,6 +81,7 @@ public class Notification {
     public Date getCreatedAt() { return this.createdAt; }
     public Date getUpdatedAt() { return this.updatedAt; }
     public String getStatut() { return this.statut; }
+    public String getUrl() { return this.url; }
 
     // Setters
     public void setUser(ObjectId user) { this.user = user; }
@@ -61,5 +89,6 @@ public class Notification {
     public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
     public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }
     public void setStatut(String statut) { this.statut = statut; }
+    public void setUrl(String url) { this.url = url; }
 
 }
