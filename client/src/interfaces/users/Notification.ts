@@ -10,6 +10,7 @@ export default interface Notification {
     user: string,
     message: string,
     statut?: "lue" | "non lue",
+    url?: string,
     createdAt?: Date,
     updatedAt?: Date,
 }

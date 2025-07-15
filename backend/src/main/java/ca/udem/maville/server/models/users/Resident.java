@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Représente un utilisateur résident dans le système.
@@ -35,6 +36,11 @@ public class Resident extends Utilisateur {
     private String quartier;
 
     /**
+     * La liste des rues auxquels le résident s'est abonné.
+     */
+    private List<String> abonnementsRue = new ArrayList<>();
+
+    /**
      * Date de naissance du résident.
      * Sérialisée sous forme de chaîne ISO 8601 dans le JSON.
      */
@@ -53,14 +59,16 @@ public class Resident extends Utilisateur {
      * @param nom Nom du résident.
      * @param adresseCourriel Adresse courriel du résident.
      * @param abonnementsQuartier Liste des quartiers abonnés.
+     * @param abonnementsRue Liste des rues auxquels il s'est abonné.
      * @param adresse Adresse du résident.
      * @param codePostal Code postal.
      * @param quartier Quartier de résidence.
      * @param dateNaissance Date de naissance.
      */
     public Resident(ObjectId id, String nom, String adresseCourriel, ArrayList<String> abonnementsQuartier,
-                    String adresse, String codePostal, String quartier, Date dateNaissance) {
+                    ArrayList<String> abonnementsRue, String adresse, String codePostal, String quartier, Date dateNaissance) {
         super(id, nom, adresseCourriel, abonnementsQuartier);
+        this.abonnementsRue = abonnementsRue;
         this.adresse = adresse;
         this.codePostal = codePostal;
         this.quartier = quartier;
@@ -72,10 +80,12 @@ public class Resident extends Utilisateur {
     public String getCodePostal() { return this.codePostal; }
     public String getQuartier() { return this.quartier; }
     public Date getDateNaissance() { return this.dateNaissance; }
+    public List<String> getAbonnementsRue() { return this.abonnementsRue; }
 
     // Setters
     public void setCodePostal(String codePostal) { this.codePostal = codePostal; }
     public void setAdresse(String adresse) { this.adresse = adresse; }
     public void setQuartier(String quartier) { this.quartier = quartier; }
     public void setDateNaissance(Date dateNaissance) { this.dateNaissance = dateNaissance; }
+    public void setAbonnementsRue(List<String> abonnementsRue) { this.abonnementsRue = abonnementsRue; }
 }
