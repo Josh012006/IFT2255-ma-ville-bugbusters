@@ -142,6 +142,8 @@ public class Server {
             });
         }).start(this.port);
 
+
+        // La logique de formattage des logs du servers.
         app.before(ctx -> {
             Logger logger = LoggerFactory.getLogger("HTTP");
 

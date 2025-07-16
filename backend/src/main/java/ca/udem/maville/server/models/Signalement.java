@@ -2,6 +2,7 @@ package ca.udem.maville.server.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.PrePersist;
 import org.bson.types.ObjectId;
 
 import java.util.Date;
@@ -65,6 +66,18 @@ public class Signalement {
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date updatedAt;
+
+    /**
+     * Un hook pour mettre createdAt et updatedAt à jour automatiquement.
+     */
+    @PrePersist
+    public void prePersist() {
+        Date now = new Date();
+        if (createdAt == null) {
+            createdAt = now; // Il est mise à jour une seule fois seulement
+        }
+        updatedAt = now; // Toujours mis à jour à chaque save
+    }
 
     /**
      * Constructeur sans argument requis par Morphia.
