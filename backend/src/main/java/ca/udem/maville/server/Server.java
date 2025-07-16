@@ -54,40 +54,68 @@ public class Server {
             config.router.apiBuilder(() -> {
 
                 // Todo: Corriger les routes et les fonctions des controllers
-                path("/candidature", () -> {
+                path("/notification", () -> {
                     path("/getAll/{user}", () -> {
+                        get(notificationController::getAll);
+                    });
+                    post(notificationController::create);
+                    path("/markAsRead/{id}", () -> {
+                        get(notificationController::markAsRead);
+                    });
+                });
+
+                path("/prestataire", () -> {
+                    // Le path getConcerned nécessite deux query parameters
+                    // quartier et type.
+                    path("/getConcerned", () -> {
+                        get(prestataireController::getConcerned);
+                    });
+                    get(prestataireController::getAll);
+                    path("/{id}", () -> {
+                        get(prestataireController::getById);
+                        patch(prestataireController::patch);
+                    });
+                });
+
+                path("/resident", () -> {
+                    // Le path getConcerned nécessite deux query parameters
+                    // quartier et rues. Notons que rues peut contenir plusieurs
+                    // rues séparées par des virgules.
+                    path("/getConcerned", () -> {
+                        get(residentController::getConcerned);
+                    });
+                    get(residentController::getAll);
+                    path("/{id}", () -> {
+                        get(residentController::getById);
+                        patch(residentController::patch);
+                    });
+                });
+
+                path("/candidature", () -> {
+                    path("/getAll", () -> {
                         get(candidatureController::getAll);
+                    });
+                    path("/getByPrestataire/{user}", () -> {
+                        get(candidatureController::getByPrestataire);
                     });
                     post(candidatureController::create);
                     path("/{id}", () -> {
-                        get(candidatureController::get);
+                        get(candidatureController::getById);
                         patch(candidatureController::patch);
-                        put(candidatureController::update);
                         delete(candidatureController::delete);
                     });
                 });
 
-                path("/signalement", () -> {
-                    path("/getAll/{user}", () -> {
-                        get(signalementController::getAll);
-                    });
-                    post(signalementController::create);
-                    path("/{id}", () -> {
-                        get(signalementController::get);
-                        put(signalementController::update);
-                        patch(signalementController::patch);
-                        delete(signalementController::delete);
-                    });
-                });
-
                 path("/probleme", () -> {
-                    path("/getInteresting/{user}", () -> {
+                    path("/getAll", () -> {
                         get(problemController::getAll);
                     });
                     post(problemController::create);
                     path("/{id}", () -> {
-                        get(problemController::get);
-                        patch(problemController::patch);
+                        get(problemController::getById);
+                    });
+                    path("/addResident/{id}", () -> {
+                        patch(problemController::addResident);
                     });
                 });
 
@@ -100,42 +128,22 @@ public class Server {
                     });
                     post(projetController::create);
                     path("/{id}", () -> {
-                        get(projetController::get);
+                        get(projetController::getById);
                         patch(projetController::patch);
-                        put(projetController::update);
-                        delete(projetController::delete);
                     });
                 });
 
-
-                path("/notification", () -> {
-                    path("/getAll/{user}", () -> {
-                        get(notificationController::getAll);
+                path("/signalement", () -> {
+                    path("/getAll", () -> {
+                        get(signalementController::getAll);
                     });
-                    path("/{user}", () -> {
-                        post(notificationController::create);
-                    });
-                });
-
-                path("/resident", () -> {
-                    path("/getByRegion/{region}", () -> {
-                        get(residentController::getByRegion);
+                    post(signalementController::create);
+                    path("/getByResident/{user}", () -> {
+                        get(signalementController::getByResident);
                     });
                     path("/{id}", () -> {
-                        get(residentController::get);
-                        patch(residentController::patch);
-                        put(residentController::update);
-                    });
-                });
-
-                path("/prestataire", () -> {
-                    path("/getInterested/{region}/{type}", () -> {
-                        get(prestataireController::getInterested);
-                    });
-                    path("/{id}", () -> {
-                        get(prestataireController::get);
-                        patch(prestataireController::patch);
-                        put(prestataireController::update);
+                        get(signalementController::getById);
+                        patch(signalementController::patch);
                     });
                 });
 
