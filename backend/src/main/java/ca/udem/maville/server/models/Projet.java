@@ -52,9 +52,9 @@ public class Projet {
     private String typeTravaux;
 
     /**
-     * Statut actuel du projet (ex. : en cours, terminé).
+     * Statut actuel du projet : "en cours" | "annulé" | "suspendu" | "terminé".
      */
-    private String statut;
+    private String statut = "en cours";
 
     /**
      * Date de début du projet, sérialisée au format ISO 8601.

@@ -44,9 +44,9 @@ public class Signalement {
     private String description;
 
     /**
-     * Statut actuel du signalement (ex. : en attente, résolu).
+     * Statut actuel du signalement : "en attente" | "vu" | "traité".
      */
-    private String statut;
+    private String statut = "en attente";
 
     /**
      * Identifiant du résident ayant soumis le signalement.
