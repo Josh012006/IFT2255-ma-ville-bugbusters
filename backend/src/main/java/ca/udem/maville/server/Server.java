@@ -114,8 +114,8 @@ public class Server {
                     path("/{id}", () -> {
                         get(problemController::getById);
                     });
-                    path("/addResident/{id}", () -> {
-                        patch(problemController::addResident);
+                    path("/addExisting/{id}", () -> {
+                        patch(problemController::addExisting);
                     });
                 });
 

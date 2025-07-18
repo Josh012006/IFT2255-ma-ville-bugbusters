@@ -49,7 +49,7 @@ public class FicheProbleme {
     private String description;
 
     /**
-     * Niveau de priorité du problème (ex. : faible, moyen, élevé).
+     * Niveau de priorité du problème : "faible" | "moyenne" | "élevée".
      */
     private String priorite;
 

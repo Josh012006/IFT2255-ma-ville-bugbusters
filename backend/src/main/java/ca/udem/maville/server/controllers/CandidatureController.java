@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 public class CandidatureController {
     public String urlHead;
@@ -83,6 +82,8 @@ public class CandidatureController {
             // S'assurer que le statut est le bon avant de sauvegarder
             newCandidature.setStatut("en attente");
             CandidatureDAO.save(newCandidature);
+
+            // Todo: Envoyer une notification au STPM.
 
             // Renvoyer la candidature avec un message de succès
             ctx.status(201).json(newCandidature).contentType("application/json");
