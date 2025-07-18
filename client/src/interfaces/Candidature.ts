@@ -7,7 +7,7 @@ import type { TypeTravaux } from "../types/TypesTravaux";
  */
 export default interface Candidature {
     id?: string,
-    statut: "en attente" | "vue" | "acceptée" | "refusée",
+    statut?: "en attente" | "vue" | "acceptée" | "refusée",
     prestataire: string,
     ficheProbleme: string,
     numeroEntreprise: string,

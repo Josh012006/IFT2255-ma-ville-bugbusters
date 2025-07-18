@@ -15,7 +15,7 @@ export default interface Problem {
     description: string,
     priorite: "faible" | "moyenne" | "élevée",
     signalements: string[],
-    statut: "en attente" | "traitée",
+    statut?: "en attente" | "traitée",
     residents: string[],
     createdAt?: Date,
     updatedAt?: Date,
