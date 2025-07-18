@@ -13,7 +13,7 @@ export default interface Projet {
     titreProjet: string,
     description: string,
     typeTravaux: TypeTravaux,
-    statut: "en cours" | "annulé" | "suspendu" | "terminé",
+    statut?: "en cours" | "annulé" | "suspendu" | "terminé",
     dateDebut: Date,
     dateFin: Date,
     ficheProbleme: string,
