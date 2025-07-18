@@ -1,14 +1,16 @@
 package ca.udem.maville.server.controllers.users;
 
-import ca.udem.maville.utils.ControllerHelper;
-import ca.udem.maville.utils.Quartier;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import ca.udem.maville.server.dao.files.users.ResidentDAO;
+import ca.udem.maville.server.models.users.Resident;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.http.Context;
 
+import io.javalin.json.JavalinJackson;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
+
+import java.util.List;
 
 public class ResidentController {
 
@@ -23,39 +25,42 @@ public class ResidentController {
 
 
     /**
-     * Cette route permet de récupérer tous les résidents d'un quartier en particulier.
-     * Le paramètre de path region contient le nom du quartier. Il doit sous forme de l'enum.
+     * Cette route permet de récupérer tous les résidents qui pourraient être intéressés
+     * par les changements sur un projet. Elle a besoin de deux query parameters :
+     * Le paramètre quartier contient le nom du quartier où le problème est situé.
+     * Le paramètre rues qui contient les rues affectées par le projet en question séparées bien sûr par des virgules.
      * @param ctx qui représente le contexte de la requête
      */
-    public void getByRegion(Context ctx) {
+    public void getConcerned(Context ctx) {
         try {
-            String regionParam = ctx.pathParam("region");
+            String quartier = ctx.pathParam("quartier");
+            String rues = ctx.pathParam("rues");
 
-            if (regionParam.isEmpty()) {
-                ctx.status(400).result("{\"message\": \"Le quartier est nécessaire. Veuillez le préciser dans le path.\"}").contentType("application/json");
+            if(quartier.isEmpty() || rues.isEmpty()) {
+                ctx.status(400).result("{\"message\": \"Les query parameters quartier et rues sont requis.\"}").contentType("application/json");
                 return;
             }
 
-            Quartier regionEnum = Quartier.valueOf(regionParam);
-            String region = regionEnum.getLabel();
+            String[] ruesTab = rues.split(",");
+            List<Resident> concerned = ResidentDAO.findToNotify(quartier, ruesTab);
 
-            JsonArray jsonResidents = new JsonArray();
-
-            for(String strResident : database.residents.values()) {
-                if(strResident != null) {
-                    JsonObject jsonResident = JsonParser.parseString(strResident).getAsJsonObject();
-                    if(jsonResident.get("quartier").getAsString().equals(region)) {
-                        jsonResidents.add(jsonResident);
-                    }
-                }
-            }
-
-            // Renvoyer les résidents
-            ctx.status(200).json(jsonResidents).contentType("application/json");
-
-        } catch (IllegalArgumentException e) {
+            ctx.status(200).json(concerned).contentType("application/json");
+        } catch (Exception e) {
             e.printStackTrace();
-            ctx.status(404).result("{\"message\": \"Quartier inconnu.\"}").contentType("application/json");
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
+    /**
+     * Cette fonction permet de récupérer tous les résidents
+     * de la base de données. Il est utile au niveau du choix de profil.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void getAll(Context ctx) {
+        try {
+            List<Resident> residents = ResidentDAO.findAll();
+
+            ctx.status(200).json(residents).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
@@ -67,21 +72,19 @@ public class ResidentController {
      * en fonction de son id.
      * @param ctx qui représente le contexte de la requête.
      */
-    public void get(Context ctx) {
+    public void getById(Context ctx) {
         try {
             String id = ctx.pathParam("id");
-            String strResident = database.residents.get(id);
 
-            if (strResident == null) {
-                ctx.status(404).result("{\"message\": \"Résident non retrouvé.\"}").contentType("application/json");
+            Resident resident = ResidentDAO.findById(new ObjectId(id));
+
+            if(resident == null) {
+                ctx.status(404).result("{\"message\": \"Aucun résident avec un tel ID retrouvé.\"}").contentType("application/json");
                 return;
             }
 
-            JsonObject jsonResident = JsonParser.parseString(strResident).getAsJsonObject();
-
             // Renvoyer le résident
-            ctx.status(200).json(jsonResident).contentType("application/json");
-
+            ctx.status(200).json(resident).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
@@ -89,93 +92,43 @@ public class ResidentController {
     }
 
     /**
-     * Cette route permet de modifier seulement partiellement les informations
+     * Cette route permet de modifier les préférences de notifications (abonnements)
      * d'un résident, connaissant son id.
      * Le body doit contenir les champs à modifier avec la nouvelle information.
      * Assurez vous que la nouvelle information a le bon type.
-     * Elle nécessite également un queryParameter replace = true | false qui est utile pour les tableaux
-     * notamment pour savoir s'il faut juste ajouter les éléments ou remplacer le tableau en entier.
+     * Elle remplace complètement les tableaux de la base de donénes par ceux envoyés.
      * @param ctx qui représente le contexte de la requête.
      */
     public void patch(Context ctx) {
         try {
             String id = ctx.pathParam("id");
-            boolean replace = Boolean.parseBoolean(ctx.queryParam("replace"));
 
-            JsonObject updates = JsonParser.parseString(ctx.body()).getAsJsonObject();
-            String strResident = database.residents.get(id);
-            if(strResident == null) {
-                ctx.status(404).result("{\"message\": \"Résident non retrouvé.\"}").contentType("application/json");
+            Resident resident = ResidentDAO.findById(new ObjectId(id));
+
+            if(resident == null) {
+                ctx.status(404).result("{\"message\": \"Aucun résident avec un tel ID retrouvé.\"}").contentType("application/json");
                 return;
             }
 
-            JsonObject resident = JsonParser.parseString(strResident).getAsJsonObject();
+            ObjectMapper mapper = JavalinJackson.defaultMapper();
 
-            // Appeler la logique de patch
-            boolean ok = ControllerHelper.patchLogic(updates, replace, resident, ctx);
+            JsonNode json = mapper.readTree(ctx.body());
 
-            if(!ok) {
-                return;
+            JsonNode json1 = json.get("abonnementsQuartier");
+            if(json1 != null && json1.isArray()) {
+                List<String> abonnementsQuartier = mapper.readerForListOf(String.class).readValue(json1);
+                resident.setAbonnementsQuartier(abonnementsQuartier);
             }
 
-            // Message de succès
-            database.residents.put(id, resident.toString());
+            JsonNode json2 = json.get("abonnementsRue");
+            if(json2 != null && json2.isArray()) {
+                List<String> abonnementsRue = mapper.readerForListOf(String.class).readValue(json2);
+                resident.setAbonnementsRue(abonnementsRue);
+            }
+
+            ResidentDAO.save(resident);
+
             ctx.status(200).json(resident).contentType("application/json");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
-        }
-    }
-
-    /**
-     * Cette route permet de remplacer complètement un résident enregistré
-     * par un autre avec de nouvelles informations, connaissant son id.
-     * Le body doit contenir le nouveau résident avec tous les champs présents et ayant le bon type Json.
-     * Je précise que l'objet envoyé en body doit vraiment tout contenir.
-     * @param ctx qui représente le contexte de la requête.
-     */
-    public void update(Context ctx) {
-        try {
-            String id = ctx.pathParam("id");
-
-            String strResident = database.residents.get(id);
-
-            if (strResident == null) {
-                ctx.status(404).result("{\"message\": \"Résident non retrouvé.\"}").contentType("application/json");
-                return;
-            }
-
-            // Traiter le nouveau résident
-            String rawJson = ctx.body();
-
-            JsonElement element = JsonParser.parseString(rawJson);
-
-            // Vérifie si c'est bien un objet
-            if (!element.isJsonObject()) {
-                ctx.status(400).result("{\"message\": \"Format JSON invalide.\"}").contentType("application/json");
-                return;
-            }
-
-            // Vérifier que toutes les entrées sont là
-            JsonObject newResident = element.getAsJsonObject();
-
-            JsonObject actualResident = JsonParser.parseString(strResident).getAsJsonObject();
-
-            if(!ControllerHelper.sameKeysSameTypes(actualResident, newResident)) {
-                ctx.status(400).result("{\"message\": \"Format d'objet ne correspondant pas à celui d'un résident. Vérifiez que les champs envoyés sont corrects et que les types sont bons.\"}").contentType("application/json");
-                return;
-            }
-
-            // M'assurer que l'id reste le même
-            JsonObject updatedResident = newResident;
-            updatedResident.addProperty("id", id);
-
-            database.residents.put(id, updatedResident.toString());
-
-            // Renvoyer le nouvel objet
-            ctx.status(200).json(updatedResident).contentType("application/json");
-
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
