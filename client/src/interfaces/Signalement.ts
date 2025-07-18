@@ -11,7 +11,7 @@ export default interface Signalement {
     typeProbleme: TypeTravaux,
     localisation: string,
     description: string,
-    statut: "en attente" | "vu" | "traité",
+    statut?: "en attente" | "vu" | "traité",
     resident: string,
     quartier: Quartier,
     createdAt?: Date,
