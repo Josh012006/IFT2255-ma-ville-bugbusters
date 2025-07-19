@@ -20,7 +20,6 @@ public class ProjetDAO {
                 .first();
     }
 
-    // Todo: Une méthode findAll() qui renvoie une liste de tous les projets de travaux situés dans la base de données.
      /**
      * Récupère tous les projets
      */
@@ -32,8 +31,6 @@ public class ProjetDAO {
     }
 
 
-    // Todo: Une méthode findPrestataireProjet(ObjectId userId) qui renvoie une liste de tous les projets appartenant
-    //  au prestataire dont l'id est userId. C'est-à-dire que leur champ prestataire porte la valeur userId.
     /**
      * Récupère les projets appartenant à un prestataire donné
      */
@@ -45,7 +42,6 @@ public class ProjetDAO {
                 .toList();
     }
 
-    // Todo: Une méthode save(Projet projet) qui enregistre un projet dans la base de données.
     /**
      * Sauvegarde ou met à jour un projet
      */
