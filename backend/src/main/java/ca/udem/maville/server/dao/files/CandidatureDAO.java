@@ -38,7 +38,7 @@ public class CandidatureDAO {
     public List<Candidature> findPrestataireCandidatures(ObjectId userId){
         return MongoConfig.getDatastore()
                 .find(Candidature.class)
-                .filter(Filters.eq("prestataire.id", userId))
+                .filter(Filters.eq("prestataire", userId))
                 .iterator()
                 .toList();
     }
@@ -56,7 +56,7 @@ public class CandidatureDAO {
     public void delete(ObjectId id){
         Candidature candidature = findById(id);
         if (candidature !=null){
-            MongoConfig.getDatastore().delete(candidature)
+            MongoConfig.getDatastore().delete(candidature);
         }
     }
 

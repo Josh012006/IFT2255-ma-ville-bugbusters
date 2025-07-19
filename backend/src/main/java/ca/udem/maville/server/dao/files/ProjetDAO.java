@@ -40,7 +40,7 @@ public class ProjetDAO {
     public List<Projet> findPrestataireProjet(ObjectId userId){
         return MongoConfig.getDatastore()
                 .find(Project.class)
-                .filter(Filters.eq("prestataire.id", userId))
+                .filter(Filters.eq("prestataire", userId))
                 .iterator()
                 .toList();
     }
