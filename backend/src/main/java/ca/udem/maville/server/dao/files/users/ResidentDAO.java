@@ -23,9 +23,6 @@ public class ResidentDAO {
                 .first();
     }
 
-    // Todo: Une méthode findAll() qui renvoie une liste de tous les résidents dans la base de
-    //  données.
-
     /**
      * Récupère tous les résidents
      */
@@ -37,9 +34,6 @@ public class ResidentDAO {
     }
 
 
-    // Todo: Une méthode findToNotify(String quartier, String[] rues) qui renvoie tous les résidents
-    //  de la base de données qui ont le quartier présent dans leur liste de quartiers auxquels ils sont interessés
-    //  ou bien au moins l'une des rues présente dans leur liste de rues auxquelles ils sont abonnés.
 
      /**
      * Récupère les résidents à notifier par quartier ou rue
@@ -63,7 +57,6 @@ public class ResidentDAO {
                 .toList();
     }
 
-    // Todo: Une méthode save(Resident resident) qui permet de sauvegarder un résident dans la base de données.
 
     /**
      * Sauvegarde ou met à jour un résident
