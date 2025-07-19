@@ -1,20 +1,78 @@
 package ca.udem.maville.server.dao.files;
 
+import ca.udem.maville.server.dao.config.MongoConfig;
+import ca.udem.maville.server.models.Candidature;
+import dev.morphia.query.filters.Filters;
+import org.bson.types.ObjectId;
+
+import java.util.List;
+
+/**
+ * La classe CandidatureDAO qui représente la couche d'interactions
+ * à la base de données pour tout ce qui concerne les candidatures.
+ * Elle offre des méthodes statiques utilisées dans {@link ca.udem.maville.server.controllers.CandidatureController}
+ * et qui agissent sur les documents stockés tout en suivant le model
+ * {@link ca.udem.maville.server.models.Candidature}
+ */
 public class CandidatureDAO {
 
-    // Todo: Une méthode findAll() qui renvoie une liste de toutes les candidatures dans la base de données ayant
-    //  un statut "en attente".
+    /**
+     * Récupère toutes les candidatures dont le statut est "en attente".
+     * @return une liste des candidatures trouvées.
+     */
+    public static List<Candidature> findAll(){
+        return MongoConfig.getDatastore()
+                .find(Candidature.class)
+                .filter(Filters.eq("statut","en attente"))
+                .iterator()
+                .toList();
+    }
 
-    // Todo: Une méthode findById(ObjectId id) qui renvoie un élément de type model Candidature qui représente la
-    //  candidature de la base de données ayant l'id donné.
+    /**
+     * Récupère une candidature à partir de son id.
+     * @param id qui représente l'id de la candidature.
+     * @return un objet de type Candidature.
+     */
+    public static Candidature findById(ObjectId id){
+        return MongoConfig.getDatastore()
+                .find(Candidature.class)
+                .filter(Filters.eq("_id", id))
+                .first();
+    }
 
-    // Todo: Une méthode findPrestataireCandidatures(ObjectId userId) qui renvoie toutes candidatures du prestataire
-    //  avec id userId, c'est-à-dire dont le champ prestataire est userId.
+    /**
+     * Récupère toutes les candidatures soumises par un prestataire donné.
+     * @param userId qui représente l'id du prestataire.
+     * @return une liste des candidatures trouvées.
+     */
+    public static List<Candidature> findPrestataireCandidatures(ObjectId userId){
+        return MongoConfig.getDatastore()
+                .find(Candidature.class)
+                .filter(Filters.eq("prestataire", userId))
+                .iterator()
+                .toList();
+    }
 
-    // Todo: Une méthode save(Candidature candidature) qui enregistre la candidature dans la base de données. Elle ne
-    //  renvoie rien.
+    /**
+     * Sauvegarde ou met à jour une candidature.
+     * @param candidature qui est la candidature à sauvegarder.
+     */
+    public static void save(Candidature candidature){
+        MongoConfig.getDatastore().save(candidature);
+    }
 
-    // Todo: Une méthode delete(ObjectId id) qui supprime la candidature de la base de données ayant l'id donné. Elle
-    //  ne renvoie rien.
+     /**
+     * Supprime une candidature par son id.
+      * @param id qui est l'id de la candidature à supprimer.
+     */
+    public static void delete(ObjectId id){
+        Candidature candidature = findById(id);
+        if (candidature != null){
+            MongoConfig.getDatastore().delete(candidature);
+        }
+    }
+
+ 
+
 
 }
