@@ -46,6 +46,15 @@ public class Server {
         residentController = new ResidentController(urlHead, logger);
         prestataireController = new PrestataireController(urlHead, logger);
 
+        // Les fonctions d'initialisation de la base de données. A lancer une seule fois.
+        // Elle sont placées là juste pour marquer la trace qu'elles ont vraiment été implémentées.
+        // Puisque les données sont persistantes, elle ont déjà été lancées comme dit une seule fois
+        // lorsque nous avons fait la configuration.
+        // Cela peut aussi être facilement remarqué au niveau de l'interface graphique par la présence des entités.
+//        projetController.initializeProjetsFromAPI();
+//        residentController.initializeResidents();
+//        prestataireController.initializePrestataires();
+
         // Intitialisation du serveur sur le port
         app = Javalin.create(config -> {
             config.router.contextPath = "/api";

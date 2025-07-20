@@ -9,8 +9,7 @@ import io.javalin.json.JavalinJackson;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -149,8 +148,52 @@ public class ResidentController {
      * Cette fonction initialise la base de données avec les résidents.
      * Elle sera lancée une seule fois au premier test du serveur.
      */
-    private void initializeResidents() {
+    public void initializeResidents() {
         try {
+            ArrayList<String> abonnementsQuartier1 = new ArrayList<>();
+            abonnementsQuartier1.add("Ville-Marie");
+            ArrayList<String> abonnementsRue1 = new ArrayList<>();
+            abonnementsRue1.add("123 rue Ontario");
+            Resident resident1 = new Resident(new ObjectId(), "John Doe", "johndoe@example.com",
+                    abonnementsQuartier1, abonnementsRue1, "123 rue Ontario", "H2X 1Y4",
+                    "Ville-Marie", new GregorianCalendar(2003, Calendar.SEPTEMBER, 25).getTime());
+            ResidentDAO.save(resident1);
+
+            ArrayList<String> abonnementsQuartier2 = new ArrayList<>();
+            abonnementsQuartier2.add("Le Plateau-Mont-Royal");
+            ArrayList<String> abonnementsRue2 = new ArrayList<>();
+            abonnementsRue2.add("456 avenue du Mont-Royal");
+            Resident resident2 = new Resident(new ObjectId(), "Jane Smith", "janesmith@example.com",
+                    abonnementsQuartier2, abonnementsRue2, "456 avenue du Mont-Royal", "H2H 1J5",
+                    "Le Plateau-Mont-Royal", new GregorianCalendar(1995, Calendar.JUNE, 15).getTime());
+            ResidentDAO.save(resident2);
+
+            ArrayList<String> abonnementsQuartier3 = new ArrayList<>();
+            abonnementsQuartier3.add("Rosemont–La Petite-Patrie");
+            ArrayList<String> abonnementsRue3 = new ArrayList<>();
+            abonnementsRue3.add("789 rue Beaubien Est");
+            Resident resident3 = new Resident(new ObjectId(), "Carlos Méndez", "carlosm@example.com",
+                    abonnementsQuartier3, abonnementsRue3, "789 rue Beaubien Est", "H2S 2G1",
+                    "Rosemont–La Petite-Patrie", new GregorianCalendar(1988, Calendar.MARCH, 10).getTime());
+            ResidentDAO.save(resident3);
+
+            ArrayList<String> abonnementsQuartier4 = new ArrayList<>();
+            abonnementsQuartier4.add("Ville-Marie");
+            ArrayList<String> abonnementsRue4 = new ArrayList<>();
+            abonnementsRue4.add("456 rue Sainte-Catherine Est");
+            Resident resident4 = new Resident(new ObjectId(), "Élise Tremblay", "elise.tremblay@example.com",
+                    abonnementsQuartier4, abonnementsRue4, "456 rue Sainte-Catherine Est", "H2L 2C5",
+                    "Ville-Marie", new GregorianCalendar(1992, Calendar.JUNE, 12).getTime());
+            ResidentDAO.save(resident4);
+
+            ArrayList<String> abonnementsQuartier5 = new ArrayList<>();
+            abonnementsQuartier5.add("Plateau-Mont-Royal");
+            ArrayList<String> abonnementsRue5 = new ArrayList<>();
+            abonnementsRue5.add("789 avenue du Mont-Royal Est");
+            Resident resident5 = new Resident(new ObjectId(), "Mathieu Gagnon", "mathieu.gagnon@example.com",
+                    abonnementsQuartier5, abonnementsRue5, "789 avenue du Mont-Royal Est", "H2J 1X3",
+                    "Plateau-Mont-Royal", new GregorianCalendar(2000, Calendar.NOVEMBER, 5).getTime());
+            ResidentDAO.save(resident5);
 
         } catch (Exception e) {
             e.printStackTrace();

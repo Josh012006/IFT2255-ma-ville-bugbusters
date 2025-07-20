@@ -3,7 +3,9 @@ package ca.udem.maville.server.controllers;
 import ca.udem.maville.hooks.UseRequest;
 import ca.udem.maville.server.dao.files.ProjetDAO;
 import ca.udem.maville.server.models.Projet;
+import ca.udem.maville.utils.ControllerHelper;
 import ca.udem.maville.utils.RequestType;
+import ca.udem.maville.utils.TypesTravaux;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -13,10 +15,8 @@ import io.javalin.json.JavalinJackson;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.Instant;
+import java.util.*;
 
 
 /**
@@ -251,8 +251,61 @@ public class ProjetController {
      * Cette fonction initialise la base de données avec les projets de travaux venant de l'API de Montréal.
      * Elle sera lancée une seule fois au premier test du serveur.
      */
-    private void initializeProjetsFromAPI() {
+    public void initializeProjetsFromAPI() {
         try {
+            String publicApi = "https://donnees.montreal.ca/api/3/action/datastore_search?resource_id=cc41b532-f12d-40fb-9f55-eb58c9a2b12b";
+            String apiResponse = UseRequest.sendRequest(publicApi, RequestType.GET, null);
+
+            ObjectMapper mapper = JavalinJackson.defaultMapper();
+            JsonNode json = mapper.readTree(apiResponse);
+
+            JsonNode data = json.get("data");
+
+            if(json.get("status").asInt() != 200) {
+                throw new Exception(mapper.writeValueAsString(data));
+            }
+
+            for(JsonNode element : data) {
+                try {
+                    ObjectId id = new ObjectId(element.get("id").asText());
+                    String quartier = element.get("boroughid").asText();
+
+                    Date dateDebut = ControllerHelper.fromIsoString(element.get("duration_start_date").asText());
+                    Date dateFin = ControllerHelper.fromIsoString(element.get("duration_end_date").asText());
+
+                    String nomPrestataire = element.get("organizationname").asText();
+                    ObjectId prestataire = new ObjectId();
+
+                    ObjectId ficheProbleme = new ObjectId();
+
+                    List<String> ruesAffectees = new ArrayList<>();
+                    ruesAffectees.add(element.get("occupancy_name").asText());
+
+                    String typeTravaux = ControllerHelper.getTypeTravail(element.get("reason_category").asText(), TypesTravaux.values());
+
+                    // Générer le coût de manière aléatoire entre 2 000 000 $  et 9 700 000 $
+                    double randomDouble = ControllerHelper.getRandomUniformDouble(2, 9.7);
+                    double cout = (int) ((Math.round(randomDouble * 100.0) / 100.0) * 1000000); // Prix final
+
+                    String titreProjet = "Projet de type " + typeTravaux + " offert par " + nomPrestataire;
+                    String description = "Ce projet devrait affecter les rues " + ruesAffectees.getFirst() +
+                            ". Mais pas d'inquiétude, ils ont pour but d'améliorer votre expérience de vie. " +
+                            "Merci de votre confiance!";
+
+                    String[] priorites = {"faible", "moyenne", "élevée"};
+                    String priorite = priorites[ControllerHelper.getRandomUniformInt(0, priorites.length)];
+
+                    Projet projet = new Projet(id, titreProjet, ruesAffectees, description, typeTravaux, dateDebut,
+                            dateFin, ficheProbleme, prestataire, nomPrestataire, quartier, cout, priorite);
+
+                    ProjetDAO.save(projet);
+
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+
 
         } catch (Exception e) {
             e.printStackTrace();

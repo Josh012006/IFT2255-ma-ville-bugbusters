@@ -145,8 +145,62 @@ public class PrestataireController {
      * Cette fonction initialise la base de données avec les prestataires.
      * Elle sera lancée une seule fois au premier test du serveur.
      */
-    private void initializePrestataires() {
+    public void initializePrestataires() {
         try {
+            ArrayList<String> abonnementsQuartier1 = new ArrayList<>(List.of("Ville-Marie", "Rosemont–La Petite-Patrie"));
+            ArrayList<String> abonnementsType1 = new ArrayList<>(List.of("Travaux Routiers", "Travaux Souterrains"));
+            Prestataire prestataire1 = new Prestataire(
+                    new ObjectId(), "Groupe InfraTech", "infratech@groupe.com",
+                    abonnementsQuartier1, "NEQ12345678",
+                    new ArrayList<>(List.of("Ville-Marie", "Rosemont–La Petite-Patrie")),
+                    new ArrayList<>(List.of("Travaux Routiers", "Travaux Souterrains")),
+                    abonnementsType1
+            );
+            PrestataireDAO.save(prestataire1);
+
+            ArrayList<String> abonnementsQuartier2 = new ArrayList<>(List.of("Ville-Marie", "Verdun"));
+            ArrayList<String> abonnementsType2 = new ArrayList<>(List.of("Travaux Routiers", "Travaux Résidentiel"));
+            Prestataire prestataire2 = new Prestataire(
+                    new ObjectId(), "Reno-Montréal", "contact@reno-mtl.ca",
+                    abonnementsQuartier2, "NEQ22334455",
+                    new ArrayList<>(List.of("Ville-Marie", "Verdun")),
+                    new ArrayList<>(List.of("Travaux Routiers", "Travaux Résidentiel")),
+                    abonnementsType2
+            );
+            PrestataireDAO.save(prestataire2);
+
+            ArrayList<String> abonnementsQuartier3 = new ArrayList<>(List.of("Le Plateau-Mont-Royal", "Verdun"));
+            ArrayList<String> abonnementsType3 = new ArrayList<>(List.of("Entretien Paysager", "Travaux Résidentiel"));
+            Prestataire prestataire3 = new Prestataire(
+                    new ObjectId(), "ÉcoJardin Montréal", "services@ecojardin.ca",
+                    abonnementsQuartier3, "NEQ99887766",
+                    new ArrayList<>(List.of("Le Plateau-Mont-Royal", "Verdun")),
+                    new ArrayList<>(List.of("Entretien Paysager", "Travaux Résidentiel")),
+                    abonnementsType3
+            );
+            PrestataireDAO.save(prestataire3);
+
+            ArrayList<String> abonnementsQuartier4 = new ArrayList<>(List.of("Le Plateau-Mont-Royal", "Ahuntsic–Cartierville"));
+            ArrayList<String> abonnementsType4 = new ArrayList<>(List.of("Travaux De Signalisation Et Eclairage", "Travaux Souterrains"));
+            Prestataire prestataire4 = new Prestataire(
+                    new ObjectId(), "SignalPro Inc.", "admin@signalpro.ca",
+                    abonnementsQuartier4, "NEQ77665544",
+                    new ArrayList<>(List.of("Le Plateau-Mont-Royal", "Ahuntsic–Cartierville")),
+                    new ArrayList<>(List.of("Travaux De Signalisation Et Eclairage", "Travaux Souterrains")),
+                    abonnementsType4
+            );
+            PrestataireDAO.save(prestataire4);
+
+            ArrayList<String> abonnementsQuartier5 = new ArrayList<>(List.of("LaSalle", "Ville-Marie"));
+            ArrayList<String> abonnementsType5 = new ArrayList<>(List.of("Entretien Urbain", "Travaux Résidentiel"));
+            Prestataire prestataire5 = new Prestataire(
+                    new ObjectId(), "Services Urbains Inc.", "contact@servicesurbains.com",
+                    abonnementsQuartier5, "NEQ3344556677",
+                    new ArrayList<>(List.of("LaSalle", "Ville-Marie")),
+                    new ArrayList<>(List.of("Entretien Urbain", "Travaux Résidentiel")),
+                    abonnementsType5
+            );
+            PrestataireDAO.save(prestataire5);
 
         } catch (Exception e) {
             e.printStackTrace();

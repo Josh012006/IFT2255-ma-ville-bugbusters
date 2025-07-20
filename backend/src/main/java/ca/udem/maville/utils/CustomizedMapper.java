@@ -8,6 +8,11 @@ import org.bson.types.ObjectId;
 
 import java.io.IOException;
 
+/**
+ * Un mapper customisé pour le serveur Javalin pour
+ * parser correctement les informations recues du client
+ * surtout par rapport à la conversion entre String et ObjectId.
+ */
 public class CustomizedMapper {
 
     // Deserializer : JSON → ObjectId
