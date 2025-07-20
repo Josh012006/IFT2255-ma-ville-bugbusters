@@ -38,10 +38,10 @@ public class ResidentController {
      */
     public void getConcerned(Context ctx) {
         try {
-            String quartier = ctx.pathParam("quartier");
-            String rues = ctx.pathParam("rues");
+            String quartier = ctx.queryParam("quartier");
+            String rues = ctx.queryParam("rues");
 
-            if(quartier.isEmpty() || rues.isEmpty()) {
+            if(quartier == null || rues == null || quartier.isEmpty() || rues.isEmpty()) {
                 ctx.status(400).result("{\"message\": \"Les query parameters quartier et rues sont requis.\"}").contentType("application/json");
                 return;
             }
@@ -106,7 +106,7 @@ public class ResidentController {
      * d'un résident, connaissant son id.
      * Le body doit contenir les champs à modifier avec la nouvelle information.
      * Assurez vous que la nouvelle information a le bon type.
-     * Elle remplace complètement les tableaux de la base de donénes par ceux envoyés.
+     * NB: Elle remplace complètement les champs tableaux de la base de données par ceux envoyés.
      * @param ctx qui représente le contexte de la requête.
      */
     public void patch(Context ctx) {

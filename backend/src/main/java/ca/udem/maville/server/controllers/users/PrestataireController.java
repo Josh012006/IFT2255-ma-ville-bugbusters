@@ -36,10 +36,10 @@ public class PrestataireController {
      */
     public void getConcerned(Context ctx) {
         try {
-            String quartier = ctx.pathParam("quartier");
-            String type = ctx.pathParam("type");
+            String quartier = ctx.queryParam("quartier");
+            String type = ctx.queryParam("type");
 
-            if(quartier.isEmpty() || type.isEmpty()) {
+            if(quartier == null || type == null || quartier.isEmpty() || type.isEmpty()) {
                 ctx.status(400).result("{\"message\": \"Les query parameters quartier et type sont requis.\"}").contentType("application/json");
                 return;
             }
@@ -102,7 +102,7 @@ public class PrestataireController {
      * d'un prestataire, connaissant son id.
      * Le body doit contenir les champs à modifier avec la nouvelle information.
      * Assurez vous que la nouvelle information a le bon type.
-     * Elle remplace complètement les tableaux de la base de donénes par ceux envoyés.
+     * NB: Elle remplace complètement les champs tableaux de la base de données par ceux envoyés.
      * @param ctx qui représente le contexte de la requête.
      */
     public void patch(Context ctx) {

@@ -32,7 +32,8 @@ public class Projet {
     private List<String> ruesAffectees;
 
     /**
-     * Liste des abonnés (utilisateurs intéressés par les mises à jour) pour ce projet.
+     * Liste des abonnés qui représente en réalité tout ceux ayant signalé le problème. C'est nécessaire
+     * au cas où le résident a signalé mais n'est pas abonné au quartier ou à la rue.
      */
     private List<ObjectId> abonnes = new ArrayList<>();
 
@@ -99,9 +100,9 @@ public class Projet {
     private String priorite;
 
     /**
-     * Nombre de rapports (retours ou problèmes) liés à ce projet.
+     * Nombre de rapports liés à ce projet.
      */
-    private int nbRapports;
+    private int nbRapports = 0;
 
     /**
      * Date de création du projet, sérialisée au format ISO 8601.

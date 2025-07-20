@@ -12,6 +12,7 @@ import io.javalin.json.JavalinJackson;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -106,7 +107,7 @@ public class ProblemController {
                 String body = "{" +
                         "\"message\": \"Une nouvelle fiche problème qui pourrait vous intéresser a été créée.\"," +
                         "\"user\": \"" + id + "\"," +
-                        "\"url\": \"/problemes/" + newProblem.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
+                        "\"url\": \"/probleme/" + newProblem.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
                         "}";
                 String response1 = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 
@@ -199,6 +200,35 @@ public class ProblemController {
             }
 
             ctx.status(200).json(probleme).contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
+    /**
+     * Cette route permet de récupérer les id de tous ceux qui ont déclarés le problème.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void getReporters(Context ctx) {
+        try {
+            String id = ctx.pathParam("id");
+
+            FicheProbleme problem = ProblemDAO.findById(new ObjectId(id));
+
+            if(problem == null) {
+                ctx.status(404).result("{\"message\": \"Aucune fiche problème avec un tel ID trouvée.\"}").contentType("application/json");
+                return;
+            }
+
+            List<ObjectId> reporters = problem.getResidents();
+            List<String> reportersIds = new ArrayList<>();
+
+            for(ObjectId userId : reporters) {
+                reportersIds.add(userId.toHexString());
+            }
+
+            ctx.status(200).json(reportersIds).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");

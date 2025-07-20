@@ -146,6 +146,7 @@ public class CandidatureController {
      * Le body doit contenir les champs à modifier avec la nouvelle information.
      * Assurez vous que la nouvelle information a le bon type.
      * La modification n'est possible que si la candidature n'a pas encore été vue ou traitée.
+     * NB: Elle remplace complètement les champs tableaux de la base de données par ceux envoyés.
      * @param ctx qui représente le contexte de la requête.
      */
     public void patch(Context ctx) {
@@ -155,6 +156,11 @@ public class CandidatureController {
             // On réalise une vérification supplémentaire pour s'assurer que la candidature
             // n'est pas déjà traitée.
             Candidature candidature = CandidatureDAO.findById(new ObjectId(id));
+
+            if(candidature == null) {
+                ctx.status(404).result("{\"message\": \"Aucune candidature avec un tel ID trouvée.\"}").contentType("application/json");
+                return;
+            }
 
             if(!candidature.getStatut().equals("en attente")) {
                 ctx.status(403).result("{\"message\": \"Cette candidature a déjà été vue. Vous ne pouvez pas la modifier.\"}").contentType("application/json");

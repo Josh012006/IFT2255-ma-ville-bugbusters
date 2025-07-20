@@ -137,6 +137,9 @@ public class Server {
                     path("/addExisting/{id}", () -> {
                         patch(problemController::addExisting);
                     });
+                    path("/getReporters/{id}", () -> {
+                        get(problemController::getReporters);
+                    });
                     path("/markAsProcessed/{id}", () -> {
                         patch(problemController::markAsProcessed);
                     });
@@ -149,6 +152,8 @@ public class Server {
                     path("/getByPrestataire/{user}", () -> {
                         get(projetController::getByPrestataire);
                     });
+                    // Il nécessite un query parameter candidature
+                    // qui représente l'id de la candidature qui a conduit au projet.
                     post(projetController::create);
                     path("/{id}", () -> {
                         get(projetController::getById);
