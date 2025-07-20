@@ -4,7 +4,9 @@ import ca.udem.maville.server.controllers.*;
 import ca.udem.maville.server.controllers.users.NotificationController;
 import ca.udem.maville.server.controllers.users.PrestataireController;
 import ca.udem.maville.server.controllers.users.ResidentController;
+import ca.udem.maville.utils.CustomizedMapper;
 import io.javalin.Javalin;
+import io.javalin.json.JavalinJackson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,16 +46,33 @@ public class Server {
         residentController = new ResidentController(urlHead, logger);
         prestataireController = new PrestataireController(urlHead, logger);
 
+        // Les fonctions d'initialisation de la base de données. A lancer une seule fois.
+        // Elle sont placées là juste pour marquer la trace qu'elles ont vraiment été implémentées.
+        // Puisque les données sont persistantes, elle ont déjà été lancées comme dit une seule fois
+        // lorsque nous avons fait la configuration.
+        // Cela peut aussi être facilement remarqué au niveau de l'interface graphique par la présence des entités.
+//        projetController.initializeProjetsFromAPI();
+//        residentController.initializeResidents();
+//        prestataireController.initializePrestataires();
+
         // Intitialisation du serveur sur le port
         app = Javalin.create(config -> {
             config.router.contextPath = "/api";
+
+            // Configurer le mapper pour ne pas avoir de problème pour passer automatiquement
+            // de ObjectId à String et vice-versa.
+            config.jsonMapper(
+                new JavalinJackson()
+                        .updateMapper(mapper -> {
+                            mapper.registerModule(new CustomizedMapper.MongoModule());
+                        })
+            );
 
             // Ajout des controllers
             // Pour chacun, voir la JavaDoc au dessus de la fonction dans
             // la définition du controller pour voir les éléments requis.
             config.router.apiBuilder(() -> {
 
-                // Todo: Corriger les routes et les fonctions des controllers
                 path("/notification", () -> {
                     path("/getAll/{user}", () -> {
                         get(notificationController::getAll);
@@ -104,6 +123,15 @@ public class Server {
                         patch(candidatureController::patch);
                         delete(candidatureController::delete);
                     });
+                    path("/markAsSeen/{id}", () -> {
+                        patch(candidatureController::markAsSeen);
+                    });
+                    path("/markAsAccepted/{id}", () -> {
+                        patch(candidatureController::markAsAccepted);
+                    });
+                    path("/markAsRejected/{id}", () -> {
+                        patch(candidatureController::markAsRejected);
+                    });
                 });
 
                 path("/probleme", () -> {
@@ -114,8 +142,14 @@ public class Server {
                     path("/{id}", () -> {
                         get(problemController::getById);
                     });
-                    path("/addResident/{id}", () -> {
-                        patch(problemController::addResident);
+                    path("/addExisting/{id}", () -> {
+                        patch(problemController::addExisting);
+                    });
+                    path("/getReporters/{id}", () -> {
+                        get(problemController::getReporters);
+                    });
+                    path("/markAsProcessed/{id}", () -> {
+                        patch(problemController::markAsProcessed);
                     });
                 });
 
@@ -126,6 +160,8 @@ public class Server {
                     path("/getByPrestataire/{user}", () -> {
                         get(projetController::getByPrestataire);
                     });
+                    // Il nécessite un query parameter candidature
+                    // qui représente l'id de la candidature qui a conduit au projet.
                     post(projetController::create);
                     path("/{id}", () -> {
                         get(projetController::getById);
@@ -144,6 +180,13 @@ public class Server {
                     path("/{id}", () -> {
                         get(signalementController::getById);
                         patch(signalementController::patch);
+                        delete(signalementController::delete);
+                    });
+                    path("/markAsSeen/{id}", () -> {
+                        patch(signalementController::markAsSeen);
+                    });
+                    path("/markAsProcessed/{id}", () -> {
+                        patch(signalementController::markAsProcessed);
                     });
                 });
 

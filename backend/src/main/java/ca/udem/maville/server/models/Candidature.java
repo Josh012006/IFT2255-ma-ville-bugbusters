@@ -28,9 +28,9 @@ public class Candidature {
     private ObjectId id;
 
     /**
-     * Statut actuel de la candidature (ex. : "en attente", "acceptée", "rejetée").
+     * Statut actuel de la candidature : "en attente" | "vue" | "acceptée" | "refusée".
      */
-    private String statut;
+    private String statut = "en attente";
 
     /**
      * Identifiant du prestataire associé à cette candidature.

@@ -16,26 +16,26 @@ import org.bson.types.ObjectId;
 public class Notification {
 
     /**
-     * Identifiant unique de la notification
+     * Identifiant unique de la notification.
      */
     @Id
     private ObjectId id;
 
     /**
-     * Identifiant MongoDB de l'utilisateur concerné
+     * Identifiant MongoDB de l'utilisateur concerné.
      */
     private ObjectId user;
     /**
-     * Le message de la notifiaction
+     * Le message de la notifiaction.
      */
     private String message;
     /**
-     * Le statut de la notification : lue ou non lue
+     * Le statut de la notification : "lue" | "non lue".
      */
-    private String statut;
+    private String statut = "non lue";
     /**
-     * Une url au cas où il y a un besoin de redirection
-     * vers une autre page côté client
+     * Une url au cas où il y a un besoin de redirection.
+     * vers une autre page côté client.
      */
     private String url;
 
@@ -76,7 +76,7 @@ public class Notification {
      *
      * @param message Le message de la notification.
      * @param user L’ObjectId de l’utilisateur recevant la notification.
-     * @param url Url optionnel à inclure pour une redirection vers une page spécifique côté client
+     * @param url Url optionnel à inclure pour une redirection vers une page spécifique côté client.
      */
     public Notification(String message, ObjectId user, String url) {
         this.user = user;

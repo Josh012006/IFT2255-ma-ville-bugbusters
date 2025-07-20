@@ -29,7 +29,7 @@ public class FicheProbleme {
     private ObjectId id;
 
     /**
-     * Type de travaux requis (ex. : réparation, construction).
+     * Type de travaux requis.
      */
     private String typeTravaux;
 
@@ -49,7 +49,7 @@ public class FicheProbleme {
     private String description;
 
     /**
-     * Niveau de priorité du problème (ex. : faible, moyen, élevé).
+     * Niveau de priorité du problème : "faible" | "moyenne" | "élevée".
      */
     private String priorite;
 
@@ -59,9 +59,9 @@ public class FicheProbleme {
     private List<ObjectId> signalements = new ArrayList<>();
 
     /**
-     * Statut actuel de la fiche de problème (ex. : en attente, résolu).
+     * Statut actuel de la fiche de problème : "en attente" | "traitée".
      */
-    private String statut;
+    private String statut = "en attente";
 
     /**
      * Liste des identifiants des résidents concernés par ce problème.

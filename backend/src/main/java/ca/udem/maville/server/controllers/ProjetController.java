@@ -1,18 +1,28 @@
 package ca.udem.maville.server.controllers;
 
 import ca.udem.maville.hooks.UseRequest;
+import ca.udem.maville.server.dao.files.ProjetDAO;
+import ca.udem.maville.server.models.Projet;
 import ca.udem.maville.utils.ControllerHelper;
-import ca.udem.maville.utils.DateManagement;
 import ca.udem.maville.utils.RequestType;
-import ca.udem.maville.utils.UniqueID;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import ca.udem.maville.utils.TypesTravaux;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import io.javalin.http.Context;
 
+import io.javalin.json.JavalinJackson;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 
+import java.time.Instant;
+import java.util.*;
+
+
+/**
+ * La controller qui gère les différentes interactions du client avec le serveur
+ * en tout ce qui concerne les projets.
+ */
 public class ProjetController {
 
     public String urlHead;
@@ -26,18 +36,14 @@ public class ProjetController {
 
     /**
      * Cette route permet de récupérer tous les travaux prévus.
-     * @param ctx qui représente le contexte de la requête
+     * @param ctx qui représente le contexte de la requête.
      */
     public void getAll(Context ctx) {
         try {
-            JsonArray allProjects = new JsonArray();
-            for(String strProject: database.projets.values()) {
-                allProjects.add(JsonParser.parseString(strProject).getAsJsonObject());
-            }
+            List<Projet> projets = ProjetDAO.findAll();
 
             // Envoyer le message de succès
-            ctx.status(200).json(allProjects).contentType("application/json");
-
+            ctx.status(200).json(projets).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
@@ -51,19 +57,12 @@ public class ProjetController {
      */
     public void getByPrestataire(Context ctx) {
         try {
-
             String idUser = ctx.pathParam("user");
 
-            JsonArray presProjects = new JsonArray();
-            for(String strProject: database.projets.values()) {
-                JsonObject myProject = JsonParser.parseString(strProject).getAsJsonObject();
-                if(myProject.get("prestataire").getAsString().equals(idUser)) {
-                    presProjects.add(myProject);
-                }
-            }
+            List<Projet> presProjets = ProjetDAO.findPrestataireProjet(new ObjectId(idUser));
 
             // Envoyer le message de succès
-            ctx.status(200).json(presProjects).contentType("application/json");
+            ctx.status(200).json(presProjets).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
@@ -79,105 +78,67 @@ public class ProjetController {
      * - quartier: qui représente le quartier affecté par les travaux
      * - titreProjet: qui est le titre du projet
      * - description: La description du projet
-     * - typeTravaux: qui représente le type travail à réaliser sous forme Label
+     * - typeTravaux: qui représente le type travail à réaliser
      * - cout: Le cout du projet
+     * - priorite: qui est la priorité attribuée au projet.
      * - dateDebut: qui doit être sous format ISO
      * - dateFin: qui doit être sous format ISO
-     * - ruesAffectees: Les rues affectées par les travaux sous forme de String
-     * - abonnes: Qui représente tous les résidents abonnés au projet
-     * Elle s'occupe automatiquement d'assigner les champs id et statut
-     * Elle inclut l'envoi des notifications aux résidents ayant signalé le problème et au
+     * - ruesAffectees: Les rues affectées par les travaux
+     * Elle nécessite un query parameter candidature qui représente l'id de la candidature pour pouvoir la marquer
+     * comme acceptée et envoyer la notification au prestataire.
+     * Elle s'occupe automatiquement d'assigner les champs id et statut.
+     * Elle inclut l'envoi des notifications aux résidents ayant signalé le problème, à ceux s'étant abonnés et au
      * prestataire ayant proposé la candidature.
      * @param ctx qui représente le contexte de la requête.
      */
     public void create(Context ctx) {
         try {
 
-            // Récupérer les informations et ajouter le statut et l'id unique
-            String rawJson = ctx.body();
+            String candidature = ctx.queryParam("candidature");
 
-            JsonElement element = JsonParser.parseString(rawJson);
-
-            // Vérifie si c'est bien un objet
-            if (!element.isJsonObject()) {
-                ctx.status(400).result("{\"message\": \"Format JSON invalide.\"}").contentType("application/json");
+            if(candidature == null || candidature.isEmpty()) {
+                ctx.status(400).result("{\"message\": \"Les query parameter candidature est requis.\"}").contentType("application/json");
                 return;
             }
 
-            // Modifier l'objet pour ajouter un id et toute information nécessaire
-            JsonObject newProject = element.getAsJsonObject();
+            // Récupérer les informations sur le nouveau projet.
+            Projet newProjet = ctx.bodyAsClass(Projet.class);
 
-            String id = UniqueID.generateUniqueID();
+            // Récupérer tous les abonnés pour les ajouter à la liste des abonnes.
+            ObjectMapper mapper = JavalinJackson.defaultMapper();
 
-            newProject.addProperty("id", id);
-            newProject.addProperty("statut", "enCours");
+            String response = UseRequest.sendRequest(urlHead + "/probleme/getReporters/" + newProjet.getFicheProbleme().toHexString(), RequestType.GET, null);
+            JsonNode json = mapper.readTree(response);
 
-            // Ajouter le nouveau projet à la base de données
-            database.projets.put(id, newProject.toString());
-
-            // Marquer la fiche comme traitée
-            String responsePatch = UseRequest.sendRequest(this.urlHead + "/probleme/" + newProject.get("ficheProbleme").getAsString() + "?replace=false",
-                    RequestType.PATCH, "{\"statut\": \"traité\"}");
-
-            if(responsePatch == null) {
-                throw new Exception("Une erreur est survenue lors du changement de statut de la fiche problème. Réponse nulle.");
+            if(json.get("status").asInt() != 200) {
+                throw new Exception(json.get("message").asText());
             }
 
-            JsonElement jsonPatch = JsonParser.parseString(responsePatch);
-            JsonObject jsonObjectPatch = jsonPatch.getAsJsonObject();
+            JsonNode data = json.get("data");
 
-            int statusCodePatch = jsonObjectPatch.get("status").getAsInt();
-            if (statusCodePatch != 200) {
-                throw  new Exception("Une erreur est survenue lors changement de statut de la fiche problème signalement. Message d'erreur: " + jsonObjectPatch.get("data").getAsJsonObject().get("message").getAsString());
+            if(!data.isArray()) {
+                throw new Exception("Reporters n'est pas un tableau.");
             }
 
-
-            // Envoyer une requête afin de créer une notification pour le prestataire concerné
-            String responsePrestataire = UseRequest.sendRequest(this.urlHead + "/notification/" + newProject.get("prestataire").getAsString() + "?userType=prestataire",
-                    RequestType.POST, "{\"message\": \"Votre candidature pour projet " + newProject.get("titreProjet").getAsString() + " a été acceptée. Veuillez consulter" +
-                            " votre liste des projets pour plus d'informations.\"}");
-
-            if(responsePrestataire == null) {
-                throw new Exception("Une erreur est survenue lors de la création de la notification de création de projet pour le prestataire. Réponse nulle.");
+            List<ObjectId> abonnes = new ArrayList<>();
+            for(JsonNode reporter : data) {
+                abonnes.add(new ObjectId(reporter.get("id").asText()));
             }
+            newProjet.setAbonnes(abonnes);
 
-            JsonElement jsonPrestataire = JsonParser.parseString(responsePrestataire);
-            JsonObject jsonObjectPrestataire = jsonPrestataire.getAsJsonObject();
+            // Envoyer une notification à tout ceux qui sont concernés
+            this.notifyConcerned(newProjet);
 
-            int statusCodePrestataire = jsonObjectPrestataire.get("status").getAsInt();
-            if (statusCodePrestataire != 201) {
-                throw new Exception("Une erreur est survenue lors de la création de la notification de création de projet pour le prestataire. Message d'erreur: " + jsonObjectPrestataire.get("data").getAsJsonObject().get("message").getAsString());
-            }
-
-
-            // Faire une boucle et envoyer une notification à chacun des abonnés. On ne se préoccupe pas
-            // que ça marche pour tout le monde.
-
-            String bodyResidentsNotif = "{\"message\": \"De nouveaux travaux sont prévus dans votre quartier entre le " + DateManagement.formatIsoDate(newProject.get("dateDebut").getAsString()) + " et le " +
-                    DateManagement.formatIsoDate(newProject.get("dateFin").getAsString()) + ". Les rues affectées sont les suivantes: " + newProject.get("ruesAffectees").getAsString() + ". Merci de nous faire confiance.\"}";
-
-            for(JsonElement personElement : newProject.get("abonnes").getAsJsonArray()) {
-                String person = personElement.getAsString();
-                String resIndividual = UseRequest.sendRequest(this.urlHead + "/notification/" + person + "?userType=resident",
-                        RequestType.POST, bodyResidentsNotif);
-
-                if(resIndividual == null) {
-                    logger.info("Une erreur est survenue lors de l'envoi de la notification à chaque résidents pour les avertir du projet. Réponse nulle.");
-                    continue;
-                }
-
-                JsonElement jsonIndividual = JsonParser.parseString(resIndividual);
-                JsonObject jsonObjectIndividual = jsonIndividual.getAsJsonObject();
-
-                int statusCodeIndividual = jsonObjectIndividual.get("status").getAsInt();
-                if (statusCodeIndividual != 201) {
-                    logger.info("Une erreur est survenue lors de l'envoi de la notification au résident pour l'avertir du projet. Message d'erreur: " + jsonObjectIndividual.get("data").getAsJsonObject().get("message").getAsString());
-                }
-
+            // Marquer la candidature comme acceptée. Cela inclut l'envoi de la notification au prestataire.
+            String response3 = UseRequest.sendRequest(urlHead + "/candidature/markAsAccepted/" + candidature, RequestType.PATCH, null);
+            JsonNode json3 = mapper.readTree(response3);
+            JsonNode data3 = json3.get("data");
+            if(json3.get("status").asInt() != 200) {
+                throw new Exception(data3.get("message").asText());
             }
 
             // Renvoyer le projet pour marquer le succès
-            ctx.status(201).json(newProject).contentType("application/json");
+            ctx.status(201).json(newProjet).contentType("application/json");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -186,24 +147,17 @@ public class ProjetController {
     }
 
     /**
-     * Cette route permet de récupérer un projet en particulier
-     * grâce à son id.
+     * Cette route permet de récupérer un projet en particulier grâce à son id.
      * @param ctx représente le contexte de la requête.
      */
-    public void get(Context ctx) {
+    public void getById(Context ctx) {
         try {
             String id = ctx.pathParam("id");
-            String strProjet = database.projets.get(id);
 
-            if (strProjet == null) {
-                ctx.status(404).result("{\"message\": \"Projet non retrouvé.\"}").contentType("application/json");
-                return;
-            }
-
-            JsonObject jsonProjet = JsonParser.parseString(strProjet).getAsJsonObject();
+            Projet projet = ProjetDAO.findById(new ObjectId(id));
 
             // Renvoyer le projet
-            ctx.status(200).json(jsonProjet).contentType("application/json");
+            ctx.status(200).json(projet).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
@@ -215,62 +169,29 @@ public class ProjetController {
      * d'un projet, connaissant son id.
      * Le body doit contenir les champs à modifier avec la nouvelle information.
      * Assurez vous que la nouvelle information a le bon type.
-     * Elle nécessite également un queryParameter replace = true | false qui est utile pour les tableaux
-     * notamment pour savoir s'il faut juste ajouter les éléments ou remplacer le tableau en entier.
+     * NB: Elle remplace complètement les champs tableaux de la base de données par ceux envoyés.
      * @param ctx qui représente le contexte de la requête.
      */
     public void patch(Context ctx) {
         try {
             String id = ctx.pathParam("id");
-            boolean replace = Boolean.parseBoolean(ctx.queryParam("replace"));
 
-            JsonObject updates = JsonParser.parseString(ctx.body()).getAsJsonObject();
-            String strProjet = database.projets.get(id);
-            if(strProjet == null) {
-                ctx.status(404).result("{\"message\": \"Projet non retrouvé.\"}").contentType("application/json");
+            // On vérifie que le projet existe vraiment.
+            Projet projet = ProjetDAO.findById(new ObjectId(id));
+
+            if(projet == null) {
+                ctx.status(404).result("{\"message\": \"Aucun projet avec un tel ID trouvée.\"}").contentType("application/json");
                 return;
             }
 
-            JsonObject projet = JsonParser.parseString(strProjet).getAsJsonObject();
+            Projet modifiedProjet = ctx.bodyAsClass(Projet.class);
 
-            // Appeler la logique de patch
-            boolean ok = ControllerHelper.patchLogic(updates, replace, projet, ctx);
+            ProjetDAO.save(modifiedProjet);
 
-            if(!ok) {
-                return;
-            }
+            // Envoyer une notification à tout ceux qui sont abonnées au quartier ou aux rues
+            this.notifyConcerned(modifiedProjet);
 
-            // Message de succès
-            database.projets.put(id, projet.toString());
-
-            // Faire une boucle et envoyer une notification à chacun des abonnés. On ne se préoccupe pas
-            // que ça marche pour tout le monde.
-
-            String bodyResidentsNotif = "{\"message\": \"Le projet " + projet.get("titreProjet").getAsString() + " a été modifié. Veuillez voir la liste des projets pour plus d'informations.\"}";
-
-            for(JsonElement personElement : projet.get("abonnes").getAsJsonArray()) {
-                String person = personElement.getAsString();
-                String resIndividual = UseRequest.sendRequest(this.urlHead + "/notification/" + person + "?userType=resident",
-                        RequestType.POST, bodyResidentsNotif);
-
-                if(resIndividual == null) {
-                    logger.info("Une erreur est survenue lors de l'envoi de la notification à chaque résidents pour les avertir des modifications au projet. Réponse nulle.");
-                    continue;
-                }
-
-                JsonElement jsonIndividual = JsonParser.parseString(resIndividual);
-                JsonObject jsonObjectIndividual = jsonIndividual.getAsJsonObject();
-
-                int statusCodeIndividual = jsonObjectIndividual.get("status").getAsInt();
-                if (statusCodeIndividual != 201) {
-                    logger.info("Une erreur est survenue lors de l'envoi de la notification au résident pour l'avertir des modifications au projet. Message d'erreur: " + jsonObjectIndividual.get("data").getAsJsonObject().get("message").getAsString());
-                }
-
-            }
-
-
-            ctx.status(200).json(projet).contentType("application/json");
-
+            ctx.status(200).json(modifiedProjet).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
@@ -278,133 +199,116 @@ public class ProjetController {
     }
 
     /**
-     * Cette route permet de remplacer complètement un projet existant
-     * par un autre avec de nouvelles informations, connaissant son id.
-     * Le body doit contenir le nouveau projet avec tous les champs présents et ayant le bon type Json.
-     * Je précise que l'objet envoyé en body doit vraiment tout contenir. Contrairement à la fonction
-     * {@link #create(Context)}, cette fonction ne génère aucune information automatiquement.
-     * @param ctx qui représente le contexte de la requête.
+     * Cette fonction regroupe la logique d'envoi de notifications aux personnes intéressées, concernées ou abonnées au projet.
+     * @throws Exception quand l'information reçue n'a pas le bon format.
      */
-    public void update(Context ctx) {
-        try {
-            String id = ctx.pathParam("id");
+    private void notifyConcerned(Projet projet) throws Exception {
+        ObjectMapper mapper = JavalinJackson.defaultMapper();
 
-            String strProjet = database.projets.get(id);
+        // Envoyer des notifications à tous les abonnés (qui sont ici en réalité ceux ayant signalés) et aussi à ceux intéressés
+        Set<String> toSend = new HashSet<>();
+        for(ObjectId abonne : projet.getAbonnes()) {
+            toSend.add(abonne.toHexString());
+        }
 
-            if (strProjet == null) {
-                ctx.status(404).result("{\"message\": \"Projet non retrouvé.\"}").contentType("application/json");
-                return;
+        String quartier = projet.getQuartier();
+        List<String> ruesAffectees = projet.getRuesAffectees();
+        String rues = String.join(",", ruesAffectees);
+
+        String response1 = UseRequest.sendRequest(urlHead + "/resident/getConcerned?quartier=" + quartier + "&rues=" + rues, RequestType.GET, null);
+        JsonNode json1 = mapper.readTree(response1);
+        JsonNode data1 = json1.get("data");
+        if(json1.get("status").asInt() != 200) {
+            throw new Exception(data1.get("message").asText());
+        }
+
+        if(!data1.isArray()) {
+            throw new Exception("Les résidents intéressés n'est pas un tableau.");
+        }
+
+        for(JsonNode element : data1) {
+            toSend.add(element.asText());
+        }
+
+        for(String userId : toSend) {
+            String body = "{" +
+                    "\"message\": \"Un nouveau projet a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.\"," +
+                    "\"user\": \"" + userId + "\"," +
+                    "\"url\": \"/projet/" + projet.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
+                    "}";
+            String response2 = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
+
+            JsonNode json2 = mapper.readTree(response2);
+
+            if(json2.get("status").asInt() != 201) {
+                JsonNode info = json2.get("data");
+                logger.error(info.get("message").asText());
             }
-
-            // Traiter le nouveau projet
-            String rawJson = ctx.body();
-
-            JsonElement element = JsonParser.parseString(rawJson);
-
-            // Vérifie si c'est bien un objet
-            if (!element.isJsonObject()) {
-                ctx.status(400).result("{\"message\": \"Format JSON invalide.\"}").contentType("application/json");
-                return;
-            }
-
-            // Vérifier que toutes les entrées sont là
-            JsonObject newProjet = element.getAsJsonObject();
-
-            JsonObject actualProjet = JsonParser.parseString(strProjet).getAsJsonObject();
-
-            if(!ControllerHelper.sameKeysSameTypes(actualProjet, newProjet)) {
-                ctx.status(400).result("{\"message\": \"Format d'objet ne correspondant pas à celui d'un projet. Vérifiez que les champs envoyés sont corrects et que les types sont bons.\"}").contentType("application/json");
-                return;
-            }
-
-            // M'assurer que l'id reste le même
-            JsonObject updatedProjet = newProjet;
-            updatedProjet.addProperty("id", id);
-
-            database.projets.put(id, updatedProjet.toString());
-
-            // Faire une boucle et envoyer une notification à chacun des abonnés. On ne se préoccupe pas
-            // que ça marche pour tout le monde.
-
-            String bodyResidentsNotif = "{\"message\": \"Le projet " + updatedProjet.get("titreProjet").getAsString() + " a été modifié. Veuillez voir la liste des projets pour plus d'informations.\"}";
-
-            for(JsonElement personElement : updatedProjet.get("abonnes").getAsJsonArray()) {
-                String person = personElement.getAsString();
-                String resIndividual = UseRequest.sendRequest(this.urlHead + "/notification/" + person + "?userType=resident",
-                        RequestType.POST, bodyResidentsNotif);
-
-                if(resIndividual == null) {
-                    logger.info("Une erreur est survenue lors de l'envoi de la notification à chaque résidents pour les avertir des modifications au projet. Réponse nulle.");
-                    continue;
-                }
-
-                JsonElement jsonIndividual = JsonParser.parseString(resIndividual);
-                JsonObject jsonObjectIndividual = jsonIndividual.getAsJsonObject();
-
-                int statusCodeIndividual = jsonObjectIndividual.get("status").getAsInt();
-                if (statusCodeIndividual != 201) {
-                    logger.info("Une erreur est survenue lors de l'envoi de la notification au résident pour l'avertir des modifications au projet. Message d'erreur: " + jsonObjectIndividual.get("data").getAsJsonObject().get("message").getAsString());
-                }
-
-            }
-
-            // Renvoyer le nouvel objet
-            ctx.status(200).json(updatedProjet).contentType("application/json");
-        } catch (Exception e) {
-            e.printStackTrace();
-            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
         }
     }
 
     /**
-     * Cette route permet de supprimer un projet à partir de son id
-     * @param ctx qui représente le contexte de la requête.
+     * Cette fonction initialise la base de données avec les projets de travaux venant de l'API de Montréal.
+     * Elle sera lancée une seule fois au premier test du serveur.
      */
-    public void delete(Context ctx) {
+    public void initializeProjetsFromAPI() {
         try {
+            String publicApi = "https://donnees.montreal.ca/api/3/action/datastore_search?resource_id=cc41b532-f12d-40fb-9f55-eb58c9a2b12b";
+            String apiResponse = UseRequest.sendRequest(publicApi, RequestType.GET, null);
 
-            String id = ctx.pathParam("id");
+            ObjectMapper mapper = JavalinJackson.defaultMapper();
+            JsonNode json = mapper.readTree(apiResponse);
 
-            String strProjet = database.projets.get(id);
+            JsonNode data = json.get("data");
 
-            if (strProjet == null) {
-                ctx.status(404).result("{\"message\": \"Projet non retrouvé.\"}").contentType("application/json");
-                return;
+            if(json.get("status").asInt() != 200) {
+                throw new Exception(mapper.writeValueAsString(data));
             }
 
-            // Traiter le nouveau projet
-            String rawJson = ctx.body();
+            for(JsonNode element : data) {
+                try {
+                    ObjectId id = new ObjectId(element.get("id").asText());
+                    String quartier = element.get("boroughid").asText();
 
-            JsonElement element = JsonParser.parseString(rawJson);
+                    Date dateDebut = ControllerHelper.fromIsoString(element.get("duration_start_date").asText());
+                    Date dateFin = ControllerHelper.fromIsoString(element.get("duration_end_date").asText());
 
-            // Vérifie si c'est bien un objet
-            if (!element.isJsonObject()) {
-                ctx.status(400).result("{\"message\": \"Format JSON invalide.\"}").contentType("application/json");
-                return;
+                    String nomPrestataire = element.get("organizationname").asText();
+                    ObjectId prestataire = new ObjectId();
+
+                    ObjectId ficheProbleme = new ObjectId();
+
+                    List<String> ruesAffectees = new ArrayList<>();
+                    ruesAffectees.add(element.get("occupancy_name").asText());
+
+                    String typeTravaux = ControllerHelper.getTypeTravail(element.get("reason_category").asText(), TypesTravaux.values());
+
+                    // Générer le coût de manière aléatoire entre 2 000 000 $  et 9 700 000 $
+                    double randomDouble = ControllerHelper.getRandomUniformDouble(2, 9.7);
+                    double cout = (int) ((Math.round(randomDouble * 100.0) / 100.0) * 1000000); // Prix final
+
+                    String titreProjet = "Projet de type " + typeTravaux + " offert par " + nomPrestataire;
+                    String description = "Ce projet devrait affecter les rues " + ruesAffectees.getFirst() +
+                            ". Mais pas d'inquiétude, ils ont pour but d'améliorer votre expérience de vie. " +
+                            "Merci de votre confiance!";
+
+                    String[] priorites = {"faible", "moyenne", "élevée"};
+                    String priorite = priorites[ControllerHelper.getRandomUniformInt(0, priorites.length)];
+
+                    Projet projet = new Projet(id, titreProjet, ruesAffectees, description, typeTravaux, dateDebut,
+                            dateFin, ficheProbleme, prestataire, nomPrestataire, quartier, cout, priorite);
+
+                    ProjetDAO.save(projet);
+
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
             }
 
-            // Vérifier que toutes les entrées sont là
-            JsonObject newProjet = element.getAsJsonObject();
 
-            JsonObject actualProjet = JsonParser.parseString(strProjet).getAsJsonObject();
-
-            if(!ControllerHelper.sameKeysSameTypes(actualProjet, newProjet)) {
-                ctx.status(400).result("{\"message\": \"Format d'objet ne correspondant pas à celui d'un projet. Vérifiez que les champs envoyés sont corrects et que les types sont bons.\"}").contentType("application/json");
-                return;
-            }
-
-            // M'assurer que l'id reste le même
-            JsonObject updatedProjet = newProjet;
-            updatedProjet.addProperty("id", id);
-
-            database.projets.put(id, updatedProjet.toString());
-
-            // Renvoyer le nouvel objet
-            ctx.status(200).json(updatedProjet).contentType("application/json");
 
         } catch (Exception e) {
             e.printStackTrace();
-            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
         }
     }
 }

@@ -1,18 +1,25 @@
 package ca.udem.maville.server.controllers;
 
 import ca.udem.maville.hooks.UseRequest;
-import ca.udem.maville.utils.*;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import ca.udem.maville.server.dao.files.ProblemDAO;
+import ca.udem.maville.server.models.FicheProbleme;
+import ca.udem.maville.utils.RequestType;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.http.Context;
 
+import io.javalin.json.JavalinJackson;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 
-import java.time.Instant;
 import java.util.ArrayList;
+import java.util.List;
 
+
+/**
+ * La controller qui gère les différentes interactions du client avec le serveur
+ * en tout ce qui concerne les fiches problèmes.
+ */
 public class ProblemController {
 
     public String urlHead;
@@ -25,66 +32,17 @@ public class ProblemController {
     }
 
     /**
-     * Cette route permet de récupérer tous les problèmes qui pourraient intéresser
-     * un prestataire en particulier.
-     * Le paramètre de path user représente l'id du prestataire. Les problèmes retournés sont
-     * ceux non encore traités et dont le type de travail et le quartier appartiennent tous deux respectivement
-     * aux types de travaux et aux quartiers couverts par le prestataire.
+     * Cette route permet de récupérer tous les problèmes présents dans la base de
+     * données.
      * @param ctx qui représente le contexte de la requête.
      */
     public void getAll(Context ctx) {
         try {
-            String idUser = ctx.pathParam("user");
 
-            // Récupérer le user
-            String responseUser = UseRequest.sendRequest(this.urlHead + "/prestataire/" + idUser , RequestType.GET, null);
+            List<FicheProbleme> problems = ProblemDAO.findAll();
 
-            if(responseUser == null) {
-                throw new Exception("Une erreur est survenue lors de la récupération du prestataire. Réponse nulle.");
-            }
-
-            JsonElement elemUser = JsonParser.parseString(responseUser);
-            JsonObject jsonUser = elemUser.getAsJsonObject();
-
-            int statuscode = jsonUser.get("status").getAsInt();
-            if(statuscode == 404) {
-                ctx.status(404).result("{\"message\": \"Aucun prestataire avec un tel ID retrouvé.\"}").contentType("application/json");
-                return;
-            } else if(statuscode != 200) {
-                throw new Exception("Une erreur est survenue lors de la récupération du prestataire. Message d'erreur: " + jsonUser.get("data").getAsJsonObject().get("message").getAsString());
-            }
-
-            JsonObject user = jsonUser.get("data").getAsJsonObject();
-
-            JsonArray typesTravaux = user.get("typesTravaux").getAsJsonArray();
-            JsonArray quartiers = user.get("quartiers").getAsJsonArray();
-
-            ArrayList<String> typeTravauxList = new ArrayList<>();
-            for(JsonElement type : typesTravaux) {
-                typeTravauxList.add(type.getAsString());
-            }
-            ArrayList<String> quartiersList = new ArrayList<>();
-            for(JsonElement quartier : quartiers) {
-                quartiersList.add(quartier.getAsString());
-            }
-
-            // Récupérer les problemes qui touchent un des quartiers et qui sont un des types de travaux
-            JsonArray data = new JsonArray();
-
-            for(String fiche : database.problemes.values()) {
-                if(fiche != null) {
-                    JsonObject ficheObject = JsonParser.parseString(fiche).getAsJsonObject();
-                    if(typeTravauxList.contains(ficheObject.get("typeTravaux").getAsString())
-                            && quartiersList.contains(ficheObject.get("quartier").getAsString())
-                            && !ficheObject.get("statut").getAsString().equals("traité")) {
-                        data.add(ficheObject);
-                    }
-                }
-            }
-
-
-            // Renvoyer les fiches problèmes trouvées dans un tableau
-            ctx.status(200).json(data).contentType("application/json");
+            // Renvoyer les fiches problèmes trouvées
+            ctx.status(200).json(problems).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
@@ -98,122 +56,68 @@ public class ProblemController {
      * - quartier: qui représente le quartier affecté. Il est sous forme Label
      * - localisation: ici on s'intéressera principalement à la rue ou à l'adresse du résident
      * - description: la description du problème rencontré
-     * - priorite: Il s'agit d'un entier entre 0 et 2 inclusif généré automatiquement et qui représente le niveau de priorité du problème
+     * - priorite: la priorité accordée au problème par le STPM.
      * - signalements: Les ids des signalements liés à la fiche problème
      * - residents: les ids des résidents ayant déclarés le problème. Très important.
-     * Elle s'occupe automatiquement d'assigner les champs id, statut et dateCreationFiche
-     * Elle inclut l'envoi d'une notification à tous les résidents ayant fait des
-     * signalements en rapport et aussi à tous les prestataires
+     * Elle s'occupe automatiquement d'assigner les champs id et statut.
+     * Elle inclut de marquer tous les signalements comme traités, ce qui envoie des notifications aux résidents.
+     * Elle inclut aussi l'envoi d'une notification à tous les prestataires pouvant être intéressés.
      * qui pourraient être intéressés par le problème.
-     * @param ctx représente le contexte de la requête
+     * @param ctx représente le contexte de la requête.
      */
     public void create(Context ctx) {
         try {
-            // Récupérer les informations et ajouter le statut, la date de création et l'id unique
-            String rawJson = ctx.body();
+            // Récupérer les informations sur le nouveau problème
+            FicheProbleme newProblem = ctx.bodyAsClass(FicheProbleme.class);
 
-            JsonElement element = JsonParser.parseString(rawJson);
+            // S'assurer que le statut est le bon avant de sauvegarder
+            newProblem.setStatut("en attente");
+            ProblemDAO.save(newProblem);
 
-            // Vérifie si c'est bien un objet
-            if (!element.isJsonObject()) {
-                ctx.status(400).result("{\"message\": \"Format JSON invalide.\"}").contentType("application/json");
-                return;
-            }
+            ObjectMapper mapper = JavalinJackson.defaultMapper();
 
-            // Modifier l'objet pour ajouter un id et toute information nécessaire
-            JsonObject newProblem = element.getAsJsonObject();
-
-            String id = UniqueID.generateUniqueID();
-
-            newProblem.addProperty("id", id);
-            newProblem.addProperty("statut", "enAttente");
-            newProblem.addProperty("dateCreationFiche", Instant.now().toString());
-
-            // Ajouter la nouvelle fiche problème à la base de données
-            database.problemes.put(id, newProblem.toString());
-
-            // Modifier tous les signalements pour les marquer comme traités
-            for(JsonElement idSign : newProblem.get("signalements").getAsJsonArray()) {
-
-                String response = UseRequest.sendRequest(this.urlHead + "/signalement/" + idSign.getAsString() + "?replace=false",
-                        RequestType.PATCH, "{\"statut\": \"traité\"}");
-
-                if(response == null) {
-                    logger.info("Une erreur est survenue lors du changement de statut du signalement. Réponse nulle.");
-                    continue;
-                }
-
-                JsonElement json = JsonParser.parseString(response);
-                JsonObject jsonObject = json.getAsJsonObject();
-
-                int statusCode = jsonObject.get("status").getAsInt();
-                if (statusCode != 200) {
-                    logger.info("Une erreur est survenue lors changement de statut du signalement. Message d'erreur: " + jsonObject.get("data").getAsJsonObject().get("message").getAsString());
+            // Marquer les signalements comme traités.
+            List<ObjectId> signalements = newProblem.getSignalements();
+            for(ObjectId id : signalements) {
+                String response = UseRequest.sendRequest(urlHead + "/signalement/markAsProcessed/" + id.toHexString(), RequestType.PATCH, null);
+                JsonNode json = mapper.readTree(response);
+                if(json.get("status").asInt() != 200) {
+                    JsonNode data = json.get("data");
+                    logger.error(data.get("message").asText());
                 }
             }
 
+            // Envoyer des notifications aux prestataires intéressés.
+            String quartier = newProblem.getQuartier();
+            String type = newProblem.getTypeTravaux();
 
-            // Envoyer des notifications aux résidents
-            for(JsonElement idRes : newProblem.get("residents").getAsJsonArray()) {
-                String bodyMessage = "{\"message\": \"Votre signalement a été traité par un agent. Veuillez consulter la liste de vos signalements pour plus d'informations." +
-                        " Vous serez à nouveau averti lorsqu'un projet pour le régler aura commencé.\"}";
-
-                String response = UseRequest.sendRequest(this.urlHead + "/notification/" + idRes.getAsString() + "?userType=resident",
-                    RequestType.POST, bodyMessage);
-
-                if(response == null) {
-                    logger.info("Une erreur est survenue lors de l'envoi de la notification au résident pour l'avertir du traitement du signalement. Réponse nulle.");
-                    continue;
-                }
-
-                JsonElement json = JsonParser.parseString(response);
-                JsonObject jsonObject = json.getAsJsonObject();
-
-                int statusCode = jsonObject.get("status").getAsInt();
-                if (statusCode != 201) {
-                    logger.info("Une erreur est survenue lors de l'envoi de la notification au résident pour l'avertir du traitement du signalement. Message d'erreur: " + jsonObject.get("data").getAsJsonObject().get("message").getAsString());
-                }
+            String response = UseRequest.sendRequest(urlHead + "/prestataire/getConcerned?quartier=" + quartier + "&type=" + type, RequestType.GET, null);
+            JsonNode json = mapper.readTree(response);
+            JsonNode data = json.get("data");
+            if(json.get("status").asInt() != 200) {
+                throw new Exception(data.get("message").asText());
             }
 
-            // Récupérer tous les prestataires qui pourraient être intéressés
-            String responseInterested = UseRequest.sendRequest(this.urlHead + "/prestataire/getInterested/" + Quartier.fromLabel(newProblem.get("quartier").getAsString()) + "/" + TypesTravaux.fromLabel(newProblem.get("typeTravaux").getAsString()), RequestType.GET, null);
-
-            if(responseInterested == null) {
-                throw new Exception("Une erreur est survenue lors de la récupération des prestataires intéressés. Réponse nulle.");
+            if(!data.isArray()) {
+                throw new Exception("Les prestataires intéressés n'est pas un tableau.");
             }
 
-            JsonElement jsonInterested = JsonParser.parseString(responseInterested);
-            JsonObject jsonObjectInterested = jsonInterested.getAsJsonObject();
+            for(JsonNode element : data) {
+                String id = element.asText();
+                String body = "{" +
+                        "\"message\": \"Une nouvelle fiche problème qui pourrait vous intéresser a été créée.\"," +
+                        "\"user\": \"" + id + "\"," +
+                        "\"url\": \"/probleme/" + newProblem.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
+                        "}";
+                String response1 = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 
-            int statusCodeInterested = jsonObjectInterested.get("status").getAsInt();
-            if (statusCodeInterested != 200) {
-                throw new Exception("Une erreur est survenue lors de la récupération des prestataires intéressés. Message d'erreur: " + jsonObjectInterested.get("data").getAsJsonObject().get("message").getAsString());
-            }
+                JsonNode json1 = mapper.readTree(response1);
 
-            JsonArray interested = jsonObjectInterested.get("data").getAsJsonArray();
-
-            // Envoyer des notifications aux prestataires
-            for(JsonElement prestataire : interested) {
-                String bodyMessage = "{\"message\": \"Un nouveau problème qui pourrait vous intéresser a été déclaré. " +
-                        "Veuillez consulter la liste des problèmes pour plus d'informations.\"}";
-
-                String response = UseRequest.sendRequest(this.urlHead + "/notification/" + prestataire.getAsJsonObject().get("id").getAsString() + "?userType=prestataire",
-                        RequestType.POST, bodyMessage);
-
-                if(response == null) {
-                    logger.info("Une erreur est survenue lors de l'envoi de la notification au prestataire pour l'avertir du nouveau problème. Réponse nulle.");
-                    continue;
-                }
-
-                JsonElement json = JsonParser.parseString(response);
-                JsonObject jsonObject = json.getAsJsonObject();
-
-                int statusCode = jsonObject.get("status").getAsInt();
-                if (statusCode != 201) {
-                    logger.info("Une erreur est survenue lors de l'envoi de la notification au prestataire pour l'avertir du nouveau problème. Message d'erreur: " + jsonObject.get("data").getAsJsonObject().get("message").getAsString());
+                if(json1.get("status").asInt() != 201) {
+                    JsonNode info = json1.get("data");
+                    logger.error(info.get("message").asText());
                 }
             }
-
 
             // Renvoyer la fiche problème pour marquer le succès
             ctx.status(201).json(newProblem).contentType("application/json");
@@ -229,20 +133,19 @@ public class ProblemController {
      * partir de son id.
      * @param ctx représente le contexte de la requête.
      */
-    public void get(Context ctx) {
+    public void getById(Context ctx) {
         try {
             String id = ctx.pathParam("id");
-            String strProbleme = database.problemes.get(id);
 
-            if (strProbleme == null) {
-                ctx.status(404).result("{\"message\": \"Fiche problème non retrouvée.\"}").contentType("application/json");
+            FicheProbleme probleme = ProblemDAO.findById(new ObjectId(id));
+
+            if (probleme == null) {
+                ctx.status(404).result("{\"message\": \"Aucune fiche problème avec un tel ID retrouvée.\"}").contentType("application/json");
                 return;
             }
 
-            JsonObject jsonProbleme = JsonParser.parseString(strProbleme).getAsJsonObject();
-
             // Renvoyer la fiche problème
-            ctx.status(200).json(jsonProbleme).contentType("application/json");
+            ctx.status(200).json(probleme).contentType("application/json");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -251,39 +154,107 @@ public class ProblemController {
     }
 
     /**
-     * Cette route permet de modifier seulement partiellement les informations
-     * d'une fiche problème, connaissant son id.
-     * Le body doit contenir les champs à modifier avec la nouvelle information.
-     * Assurez vous que la nouvelle information a le bon type.
-     * Elle nécessite également un queryParameter replace = true | false qui est utile pour les tableaux
-     * notamment pour savoir s'il faut juste ajouter les éléments ou remplacer le tableau en entier.
+     * Cette méthode permet d'ajouter un résident à la liste des résidents du problème
+     * et un signalement à la liste des signalement du problème.
+     * Utile lorsqu'un problème à déjà été créé pour un signalement.
+     * Le body doit contenir le champ resident qui représente l'id du résident ayant fait le nouveau
+     * signalement et le champ signalement qui représente l'id de son signalement.
+     * Elle inclut de marquer le signalement comme traité, ce qui envoie une notification au résident.
      * @param ctx qui représente le contexte de la requête.
      */
-    public void patch(Context ctx) {
+    public void addExisting(Context ctx) {
         try {
             String id = ctx.pathParam("id");
-            boolean replace = Boolean.parseBoolean(ctx.queryParam("replace"));
 
-            JsonObject updates = JsonParser.parseString(ctx.body()).getAsJsonObject();
-            String strProblem = database.problemes.get(id);
-            if(strProblem == null) {
-                ctx.status(404).result("{\"message\": \"Fiche problème non retrouvée.\"}").contentType("application/json");
+            FicheProbleme probleme = ProblemDAO.findById(new ObjectId(id));
+
+            if (probleme == null) {
+                ctx.status(404).result("{\"message\": \"Aucune fiche problème avec un tel ID retrouvée.\"}").contentType("application/json");
                 return;
             }
 
-            JsonObject problem = JsonParser.parseString(strProblem).getAsJsonObject();
+            ObjectMapper mapper = JavalinJackson.defaultMapper();
+            JsonNode json = mapper.readTree(ctx.body());
 
-            // Appeler la logique de patch
-            boolean ok = ControllerHelper.patchLogic(updates, replace, problem, ctx);
-
-            if(!ok) {
+            if(!json.has("resident") || !json.has("signalement")) {
+                ctx.status(400).result("{\"message\": \"Les champs resident et signalement sont obligatoires.\"}").contentType("application/json");
                 return;
             }
 
-            // Message de succès
-            database.problemes.put(id, problem.toString());
+            List<ObjectId> signalements = probleme.getSignalements();
+            signalements.add(new ObjectId(json.get("signalement").asText()));
+            probleme.setSignalements(signalements);
+
+            List<ObjectId> residents = probleme.getResidents();
+            residents.add(new ObjectId(json.get("resident").asText()));
+            probleme.setResidents(residents);
+
+            ProblemDAO.save(probleme);
+
+            // Marquer le signalement comme traité.
+            String response1 = UseRequest.sendRequest(urlHead + "/signalement/markAsProcessed/" + json.get("signalement").asText(), RequestType.PATCH, null);
+            JsonNode json1 = mapper.readTree(response1);
+            JsonNode data1 = json.get("data");
+            if(json1.get("status").asInt() != 200) {
+                throw new Exception(data1.get("message").asText());
+            }
+
+            ctx.status(200).json(probleme).contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
+    /**
+     * Cette route permet de récupérer les id de tous ceux qui ont déclarés le problème.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void getReporters(Context ctx) {
+        try {
+            String id = ctx.pathParam("id");
+
+            FicheProbleme problem = ProblemDAO.findById(new ObjectId(id));
+
+            if(problem == null) {
+                ctx.status(404).result("{\"message\": \"Aucune fiche problème avec un tel ID trouvée.\"}").contentType("application/json");
+                return;
+            }
+
+            List<ObjectId> reporters = problem.getResidents();
+            List<String> reportersIds = new ArrayList<>();
+
+            for(ObjectId userId : reporters) {
+                reportersIds.add(userId.toHexString());
+            }
+
+            ctx.status(200).json(reportersIds).contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
+    /**
+     * Cette route permet de marquer une fiche problème comme traitée.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void markAsProcessed(Context ctx) {
+        try {
+            String id = ctx.pathParam("id");
+
+            FicheProbleme problem = ProblemDAO.findById(new ObjectId(id));
+
+            if(problem == null) {
+                ctx.status(404).result("{\"message\": \"Aucune fiche problème avec un tel ID trouvée.\"}").contentType("application/json");
+                return;
+            }
+
+            problem.setStatut("traitée");
+            ProblemDAO.save(problem);
+
+            // Renvoyer la réponse de succès
             ctx.status(200).json(problem).contentType("application/json");
-
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");

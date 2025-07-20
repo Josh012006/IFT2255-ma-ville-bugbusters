@@ -1,18 +1,21 @@
 package ca.udem.maville.server.controllers.users;
 
-import ca.udem.maville.hooks.UseRequest;
-import ca.udem.maville.utils.RequestType;
-import ca.udem.maville.utils.UniqueID;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import ca.udem.maville.server.dao.files.users.NotificationDAO;
+import ca.udem.maville.server.models.users.Notification;
+import com.fasterxml.jackson.databind.JsonNode;
 import io.javalin.http.Context;
 
-import java.time.Instant;
+import java.util.List;
 
+import io.javalin.json.JavalinJackson;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 
+
+/**
+ * La controller qui gère les différentes interactions du client avec le serveur
+ * en tout ce qui concerne les notifications.
+ */
 public class NotificationController {
     public String urlHead;
     public Logger logger;
@@ -25,65 +28,16 @@ public class NotificationController {
     /**
      * Cette route permet de récupérer toutes les notifications d'un utilisateur.
      * Le paramètre de path user contient l'id de l'utilisateur.
-     * Elle nécessite un queryParameter userType = resident | prestataire qui permet de savoir
-     * de quel type d'utilisateur il s'agit.
      * @param ctx qui représente le contexte de la requête.
      */
     public void getAll(Context ctx) {
-
-        // Todo: Il faudra créer un cas pour le STPM. On va chnager la manière de raisonner. La notification gardera l'id
-        //  du user et pour le STPM, l'id sera STPM tout simplement. Donc plus besoin de garder les notifications sur l'utilisateur
         try {
             String idUser = ctx.pathParam("user");
-            String userType = ctx.queryParam("userType");
 
-            // Récupérer le user
-            String responseUser;
-            if(userType == null) {
-                ctx.status(500).result("{\"message\": \"Paramètre de requête 'userType' nécessaire.\"}").contentType("application/json");
-                return;
-            } else if (userType.equals("prestataire")) {
-                responseUser = UseRequest.sendRequest(this.urlHead + "/prestataire/" + idUser , RequestType.GET, null);
-            } else if (userType.equals("resident")) {
-                responseUser = UseRequest.sendRequest(this.urlHead + "/resident/" + idUser , RequestType.GET, null);
-            } else {
-                ctx.status(500).result("{\"message\": \"Paramètre de requête 'userType' ne peut être que soit 'resident' ou 'prestataire'.\"}").contentType("application/json");
-                return;
-            }
+            List<Notification> notifs = NotificationDAO.findUserNotifications(new ObjectId(idUser));
 
-            if(responseUser == null) {
-                throw new Exception("Une erreur est survenue lors de la récupération de l'utilisateur. Réponse nulle.");
-            }
-
-            JsonElement elemUser = JsonParser.parseString(responseUser);
-            JsonObject jsonUser = elemUser.getAsJsonObject();
-
-            int statuscode = jsonUser.get("status").getAsInt();
-            if (statuscode == 404) {
-                ctx.status(404).result("{\"message\": \"Aucun " + userType + " avec un tel ID retrouvé.\"}").contentType("application/json");
-                return;
-            } else if(statuscode != 200) {
-                throw new Exception("Une erreur est survenue lors de la récupération du prestataire. Message d'erreur: " + jsonUser.get("data").getAsJsonObject().get("message").getAsString());
-            }
-
-            JsonObject user = jsonUser.get("data").getAsJsonObject();
-
-            JsonArray notifications = user.get("notifications").getAsJsonArray();
-
-            // Récupérer à partir des ids, chaque notification
-            JsonArray data = new JsonArray();
-            for (JsonElement notifId : notifications) {
-                String notifIdString = notifId.getAsString();
-                String notification = database.notifications.get(notifIdString);
-                if(notification != null) {
-                    data.add(JsonParser.parseString(notification).getAsJsonObject());
-                }
-            }
-
-            // Renvoyer les candidatures trouvées dans un tableau
-            ctx.status(200).json(data).contentType("application/json");
-
-
+            // Renvoyer les notifications trouvés pour l'utilisateur.
+            ctx.status(200).json(notifs).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
@@ -92,63 +46,69 @@ public class NotificationController {
 
     /**
      * Cette route permet de créer une nouvelle notification pour un utilisateur.
-     * Le paramètre de path user contient l'id de l'utilisateur.
-     * Elle nécessite un queryParameter userType = resident | prestataire qui permet de savoir
-     * de quel type d'utilisateur il s'agit.
      * Le body doit contenir les informations suivantes :
-     * - message: qui représente le message de la notification à envoyer
-     * Elle s'assure automatiquement de créer les champs id et dateNotification
+     * - user : qui est l'id de l'utilisateur auquel la notification est envoyée.
+     * - message: qui représente le message de la notification à envoyer.
+     * - url : qui est un champ optionnel qui permet de préciser une url de redirection.
      * @param ctx qui représente le contexte de la requête.
      */
     public void create(Context ctx) {
         try {
-            String idUser = ctx.pathParam("user");
-            String userType = ctx.queryParam("userType");
+            JsonNode json = JavalinJackson.defaultMapper().readTree(ctx.body());
 
-            if(userType == null) {
-                ctx.status(500).result("{\"message\": \"Paramètre de requête 'userType' nécessaire.\"}").contentType("application/json");
+            String message = null;
+            if(json.has("message")) {
+                message = json.get("message").asText();
+            }
+
+            String user = null;
+            if(json.has("user")) {
+                user = json.get("user").asText();
+            }
+
+            if(user == null || message == null) {
+                ctx.status(400).result("{\"message\": \"Les champs message et user sont obligatoires.\"}").contentType("application/json");
                 return;
-            } else if (!(userType.equals("prestataire") || userType.equals("resident"))){
-                ctx.status(500).result("{\"message\": \"Paramètre de requête 'userType' ne peut être que soit 'resident' ou 'prestataire'.\"}").contentType("application/json");
-                return;
             }
 
-            // Le body contient déjà le message donc ajouter l'id et la dateNotification
-            JsonObject newNotif = JsonParser.parseString(ctx.body()).getAsJsonObject();
-            String notifID = UniqueID.generateUniqueID();
-            newNotif.addProperty("id", notifID);
-            newNotif.addProperty("dateNotification", Instant.now().toString());
-
-            // Faire le patch pour ajouter la notification pour l'utilisateur concerné
-            String toSend = "{\"notifications\": [\"" + notifID + "\"]}";
-            String responseUser;
-
-            if(userType.equals("prestataire")) {
-                responseUser = UseRequest.sendRequest(this.urlHead + "/prestataire/" + idUser , RequestType.PATCH, toSend);
-            } else {
-                responseUser = UseRequest.sendRequest(this.urlHead + "/resident/" + idUser, RequestType.PATCH, toSend);
+            String url = null;
+            if(json.has("url")) {
+                url = json.get("url").asText();
             }
 
-            if(responseUser == null) {
-                throw new Exception("Une erreur est survenue lors de l'ajout de la notification pour l'utilisateur. Réponse nulle.");
-            }
+            Notification newNotif = new Notification(message, new ObjectId(user), url);
 
-            JsonElement elemUser = JsonParser.parseString(responseUser);
-            JsonObject jsonUser = elemUser.getAsJsonObject();
-
-            int statuscode = jsonUser.get("status").getAsInt();
-            if (statuscode == 404) {
-                ctx.status(404).result("{\"message\": \"Aucun " + userType + "avec un tel ID retrouvé.\"}").contentType("application/json");
-                return;
-            } else if(statuscode != 200) {
-                throw new Exception("Une erreur est survenue lors de l'ajout de la notification pour l'utilisateur. Message d'erreur: " + jsonUser.get("data").getAsJsonObject().get("message").getAsString());
-            }
-
-            // Renvoyer la notification pour marquer le succès
-            database.notifications.put(notifID, newNotif.toString());
+            NotificationDAO.save(newNotif);
+            
+            // Renvoyer la nouvelle notification créée.
             ctx.status(201).json(newNotif).contentType("application/json");
-
         } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
+    /**
+     * C'est une méthode qui permet de marquer la notification comme lue
+     * en ayant son id dans le path de la route.
+     * @param ctx qui représente le context de la requête.
+     */
+    public void markAsRead(Context ctx) {
+        try {
+            String id = ctx.pathParam("id");
+            Notification notif = NotificationDAO.findById(new ObjectId(id));
+
+            if(notif == null) {
+                ctx.status(404).result("{\"message\": \"Aucune notification avec un tel ID retrouvé.\"}").contentType("application/json");
+                return;
+            }
+
+            notif.setStatut("lue");
+
+            NotificationDAO.save(notif);
+
+            ctx.status(200).json(notif).contentType("application/json"); // renvoyer l'objet JSON de notification modifiée.
+        } catch(Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
         }
