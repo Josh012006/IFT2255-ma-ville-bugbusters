@@ -13,6 +13,10 @@ import org.slf4j.Logger;
 import java.util.List;
 
 
+/**
+ * La controller qui gère les différentes interactions du client avec le serveur
+ * en tout ce qui concerne les prestataires.
+ */
 public class PrestataireController {
     public String urlHead;
     public Logger logger;

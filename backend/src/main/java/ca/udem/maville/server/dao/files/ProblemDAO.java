@@ -33,7 +33,7 @@ public class ProblemDAO {
      * @param id représente l'id de la fiche problème recherchée.
      * @return la fiche problème trouvée.
      */
-    public FicheProbleme findById(ObjectId id){
+    public static FicheProbleme findById(ObjectId id){
         return MongoConfig.getDatastore()
                 .find(FicheProbleme.class)
                 .filter(Filters.eq("_id", id))

@@ -16,6 +16,11 @@ import org.slf4j.Logger;
 import java.time.Instant;
 import java.util.concurrent.CompletableFuture;
 
+
+/**
+ * La controller qui gère les différentes interactions du client avec le serveur
+ * en tout ce qui concerne les signalements.
+ */
 public class SignalementController {
 
     public String urlHead;

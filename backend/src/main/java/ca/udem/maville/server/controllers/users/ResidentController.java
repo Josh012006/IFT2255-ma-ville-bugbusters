@@ -12,6 +12,11 @@ import org.slf4j.Logger;
 
 import java.util.List;
 
+
+/**
+ * La controller qui gère les différentes interactions du client avec le serveur
+ * en tout ce qui concerne les résidents.
+ */
 public class ResidentController {
 
     public String urlHead;

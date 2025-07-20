@@ -2,6 +2,7 @@ package ca.udem.maville.server.controllers;
 
 import ca.udem.maville.hooks.UseRequest;
 import ca.udem.maville.server.dao.files.ProblemDAO;
+import ca.udem.maville.server.models.Candidature;
 import ca.udem.maville.server.models.FicheProbleme;
 import ca.udem.maville.utils.*;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -20,6 +21,11 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * La controller qui gère les différentes interactions du client avec le serveur
+ * en tout ce qui concerne les fiches problèmes.
+ */
 public class ProblemController {
 
     public String urlHead;
@@ -56,7 +62,7 @@ public class ProblemController {
      * - quartier: qui représente le quartier affecté. Il est sous forme Label
      * - localisation: ici on s'intéressera principalement à la rue ou à l'adresse du résident
      * - description: la description du problème rencontré
-     * - priorite: Il s'agit d'un entier entre 0 et 2 inclusif généré automatiquement et qui représente le niveau de priorité du problème
+     * - priorite: la priorité accordée au problème par le STPM.
      * - signalements: Les ids des signalements liés à la fiche problème
      * - residents: les ids des résidents ayant déclarés le problème. Très important.
      * Elle s'occupe automatiquement d'assigner les champs id, statut et dateCreationFiche
@@ -67,7 +73,8 @@ public class ProblemController {
      */
     public void create(Context ctx) {
         try {
-            // Todo: Compléter la fonction
+            // Récupérer les informations sur le nouveau problème
+            FicheProbleme newProblem = ctx.bodyAsClass(FicheProbleme.class);
 
             // Renvoyer la fiche problème pour marquer le succès
             ctx.status(201).json(newProblem).contentType("application/json");

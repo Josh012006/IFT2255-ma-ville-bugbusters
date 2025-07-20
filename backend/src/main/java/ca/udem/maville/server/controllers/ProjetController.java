@@ -13,6 +13,11 @@ import io.javalin.http.Context;
 
 import org.slf4j.Logger;
 
+
+/**
+ * La controller qui gère les différentes interactions du client avec le serveur
+ * en tout ce qui concerne les projets.
+ */
 public class ProjetController {
 
     public String urlHead;

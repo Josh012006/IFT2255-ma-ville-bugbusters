@@ -5,13 +5,17 @@ import ca.udem.maville.server.models.users.Notification;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.javalin.http.Context;
 
-import java.time.Instant;
 import java.util.List;
 
 import io.javalin.json.JavalinJackson;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 
+
+/**
+ * La controller qui gère les différentes interactions du client avec le serveur
+ * en tout ce qui concerne les notifications.
+ */
 public class NotificationController {
     public String urlHead;
     public Logger logger;

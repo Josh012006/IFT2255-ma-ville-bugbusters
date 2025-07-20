@@ -1,16 +1,23 @@
 package ca.udem.maville.server.controllers;
 
+import ca.udem.maville.hooks.UseRequest;
 import ca.udem.maville.server.dao.files.CandidatureDAO;
 import ca.udem.maville.server.models.Candidature;
-import ca.udem.maville.utils.*;
+import ca.udem.maville.utils.RequestType;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.http.Context;
 
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 
-
 import java.util.List;
 
+
+/**
+ * La controller qui gère les différentes interactions du client avec le serveur
+ * en tout ce qui concerne les candidatures.
+ */
 public class CandidatureController {
     public String urlHead;
     public Logger logger;
@@ -45,7 +52,7 @@ public class CandidatureController {
         try {
             String idUser = ctx.pathParam("user");
 
-            List<candidatures> candidatures = CandidatureDAO.findPrestataireCandidatures(new ObjectId(idUser));
+            List<Candidature> candidatures = CandidatureDAO.findPrestataireCandidatures(new ObjectId(idUser));
 
             // Renvoyer les candidatures trouvées dans un tableau
             ctx.status(200).json(candidatures).contentType("application/json");
@@ -83,7 +90,21 @@ public class CandidatureController {
             newCandidature.setStatut("en attente");
             CandidatureDAO.save(newCandidature);
 
-            // Todo: Envoyer une notification au STPM.
+            // Envoyer une notification au STPM.
+            String body = "{" +
+                    "\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"," +
+                    "\"user\": \"STPM\"," +
+                    "\"url\": \"/candidature/" + newCandidature.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
+                    "}";
+            String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
+
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode json = mapper.readTree(response);
+
+            if(json.get("status").asInt() != 201) {
+                JsonNode data = json.get("data");
+                throw new Exception(data.get("message").asText());
+            }
 
             // Renvoyer la candidature avec un message de succès
             ctx.status(201).json(newCandidature).contentType("application/json");
@@ -103,7 +124,7 @@ public class CandidatureController {
         try {
             String id = ctx.pathParam("id");
 
-            Candidature candidature = CandidatureDA0.findById(new ObjectId(id));
+            Candidature candidature = CandidatureDAO.findById(new ObjectId(id));
 
             if (candidature == null) {
                 ctx.status(404).result("{\"message\": \"Aucune candidature avec un tel ID trouvée.\"}").contentType("application/json");
@@ -132,7 +153,7 @@ public class CandidatureController {
 
             // On réalise une vérification supplémentaire pour s'assurer que la candidature
             // n'est pas déjà traitée.
-            Candidature candidature = CandidatureDAO.findById(id);
+            Candidature candidature = CandidatureDAO.findById(new ObjectId(id));
 
             if(!candidature.getStatut().equals("en attente")) {
                 ctx.status(403).result("{\"message\": \"Cette candidature a déjà été vue. Vous ne pouvez pas la modifier.\"}").contentType("application/json");
@@ -162,6 +183,32 @@ public class CandidatureController {
 
             // Renvoyer la réponse de succès
             ctx.status(200).result("{\"message\": \"Suppression réalisée avec succès.\"}").contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
+    /**
+     * Marque une candidature comme vue par le STPM pour empêcher des modifications supplémentaires.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void markAsSeen(Context ctx) {
+        try {
+            String id = ctx.pathParam("id");
+
+            Candidature candidature = CandidatureDAO.findById(new ObjectId(id));
+
+            if(candidature == null) {
+                ctx.status(404).result("{\"message\": \"Aucune candidature avec un tel ID trouvée.\"}").contentType("application/json");
+                return;
+            }
+
+            candidature.setStatut("vue");
+            CandidatureDAO.save(candidature);
+
+            // Renvoyer la réponse de succès
+            ctx.status(200).json(candidature).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");

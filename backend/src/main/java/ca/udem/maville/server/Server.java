@@ -4,7 +4,9 @@ import ca.udem.maville.server.controllers.*;
 import ca.udem.maville.server.controllers.users.NotificationController;
 import ca.udem.maville.server.controllers.users.PrestataireController;
 import ca.udem.maville.server.controllers.users.ResidentController;
+import ca.udem.maville.utils.CustomizedMapper;
 import io.javalin.Javalin;
+import io.javalin.json.JavalinJackson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,6 +49,15 @@ public class Server {
         // Intitialisation du serveur sur le port
         app = Javalin.create(config -> {
             config.router.contextPath = "/api";
+
+            // Configurer le mapper pour ne pas avoir de problème pour passer automatiquement
+            // de ObjectId à String et vice-versa.
+            config.jsonMapper(
+                new JavalinJackson()
+                        .updateMapper(mapper -> {
+                            mapper.registerModule(new CustomizedMapper.MongoModule());
+                        })
+            );
 
             // Ajout des controllers
             // Pour chacun, voir la JavaDoc au dessus de la fonction dans
@@ -104,6 +115,9 @@ public class Server {
                         patch(candidatureController::patch);
                         delete(candidatureController::delete);
                     });
+                    path("/markAsSeen/{id}", () -> {
+                        patch(candidatureController::markAsSeen);
+                    });
                 });
 
                 path("/probleme", () -> {
@@ -144,6 +158,9 @@ public class Server {
                     path("/{id}", () -> {
                         get(signalementController::getById);
                         patch(signalementController::patch);
+                    });
+                    path("/markAsSeen/{id}", () -> {
+                        patch(signalementController::markAsSeen);
                     });
                 });
 

@@ -29,7 +29,7 @@ public class FicheProbleme {
     private ObjectId id;
 
     /**
-     * Type de travaux requis (ex. : réparation, construction).
+     * Type de travaux requis.
      */
     private String typeTravaux;
 
