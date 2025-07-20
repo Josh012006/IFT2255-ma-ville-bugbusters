@@ -144,4 +144,16 @@ public class ResidentController {
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
         }
     }
+
+    /**
+     * Cette fonction initialise la base de données avec les résidents.
+     * Elle sera lancée une seule fois au premier test du serveur.
+     */
+    private void initializeResidents() {
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

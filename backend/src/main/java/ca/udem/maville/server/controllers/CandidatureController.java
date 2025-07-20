@@ -80,6 +80,7 @@ public class CandidatureController {
      * - dateFin: qui doit être sous format ISO
      * - ruesAffectees: Les rues affectées par les travaux sous forme de String
      * Elle s'occupe automatiquement d'assigner les champs id et statut.
+     * Elle inclut aussi un envoi de notification au STPM.
      * @param ctx représente le contexte de la requête
      */
     public void create(Context ctx) {
@@ -163,7 +164,7 @@ public class CandidatureController {
             }
 
             if(!candidature.getStatut().equals("en attente")) {
-                ctx.status(403).result("{\"message\": \"Cette candidature a déjà été vue. Vous ne pouvez pas la modifier.\"}").contentType("application/json");
+                ctx.status(403).result("{\"message\": \"Cette candidature a déjà été vue apr le STPM. Vous ne pouvez pas la modifier.\"}").contentType("application/json");
                 return;
             }
 

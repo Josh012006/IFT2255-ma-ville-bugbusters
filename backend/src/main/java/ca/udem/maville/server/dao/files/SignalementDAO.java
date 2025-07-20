@@ -64,4 +64,15 @@ public class SignalementDAO {
         MongoConfig.getDatastore().save(signalement);
     }
 
+    /**
+     * Supprime un signalement de la base de données par son id.
+     * @param id représente l'id du signalement à supprimer.
+     */
+    public static void delete(ObjectId id) {
+        Signalement signalement = findById(id);
+        if(signalement != null){
+            MongoConfig.getDatastore().delete(signalement);
+        }
+    }
+
 }

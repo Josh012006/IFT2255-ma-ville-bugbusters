@@ -1,20 +1,17 @@
 package ca.udem.maville.server.controllers;
 
 import ca.udem.maville.hooks.UseRequest;
-import ca.udem.maville.utils.ControllerHelper;
-import ca.udem.maville.utils.RandomGeneration;
+import ca.udem.maville.server.dao.files.SignalementDAO;
+import ca.udem.maville.server.models.Signalement;
 import ca.udem.maville.utils.RequestType;
-import ca.udem.maville.utils.UniqueID;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.http.Context;
+import io.javalin.json.JavalinJackson;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 
-
-import java.time.Instant;
-import java.util.concurrent.CompletableFuture;
+import java.util.List;
 
 
 /**
@@ -33,48 +30,16 @@ public class SignalementController {
     }
 
     /**
-     * Cette route permet de récupérer tous les signalements d'un résident.
-     * Le paramètre de path user représente l'id du résident.
+     * Cette route permet de récupérer tous les signalements présents dans la base
+     * de données.
      * @param ctx qui représente le contexte de la requête
      */
     public void getAll(Context ctx) {
         try {
-            String idUser = ctx.pathParam("user");
+            List<Signalement> signalements = SignalementDAO.findAll();
 
-            // Récupérer le user
-            String responseUser = UseRequest.sendRequest(this.urlHead + "/resident/" + idUser , RequestType.GET, null);
-
-            if(responseUser == null) {
-                throw new Exception("Une erreur est survenue lors de la récupération de l'utilisateur. Réponse nulle.");
-            }
-
-            JsonElement elemUser = JsonParser.parseString(responseUser);
-            JsonObject jsonUser = elemUser.getAsJsonObject();
-
-            int statuscode = jsonUser.get("status").getAsInt();
-            if (statuscode == 404) {
-                ctx.status(404).result("{\"message\": \"Aucun résident avec un tel ID retrouvé.\"}").contentType("application/json");
-                return;
-            } else if(statuscode != 200) {
-                throw new Exception("Une erreur est survenue lors de la récupération du résident. Message d'erreur: " + jsonUser.get("data").getAsJsonObject().get("message").getAsString());
-            }
-
-            JsonObject user = jsonUser.get("data").getAsJsonObject();
-
-            JsonArray signals = user.get("signalements").getAsJsonArray();
-
-            // Récupérer à partir des ids, chaque signalement
-            JsonArray data = new JsonArray();
-            for (JsonElement signalId : signals) {
-                String signalIdString = signalId.getAsString();
-                String signal = database.signalements.get(signalIdString);
-                if(signal != null) {
-                    data.add(JsonParser.parseString(signal).getAsJsonObject());
-                }
-            }
-
-            // Renvoyer les signalements trouvés dans un tableau
-            ctx.status(200).json(data).contentType("application/json");
+            // Renvoyer les signalements trouvés.
+            ctx.status(200).json(signalements).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
@@ -84,78 +49,42 @@ public class SignalementController {
     /**
      * Cette route permet de créer un nouveau signalement pour un résident.
      * Le body doit contenir toutes informations nécessaires notamment :
-     * - typeProbleme: qui représente le type travail requis sous forme Label
-     * - quartier: qui représente le quartier affecté. Il est sous forme Label
+     * - typeProbleme: qui représente le type travail requis.
+     * - quartier: qui représente le quartier affecté.
      * - localisation: ici on s'intéressera principalement à la rue ou à l'adresse du résident
      * - description: la description du problème rencontré
      * - resident: l'id du résident faisant le signalement. Très important
-     * Elle s'occupe automatiquement d'assigner les champs id, statut et dateSignalement
-     * Elle implémente aussi un traitement automatique du signalement pour créer la fiche problème
-     * avec une assignation aléatoire de priorité.
-     * {@link #manageSignal(JsonObject)}
+     * Elle s'occupe automatiquement d'assigner les champs id et statut.
+     * Elle implémente aussi un envoi de notification au STPM.
      * @param ctx représente le contexte de la requête
      */
     public void create(Context ctx) {
         try {
-            // Récupérer les informations sur le nouveau signalement
-            String rawJson = ctx.body();
+            // Récupérer les informations du nouveau signalement.
+            Signalement newSignalement = ctx.bodyAsClass(Signalement.class);
 
-            JsonElement element = JsonParser.parseString(rawJson);
+            // S'assurer que le statut est bon avant de le sauvegarder
+            newSignalement.setStatut("en attente");
+            SignalementDAO.save(newSignalement);
 
-            // Vérifie si c'est bien un objet
-            if (!element.isJsonObject()) {
-                ctx.status(400).result("{\"message\": \"Format JSON invalide.\"}").contentType("application/json");
-                return;
+            // Envoyer une notification au STPM
+            String body = "{" +
+                    "\"message\": \"Un nouveau signalement a été créé par un résident.\"," +
+                    "\"user\": \"STPM\"," +
+                    "\"url\": \"/signalement/" + newSignalement.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
+                    "}";
+            String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
+
+            ObjectMapper mapper = JavalinJackson.defaultMapper();
+            JsonNode json = mapper.readTree(response);
+
+            if(json.get("status").asInt() != 201) {
+                JsonNode data = json.get("data");
+                throw new Exception(data.get("message").asText());
             }
-
-            // Modifier l'objet pour ajouter un id et toute information nécessaire
-            JsonObject newSignal = element.getAsJsonObject();
-
-            String idResident = newSignal.has("resident") ? newSignal.get("resident").getAsString() : null;
-            if (idResident == null) {
-                ctx.status(400).result("{\"message\": \"ID du résident manquant!\"}").contentType("application/json");
-                return;
-            }
-            String id = UniqueID.generateUniqueID();
-
-            newSignal.addProperty("id", id);
-            newSignal.addProperty("statut", "enAttente");
-            newSignal.addProperty("dateSignalement", Instant.now().toString());
-
-            // Ajouter le nouveau signalement à la base de données
-            database.signalements.put(id, newSignal.toString());
-
-            // Ajouter le signalement à la liste pour le résident concerné
-            JsonObject patchBody = new JsonObject();
-            JsonArray toAdd = new JsonArray();
-            toAdd.add(id);
-            patchBody.add("signalements", toAdd);
-
-            // Envoyer la requête pour modifier la liste des signalements
-            String response = UseRequest.sendRequest(this.urlHead + "/resident/" + idResident + "?replace=false", RequestType.PATCH, patchBody.toString());
-
-            if(response == null) {
-                throw new Exception("Une erreur est survenue lors de l'ajout du signalement pour le résident. Réponse nulle.");
-            }
-
-            JsonElement elemSignal = JsonParser.parseString(response);
-            JsonObject jsonSignal = elemSignal.getAsJsonObject();
-
-            int statusCodeSignal = jsonSignal.get("status").getAsInt();
-            if (statusCodeSignal != 200) {
-                throw new Exception("Une erreur est survenue lors de l'ajout du signalement pour le résident. Message d'erreur: " + jsonSignal.get("data").getAsJsonObject().get("message").getAsString());
-            }
-
-            // Lancer la logique traitement du signalement et d'attribution de priorité aléatoire
-            // en arrière-plan sans bloquer aucun Thread.
-            CompletableFuture.runAsync(() -> {
-                this.manageSignal(newSignal);
-            });
-
 
             // Renvoyer le signalement avec un message de succès
-            ctx.status(201).json(newSignal).contentType("application/json");
-
+            ctx.status(201).json(newSignalement).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
@@ -167,20 +96,37 @@ public class SignalementController {
      * partir de son id.
      * @param ctx représente le contexte de la requête.
      */
-    public void get(Context ctx) {
+    public void getById(Context ctx) {
         try {
             String id = ctx.pathParam("id");
-            String strSignal = database.signalements.get(id);
 
-            if (strSignal == null) {
-                ctx.status(404).result("{\"message\": \"Signalement non retrouvé.\"}").contentType("application/json");
+            Signalement signalement = SignalementDAO.findById(new ObjectId(id));
+
+            if (signalement == null) {
+                ctx.status(404).result("{\"message\": \"Aucun signalement avec un tel ID trouvé.\"}").contentType("application/json");
                 return;
             }
 
-            JsonObject jsonSignal = JsonParser.parseString(strSignal).getAsJsonObject();
+            // Renvoyer le signalement trouvé
+            ctx.status(200).json(signalement).contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
 
-            // Renvoyer le résident
-            ctx.status(200).json(jsonSignal).contentType("application/json");
+    /**
+     * Cette route permet de récupérer tous les signalements d'un résident en particulier.
+     * Le path parameter user contient l'id du résident.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void getByResident(Context ctx) {
+        try {
+            String userId = ctx.pathParam("user");
+
+            List<Signalement> signalements = SignalementDAO.findResidentSignalements(new ObjectId(userId));
+
+            ctx.status(200).json(signalements).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
@@ -192,105 +138,32 @@ public class SignalementController {
      * d'un signalement, connaissant son id.
      * Le body doit contenir les champs à modifier avec la nouvelle information.
      * Assurez vous que la nouvelle information a le bon type.
-     * Elle nécessite également un queryParameter replace = true | false qui est utile pour les tableaux
-     * notamment pour savoir s'il faut juste ajouter les éléments ou remplacer le tableau en entier.
-     * La modification n'est possible que si le signalement n'a pas encore été traité.
+     * La modification n'est possible que si le signalement n'a pas encore été vu ou traité.
+     * NB: Elle remplace complètement les champs tableaux de la base de données par ceux envoyés.
      * @param ctx qui représente le contexte de la requête.
      */
     public void patch(Context ctx) {
         try {
-            // La modification est possible seulement si pas encore traité
-            String id = ctx.pathParam("id");
-            boolean replace = Boolean.parseBoolean(ctx.queryParam("replace"));
-
-            JsonObject updates = JsonParser.parseString(ctx.body()).getAsJsonObject();
-            String strSignal = database.signalements.get(id);
-
-            if (strSignal == null) {
-                ctx.status(404).result("{\"message\": \"Signalement non retrouvé.\"}").contentType("application/json");
-                return;
-            }
-
-            JsonObject signal = JsonParser.parseString(strSignal).getAsJsonObject();
-
-            // La modification est possible seulement si pas encore traité
-            if(!signal.get("statut").getAsString().equals("enAttente")) {
-                ctx.status(400).result("{\"message\": \"Impossible de modifier un signalement déjà traité. Veuillez vérifier vos notifications.\"}").contentType("application/json");
-                return;
-            }
-
-            // Appeler la logique de patch
-            boolean ok = ControllerHelper.patchLogic(updates, replace, signal, ctx);
-
-            if(!ok) {
-                return;
-            }
-
-            // Message de succès
-            database.signalements.put(id, signal.toString());
-            ctx.status(200).json(signal).contentType("application/json");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
-        }
-    }
-
-    /**
-     * Cette route permet de remplacer complètement un signalement existant
-     * par un autre avec de nouvelles informations, connaissant son id.
-     * Le body doit contenir le nouveau signalement avec tous les champs présents et ayant le bon type Json.
-     * La modification n'est possible que si le signalement n'est pas encore traité.
-     * Je précise que l'objet envoyé en body doit vraiment tout contenir. Contrairement à la fonction
-     * {@link #create(Context)}, cette fonction ne génère aucune information automatiquement.
-     * @param ctx qui représente le contexte de la requête.
-     */
-    public void update(Context ctx) {
-        try {
             String id = ctx.pathParam("id");
 
-            String strSignal = database.signalements.get(id);
+            // La modification est possible seulement si pas encore traité ou vu
+            Signalement signalement = SignalementDAO.findById(new ObjectId(id));
 
-            if (strSignal == null) {
-                ctx.status(404).result("{\"message\": \"Signalement non retrouvé.\"}").contentType("application/json");
+            if(signalement == null) {
+                ctx.status(404).result("{\"message\": \"Aucun signalement avec un tel ID trouvée.\"}").contentType("application/json");
                 return;
             }
 
-            // Traiter le nouveau signalement
-            String rawJson = ctx.body();
-
-            JsonElement element = JsonParser.parseString(rawJson);
-
-            // Vérifie si c'est bien un objet
-            if (!element.isJsonObject()) {
-                ctx.status(400).result("{\"message\": \"Format JSON invalide.\"}").contentType("application/json");
+            if(!signalement.getStatut().equals("en attente")) {
+                ctx.status(403).result("{\"message\": \"Ce signalement a déjà été vu par le STPM. Vous ne pouvez pas le modifier.\"}").contentType("application/json");
                 return;
             }
 
-            // Vérifier que toutes les entrées sont là
-            JsonObject newSignal = element.getAsJsonObject();
+            Signalement modifiedSignalement = ctx.bodyAsClass(Signalement.class);
 
-            JsonObject actualSignal = JsonParser.parseString(strSignal).getAsJsonObject();
+            SignalementDAO.save(modifiedSignalement);
 
-            // La modification est possible seulement si pas encore traité
-            if(!actualSignal.get("statut").getAsString().equals("enAttente")) {
-                ctx.status(400).result("{\"message\": \"Impossible de modifier un signalement déjà traité. Veuillez vérifier vos notifications.\"}").contentType("application/json");
-                return;
-            }
-
-            if(!ControllerHelper.sameKeysSameTypes(actualSignal, newSignal)) {
-                ctx.status(400).result("{\"message\": \"Format d'objet ne correspondant pas à celui d'un signalement. Vérifiez que les champs envoyés sont corrects et que les types sont bons.\"}").contentType("application/json");
-                return;
-            }
-
-            // M'assurer que l'id reste le même
-            JsonObject updatedSignal = newSignal;
-            updatedSignal.addProperty("id", id);
-
-            database.signalements.put(id, updatedSignal.toString());
-
-            // Renvoyer le nouvel objet
-            ctx.status(200).json(updatedSignal).contentType("application/json");
+            ctx.status(200).json(modifiedSignalement).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
@@ -304,14 +177,8 @@ public class SignalementController {
     public void delete(Context ctx) {
         try {
             String id = ctx.pathParam("id");
-            String strSignal = database.signalements.get(id);
 
-            if (strSignal == null) {
-                ctx.status(404).result("{\"message\": \"Signalement non retrouvé.\"}").contentType("application/json");
-                return;
-            }
-
-            database.signalements.remove(id);
+            SignalementDAO.delete(new ObjectId(id));
 
             // Renvoyer la réponse de succès
             ctx.status(200).result("{\"message\": \"Suppression réalisée avec succès.\"}").contentType("application/json");
@@ -322,67 +189,55 @@ public class SignalementController {
     }
 
     /**
-     * Une fonction qui après avoir attendu un certain temps (1.5s) attribue une priorité aléatoire
-     * au problème. Cette priorité est choisie avec une tendance plus pousée à faible et moyen.
-     * Elle crée ensuite une fiche problème. La création de la fiche problème inclut l'envoi d'une notification
-     * à tous les résidents ayant fait des signalements en rapport et aussi à tous les prestataires
-     * qui pourraient être intéressés par le problème. Voir {@link ProblemController#create(Context)}.
-     * @param signal qui représente le nouveau signalement à traiter
+     * Cette route marque un signalement comme vu par le STPM pour empêcher des modifications
+     * par les résidents.
+     * @param ctx qui représente le contexte de la requête.
      */
-    private void manageSignal(JsonObject signal) {
-
+    public void markAsSeen(Context ctx) {
         try {
-            // Simule une attente de traitement
-            Thread.sleep(500);
+            String id = ctx.pathParam("id");
 
-            // Assigner une priorité aléatoire entre 0, 1 et 2 (faible, moyenne, élevée)
-            // avec une tendance plus grande à 0 et 1
-            int[] priorites = {0, 0, 0, 0, 1, 1, 2};
-            int randomPriorite = priorites[RandomGeneration.getRandomUniformInt(0, 7)];
+            Signalement signalement = SignalementDAO.findById(new ObjectId(id));
 
-            // Rassembler les informations pour la fiche problème
-            JsonObject problemToCreate = new JsonObject();
-
-            problemToCreate.addProperty("typeTravaux", signal.get("typeProbleme").getAsString());
-            problemToCreate.addProperty("localisation", signal.get("localisation").getAsString());
-            problemToCreate.addProperty("description", signal.get("description").getAsString());
-            problemToCreate.addProperty("quartier", signal.get("quartier").getAsString());
-            problemToCreate.addProperty("priorite", randomPriorite);
-
-            JsonArray signals = new JsonArray();
-            signals.add(signal.get("id").getAsString());
-            problemToCreate.add("signalements", signals);
-            JsonArray residents = new JsonArray();
-            residents.add(signal.get("resident").getAsString());
-            problemToCreate.add("residents", residents);
-
-
-            // Envoyer une requête pour créer une fiche problème
-            String problemResponse = UseRequest.sendRequest(this.urlHead + "/probleme", RequestType.POST, problemToCreate.toString());
-
-            if(problemResponse == null) {
-                logger.info("Une erreur est survenue lors de la création de la fiche problème. Réponse nulle.");
+            if(signalement == null) {
+                ctx.status(404).result("{\"message\": \"Aucun signalement avec un tel ID trouvée.\"}").contentType("application/json");
                 return;
             }
 
-            JsonElement elemProblem = JsonParser.parseString(problemResponse);
-            JsonObject jsonProblem = elemProblem.getAsJsonObject();
+            signalement.setStatut("vu");
+            SignalementDAO.save(signalement);
 
-            int statusCodeProblem = jsonProblem.get("status").getAsInt();
-            if (statusCodeProblem != 201) {
-                logger.info("Une erreur est survenue lors de la création de la fiche problème. Message d'erreur: " + jsonProblem.get("data").getAsJsonObject().get("message").getAsString());
-                return;
-            }
-
-            logger.info("Fiche problème créée avec succès.");
-
-        } catch (InterruptedException e) {
-            // Réinterrompre le thread
-            Thread.currentThread().interrupt();
-            System.err.println("Le traitement du signalement a été interrompu.");
+            // Renvoyer la réponse de succès
+            ctx.status(200).json(signalement).contentType("application/json");
         } catch (Exception e) {
-            logger.info("Une erreur lors du traitement du signalement.");
             e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
+    /**
+     * Cette route permet de marquer un signalement comme traité.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void markAsProcessed(Context ctx) {
+        try {
+            String id = ctx.pathParam("id");
+
+            Signalement signalement = SignalementDAO.findById(new ObjectId(id));
+
+            if(signalement == null) {
+                ctx.status(404).result("{\"message\": \"Aucun signalement avec un tel ID trouvée.\"}").contentType("application/json");
+                return;
+            }
+
+            signalement.setStatut("traité");
+            SignalementDAO.save(signalement);
+
+            // Renvoyer la réponse de succès
+            ctx.status(200).json(signalement).contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
         }
     }
 }

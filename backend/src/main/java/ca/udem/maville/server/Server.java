@@ -64,7 +64,6 @@ public class Server {
             // la définition du controller pour voir les éléments requis.
             config.router.apiBuilder(() -> {
 
-                // Todo: Corriger les routes et les fonctions des controllers
                 path("/notification", () -> {
                     path("/getAll/{user}", () -> {
                         get(notificationController::getAll);

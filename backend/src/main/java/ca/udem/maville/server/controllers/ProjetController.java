@@ -6,6 +6,7 @@ import ca.udem.maville.server.models.Projet;
 import ca.udem.maville.utils.RequestType;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import io.javalin.http.Context;
 
 import io.javalin.json.JavalinJackson;
@@ -125,48 +126,10 @@ public class ProjetController {
             }
             newProjet.setAbonnes(abonnes);
 
-            // Envoyer des notifications à tous les abonnés (qui sont ici en réalité ceux ayant signalés) et aussi à ceux intéressés
-            Set<String> toSend = new HashSet<>();
-            for(ObjectId abonne : abonnes) {
-                toSend.add(abonne.toHexString());
-            }
+            // Envoyer une notification à tout ceux qui sont concernés
+            this.notifyConcerned(newProjet);
 
-            String quartier = newProjet.getQuartier();
-            List<String> ruesAffectees = newProjet.getRuesAffectees();
-            String rues = String.join(",", ruesAffectees);
-
-            String response1 = UseRequest.sendRequest(urlHead + "/resident/getConcerned?quartier=" + quartier + "&rues=" + rues, RequestType.GET, null);
-            JsonNode json1 = mapper.readTree(response1);
-            JsonNode data1 = json1.get("data");
-            if(json1.get("status").asInt() != 200) {
-                throw new Exception(data1.get("message").asText());
-            }
-
-            if(!data1.isArray()) {
-                throw new Exception("Les résidents intéressés n'est pas un tableau.");
-            }
-
-            for(JsonNode element : data1) {
-                toSend.add(element.asText());
-            }
-
-            for(String userId : toSend) {
-                String body = "{" +
-                        "\"message\": \"Un nouveau projet a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.\"," +
-                        "\"user\": \"" + userId + "\"," +
-                        "\"url\": \"/projet/" + newProjet.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
-                        "}";
-                String response2 = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
-
-                JsonNode json2 = mapper.readTree(response2);
-
-                if(json2.get("status").asInt() != 201) {
-                    JsonNode info = json2.get("data");
-                    logger.error(info.get("message").asText());
-                }
-            }
-
-            // Marquer la candidature comme acceptée.
+            // Marquer la candidature comme acceptée. Cela inclut l'envoi de la notification au prestataire.
             String response3 = UseRequest.sendRequest(urlHead + "/candidature/markAsAccepted/" + candidature, RequestType.PATCH, null);
             JsonNode json3 = mapper.readTree(response3);
             JsonNode data3 = json3.get("data");
@@ -225,11 +188,74 @@ public class ProjetController {
 
             ProjetDAO.save(modifiedProjet);
 
-            ctx.status(200).json(modifiedProjet).contentType("application/json");
+            // Envoyer une notification à tout ceux qui sont abonnées au quartier ou aux rues
+            this.notifyConcerned(modifiedProjet);
 
+            ctx.status(200).json(modifiedProjet).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
+    /**
+     * Cette fonction regroupe la logique d'envoi de notifications aux personnes intéressées, concernées ou abonnées au projet.
+     * @throws Exception quand l'information reçue n'a pas le bon format.
+     */
+    private void notifyConcerned(Projet projet) throws Exception {
+        ObjectMapper mapper = JavalinJackson.defaultMapper();
+
+        // Envoyer des notifications à tous les abonnés (qui sont ici en réalité ceux ayant signalés) et aussi à ceux intéressés
+        Set<String> toSend = new HashSet<>();
+        for(ObjectId abonne : projet.getAbonnes()) {
+            toSend.add(abonne.toHexString());
+        }
+
+        String quartier = projet.getQuartier();
+        List<String> ruesAffectees = projet.getRuesAffectees();
+        String rues = String.join(",", ruesAffectees);
+
+        String response1 = UseRequest.sendRequest(urlHead + "/resident/getConcerned?quartier=" + quartier + "&rues=" + rues, RequestType.GET, null);
+        JsonNode json1 = mapper.readTree(response1);
+        JsonNode data1 = json1.get("data");
+        if(json1.get("status").asInt() != 200) {
+            throw new Exception(data1.get("message").asText());
+        }
+
+        if(!data1.isArray()) {
+            throw new Exception("Les résidents intéressés n'est pas un tableau.");
+        }
+
+        for(JsonNode element : data1) {
+            toSend.add(element.asText());
+        }
+
+        for(String userId : toSend) {
+            String body = "{" +
+                    "\"message\": \"Un nouveau projet a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.\"," +
+                    "\"user\": \"" + userId + "\"," +
+                    "\"url\": \"/projet/" + projet.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
+                    "}";
+            String response2 = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
+
+            JsonNode json2 = mapper.readTree(response2);
+
+            if(json2.get("status").asInt() != 201) {
+                JsonNode info = json2.get("data");
+                logger.error(info.get("message").asText());
+            }
+        }
+    }
+
+    /**
+     * Cette fonction initialise la base de données avec les projets de travaux venant de l'API de Montréal.
+     * Elle sera lancée une seule fois au premier test du serveur.
+     */
+    private void initializeProjetsFromAPI() {
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

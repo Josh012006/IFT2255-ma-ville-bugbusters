@@ -140,4 +140,16 @@ public class PrestataireController {
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
         }
     }
+
+    /**
+     * Cette fonction initialise la base de données avec les prestataires.
+     * Elle sera lancée une seule fois au premier test du serveur.
+     */
+    private void initializePrestataires() {
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
