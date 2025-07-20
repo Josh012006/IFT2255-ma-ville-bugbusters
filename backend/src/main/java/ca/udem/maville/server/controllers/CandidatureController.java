@@ -290,8 +290,10 @@ public class CandidatureController {
                     "}";
             String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 
-            if(json.get("status").asInt() != 201) {
-                JsonNode data = json.get("data");
+            JsonNode json1 = mapper.readTree(response);
+
+            if(json1.get("status").asInt() != 201) {
+                JsonNode data = json1.get("data");
                 throw new Exception(data.get("message").asText());
             }
 
