@@ -2,23 +2,16 @@ package ca.udem.maville.server.controllers;
 
 import ca.udem.maville.hooks.UseRequest;
 import ca.udem.maville.server.dao.files.ProblemDAO;
-import ca.udem.maville.server.models.Candidature;
 import ca.udem.maville.server.models.FicheProbleme;
-import ca.udem.maville.utils.*;
+import ca.udem.maville.utils.RequestType;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import io.javalin.http.Context;
 
 import io.javalin.json.JavalinJackson;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 
-import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -65,9 +58,9 @@ public class ProblemController {
      * - priorite: la priorité accordée au problème par le STPM.
      * - signalements: Les ids des signalements liés à la fiche problème
      * - residents: les ids des résidents ayant déclarés le problème. Très important.
-     * Elle s'occupe automatiquement d'assigner les champs id, statut et dateCreationFiche
-     * Elle inclut l'envoi d'une notification à tous les résidents ayant fait des
-     * signalements en rapport et aussi à tous les prestataires
+     * Elle s'occupe automatiquement d'assigner les champs id et statut.
+     * Elle inclut de marquer tous les signalements comme traités, ce qui envoie des notifications aux résidents.
+     * Elle inclut aussi l'envoi d'une notification à tous les prestataires pouvant être intéressés.
      * qui pourraient être intéressés par le problème.
      * @param ctx représente le contexte de la requête.
      */
@@ -75,6 +68,55 @@ public class ProblemController {
         try {
             // Récupérer les informations sur le nouveau problème
             FicheProbleme newProblem = ctx.bodyAsClass(FicheProbleme.class);
+
+            // S'assurer que le statut est le bon avant de sauvegarder
+            newProblem.setStatut("en attente");
+            ProblemDAO.save(newProblem);
+
+            ObjectMapper mapper = JavalinJackson.defaultMapper();
+
+            // Marquer les signalements comme traités.
+            List<ObjectId> signalements = newProblem.getSignalements();
+            for(ObjectId id : signalements) {
+                String response = UseRequest.sendRequest(urlHead + "/signalement/markAsProcessed/" + id.toHexString(), RequestType.PATCH, null);
+                JsonNode json = mapper.readTree(response);
+                if(json.get("status").asInt() != 200) {
+                    JsonNode data = json.get("data");
+                    logger.error(data.get("message").asText());
+                }
+            }
+
+            // Envoyer des notifications aux prestataires intéressés.
+            String quartier = newProblem.getQuartier();
+            String type = newProblem.getTypeTravaux();
+
+            String response = UseRequest.sendRequest(urlHead + "/prestataire/getConcerned?quartier=" + quartier + "&type=" + type, RequestType.GET, null);
+            JsonNode json = mapper.readTree(response);
+            JsonNode data = json.get("data");
+            if(json.get("status").asInt() != 200) {
+                throw new Exception(data.get("message").asText());
+            }
+
+            if(!data.isArray()) {
+                throw new Exception("Les prestataires intéressés n'est pas un tableau.");
+            }
+
+            for(JsonNode element : data) {
+                String id = element.asText();
+                String body = "{" +
+                        "\"message\": \"Une nouvelle fiche problème qui pourrait vous intéresser a été créée.\"," +
+                        "\"user\": \"" + id + "\"," +
+                        "\"url\": \"/problemes/" + newProblem.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
+                        "}";
+                String response1 = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
+
+                JsonNode json1 = mapper.readTree(response1);
+
+                if(json1.get("status").asInt() != 201) {
+                    JsonNode info = json1.get("data");
+                    logger.error(info.get("message").asText());
+                }
+            }
 
             // Renvoyer la fiche problème pour marquer le succès
             ctx.status(201).json(newProblem).contentType("application/json");
@@ -114,8 +156,9 @@ public class ProblemController {
      * Cette méthode permet d'ajouter un résident à la liste des résidents du problème
      * et un signalement à la liste des signalement du problème.
      * Utile lorsqu'un problème à déjà été créé pour un signalement.
-     * Le body doit contenir le champ resident qui représente l'id du résident ayant fais le nouveau
+     * Le body doit contenir le champ resident qui représente l'id du résident ayant fait le nouveau
      * signalement et le champ signalement qui représente l'id de son signalement.
+     * Elle inclut de marquer le signalement comme traité, ce qui envoie une notification au résident.
      * @param ctx qui représente le contexte de la requête.
      */
     public void addExisting(Context ctx) {
@@ -129,7 +172,8 @@ public class ProblemController {
                 return;
             }
 
-            JsonNode json = JavalinJackson.defaultMapper().readTree(ctx.body());
+            ObjectMapper mapper = JavalinJackson.defaultMapper();
+            JsonNode json = mapper.readTree(ctx.body());
 
             if(!json.has("resident") || !json.has("signalement")) {
                 ctx.status(400).result("{\"message\": \"Les champs resident et signalement sont obligatoires.\"}").contentType("application/json");
@@ -146,7 +190,41 @@ public class ProblemController {
 
             ProblemDAO.save(probleme);
 
+            // Marquer le signalement comme traité.
+            String response1 = UseRequest.sendRequest(urlHead + "/signalement/markAsProcessed/" + json.get("signalement").asText(), RequestType.PATCH, null);
+            JsonNode json1 = mapper.readTree(response1);
+            JsonNode data1 = json.get("data");
+            if(json1.get("status").asInt() != 200) {
+                throw new Exception(data1.get("message").asText());
+            }
+
             ctx.status(200).json(probleme).contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
+    /**
+     * Cette route permet de marquer une fiche problème comme traitée.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void markAsProcessed(Context ctx) {
+        try {
+            String id = ctx.pathParam("id");
+
+            FicheProbleme problem = ProblemDAO.findById(new ObjectId(id));
+
+            if(problem == null) {
+                ctx.status(404).result("{\"message\": \"Aucune fiche problème avec un tel ID trouvée.\"}").contentType("application/json");
+                return;
+            }
+
+            problem.setStatut("traitée");
+            ProblemDAO.save(problem);
+
+            // Renvoyer la réponse de succès
+            ctx.status(200).json(problem).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");

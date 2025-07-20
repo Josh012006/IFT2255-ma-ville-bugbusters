@@ -5,11 +5,11 @@ import ca.udem.maville.server.models.users.Resident;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.http.Context;
-
 import io.javalin.json.JavalinJackson;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -49,7 +49,12 @@ public class ResidentController {
             String[] ruesTab = rues.split(",");
             List<Resident> concerned = ResidentDAO.findToNotify(quartier, ruesTab);
 
-            ctx.status(200).json(concerned).contentType("application/json");
+            List<String> concernedIds = new ArrayList<>();
+            for(Resident resident : concerned) {
+                concernedIds.add(resident.getId().toHexString());
+            }
+
+            ctx.status(200).json(concernedIds).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");

@@ -118,6 +118,12 @@ public class Server {
                     path("/markAsSeen/{id}", () -> {
                         patch(candidatureController::markAsSeen);
                     });
+                    path("/markAsAccepted/{id}", () -> {
+                        patch(candidatureController::markAsAccepted);
+                    });
+                    path("/markAsRejected/{id}", () -> {
+                        patch(candidatureController::markAsRejected);
+                    });
                 });
 
                 path("/probleme", () -> {
@@ -130,6 +136,9 @@ public class Server {
                     });
                     path("/addExisting/{id}", () -> {
                         patch(problemController::addExisting);
+                    });
+                    path("/markAsProcessed/{id}", () -> {
+                        patch(problemController::markAsProcessed);
                     });
                 });
 
@@ -158,9 +167,13 @@ public class Server {
                     path("/{id}", () -> {
                         get(signalementController::getById);
                         patch(signalementController::patch);
+                        delete(signalementController::delete);
                     });
                     path("/markAsSeen/{id}", () -> {
                         patch(signalementController::markAsSeen);
+                    });
+                    path("/markAsProcessed/{id}", () -> {
+                        patch(signalementController::markAsProcessed);
                     });
                 });
 

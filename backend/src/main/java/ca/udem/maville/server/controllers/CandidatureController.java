@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.http.Context;
 
+import io.javalin.json.JavalinJackson;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 
@@ -92,13 +93,13 @@ public class CandidatureController {
 
             // Envoyer une notification au STPM.
             String body = "{" +
-                    "\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"," +
+                    "\"message\": \"Une nouvelle candidature a été déposée par un prestataire.\"," +
                     "\"user\": \"STPM\"," +
                     "\"url\": \"/candidature/" + newCandidature.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
                     "}";
             String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 
-            ObjectMapper mapper = new ObjectMapper();
+            ObjectMapper mapper = JavalinJackson.defaultMapper();
             JsonNode json = mapper.readTree(response);
 
             if(json.get("status").asInt() != 201) {
@@ -214,4 +215,92 @@ public class CandidatureController {
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
         }
     }
+    /**
+     * Marque une candidature comme acceptée. Elle inclut l'envoi de la notification au prestataire.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void markAsAccepted(Context ctx) {
+        try {
+            String id = ctx.pathParam("id");
+
+            Candidature candidature = CandidatureDAO.findById(new ObjectId(id));
+
+            if(candidature == null) {
+                ctx.status(404).result("{\"message\": \"Aucune candidature avec un tel ID trouvée.\"}").contentType("application/json");
+                return;
+            }
+
+            candidature.setStatut("acceptée");
+            CandidatureDAO.save(candidature);
+
+            // Envoyer une notification au prestataire.
+            String body = "{" +
+                    "\"message\": \"Votre candidature au projet " + candidature.getTitreProjet() + "a été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.\"," +
+                    "\"user\": \"" + candidature.getPrestataire() + "\"," +
+                    "}";
+            String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
+
+            ObjectMapper mapper = JavalinJackson.defaultMapper();
+            JsonNode json = mapper.readTree(response);
+
+            if(json.get("status").asInt() != 201) {
+                JsonNode data = json.get("data");
+                throw new Exception(data.get("message").asText());
+            }
+
+            // Renvoyer la réponse de succès
+            ctx.status(200).json(candidature).contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
+    /**
+     * Marque une candidature comme rejetée. Elle inclut l'envoi de la notification au prestataire.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void markAsRejected(Context ctx) {
+        try {
+            String id = ctx.pathParam("id");
+
+            Candidature candidature = CandidatureDAO.findById(new ObjectId(id));
+
+            if(candidature == null) {
+                ctx.status(404).result("{\"message\": \"Aucune candidature avec un tel ID trouvée.\"}").contentType("application/json");
+                return;
+            }
+
+            candidature.setStatut("rejetée");
+            CandidatureDAO.save(candidature);
+
+            // Prendre la raison du rejet dans le body et envoyer la notification
+            ObjectMapper mapper = JavalinJackson.defaultMapper();
+            JsonNode json = mapper.readTree(ctx.body());
+
+            if(!json.has("raison")) {
+                ctx.status(400).result("{\"message\": \"Une raison est nécessaire lors du rejet d'une candidature.\"}").contentType("application/json");
+                return;
+            }
+
+            String body = "{" +
+                    "\"message\": \"Merci pour votre intérêt pour les problèmes de la ville de Montréal. Nous avons le regret de vous annoncer " +
+                    "que votre candidature au projet " + candidature.getTitreProjet() + "a été réjetée. La raison est la suivante : " + json.get("raison").asText() + ".\"," +
+                    "\"user\": \"" + candidature.getPrestataire() + "\"," +
+                    "}";
+            String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
+
+            if(json.get("status").asInt() != 201) {
+                JsonNode data = json.get("data");
+                throw new Exception(data.get("message").asText());
+            }
+
+            // Renvoyer la réponse de succès
+            ctx.status(200).json(candidature).contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
 }
