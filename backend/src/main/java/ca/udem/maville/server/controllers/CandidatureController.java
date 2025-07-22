@@ -95,7 +95,7 @@ public class CandidatureController {
             // Envoyer une notification au STPM.
             String body = "{" +
                     "\"message\": \"Une nouvelle candidature a été déposée par un prestataire.\"," +
-                    "\"user\": \"STPM\"," +
+                    "\"user\": \"507f1f77bcf86cd799439011\"," +
                     "\"url\": \"/candidature/" + newCandidature.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
                     "}";
             String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);

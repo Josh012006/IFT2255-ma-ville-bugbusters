@@ -70,7 +70,7 @@ public class SignalementController {
             // Envoyer une notification au STPM
             String body = "{" +
                     "\"message\": \"Un nouveau signalement a été créé par un résident.\"," +
-                    "\"user\": \"STPM\"," +
+                    "\"user\": \"507f1f77bcf86cd799439011\"," +
                     "\"url\": \"/signalement/" + newSignalement.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
                     "}";
             String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);

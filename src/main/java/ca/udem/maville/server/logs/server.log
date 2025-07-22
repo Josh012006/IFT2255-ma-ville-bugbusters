@@ -1,0 +1,58 @@
+2025-07-21 23:43:00 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/notification
+Headers:
+  Accept: */*
+  Cache-Control: no-cache
+  User-Agent: PostmanRuntime/7.44.1
+  Connection: keep-alive
+  Postman-Token: 7a67efa1-f2f3-4120-bb9f-3382f7a3a2b7
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br
+  Content-Length: 134
+  Content-Type: application/json
+Body:
+{
+    "message": "Une nouvelle candidature a été créée.",
+    "user" : "STPM",
+    "url" : "https://josue-mongan.vercel.app"
+}
+---------------------
+
+2025-07-21 23:43:00 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 500 Server Error
+Body:
+{"message": "Une erreur est interne survenue! Veuillez réessayer plus tard."}
+------------------------
+
+2025-07-21 23:46:13 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/notification
+Headers:
+  Accept: */*
+  Cache-Control: no-cache
+  User-Agent: PostmanRuntime/7.44.1
+  Connection: keep-alive
+  Postman-Token: 473d09ef-e6f8-4b1f-8baf-9c0239687882
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br
+  Content-Length: 154
+  Content-Type: application/json
+Body:
+{
+    "message": "Une nouvelle candidature a été créée.",
+    "user" : "507f1f77bcf86cd799439011",
+    "url" : "https://josue-mongan.vercel.app"
+}
+---------------------
+
+2025-07-21 23:46:15 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"687f0986796a4efe759ac497","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été créée.","statut":"non lue","url":"https://josue-mongan.vercel.app","createdAt":"2025-07-22T03:46:13.951Z","updatedAt":"2025-07-22T03:46:15.430Z"}
+------------------------
+
