@@ -79,7 +79,7 @@ public class Server {
                     });
                     post(notificationController::create);
                     path("/markAsRead/{id}", () -> {
-                        get(notificationController::markAsRead);
+                        patch(notificationController::markAsRead);
                     });
                 });
 
@@ -193,6 +193,7 @@ public class Server {
             });
         }).start(this.port);
 
+        logger.info("\n========== 🚀 Server started on port {} ==========\n", this.port);
 
         // La logique de formattage des logs du servers.
         app.before(ctx -> {
@@ -234,7 +235,11 @@ public class Server {
 
 
         // Appelle aussi serverStopping et serverStopped
-        Runtime.getRuntime().addShutdownHook(new Thread(app::stop));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            logger.info("\n========== 🛑 Server stopped ==========\n");
+            app.stop();
+        }));
+
 
     }
 
