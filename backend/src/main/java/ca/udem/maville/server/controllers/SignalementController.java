@@ -71,7 +71,7 @@ public class SignalementController {
             String body = "{" +
                     "\"message\": \"Un nouveau signalement a été créé par un résident.\"," +
                     "\"user\": \"507f1f77bcf86cd799439011\"," +
-                    "\"url\": \"/signalement/" + newSignalement.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
+                    "\"url\": \"/signalement/" + newSignalement.getId() + "\"" + // Todo: Vérifier l'url une fois l'interface finie.
                     "}";
             String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 
@@ -217,11 +217,14 @@ public class SignalementController {
 
     /**
      * Cette route permet de marquer un signalement comme traité.
+     * Elle requiert un query parameter treated qui est un booléen
+     * informant si un projet existe déjà pour le signalement.
      * @param ctx qui représente le contexte de la requête.
      */
     public void markAsProcessed(Context ctx) {
         try {
             String id = ctx.pathParam("id");
+            boolean treated = Boolean.parseBoolean(ctx.queryParam("treated"));
 
             Signalement signalement = SignalementDAO.findById(new ObjectId(id));
 
@@ -232,6 +235,24 @@ public class SignalementController {
 
             signalement.setStatut("traité");
             SignalementDAO.save(signalement);
+
+            // Envoyer une notification au résident.
+            String message = (treated) ? "Un projet existe déjà pour régler ce problème. Veuillez consulter la" +
+                    " liste des projets récents pour plus d'informations." : "Vous serez notifié lorsqu'un projet pour le résoudre aura été créé.";
+            String body = "{" +
+                    "\"message\": \"Votre signalement à été traité par le STPM. " + message + "\"," +
+                    "\"user\": \"" + signalement.getResident() + "\"," +
+                    "\"url\": \"/signalement/" + signalement.getId() + "\"" +     // Todo: Vérifier une fois que l'interface est finie
+                    "}";
+            String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
+
+            ObjectMapper mapper = JavalinJackson.defaultMapper();
+            JsonNode json = mapper.readTree(response);
+
+            if(json.get("status").asInt() != 201) {
+                JsonNode data = json.get("data");
+                throw new Exception(data.get("message").asText());
+            }
 
             // Renvoyer la réponse de succès
             ctx.status(200).json(signalement).contentType("application/json");

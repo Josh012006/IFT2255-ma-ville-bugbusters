@@ -2,6 +2,7 @@ package ca.udem.maville.server.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Id;
 import dev.morphia.annotations.PrePersist;
 import org.bson.types.ObjectId;
 
@@ -21,6 +22,7 @@ public class Signalement {
     /**
      * Identifiant unique du signalement.
      */
+    @Id
     private ObjectId id;
 
     /**

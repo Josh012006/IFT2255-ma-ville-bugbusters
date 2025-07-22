@@ -89,7 +89,9 @@ public class Server {
                     path("/getConcerned", () -> {
                         get(prestataireController::getConcerned);
                     });
-                    get(prestataireController::getAll);
+                    path("/getAll", () -> {
+                        get(prestataireController::getAll);
+                    });
                     path("/{id}", () -> {
                         get(prestataireController::getById);
                         patch(prestataireController::patch);
@@ -103,7 +105,9 @@ public class Server {
                     path("/getConcerned", () -> {
                         get(residentController::getConcerned);
                     });
-                    get(residentController::getAll);
+                    path("/getAll", () -> {
+                        get(residentController::getAll);
+                    });
                     path("/{id}", () -> {
                         get(residentController::getById);
                         patch(residentController::patch);
@@ -185,6 +189,8 @@ public class Server {
                     path("/markAsSeen/{id}", () -> {
                         patch(signalementController::markAsSeen);
                     });
+                    // Il requiert un query parameter treated qui informe s'il
+                    // existe déjà un projet pour ce signalement
                     path("/markAsProcessed/{id}", () -> {
                         patch(signalementController::markAsProcessed);
                     });

@@ -17,7 +17,7 @@ import java.util.List;
  * Cette classe est stockée dans la collection "utilisateurs" de MongoDB
  * en utilisant le mécanisme de discriminateur de Morphia.
  */
-@Entity(discriminator = "resident")
+@Entity(discriminator = "residents")
 public class Resident extends Utilisateur {
 
     /**
