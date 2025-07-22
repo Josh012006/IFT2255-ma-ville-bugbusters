@@ -79,7 +79,7 @@ public class ProblemController {
             // Marquer les signalements comme traités.
             List<ObjectId> signalements = newProblem.getSignalements();
             for(ObjectId id : signalements) {
-                String response = UseRequest.sendRequest(urlHead + "/signalement/markAsProcessed/" + id.toHexString(), RequestType.PATCH, null);
+                String response = UseRequest.sendRequest(urlHead + "/signalement/markAsProcessed/" + id.toHexString() + "?treated=false", RequestType.PATCH, null);
                 JsonNode json = mapper.readTree(response);
                 if(json.get("status").asInt() != 200) {
                     JsonNode data = json.get("data");
@@ -88,8 +88,8 @@ public class ProblemController {
             }
 
             // Envoyer des notifications aux prestataires intéressés.
-            String quartier = newProblem.getQuartier();
-            String type = newProblem.getTypeTravaux();
+            String quartier = newProblem.getQuartier().replace(" ", "+");
+            String type = newProblem.getTypeTravaux().replace(" ", "+");
 
             String response = UseRequest.sendRequest(urlHead + "/prestataire/getConcerned?quartier=" + quartier + "&type=" + type, RequestType.GET, null);
             JsonNode json = mapper.readTree(response);
@@ -107,7 +107,7 @@ public class ProblemController {
                 String body = "{" +
                         "\"message\": \"Une nouvelle fiche problème qui pourrait vous intéresser a été créée.\"," +
                         "\"user\": \"" + id + "\"," +
-                        "\"url\": \"/probleme/" + newProblem.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
+                        "\"url\": \"/probleme/" + newProblem.getId() + "\"" + // Todo: Vérifier l'url une fois l'interface finie.
                         "}";
                 String response1 = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 
@@ -192,7 +192,7 @@ public class ProblemController {
             ProblemDAO.save(probleme);
 
             // Marquer le signalement comme traité.
-            String response1 = UseRequest.sendRequest(urlHead + "/signalement/markAsProcessed/" + json.get("signalement").asText(), RequestType.PATCH, null);
+            String response1 = UseRequest.sendRequest(urlHead + "/signalement/markAsProcessed/" + json.get("signalement").asText() + "?treated=true", RequestType.PATCH, null);
             JsonNode json1 = mapper.readTree(response1);
             JsonNode data1 = json.get("data");
             if(json1.get("status").asInt() != 200) {

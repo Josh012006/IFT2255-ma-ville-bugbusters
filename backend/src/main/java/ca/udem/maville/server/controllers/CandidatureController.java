@@ -96,7 +96,7 @@ public class CandidatureController {
             String body = "{" +
                     "\"message\": \"Une nouvelle candidature a été déposée par un prestataire.\"," +
                     "\"user\": \"507f1f77bcf86cd799439011\"," +
-                    "\"url\": \"/candidature/" + newCandidature.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
+                    "\"url\": \"/candidature/" + newCandidature.getId() + "\"" + // Todo: Vérifier l'url une fois l'interface finie.
                     "}";
             String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 
@@ -243,7 +243,7 @@ public class CandidatureController {
             // Envoyer une notification au prestataire.
             String body = "{" +
                     "\"message\": \"Votre candidature au projet " + candidature.getTitreProjet() + "a été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.\"," +
-                    "\"user\": \"" + candidature.getPrestataire() + "\"," +
+                    "\"user\": \"" + candidature.getPrestataire() + "\"" +
                     "}";
             String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 
@@ -265,6 +265,7 @@ public class CandidatureController {
 
     /**
      * Marque une candidature comme rejetée. Elle inclut l'envoi de la notification au prestataire.
+     * Le body doit contenir un champ raison qui donne la raison du rejet.
      * @param ctx qui représente le contexte de la requête.
      */
     public void markAsRejected(Context ctx) {
@@ -292,8 +293,8 @@ public class CandidatureController {
 
             String body = "{" +
                     "\"message\": \"Merci pour votre intérêt pour les problèmes de la ville de Montréal. Nous avons le regret de vous annoncer " +
-                    "que votre candidature au projet " + candidature.getTitreProjet() + "a été réjetée. La raison est la suivante : " + json.get("raison").asText() + ".\"," +
-                    "\"user\": \"" + candidature.getPrestataire() + "\"," +
+                    "que votre candidature au projet " + candidature.getTitreProjet() + "a été réjetée. La raison est la suivante : " + json.get("raison").asText() + "\"," +
+                    "\"user\": \"" + candidature.getPrestataire() + "\"" +
                     "}";
             String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 

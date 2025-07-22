@@ -2,20 +2,20 @@ package ca.udem.maville.server.controllers;
 
 import ca.udem.maville.hooks.UseRequest;
 import ca.udem.maville.server.dao.files.ProjetDAO;
+import ca.udem.maville.server.models.Candidature;
+import ca.udem.maville.server.models.FicheProbleme;
 import ca.udem.maville.server.models.Projet;
 import ca.udem.maville.utils.ControllerHelper;
 import ca.udem.maville.utils.RequestType;
 import ca.udem.maville.utils.TypesTravaux;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import io.javalin.http.Context;
 
 import io.javalin.json.JavalinJackson;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 
-import java.time.Instant;
 import java.util.*;
 
 
@@ -71,21 +71,9 @@ public class ProjetController {
 
     /**
      * Cette route permet de créer un nouveau projet pour un prestataire donné.
-     * Le body doit contenir toutes informations nécessaires notamment :
-     * - prestataire: qui est l'id du prestataire auquel le projet appartient
-     * - nomPrestataire: qui représente le nom de l'entreprise à laquelle le projet appartient
-     * - ficheProbleme: qui est l'id de la fiche problème concernée
-     * - quartier: qui représente le quartier affecté par les travaux
-     * - titreProjet: qui est le titre du projet
-     * - description: La description du projet
-     * - typeTravaux: qui représente le type travail à réaliser
-     * - cout: Le cout du projet
-     * - priorite: qui est la priorité attribuée au projet.
-     * - dateDebut: qui doit être sous format ISO
-     * - dateFin: qui doit être sous format ISO
-     * - ruesAffectees: Les rues affectées par les travaux
-     * Elle nécessite un query parameter candidature qui représente l'id de la candidature pour pouvoir la marquer
-     * comme acceptée et envoyer la notification au prestataire.
+     * Le body doit contenir uniquement :
+     * - candidature : qui est l'id de la candidature qui a conduit au projet.
+     * Le reste des informations en est tiré.
      * Elle s'occupe automatiquement d'assigner les champs id et statut.
      * Elle inclut l'envoi des notifications aux résidents ayant signalé le problème, à ceux s'étant abonnés et au
      * prestataire ayant proposé la candidature.
@@ -94,18 +82,41 @@ public class ProjetController {
     public void create(Context ctx) {
         try {
 
-            String candidature = ctx.queryParam("candidature");
+            ObjectMapper mapper = JavalinJackson.defaultMapper();
+            JsonNode json2 = mapper.readTree(ctx.body());
+            String candidature = json2.get("candidature").asText();
 
             if(candidature == null || candidature.isEmpty()) {
                 ctx.status(400).result("{\"message\": \"Les query parameter candidature est requis.\"}").contentType("application/json");
                 return;
             }
 
+            // Récupérer les informations sur la candidature
+            String response4 = UseRequest.sendRequest(urlHead + "/candidature/" + candidature, RequestType.GET, null);
+            JsonNode json4 = mapper.readTree(response4);
+            JsonNode data4 = json4.get("data");
+            if(json4.get("status").asInt() != 200) {
+                throw new Exception(data4.get("message").asText());
+            }
+
+            Candidature candidature1 = mapper.treeToValue(data4, Candidature.class);
+
+            // Récupérer les informations sur la ficheProbleme
+            String response5 = UseRequest.sendRequest(urlHead + "/probleme/" + candidature1.getFicheProbleme().toHexString(), RequestType.GET, null);
+            JsonNode json5 = mapper.readTree(response5);
+            JsonNode data5 = json5.get("data");
+            if(json5.get("status").asInt() != 200) {
+                throw new Exception(data5.get("message").asText());
+            }
+
+            FicheProbleme probleme = mapper.treeToValue(data5, FicheProbleme.class);
+
             // Récupérer les informations sur le nouveau projet.
-            Projet newProjet = ctx.bodyAsClass(Projet.class);
+            Projet newProjet = new Projet(new ObjectId(), candidature1.getTitreProjet(), candidature1.getRuesAffectees(), candidature1.getDescription(), candidature1.getTypeTravaux(),
+                    candidature1.getDateDebut(), candidature1.getDateFin(), candidature1.getFicheProbleme(), candidature1.getPrestataire(), candidature1.getNomPrestataire(),
+                    probleme.getQuartier(), candidature1.getCoutEstime(), probleme.getPriorite());
 
             // Récupérer tous les abonnés pour les ajouter à la liste des abonnes.
-            ObjectMapper mapper = JavalinJackson.defaultMapper();
 
             String response = UseRequest.sendRequest(urlHead + "/probleme/getReporters/" + newProjet.getFicheProbleme().toHexString(), RequestType.GET, null);
             JsonNode json = mapper.readTree(response);
@@ -122,12 +133,15 @@ public class ProjetController {
 
             List<ObjectId> abonnes = new ArrayList<>();
             for(JsonNode reporter : data) {
-                abonnes.add(new ObjectId(reporter.get("id").asText()));
+                abonnes.add(new ObjectId(reporter.asText()));
             }
             newProjet.setAbonnes(abonnes);
 
+            // Sauvegarder le projet
+            ProjetDAO.save(newProjet);
+
             // Envoyer une notification à tout ceux qui sont concernés
-            this.notifyConcerned(newProjet);
+            this.notifyConcerned(newProjet, false);
 
             // Marquer la candidature comme acceptée. Cela inclut l'envoi de la notification au prestataire.
             String response3 = UseRequest.sendRequest(urlHead + "/candidature/markAsAccepted/" + candidature, RequestType.PATCH, null);
@@ -189,7 +203,7 @@ public class ProjetController {
             ProjetDAO.save(modifiedProjet);
 
             // Envoyer une notification à tout ceux qui sont abonnées au quartier ou aux rues
-            this.notifyConcerned(modifiedProjet);
+            this.notifyConcerned(modifiedProjet, true);
 
             ctx.status(200).json(modifiedProjet).contentType("application/json");
         } catch (Exception e) {
@@ -202,7 +216,7 @@ public class ProjetController {
      * Cette fonction regroupe la logique d'envoi de notifications aux personnes intéressées, concernées ou abonnées au projet.
      * @throws Exception quand l'information reçue n'a pas le bon format.
      */
-    private void notifyConcerned(Projet projet) throws Exception {
+    private void notifyConcerned(Projet projet, boolean updated) throws Exception {
         ObjectMapper mapper = JavalinJackson.defaultMapper();
 
         // Envoyer des notifications à tous les abonnés (qui sont ici en réalité ceux ayant signalés) et aussi à ceux intéressés
@@ -211,9 +225,9 @@ public class ProjetController {
             toSend.add(abonne.toHexString());
         }
 
-        String quartier = projet.getQuartier();
+        String quartier = projet.getQuartier().replace(" ", "+");
         List<String> ruesAffectees = projet.getRuesAffectees();
-        String rues = String.join(",", ruesAffectees);
+        String rues = String.join(",", ruesAffectees).replace(" ", "+");
 
         String response1 = UseRequest.sendRequest(urlHead + "/resident/getConcerned?quartier=" + quartier + "&rues=" + rues, RequestType.GET, null);
         JsonNode json1 = mapper.readTree(response1);
@@ -230,11 +244,14 @@ public class ProjetController {
             toSend.add(element.asText());
         }
 
+        String message = (updated) ? "Les informations du projet " + projet.getTitreProjet() + " dans votre quartier ou votre rue a été modifié." :
+                "Un nouveau projet intitulé " + projet.getTitreProjet() + " a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.";
+
         for(String userId : toSend) {
             String body = "{" +
-                    "\"message\": \"Un nouveau projet a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.\"," +
+                    "\"message\": \"" + message + "\"," +
                     "\"user\": \"" + userId + "\"," +
-                    "\"url\": \"/projet/" + projet.getId() + "\"," + // Todo: Vérifier l'url une fois l'interface finie.
+                    "\"url\": \"/projet/" + projet.getId() + "\"" + // Todo: Vérifier l'url une fois l'interface finie.
                     "}";
             String response2 = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 
@@ -265,7 +282,7 @@ public class ProjetController {
                 throw new Exception(mapper.writeValueAsString(data));
             }
 
-            for(JsonNode element : data) {
+            for(JsonNode element : data.get("result").get("records")) {
                 try {
                     ObjectId id = new ObjectId(element.get("id").asText());
                     String quartier = element.get("boroughid").asText();

@@ -15,7 +15,7 @@ import java.util.List;
  * Cette classe utilise le mécanisme de discriminateur de Morphia pour le stockage
  * dans MongoDB sous la collection "utilisateurs".
  */
-@Entity(discriminator = "prestataire")
+@Entity(discriminator = "prestataires")
 public class Prestataire extends Utilisateur {
 
     /**
