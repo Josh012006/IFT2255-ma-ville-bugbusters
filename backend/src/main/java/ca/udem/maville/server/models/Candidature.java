@@ -71,14 +71,14 @@ public class Candidature {
      * Date de début prévue du projet.
      * Sérialisée au format ISO 8601 dans le JSON.
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "America/Toronto")
     private Date dateDebut;
 
     /**
      * Date de fin prévue du projet.
      * Sérialisée au format ISO 8601 dans le JSON.
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "America/Toronto")
     private Date dateFin;
 
     /**
@@ -95,14 +95,14 @@ public class Candidature {
      * Date de création de la candidature.
      * Sérialisée au format ISO 8601 dans le JSON.
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "America/Toronto")
     private Date createdAt;
 
     /**
      * Date de dernière mise à jour de la candidature.
      * Sérialisée au format ISO 8601 dans le JSON.
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "America/Toronto")
     private Date updatedAt;
 
     /**

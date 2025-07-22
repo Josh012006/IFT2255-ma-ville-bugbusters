@@ -59,14 +59,14 @@ public class Signalement {
      * Date de création du signalement.
      * Sérialisée au format ISO 8601 en JSON.
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "America/Toronto")
     private Date createdAt;
 
     /**
      * Date de dernière mise à jour du signalement.
      * Sérialisée au format ISO 8601 en JSON.
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "America/Toronto")
     private Date updatedAt;
 
     /**

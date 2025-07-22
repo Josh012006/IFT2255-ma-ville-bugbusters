@@ -43,14 +43,14 @@ public class Notification {
      * Date de création de la notification.
      * Sérialisée au format ISO 8601 dans le JSON.
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "America/Toronto")
     private Date createdAt;
 
     /**
      * Date de dernière mise à jour de la notification.
      * Sérialisée au format ISO 8601 dans le JSON.
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "America/Toronto")
     private Date updatedAt;
 
     /**

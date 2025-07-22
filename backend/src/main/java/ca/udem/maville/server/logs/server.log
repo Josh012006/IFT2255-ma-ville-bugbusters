@@ -2298,3 +2298,73 @@ Body:
 2025-07-22 06:24:28 INFO  ca.udem.maville.server.Server - 
 ========== 🛑 Server stopped ==========
 
+2025-07-22 06:50:15 INFO  ca.udem.maville.server.Server - 
+========== 🚀 Server started on port 7070 ==========
+
+2025-07-22 06:50:36 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/notification
+Headers:
+  Accept: */*
+  Cache-Control: no-cache
+  User-Agent: PostmanRuntime/7.44.1
+  Connection: keep-alive
+  Postman-Token: 8832abfb-662c-4d2f-aea6-9a002592e105
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br
+  Content-Length: 154
+  Content-Type: application/json
+Body:
+{
+    "message": "Une nouvelle candidature a été créée.",
+    "user" : "507f1f77bcf86cd799439011",
+    "url" : "https://josue-mongan.vercel.app"
+}
+---------------------
+
+2025-07-22 06:50:38 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"687f6cfcdd3ce7d8225d8e60","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été créée.","statut":"non lue","url":"https://josue-mongan.vercel.app","createdAt":"2025-07-22T10:50:36.374Z","updatedAt":"2025-07-22T10:50:37.885Z"}
+------------------------
+
+2025-07-22 06:57:19 INFO  ca.udem.maville.server.Server - 
+========== 🛑 Server stopped ==========
+
+2025-07-22 06:57:28 INFO  ca.udem.maville.server.Server - 
+========== 🚀 Server started on port 7070 ==========
+
+2025-07-22 06:57:39 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/notification
+Headers:
+  Accept: */*
+  Cache-Control: no-cache
+  User-Agent: PostmanRuntime/7.44.1
+  Connection: keep-alive
+  Postman-Token: 7138312c-3e64-477a-a84b-4b84efa5b207
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br
+  Content-Length: 154
+  Content-Type: application/json
+Body:
+{
+    "message": "Une nouvelle candidature a été créée.",
+    "user" : "507f1f77bcf86cd799439011",
+    "url" : "https://josue-mongan.vercel.app"
+}
+---------------------
+
+2025-07-22 06:57:40 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"687f6ea3911aa12c32a3205b","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été créée.","statut":"non lue","url":"https://josue-mongan.vercel.app","createdAt":"2025-07-22T06:57:39.363-04:00","updatedAt":"2025-07-22T06:57:40.343-04:00"}
+------------------------
+
+2025-07-22 06:58:06 INFO  ca.udem.maville.server.Server - 
+========== 🛑 Server stopped ==========
+
