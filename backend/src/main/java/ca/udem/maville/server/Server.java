@@ -77,6 +77,9 @@ public class Server {
                     path("/getAll/{user}", () -> {
                         get(notificationController::getAll);
                     });
+                    path("/{id}", () -> {
+                        get(notificationController::getById);
+                    });
                     post(notificationController::create);
                     path("/markAsRead/{id}", () -> {
                         patch(notificationController::markAsRead);

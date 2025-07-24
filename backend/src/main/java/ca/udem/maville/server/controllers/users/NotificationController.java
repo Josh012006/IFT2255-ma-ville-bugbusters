@@ -25,6 +25,25 @@ public class NotificationController {
         this.logger = logger;
     }
 
+
+    /**
+     * Cette route permet de récupérer une notification à partir de l'id.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void getById(Context ctx) {
+        try {
+            String id = ctx.pathParam("id");
+
+            Notification notification = NotificationDAO.findById(new ObjectId(id));
+
+            // Renvoyer les notifications trouvés pour l'utilisateur.
+            ctx.status(200).json(notification).contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
     /**
      * Cette route permet de récupérer toutes les notifications d'un utilisateur.
      * Le paramètre de path user contient l'id de l'utilisateur.

@@ -2,7 +2,7 @@
 
 /**
  * La page initiale que l'utilisateur voit lorsqu'il entre dans l'application.
- * @returns HTMLNode
+ * @returns ReactNode
  */
 function HomePage() {
     
