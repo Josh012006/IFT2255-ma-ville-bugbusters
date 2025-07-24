@@ -1,10 +1,10 @@
 
 
 /**
- * The initial page that the user sees directly when he enters the app.
+ * La page initiale que l'utilisateur voit lorsqu'il entre dans l'application.
  * @returns HTMLNode
  */
-function Home() {
+function HomePage() {
     
     return (
         <div>
@@ -13,4 +13,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default HomePage;
