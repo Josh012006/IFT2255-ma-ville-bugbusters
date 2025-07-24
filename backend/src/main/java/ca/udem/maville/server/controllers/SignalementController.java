@@ -30,7 +30,7 @@ public class SignalementController {
     }
 
     /**
-     * Cette route permet de récupérer tous les signalements présents dans la base
+     * Cette route permet de récupérer tous les signalements non traités présents dans la base
      * de données.
      * @param ctx qui représente le contexte de la requête
      */

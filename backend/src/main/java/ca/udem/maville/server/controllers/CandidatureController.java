@@ -29,7 +29,7 @@ public class CandidatureController {
     }
 
     /**
-     * Cette route permet de récupérer toutes les candidatures présentes
+     * Cette route permet de récupérer toutes les candidatures non traitées présentes
      * dans la base de données.
      * @param ctx qui représente le contexte de la requête.
      */

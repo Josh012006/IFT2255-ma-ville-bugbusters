@@ -8,6 +8,22 @@ import DashboardPage from "./pages/common/DashboardPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import NotificationsPage from "./pages/common/NotificationsPage";
 import NotificationPage from "./pages/common/NotificationPage";
+import ManageSignalementsPage from "./pages/stpm/ManageSignalementsPage";
+import ManageSignalementPage from "./pages/stpm/ManageSignalementPage";
+import ManageCandidaturesPage from "./pages/stpm/ManageCandidaturesPage";
+import ManageCandidaturePage from "./pages/stpm/ManageCandidaturePage";
+import SeeProjetsPage from "./pages/resident/SeeProjetsPage";
+import SeeProjetPage from "./pages/resident/SeeProjetPage";
+import ChoiceOptionSignalementPage from "./pages/resident/ChoiceOptionSignalementPage";
+import NewSignalementPage from "./pages/resident/NewSignalementPage";
+import ResidentSignalementsPage from "./pages/resident/ResidentSignalementsPage";
+import ResidentSignalementPage from "./pages/resident/ResidentSignalementPage";
+import PrestataireProjetsPage from "./pages/prestataire/PrestataireProjetsPage";
+import PrestataireProjetPage from "./pages/prestataire/PrestataireProjetPage";
+import NewCandidaturePage from "./pages/prestataire/NewCandidaturePage";
+import PrestataireCandidaturesPage from "./pages/prestataire/PrestataireCandidaturesPage";
+import PrestataireCandidaturePage from "./pages/prestataire/PrestataireCandidaturePage";
+import SeeProblemesPage from "./pages/prestataire/SeeProblemesPage";
 
 function App() {
 
@@ -77,14 +93,14 @@ function App() {
                     </Route>
                     {/* Routes pour la visualisation, la modification et l'envoi de candidatures  */}
                     <Route path="candidature">
-                        <Route path="new" element={<NewCandidaturePage />} />
+                        <Route path="new/:problemId" element={<NewCandidaturePage />} />
                         <Route path="list" element={<PrestataireCandidaturesPage />} />
                         <Route path=":id" element={<PrestataireCandidaturePage />} />   {/* On inclut aussi dans la page la modification de la candidature */}
                     </Route>
                     {/* Routes pour la visualisation des problèmes */}
                     <Route path="probleme">
                         <Route path="list" element={<SeeProblemesPage />} />   {/* Ici, on n'oublie pas d'inclure le filtrage */}
-                        <Route path=":id" element={<SeeProblemePage />} />
+                        <Route path=":id" element={<SeeProblemesPage />} />
                     </Route>
                 </Route>
 
