@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
  * par rapport au problème. Cela le reidrige vers la page de création de la candidature.
  * @returns ReactNode
  */
-export default function SeeProblemesPage() {
+export default function SeeProblemePage() {
     const problemeId = useParams().id;
 
     return (

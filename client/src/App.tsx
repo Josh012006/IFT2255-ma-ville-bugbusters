@@ -24,6 +24,7 @@ import NewCandidaturePage from "./pages/prestataire/NewCandidaturePage";
 import PrestataireCandidaturesPage from "./pages/prestataire/PrestataireCandidaturesPage";
 import PrestataireCandidaturePage from "./pages/prestataire/PrestataireCandidaturePage";
 import SeeProblemesPage from "./pages/prestataire/SeeProblemesPage";
+import SeeProblemePage from "./pages/prestataire/SeeProblemePage";
 
 function App() {
 
@@ -42,7 +43,7 @@ function App() {
             <Route path="/" element={<MainLayout />}>
 
                 {/* Route pour le prestataire et le résident pour voir leur profil et modfier leurs préférences de notifications */}
-                <Route path="profil" element={<ProfilePage />} />
+                <Route path="profile" element={<ProfilePage />} />
                 
                 {/* Route pour le dashboard des utilisateurs */}
                 <Route path="dashboard" element={<DashboardPage />} />
@@ -100,7 +101,7 @@ function App() {
                     {/* Routes pour la visualisation des problèmes */}
                     <Route path="probleme">
                         <Route path="list" element={<SeeProblemesPage />} />   {/* Ici, on n'oublie pas d'inclure le filtrage */}
-                        <Route path=":id" element={<SeeProblemesPage />} />
+                        <Route path=":id" element={<SeeProblemePage />} />
                     </Route>
                 </Route>
 

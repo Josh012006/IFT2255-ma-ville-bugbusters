@@ -63,7 +63,7 @@ public class Candidature {
     private String description;
 
     /**
-     * Type de travaux à réaliser (ex. : "réparation", "construction").
+     * Type de travaux à réaliser.
      */
     private String typeTravaux;
 

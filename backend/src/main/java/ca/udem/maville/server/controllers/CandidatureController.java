@@ -119,7 +119,7 @@ public class CandidatureController {
 
     /**
      * Cette route permet de récupérer une candidature en particulier à
-     * partir de son id.
+     * partir de son id. Elle marque automatiquement la candidature comme vue
      * @param ctx représente le contexte de la requête.
      */
     public void getById(Context ctx) {
@@ -131,6 +131,11 @@ public class CandidatureController {
             if (candidature == null) {
                 ctx.status(404).result("{\"message\": \"Aucune candidature avec un tel ID trouvée.\"}").contentType("application/json");
                 return;
+            }
+
+            if(candidature.getStatut().equals("en attente")) {
+                candidature.setStatut("vue");
+                CandidatureDAO.save(candidature);
             }
 
             // Renvoyer la candidature
@@ -197,31 +202,6 @@ public class CandidatureController {
         }
     }
 
-    /**
-     * Marque une candidature comme vue par le STPM pour empêcher des modifications supplémentaires.
-     * @param ctx qui représente le contexte de la requête.
-     */
-    public void markAsSeen(Context ctx) {
-        try {
-            String id = ctx.pathParam("id");
-
-            Candidature candidature = CandidatureDAO.findById(new ObjectId(id));
-
-            if(candidature == null) {
-                ctx.status(404).result("{\"message\": \"Aucune candidature avec un tel ID trouvée.\"}").contentType("application/json");
-                return;
-            }
-
-            candidature.setStatut("vue");
-            CandidatureDAO.save(candidature);
-
-            // Renvoyer la réponse de succès
-            ctx.status(200).json(candidature).contentType("application/json");
-        } catch (Exception e) {
-            e.printStackTrace();
-            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
-        }
-    }
     /**
      * Marque une candidature comme acceptée. Elle inclut l'envoi de la notification au prestataire.
      * @param ctx qui représente le contexte de la requête.

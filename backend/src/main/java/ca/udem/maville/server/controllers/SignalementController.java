@@ -93,7 +93,7 @@ public class SignalementController {
 
     /**
      * Cette route permet de récupérer un signalement en particulier à
-     * partir de son id.
+     * partir de son id. Elle marque automatiquement le signalement comme vu.
      * @param ctx représente le contexte de la requête.
      */
     public void getById(Context ctx) {
@@ -105,6 +105,11 @@ public class SignalementController {
             if (signalement == null) {
                 ctx.status(404).result("{\"message\": \"Aucun signalement avec un tel ID trouvé.\"}").contentType("application/json");
                 return;
+            }
+
+            if(signalement.getStatut().equals("en attente")) {
+                signalement.setStatut("vu");
+                SignalementDAO.save(signalement);
             }
 
             // Renvoyer le signalement trouvé
@@ -182,33 +187,6 @@ public class SignalementController {
 
             // Renvoyer la réponse de succès
             ctx.status(200).result("{\"message\": \"Suppression réalisée avec succès.\"}").contentType("application/json");
-        } catch (Exception e) {
-            e.printStackTrace();
-            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
-        }
-    }
-
-    /**
-     * Cette route marque un signalement comme vu par le STPM pour empêcher des modifications
-     * par les résidents.
-     * @param ctx qui représente le contexte de la requête.
-     */
-    public void markAsSeen(Context ctx) {
-        try {
-            String id = ctx.pathParam("id");
-
-            Signalement signalement = SignalementDAO.findById(new ObjectId(id));
-
-            if(signalement == null) {
-                ctx.status(404).result("{\"message\": \"Aucun signalement avec un tel ID trouvée.\"}").contentType("application/json");
-                return;
-            }
-
-            signalement.setStatut("vu");
-            SignalementDAO.save(signalement);
-
-            // Renvoyer la réponse de succès
-            ctx.status(200).json(signalement).contentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
             ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");

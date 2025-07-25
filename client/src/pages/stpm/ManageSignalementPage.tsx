@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 
 /**
  * Cette page est al page de traitement du signalement par le STPM. Elle inclut la récupération individuelle
- * de la notification grâce à signalementId. Elle inclut également de marquer le signalement comme vu.
- * Il faut également afficher les informations.
+ * de la notification grâce à signalementId. Après récupération des informations, il faut les afficher.
  * Le STPM a deux possibilités. La première est de choisir une priorité et confirmer. Une fois cela fait, 
  * il faut envoyer une requête pour créer une fiche problème.
  * La deuxième possibilité est de reconnaitre que ce signalement est déjà en lien avec un problème créé et lui lier le signalement.
