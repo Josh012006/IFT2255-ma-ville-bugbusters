@@ -25,6 +25,36 @@ public class NotificationController {
         this.logger = logger;
     }
 
+
+    /**
+     * Cette route permet de récupérer une notification à partir de l'id.
+     * Elle marque directement la notification comme lue.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void getById(Context ctx) {
+        try {
+            String id = ctx.pathParam("id");
+
+            Notification notification = NotificationDAO.findById(new ObjectId(id));
+
+            if(notification == null) {
+                ctx.status(404).result("{\"message\": \"Aucune notification avec un tel ID trouvée.\"}").contentType("application/json");
+                return;
+            }
+
+            if(notification.getStatut().equals("non lue")) {
+                notification.setStatut("lue");
+                NotificationDAO.save(notification);
+            }
+
+            // Renvoyer les notifications trouvés pour l'utilisateur.
+            ctx.status(200).json(notification).contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
     /**
      * Cette route permet de récupérer toutes les notifications d'un utilisateur.
      * Le paramètre de path user contient l'id de l'utilisateur.
@@ -88,29 +118,4 @@ public class NotificationController {
         }
     }
 
-    /**
-     * C'est une méthode qui permet de marquer la notification comme lue
-     * en ayant son id dans le path de la route.
-     * @param ctx qui représente le context de la requête.
-     */
-    public void markAsRead(Context ctx) {
-        try {
-            String id = ctx.pathParam("id");
-            Notification notif = NotificationDAO.findById(new ObjectId(id));
-
-            if(notif == null) {
-                ctx.status(404).result("{\"message\": \"Aucune notification avec un tel ID retrouvé.\"}").contentType("application/json");
-                return;
-            }
-
-            notif.setStatut("lue");
-
-            NotificationDAO.save(notif);
-
-            ctx.status(200).json(notif).contentType("application/json"); // renvoyer l'objet JSON de notification modifiée.
-        } catch(Exception e) {
-            e.printStackTrace();
-            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
-        }
-    }
 }

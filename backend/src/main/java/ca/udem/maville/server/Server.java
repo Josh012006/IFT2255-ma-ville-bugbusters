@@ -77,10 +77,10 @@ public class Server {
                     path("/getAll/{user}", () -> {
                         get(notificationController::getAll);
                     });
-                    post(notificationController::create);
-                    path("/markAsRead/{id}", () -> {
-                        patch(notificationController::markAsRead);
+                    path("/{id}", () -> {
+                        get(notificationController::getById);
                     });
+                    post(notificationController::create);
                 });
 
                 path("/prestataire", () -> {
@@ -126,9 +126,6 @@ public class Server {
                         get(candidatureController::getById);
                         patch(candidatureController::patch);
                         delete(candidatureController::delete);
-                    });
-                    path("/markAsSeen/{id}", () -> {
-                        patch(candidatureController::markAsSeen);
                     });
                     path("/markAsAccepted/{id}", () -> {
                         patch(candidatureController::markAsAccepted);
@@ -185,9 +182,6 @@ public class Server {
                         get(signalementController::getById);
                         patch(signalementController::patch);
                         delete(signalementController::delete);
-                    });
-                    path("/markAsSeen/{id}", () -> {
-                        patch(signalementController::markAsSeen);
                     });
                     // Il requiert un query parameter treated qui informe s'il
                     // existe déjà un projet pour ce signalement

@@ -5,10 +5,12 @@ import type Resident from "../../interfaces/users/Resident";
 
 
 interface InitialState {
+    userType : "STPM" | "Prestataire" | "Resident" | null,
     infos: null | Prestataire | Resident,
 }
 
 const initialState : InitialState = {
+    userType : null,
     infos: null
 };
 
@@ -16,15 +18,21 @@ const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        login: (state, action) => {
-            // Update le state avec les informations du user
+        loginInfos: (state, action) => {
             return {
+                userType : state.userType,
                 infos: action.payload
             };
         },
+        loginType : (state, action) => {
+            return {
+                userType : action.payload,
+                infos: state.infos
+            };
+        }
     }
 });
 
-export const { login } = authSlice.actions;
+export const { loginInfos, loginType } = authSlice.actions;
 
 export default authSlice.reducer;

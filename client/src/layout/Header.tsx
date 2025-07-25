@@ -1,7 +1,7 @@
 
 /**
  * Le header de l'application. Il définit la mise en page (layout) de l'application.
- * @returns HTMLNode
+ * @returns ReactNode
  */
 export default function Header() {
     return (
