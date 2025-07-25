@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 import SideBar from "./SideBar";
@@ -14,13 +14,18 @@ import { useAppSelector } from "../redux/store";
 export default function MainLayout() {
     const userType : string | null = useAppSelector((state) => state.auth.userType);
 
-    return (
-        <>
-            <Header />
-            <SideBar>
-                <Outlet /> {/* Here the page corresponding to the route is displayed */}
-            </SideBar>
-            <Footer />
-        </>
-    );
+    if(!userType) {
+        return <Navigate to="/auth" replace />
+    } else {
+        return (
+            <>
+                <Header />
+                <SideBar>
+                    <Outlet /> {/* Here the page corresponding to the route is displayed */}
+                </SideBar>
+                <Footer />
+            </>
+        );
+    }
+    
 }
