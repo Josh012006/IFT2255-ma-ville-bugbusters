@@ -24,9 +24,9 @@ export default function SideBar({children, show} : {children: ReactNode, show: b
 
     return(
         <main className="row">
-            <aside className={`${show? "d-block" : "d-none"} col-12 col-lg-2 d-lg-block h-100 z-1 z-lg-0 bg-light d-flex flex-column justify-content-center align-items-center`}>
-                {userType}
-                <MyLink to="/auth" className="" onClick={handleLogout}>Revenir à l'authentification</MyLink>
+            <aside className={`${show? "d-block" : "d-none"} p-0 text-white orange col-12 col-lg-2 d-lg-block h-100 z-1 z-lg-0 d-flex flex-column justify-content-center align-items-center`}>
+                <div>{userType}</div>
+                <MyLink to="/auth" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair" onClick={handleLogout}>Revenir à l'authentification</MyLink>
             </aside>
             <div className="col-12 col-lg-10 z-0">{ children }</div>
         </main>

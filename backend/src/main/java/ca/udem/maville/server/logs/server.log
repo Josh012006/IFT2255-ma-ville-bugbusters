@@ -1,3 +1,230 @@
-2025-07-25 21:30:06 INFO  ca.udem.maville.server.Server - 
+2025-07-25 23:15:48 INFO  ca.udem.maville.server.Server - 
 ========== 🚀 Server started on port 7070 ==========
+
+2025-07-25 23:16:36 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-25 23:16:38 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-25 23:16:38 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-25 23:16:38 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-25 23:17:09 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-25 23:17:09 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-25 23:17:09 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-25 23:17:09 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-25 23:17:12 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-25 23:17:12 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-25 23:17:12 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-25 23:17:12 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-25 23:27:26 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-25 23:27:26 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-25 23:27:26 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-25 23:27:26 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-25 23:32:31 INFO  ca.udem.maville.server.Server - 
+========== 🛑 Server stopped ==========
 

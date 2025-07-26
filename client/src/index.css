@@ -39,6 +39,10 @@ header, footer {
   background-color: #FF5659;
 }
 
+.orange-clair {
+  background-color: #FF7A75;
+}
+
 .mycard {
   cursor: pointer;
   min-width: 200px;
