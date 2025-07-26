@@ -20,7 +20,7 @@ export default function MainLayout() {
         return <Navigate to="/auth" replace />
     } else {
         return (
-            <div className="min-vh-100 layout">
+            <div className="min-vh-100 p-0 layout">
                 <Header setter={setShowSide} />
                 <SideBar show={showSide}>
                     <Outlet /> {/* Here the page corresponding to the route is displayed */}

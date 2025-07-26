@@ -6,6 +6,7 @@ html, body {
 
 main {
   background-color: #F4F4F4;
+  width: 1vw;
 }
 
 header, footer {
@@ -39,7 +40,7 @@ header, footer {
   background-color: #FF5659;
 }
 
-.orange-clair {
+.orange-clair:hover {
   background-color: #FF7A75;
 }
 
@@ -87,6 +88,11 @@ footer {
 
 .giant {
   font-size: 72px;
+}
+
+.cloche {
+  padding: 0.35rem !important;
+  right: 5px;
 }
 
 

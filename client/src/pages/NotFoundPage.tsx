@@ -12,7 +12,7 @@ export default function NotFoundPage() {
                 <h1 className="giant">404</h1>
                 <p className="fs-3">Page inconnue!</p>
             </div>
-            <MyLink to="/" className="rounded-4 text-white orange p-3">Go back home</MyLink>
+            <MyLink to="/dashboard" className="rounded-4 text-white orange p-3">Go back home</MyLink>
         </div>
     );
 }
