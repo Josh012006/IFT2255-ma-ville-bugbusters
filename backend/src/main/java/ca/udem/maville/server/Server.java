@@ -86,6 +86,9 @@ public class Server {
                     path("/getAll/{user}", () -> {
                         get(notificationController::getAll);
                     });
+                    path("/hasNotifications/{user}", () -> {
+                        get(notificationController::hasNotifications);
+                    });
                     path("/{id}", () -> {
                         get(notificationController::getById);
                     });

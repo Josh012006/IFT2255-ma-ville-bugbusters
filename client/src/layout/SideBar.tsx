@@ -9,12 +9,15 @@ import { useAppSelector } from "../redux/store";
  * @param children il s'agit du composant enfant de notre SideBar qui représente ce qui sera rendu à côté d'elle.
  * @returns ReactNode
  */
-export default function SideBar({children} : {children: ReactNode}) {
+export default function SideBar({children, show} : {children: ReactNode, show: boolean}) {
     const userType : string | null = useAppSelector((state) => state.auth.userType);
 
     return(
-        <main>
-            
+        <main className="row">
+            <aside className={`${show? "d-block" : "d-none"} col-12 col-lg-2 d-lg-block h-100 z-1 z-lg-0 bg-light`}>
+                {userType}
+            </aside>
+            <div className="col-12 col-lg-10 z-0">{ children }</div>
         </main>
     );
 }

@@ -11,7 +11,7 @@
     <!-- Appender fichier pour le serveur -->
     <appender name="SERVER_FILE" class="ch.qos.logback.core.FileAppender">
         <file>backend/src/main/java/ca/udem/maville/server/logs/server.log</file>
-        <append>true</append>
+        <append>false</append>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
         </encoder>

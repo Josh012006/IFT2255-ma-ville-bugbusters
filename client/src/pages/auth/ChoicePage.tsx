@@ -22,15 +22,14 @@ export default function ChoicePage() {
     const [users, setUsers] = useState<Prestataire[] | Resident[]>([]);
     const response = useRequest("/" + userType + "/getAll", "GET");
 
-    console.log(response);
-
-    const dispatch = useDispatch<AppDispatch>();
-
     useEffect(() => {
         if (response && response.status === 200) {
             setUsers(response.data);
         }
     }, [response]);
+
+
+    const dispatch = useDispatch<AppDispatch>();
 
     const handleInfos = (user: Prestataire | Resident) => {
         dispatch(loginInfos(user));

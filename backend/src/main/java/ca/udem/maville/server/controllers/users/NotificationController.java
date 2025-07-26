@@ -27,6 +27,25 @@ public class NotificationController {
 
 
     /**
+     * Cette route permet de vérifier si l'utilisateur a des notifications non lues.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void hasNotifications(Context ctx) {
+        try {
+            String idUser = ctx.pathParam("user");
+
+            boolean has = NotificationDAO.hasNotifications(new ObjectId(idUser));
+
+            // Renvoyer les notifications trouvés pour l'utilisateur.
+            ctx.status(200).result("{\"result\": " + has + "}").contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
+
+    /**
      * Cette route permet de récupérer une notification à partir de l'id.
      * Elle marque directement la notification comme lue.
      * @param ctx qui représente le contexte de la requête.
