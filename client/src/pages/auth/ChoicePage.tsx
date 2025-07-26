@@ -7,6 +7,7 @@ import useRequest from "../../hooks/UseRequest";
 import MyLink from "../../components/MyLink";
 import { useDispatch } from "react-redux";
 import { loginInfos } from "../../redux/features/authSlice";
+import Loader from "../../components/Loader";
 
 /**
  * La page de choix du profil. Elle est réservée uniquement aux prestataires ou aux résidents.
@@ -20,12 +21,14 @@ export default function ChoicePage() {
 
     // Requête au backend
     const [users, setUsers] = useState<Prestataire[] | Resident[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
     const response = useRequest("/" + userType + "/getAll", "GET");
 
     useEffect(() => {
         if (response && response.status === 200) {
             setUsers(response.data);
         }
+        setLoading(false);
     }, [response]);
 
 
@@ -41,7 +44,8 @@ export default function ChoicePage() {
         return (
             <div className="d-flex flex-column justify-content-around align-items-center">
                 <h1 className="m-5">Choix du profil</h1>
-                <div className="p-3 min-vh-100 grid row">
+                {loading && <Loader />}
+                {!loading &&<div className="p-3 min-vh-100 grid row">
                     {users.map((user, index) => {
                         if("abonnementsRue" in user) {
                             const resident = user as Resident;
@@ -67,7 +71,7 @@ export default function ChoicePage() {
                             </div>
                         }
                     })}
-                </div>
+                </div>}
             </div>
         );
     }
