@@ -38,11 +38,11 @@ function HomePage() {
             <main className="d-flex flex-column justify-content-center align-items-center text-center min-vh-100">
                 <h1 className="mb-150">Choix du type d'utilisateur</h1>
                 <div className="d-flex flex-column flex-lg-row justify-content-around align-items-center">
-                    <MyLink to="/choix" className="mycard orange text-white rounded-4 p-3 m-5 border d-flex align-items-center justify-content-center" onClick={() => {handleUserType("resident")}}>
+                    <MyLink to="/auth/choix" className="mycard orange text-white rounded-4 p-3 m-5 border d-flex align-items-center justify-content-center" onClick={() => {handleUserType("resident")}}>
                         <img width="50" src="/resident.png" alt="résident" />
                         <h3 className="fs-5 mx-2">Résident</h3>
                     </MyLink>
-                    <MyLink to="/choix" className="mycard orange text-white rounded-4 p-3 m-5 d-flex border align-items-center justify-content-center" onClick={() => {handleUserType("prestataire")}}>
+                    <MyLink to="/auth/choix" className="mycard orange text-white rounded-4 p-3 m-5 d-flex border align-items-center justify-content-center" onClick={() => {handleUserType("prestataire")}}>
                         <img width="50" src="/prestataire.png" alt="prestataire" />
                         <h3 className="fs-5 mx-2">Prestataire</h3>
                     </MyLink>

@@ -42,6 +42,12 @@ header, footer {
 .mycard {
   cursor: pointer;
   min-width: 200px;
+  max-width: 400px;
+}
+
+.mycard1 {
+  cursor: pointer;
+  width: 350px;
 }
 
 .mb-150 {

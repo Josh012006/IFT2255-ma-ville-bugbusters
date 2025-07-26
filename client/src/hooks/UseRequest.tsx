@@ -8,9 +8,10 @@ interface RequestResult {
   data: any;
 }
 
-export function useRequest(url: string, method: requestType, body?: string) {
+export default function useRequest(url: string, method: requestType, body?: string) {
   const urlHead = "http://localhost:7070/api";
   const [result, setResult] = useState<RequestResult | null>(null);
+
 
   useEffect(() => {
     async function fetchData() {

@@ -59,6 +59,15 @@ public class Server {
         app = Javalin.create(config -> {
             config.router.contextPath = "/api";
 
+            // Configurer le cors pour accepter les requêtes du client
+            config.bundledPlugins.enableCors(cors -> {
+                cors.addRule(it -> {
+                    it.allowHost("http://localhost:5173");
+                    // it.allowHost("http://localhost:3000"); // si tu utilises React
+                    // it.allowHost("*"); // 👈 en dev uniquement, permet tout
+                });
+            });
+
             // Configurer le mapper pour ne pas avoir de problème pour passer automatiquement
             // de ObjectId à String et vice-versa.
             config.jsonMapper(
