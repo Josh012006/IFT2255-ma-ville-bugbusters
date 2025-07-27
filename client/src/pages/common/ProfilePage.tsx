@@ -1,13 +1,16 @@
 import { Navigate } from "react-router-dom";
 import type { Prestataire } from "../../interfaces/users/Prestataire";
 import type Resident from "../../interfaces/users/Resident";
-import { useAppSelector } from "../../redux/store";
-import { useState, type FormEvent, type ReactNode } from "react";
+import { type AppDispatch, useAppSelector } from "../../redux/store";
+import { useState, useEffect, type FormEvent, type ReactNode } from "react";
 import { formatDate } from "../../utils/formatDate";
 import { Box, Modal, Chip, FormControl, Select, MenuItem, OutlinedInput, InputAdornment, type SelectChangeEvent } from "@mui/material";
 import { QUARTIERS, type Quartier } from "../../types/Quartier";
 import { TYPE_TRAVAUX, type TypeTravaux } from "../../types/TypesTravaux";
 import Loader from "../../components/Loader";
+import useManualRequest from "../../hooks/UseManualRequest";
+import { useDispatch } from "react-redux";
+import { loginInfos } from "../../redux/features/authSlice";
 
 
 /**
@@ -21,8 +24,23 @@ export default function ProfilePage() {
     const userType : string | null = useAppSelector((state) => state.auth.userType);
     let userInfos : Prestataire | Resident | null = useAppSelector((state) => state.auth.infos);
 
+    const dispatch = useDispatch<AppDispatch>();
+
     const [loading, setLoading] = useState(false);
 
+
+    type BodyType = 
+    | { abonnementsQuartier: Quartier[]; abonnementsRue: string[] }
+    | { abonnementsQuartier: Quartier[]; abonnementsType: TypeTravaux[] };
+
+    const initial: BodyType =
+    userType === "resident"
+        ? { abonnementsQuartier: [], abonnementsRue: [] }
+        : { abonnementsQuartier: [], abonnementsType: [] };
+
+    const [body, setBody] = useState<BodyType>(initial);
+
+    const { send, result } = useManualRequest();
 
     const [open, setOpen] = useState<boolean>(false);
 
@@ -32,6 +50,20 @@ export default function ProfilePage() {
     const [typeValue, setTypeValue] = useState("");
     const [listRues, setListRues] = useState((userInfos && "abonnementsRue" in userInfos) ? (userInfos as Resident).abonnementsRue : []);
     const [rueValue, setRueValue] = useState("");
+
+    useEffect(() => {
+        if(userType === "resident") {
+            setBody({
+                abonnementsQuartier: listQuartiers,
+                abonnementsRue: listRues
+            });
+        } else if(userType === "prestataire") {
+            setBody({
+                abonnementsQuartier: listQuartiers,
+                abonnementsType: listTypes
+            });
+        }
+    }, [listQuartiers, listRues, listTypes, userType]);
 
     const style = {
         position: 'absolute',
@@ -47,19 +79,31 @@ export default function ProfilePage() {
         pb: 3,
     };
 
-    const handleSubmit = (event : FormEvent) => {
+    const [submitted, setSubmitted] = useState(false);
+
+    const handleSubmit = async (event : FormEvent) => {
         event.preventDefault();
 
-        setLoading(true);
-
-        // Faire la requête pour update les préférences
-
-
-        setLoading(false);
-        setOpen(false);
-        window.location.reload();
+        setSubmitted(true);
 
     }
+
+    useEffect(() => {
+        if(submitted) {
+            setLoading(true);
+
+            // Faire la requête pour update les préférences
+            send("/" + userType + "/" + userInfos?.id, "PATCH", JSON.stringify(body));
+            
+            if(result && result.status === 200) {
+                setLoading(false);
+                dispatch(loginInfos(result.data));
+                setOpen(false);
+                window.location.reload();
+            }
+        }
+
+    }, [body, dispatch, result, send, submitted, userInfos?.id, userType])
 
     function presentationRest() : ReactNode {
         if(!userInfos)
@@ -97,7 +141,7 @@ export default function ProfilePage() {
                     </div>
                     <div>
                         {userInfos.abonnementsType.map((type, index) => {
-                            return <Chip className="mx-1" key={index} label={type} />
+                            return <Chip className="m-1" key={index} label={type} />
                         })}
                     </div>
                 </>
@@ -112,7 +156,7 @@ export default function ProfilePage() {
                     </div>
                     <div>
                         {userInfos.abonnementsRue.map((rue, index) => {
-                            return <Chip className="mx-1" key={index} label={rue} />
+                            return <Chip className="m-1" key={index} label={rue} />
                         })}
                     </div>
                 </>
@@ -174,7 +218,7 @@ export default function ProfilePage() {
                     </Select>
                     <div className="my-1">
                         {listTypes.map((type, index) => {
-                            return <Chip className="mx-1" key={index} label={type} onDelete={() => {setListTypes(list => list.filter(elem => elem !== type))}} />
+                            return <Chip className="m-1" key={index} label={type} onDelete={() => {setListTypes(list => list.filter(elem => elem !== type))}} />
                         })}
                     </div>
                 </>
@@ -208,7 +252,7 @@ export default function ProfilePage() {
                     />
                     <div className="my-1">
                         {listRues.map((rue, index) => {
-                            return <Chip className="mx-1" key={index} label={rue} onDelete={() => {setListRues(list => list.filter(elem => elem !== rue))}} />
+                            return <Chip className="m-1" key={index} label={rue} onDelete={() => {setListRues(list => list.filter(elem => elem !== rue))}} />
                         })}
                     </div>
                 </>
@@ -233,7 +277,7 @@ export default function ProfilePage() {
                             </div>
                             <div>
                                 {userInfos.abonnementsQuartier.map((quartier, index) => {
-                                    return <Chip key={index} label={quartier} />
+                                    return <Chip className="m-1" key={index} label={quartier} />
                                 })}
                             </div>
                         </div>
@@ -268,7 +312,7 @@ export default function ProfilePage() {
                                             </Select>
                                             <div className="my-1">
                                                 {listQuartiers.map((quartier, index) => {
-                                                    return <Chip className="mx-1" key={index} label={quartier} onDelete={() => {setListQuartiers(list => list.filter(elem => elem !== quartier))}} />
+                                                    return <Chip className="m-1" key={index} label={quartier} onDelete={() => {setListQuartiers(list => list.filter(elem => elem !== quartier))}} />
                                                 })}
                                             </div>
                                         </div>

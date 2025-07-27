@@ -203,6 +203,10 @@ public class Server {
             });
         }).start(this.port);
 
+        app.options("/*", ctx -> {
+            ctx.status(204);
+        });
+
         logger.info("\n========== 🚀 Server started on port {} ==========\n", this.port);
 
         // La logique de formattage des logs du servers.
