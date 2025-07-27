@@ -71,7 +71,7 @@ public class SignalementController {
             String body = "{" +
                     "\"message\": \"Un nouveau signalement a été créé par un résident.\"," +
                     "\"user\": \"507f1f77bcf86cd799439011\"," +
-                    "\"url\": \"/signalement/" + newSignalement.getId() + "\"" + // Todo: Vérifier l'url une fois l'interface finie.
+                    "\"url\": \"/stpm/signalement/" + newSignalement.getId() + "\"" + 
                     "}";
             String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 

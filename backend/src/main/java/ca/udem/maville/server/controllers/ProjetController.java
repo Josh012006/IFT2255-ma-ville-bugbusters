@@ -251,7 +251,7 @@ public class ProjetController {
             String body = "{" +
                     "\"message\": \"" + message + "\"," +
                     "\"user\": \"" + userId + "\"," +
-                    "\"url\": \"/projet/" + projet.getId() + "\"" + // Todo: Vérifier l'url une fois l'interface finie.
+                    "\"url\": \"/resident/projet/" + projet.getId() + "\"" +
                     "}";
             String response2 = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 

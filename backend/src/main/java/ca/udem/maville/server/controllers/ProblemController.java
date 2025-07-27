@@ -107,7 +107,7 @@ public class ProblemController {
                 String body = "{" +
                         "\"message\": \"Une nouvelle fiche problème qui pourrait vous intéresser a été créée.\"," +
                         "\"user\": \"" + id + "\"," +
-                        "\"url\": \"/probleme/" + newProblem.getId() + "\"" + // Todo: Vérifier l'url une fois l'interface finie.
+                        "\"url\": \"/prestataire/probleme/" + newProblem.getId() + "\"" +
                         "}";
                 String response1 = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 

@@ -96,7 +96,7 @@ public class CandidatureController {
             String body = "{" +
                     "\"message\": \"Une nouvelle candidature a été déposée par un prestataire.\"," +
                     "\"user\": \"507f1f77bcf86cd799439011\"," +
-                    "\"url\": \"/candidature/" + newCandidature.getId() + "\"" + // Todo: Vérifier l'url une fois l'interface finie.
+                    "\"url\": \"/stpm/candidature/" + newCandidature.getId() + "\"" +
                     "}";
             String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 
