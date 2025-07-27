@@ -24,9 +24,9 @@ export default function MainLayout() {
                 <div>
                     <SideBar show={showSide} setShow={setShowSide} />
                 </div>
-                <div className="layout p-0 z-0 m-0">
+                <div className="layout p-0 z-0 m-0 overflow-y-auto">
                     <Header setter={setShowSide} />
-                    <main>
+                    <main className="h-100 z-0">
                         <Outlet /> {/* Here the page corresponding to the route is displayed */}
                     </main>
                     <Footer />

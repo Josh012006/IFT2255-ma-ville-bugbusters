@@ -47,11 +47,10 @@ export default function NotificationsPage() {
                         <ListItem className="d-flex align-items-center hover-white">
                             <ListItemText
                                 primary={(notif.createdAt) ? formatDate(notif.createdAt) : ""}
-                                secondary={<p className="ellipsis">{notif.message}</p>}
+                                secondary={<span className="ellipsis">{notif.message}</span>}
                             />
                             {notif.statut === "non lue" && <span className="rounded-circle bg-primary mx-3 p-1"></span>}
                         </ListItem>
-                        {(index === notifications.length - 1) && <Divider component="li" />}
                     </MyLink>
                 })}
             </List>}

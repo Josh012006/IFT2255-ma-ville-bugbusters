@@ -6,6 +6,7 @@ html, body {
 
 main {
   background-color: #F4F4F4;
+  min-height: 600px;
 }
 
 header {
@@ -156,5 +157,9 @@ footer {
     height: 100vh;
     grid-template-rows: 100%;
     grid-template-columns: 20% 80%;
+  }
+
+  main {
+    min-height: auto;
   }
 }

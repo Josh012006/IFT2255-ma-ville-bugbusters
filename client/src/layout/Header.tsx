@@ -1,8 +1,10 @@
 import { Avatar } from "@mui/material";
-import { useAppSelector } from "../redux/store";
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
-import useRequest from "../hooks/UseRequest";
+import { useAppSelector, type AppDispatch } from "../redux/store";
+import { useEffect, type Dispatch, type SetStateAction } from "react";
 import MyLink from "../components/MyLink";
+import { useDispatch } from "react-redux";
+import { updateHas } from "../redux/features/authSlice";
+import { fetchHas } from "../utils/fetchHas";
 
 /**
  * Le header de l'application. Il définit la mise en page (layout) de l'application.
@@ -10,25 +12,28 @@ import MyLink from "../components/MyLink";
  */
 export default function Header({setter}: {setter: Dispatch<SetStateAction<boolean>>}) {
 
-    const userType : string | null = useAppSelector((state) => state.auth.userType);
-    const userInfos = useAppSelector((state) => state.auth.infos)
-
-    const [has, setHas] = useState<boolean>(false);
-
+    const userInfos = useAppSelector((state) => state.auth.infos);
     const userId = (userInfos)? userInfos.id : "507f1f77bcf86cd799439011";
 
-    const response = useRequest("/notification/hasNotifications/" + userId, "GET");
+    const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
-        if (response && response.status === 200) {
-            setHas(response.data.result);
+        async function hasNotif() {
+            const hasRes = await fetchHas(userId?? "");
+    
+            dispatch(updateHas(hasRes));
         }
-    }, [response]);
 
-    console.log(has);
+        hasNotif();
+    }, [dispatch, userId]);
+
+    const userType : string | null = useAppSelector((state) => state.auth.userType);
+
+    const has = useAppSelector((state) => state.auth.has);
+
 
     return (
-        <header className="d-flex justify-content-around align-items-center sticky-top sticky-lg-none z-0">
+        <header className="d-flex justify-content-around align-items-center sticky-top sticky-lg-none z-1 z-lg-0">
             <div className="row align-items-center w-100">
                 <div className="col-2 d-lg-none h-100 d-flex justify-content-around align-items-center">
                     <img className="pointer m-2" src="/tab1.png" width="35" alt="sidebar icon" onClick={() => {setter((state) => !state)}} />
