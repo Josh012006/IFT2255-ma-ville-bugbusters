@@ -222,7 +222,7 @@ public class CandidatureController {
 
             // Envoyer une notification au prestataire.
             String body = "{" +
-                    "\"message\": \"Votre candidature au projet " + candidature.getTitreProjet() + "a été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.\"," +
+                    "\"message\": \"Votre candidature au projet " + candidature.getTitreProjet() + " a été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.\"," +
                     "\"user\": \"" + candidature.getPrestataire() + "\"" +
                     "}";
             String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
@@ -273,7 +273,7 @@ public class CandidatureController {
 
             String body = "{" +
                     "\"message\": \"Merci pour votre intérêt pour les problèmes de la ville de Montréal. Nous avons le regret de vous annoncer " +
-                    "que votre candidature au projet " + candidature.getTitreProjet() + "a été réjetée. La raison est la suivante : " + json.get("raison").asText() + "\"," +
+                    "que votre candidature au projet " + candidature.getTitreProjet() + " a été réjetée. La raison est la suivante : " + json.get("raison").asText() + "\"," +
                     "\"user\": \"" + candidature.getPrestataire() + "\"" +
                     "}";
             String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);

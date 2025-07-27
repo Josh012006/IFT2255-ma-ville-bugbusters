@@ -16,6 +16,10 @@ header, footer {
   background-color: #FFFFFF;
 }
 
+.hover-white:hover {
+  background-color: white;
+}
+
 .dancing-script {
   font-family: "Dancing Script", cursive;
 }
@@ -104,12 +108,26 @@ footer {
   right: 5px;
 }
 
+.p-35\/100 {
+  padding: 0.35rem !important;
+}
+
 .myspan {
   max-width: 300px;
 }
 
 .h-fix {
   height: 100vh;
+}
+
+.ellipsis {
+  display: block;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 1; /* nombre de lignes à afficher */
+  -webkit-line-clamp: 1; /* encore requis pour Safari */
+  -webkit-box-orient: vertical;
 }
 
 

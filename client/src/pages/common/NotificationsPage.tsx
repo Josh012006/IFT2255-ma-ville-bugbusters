@@ -4,6 +4,10 @@ import type { Prestataire } from "../../interfaces/users/Prestataire";
 import type Resident from "../../interfaces/users/Resident";
 import { useAppSelector } from "../../redux/store";
 import Loader from "../../components/Loader";
+import { Divider, List, ListItem, ListItemText } from "@mui/material";
+import type Notification from "../../interfaces/users/Notification";
+import { formatDate } from "../../utils/formatDate";
+import MyLink from "../../components/MyLink";
 
 
 /**
@@ -33,9 +37,24 @@ export default function NotificationsPage() {
 
     return(
         <div>
-            <h1 className="mt-5 mb-3">Vos notifications</h1>
+            <h1 className="mt-5 mb-3 text-center">Vos notifications</h1>
+            <p className="mb-4 text-center">Cliquez sur une notification pour la lire et voir les détails</p>
             {loading && <Loader />}
-            {!loading && <></>}
+            {!loading && <List>
+                {notifications.map((notif, index) => {
+                    return <MyLink className="text-black" to={"/notification/" + notif.id} key={index}>
+                        <Divider component="li" />
+                        <ListItem className="d-flex align-items-center hover-white">
+                            <ListItemText
+                                primary={(notif.createdAt) ? formatDate(notif.createdAt) : ""}
+                                secondary={<p className="ellipsis">{notif.message}</p>}
+                            />
+                            {notif.statut === "non lue" && <span className="rounded-circle bg-primary mx-3 p-1"></span>}
+                        </ListItem>
+                        {(index === notifications.length - 1) && <Divider component="li" />}
+                    </MyLink>
+                })}
+            </List>}
         </div>
     );
 }
