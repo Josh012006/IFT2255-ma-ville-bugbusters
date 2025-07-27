@@ -18,7 +18,7 @@ export default function DashboardPage() {
                 <div>
                     <h1 className="mt-5 mb-3">Bienvenue {userInfos? userInfos.nom : "STPM"}</h1>
                     <h5>Vous êtes connecté en tant que <i><b>{(userType === "resident")? "Résident" : (userType === "prestataire")? "Prestataire" : "Agent STPM"}</b></i>.</h5>
-                    <p className="m-5 mb-2">Que voulez-vous faire ?</p>
+                    <p className="m-5 mb-2">{userType === "stpm" ? "Vous pouvez sélectionner une des opérations ci-dessous": "Vous pouvez vous diriger vers votre profil pour faire des modifications de préférences d'abonnements ou encore sélectionner une opération à faire parmi celles ci-dessous."}</p>
                 </div>
                 <div className="d-flex flex-column flex-lg-row w-100 justify-content-around">
                     {userType === "resident" &&

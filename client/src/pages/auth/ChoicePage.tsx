@@ -38,7 +38,7 @@ export default function ChoicePage() {
         dispatch(loginInfos(user));
     }
 
-    if(!userType) {
+    if(!userType || userType === "stpm") {
         return <Navigate to="/auth" replace />
     } else {
         return (

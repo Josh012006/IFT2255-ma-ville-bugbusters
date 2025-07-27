@@ -1,6 +1,6 @@
 
 
-export function formatDate(date: Date) {
+export function formatDate(date: Date, withHour=true) {
 
     if(typeof date === "string") {
         date = new Date(date);
@@ -15,6 +15,6 @@ export function formatDate(date: Date) {
     const hour = pad(date.getHours());
     const minute = pad(date.getMinutes());
 
-    const formatted = `${day}/${month}/${year} ${hour}:${minute}`;
+    const formatted = `${day}/${month}/${year}` + ((withHour)? `  ${hour}:${minute}` : "");
     return formatted;
 }

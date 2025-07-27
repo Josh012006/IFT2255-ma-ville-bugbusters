@@ -44,9 +44,9 @@ export default function Header({setter}: {setter: Dispatch<SetStateAction<boolea
                         <img src="/notif.png" alt="cloche de notifications" width="30" height="30" />
                         <span className={`rounded-circle bg-danger ${has? "d-block" : "d-none"} position-absolute bottom-0 cloche`}></span>
                     </MyLink>
-                    <MyLink className="m-1 m-lg-4 px-2 pointer" to="/profile">
-                        <Avatar src="/profile.png" className={`${userType ? "d-block" : "d-none"}`} />
-                    </MyLink>
+                    {(userType !== "stpm") && <MyLink className="m-1 m-lg-4 px-2 pointer" to="/profile">
+                        <Avatar src="/profile.png" />
+                    </MyLink>}
                 </div>
             </div>
         </header>
