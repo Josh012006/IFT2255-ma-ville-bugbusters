@@ -4,9 +4,9 @@ import type Resident from "../../interfaces/users/Resident";
 import { useAppSelector } from "../../redux/store";
 import { useState, type FormEvent, type ReactNode } from "react";
 import { formatDate } from "../../utils/formatDate";
-import { Box, Modal, Chip, FormControl, Select, MenuItem, type SelectChangeEvent } from "@mui/material";
+import { Box, Modal, Chip, FormControl, Select, MenuItem, OutlinedInput, InputAdornment, type SelectChangeEvent } from "@mui/material";
 import { QUARTIERS, type Quartier } from "../../types/Quartier";
-import { TYPE_TRAVAUX } from "../../types/TypesTravaux";
+import { TYPE_TRAVAUX, type TypeTravaux } from "../../types/TypesTravaux";
 import Loader from "../../components/Loader";
 
 
@@ -27,19 +27,37 @@ export default function ProfilePage() {
     const [open, setOpen] = useState<boolean>(false);
 
     const [listQuartiers, setListQuartiers] = useState(userInfos ? userInfos.abonnementsQuartier : []);
+    const [quartierValue, setQuartierValue] = useState("");
     const [listTypes, setListTypes] = useState((userInfos && "abonnementsType" in userInfos) ? (userInfos as Prestataire).abonnementsType : []);
+    const [typeValue, setTypeValue] = useState("");
     const [listRues, setListRues] = useState((userInfos && "abonnementsRue" in userInfos) ? (userInfos as Resident).abonnementsRue : []);
+    const [rueValue, setRueValue] = useState("");
 
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        minWidth: 500,
+        bgcolor: 'white',
+        boxShadow: 24,
+        borderRadius: "20px",
+        pt: 2,
+        px: 4,
+        pb: 3,
+    };
 
     const handleSubmit = (event : FormEvent) => {
         event.preventDefault();
 
         setLoading(true);
 
-        // Faire la requête
+        // Faire la requête pour update les préférences
 
 
         setLoading(false);
+        setOpen(false);
+        window.location.reload();
 
     }
 
@@ -79,7 +97,7 @@ export default function ProfilePage() {
                     </div>
                     <div>
                         {userInfos.abonnementsType.map((type, index) => {
-                            return <Chip key={index} label={type} />
+                            return <Chip className="mx-1" key={index} label={type} />
                         })}
                     </div>
                 </>
@@ -94,7 +112,7 @@ export default function ProfilePage() {
                     </div>
                     <div>
                         {userInfos.abonnementsRue.map((rue, index) => {
-                            return <Chip key={index} label={rue} />
+                            return <Chip className="mx-1" key={index} label={rue} />
                         })}
                     </div>
                 </>
@@ -105,10 +123,98 @@ export default function ProfilePage() {
 
 
     const handleClickQuartier = (event : SelectChangeEvent) => {
-        setListQuartiers(list => { list.push(event.target.value as Quartier); return list})
+        setListQuartiers(list => { 
+            const newList : Quartier[] = [...list];
+            newList.push(event.target.value as Quartier); 
+            return newList;
+        });
+        setQuartierValue("");
     }
 
-    
+    const handleClickType = (event : SelectChangeEvent) => {
+        setListTypes(list => { 
+            const newList : TypeTravaux[] = [...list];
+            newList.push(event.target.value as TypeTravaux); 
+            return newList;
+        });
+        setTypeValue("");
+    }
+
+    const handleAddRue = () => {
+        if(rueValue !== "") {
+            setListRues(list => { 
+                const newList : string[] = [...list];
+                newList.push(rueValue); 
+                return newList;
+            });
+            
+        }  
+        setRueValue("");
+    }
+
+    function secondAbonnementModal() : ReactNode {
+        if(!userInfos)
+            return <></>;
+        if("numeroEntreprise" in userInfos) {
+            userInfos = userInfos as Prestataire;
+            return(
+                <>
+                    <label className="fw-bold">Abonnements types travaux</label>
+                    <Select
+                        value={typeValue}
+                        onChange={handleClickType}
+                        displayEmpty
+                    >
+                        <MenuItem disabled value="">
+                            <em>Sélectionnez le type de travail</em>
+                        </MenuItem>
+                        {TYPE_TRAVAUX.filter(elem => !listTypes.includes(elem)).map((type, index) => {
+                            return <MenuItem key={index} value={type}>{type}</MenuItem>
+                        })}
+                    </Select>
+                    <div className="my-1">
+                        {listTypes.map((type, index) => {
+                            return <Chip className="mx-1" key={index} label={type} onDelete={() => {setListTypes(list => list.filter(elem => elem !== type))}} />
+                        })}
+                    </div>
+                </>
+            );
+        } else {
+            userInfos = userInfos as Resident;
+            return(
+                <>
+                    <label className="fw-bold">Abonnements rues</label>
+                    <OutlinedInput
+                        value={rueValue}
+                        placeholder="Entrez la rue"
+                        onChange={(event) => setRueValue(event.target.value)}
+                        type="text"
+                        sx={{ height: '100%', paddingRight: 0, }}
+                        endAdornment={
+                            <InputAdornment position="end" sx={{ p: 0, m: 0 }}>
+                                <div
+                                    className="p-1 bg-success d-flex ml-1 rounded-end-1 align-items-center justify-content-center pointer"
+                                    style={{ height: '56px', width: "56px", }}
+                                    onClick={handleAddRue}
+                                >
+                                    <img
+                                    alt="validation icon"
+                                    src="/validate_icon.png"
+                                    width="20"
+                                    />
+                                </div>
+                            </InputAdornment>
+                        }
+                    />
+                    <div className="my-1">
+                        {listRues.map((rue, index) => {
+                            return <Chip className="mx-1" key={index} label={rue} onDelete={() => {setListRues(list => list.filter(elem => elem !== rue))}} />
+                        })}
+                    </div>
+                </>
+            );
+        }
+    }
 
     if(!userType || userType === "stpm" || !userInfos) {
         return <Navigate to="/dashboard" replace />
@@ -139,34 +245,41 @@ export default function ProfilePage() {
                             open={open}
                             onClose={() => {setOpen(false)}}
                         >
-                            <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-around", padding: "20px", width: 400 }}>
-                                <div className="w-100 d-flex justify-content-end align-items-center">
-                                    <img src="/close_icon.png" alt="close icon" width="10"/>
+                            <Box sx={{ ...style, display: "flex", flexDirection: "column", justifyContent: "space-around", padding: "20px", width: 400 }}>
+                                <div className="w-100 d-flex justify-content-end align-items-center pointer" onClick={() => {setOpen(false)}}>
+                                    <img src="/close_icon.png" alt="close icon" width="20"/>
                                 </div>
-                                <FormControl>
+                                <form className="d-flex flex-column justify-content-around">
                                     {loading && <Loader />}
-                                    <div className="my-2">
-                                        <label className="fw-bold">Abonnements quartiers</label>
-                                        <Select
-                                            onChange={handleClickQuartier}
-                                            displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }}
+                                    <FormControl>
+                                        <div className="my-2 d-flex flex-column">
+                                            <label className="fw-bold">Abonnements quartiers</label>
+                                            <Select
+                                                value={quartierValue}
+                                                onChange={handleClickQuartier}
+                                                displayEmpty
                                             >
-                                            {QUARTIERS.filter(elem => !(elem in listQuartiers)).map((quartier, index) => {
-                                                return <MenuItem key={index} value={quartier}>{quartier}</MenuItem>
-                                            })}
-                                        </Select>
-                                        <div>
-                                            {listQuartiers.map((quartier, index) => {
-                                                return <Chip key={index} label={quartier} onDelete={() => {setListQuartiers(list => list.filter(elem => elem !== quartier))}} />
-                                            })}
+                                                <MenuItem disabled value="">
+                                                    <em>Sélectionnez le quartier</em>
+                                                </MenuItem>
+                                                {QUARTIERS.filter(elem => !listQuartiers.includes(elem)).map((quartier, index) => {
+                                                    return <MenuItem key={index} value={quartier}>{quartier}</MenuItem>
+                                                })}
+                                            </Select>
+                                            <div className="my-1">
+                                                {listQuartiers.map((quartier, index) => {
+                                                    return <Chip className="mx-1" key={index} label={quartier} onDelete={() => {setListQuartiers(list => list.filter(elem => elem !== quartier))}} />
+                                                })}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="my-2">
-                                        {secondAbonnementModal()}
-                                    </div>
+                                    </FormControl>
+                                    <FormControl>
+                                        <div className="my-2 d-flex flex-column">
+                                            {secondAbonnementModal()}
+                                        </div>
+                                    </FormControl>
                                     <button type="submit" className="rounded-4 border-0 text-white orange p-3 my-4" onClick={handleSubmit}>Soumettre</button>
-                                </FormControl>
+                                </form>
                             </Box>
                         </Modal>
                     </div>
