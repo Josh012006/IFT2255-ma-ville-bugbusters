@@ -28,10 +28,10 @@ export default function Header({setter}: {setter: Dispatch<SetStateAction<boolea
     console.log(has);
 
     return (
-        <header className="d-flex justify-content-around align-items-center sticky-top">
+        <header className="d-flex justify-content-around align-items-center sticky-top sticky-lg-none z-0">
             <div className="row align-items-center w-100">
                 <div className="col-2 d-lg-none h-100 d-flex justify-content-around align-items-center">
-                    <img className="pointer border border-2 p-1 rounded border-danger" src="/tab.png" width="35" height="35" alt="Tabs icon" onClick={() => {setter((state) => !state)}} />
+                    <img className="pointer m-2" src="/tab1.png" width="35" alt="sidebar icon" onClick={() => {setter((state) => !state)}} />
                 </div>
                 <h1 className="col-5 col-lg-7 h-100 d-flex justify-content-around align-items-center">MaVille</h1>
                 <div className="col-5 d-flex justify-content-around align-items-center h-100">

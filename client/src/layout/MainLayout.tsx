@@ -20,12 +20,17 @@ export default function MainLayout() {
         return <Navigate to="/auth" replace />
     } else {
         return (
-            <div className="min-vh-100 p-0 layout">
-                <Header setter={setShowSide} />
-                <SideBar show={showSide}>
-                    <Outlet /> {/* Here the page corresponding to the route is displayed */}
-                </SideBar>
-                <Footer />
+            <div className="p-0 h-fix overflow-y-auto mainlayout">
+                <div>
+                    <SideBar show={showSide} setShow={setShowSide} />
+                </div>
+                <div className="layout p-0 z-0 m-0">
+                    <Header setter={setShowSide} />
+                    <main>
+                        <Outlet /> {/* Here the page corresponding to the route is displayed */}
+                    </main>
+                    <Footer />
+                </div>
             </div>
         );
     }

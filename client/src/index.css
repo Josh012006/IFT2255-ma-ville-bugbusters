@@ -8,9 +8,12 @@ main {
   background-color: #F4F4F4;
 }
 
+header {
+  min-height: 80px;
+}
+
 header, footer {
   background-color: #FFFFFF;
-  min-height: 80px;
 }
 
 .dancing-script {
@@ -54,19 +57,26 @@ header, footer {
   width: 350px;
 }
 
+.mycard2 {
+  cursor: pointer;
+  min-width: 300px;
+  min-height: 100px;
+}
+
 .mb-150 {
   margin-bottom: 150px;
 }
 
 .layout {
   display: grid;
-  height: 100vh;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header"
     "main"
     "footer";
 }
+
+
 
 header {
   grid-area: header;
@@ -94,7 +104,13 @@ footer {
   right: 5px;
 }
 
+.myspan {
+  max-width: 300px;
+}
 
+.h-fix {
+  height: 100vh;
+}
 
 
 
@@ -105,7 +121,22 @@ footer {
 
 
 @media (min-width: 992px) {
-    .sticky-lg-off {
-      position: static !important;
-    }
+  .sticky-lg-none {
+    position: static !important;
   }
+
+  .position-lg-static {
+    position: static !important;
+  }
+
+  .z-lg-0 {
+    z-index: 0 !important;
+  }
+
+  .mainlayout {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 100%;
+    grid-template-columns: 20% 80%;
+  }
+}

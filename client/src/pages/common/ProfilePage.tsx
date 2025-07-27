@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import type { Prestataire } from "../../interfaces/users/Prestataire";
 import type Resident from "../../interfaces/users/Resident";
 import { useAppSelector } from "../../redux/store";
@@ -14,9 +15,13 @@ export default function ProfilePage() {
     const userType : string | null = useAppSelector((state) => state.auth.userType);
     const userInfos : Prestataire | Resident | null = useAppSelector((state) => state.auth.infos);
 
-    return(
-        <div>
+    if(!userType) {
+        return <Navigate to="/dashboard" replace />
+    } else {
+        return(
+            <div>
 
-        </div>
-    )
+            </div>
+        )
+    }
 }

@@ -63,8 +63,6 @@ public class Server {
             config.bundledPlugins.enableCors(cors -> {
                 cors.addRule(it -> {
                     it.allowHost("http://localhost:5173");
-                    // it.allowHost("http://localhost:3000"); // si tu utilises React
-                    // it.allowHost("*"); // 👈 en dev uniquement, permet tout
                 });
             });
 
