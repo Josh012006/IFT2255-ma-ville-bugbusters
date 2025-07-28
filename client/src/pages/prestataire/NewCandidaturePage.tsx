@@ -23,6 +23,18 @@ export default function NewCandidaturePage() {
     const [ruesAffectees, setRuesAffectees] = useState('');
     const [erreur, setErreur] = useState('');
 
+    const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      !prestataire || !nomPrestataire || !ficheProbleme || !numeroEntreprise ||
+      !titreProjet || !description || !typeTravaux || !coutEstime ||
+      !dateDebut || !dateFin || !ruesAffectees
+    ) {
+      setErreur("Tous les champs sont requis.");
+      return;
+    }
+
     return (
         <div>
 
