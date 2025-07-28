@@ -36,7 +36,11 @@ public class SignalementDAO {
     public static List<Signalement> findAll(){
         return MongoConfig.getDatastore()
                 .find(Signalement.class)
-                .filter(Filters.eq("statut", "en attente"))
+                .filter(Filters.or(
+                        Filters.eq("statut", "en attente"),
+                        Filters.eq("statut", "vu")
+                    )
+                )
                 .iterator()
                 .toList();
 

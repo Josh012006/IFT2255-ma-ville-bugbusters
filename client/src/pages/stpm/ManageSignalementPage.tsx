@@ -94,14 +94,14 @@ export default function ManageSignalementPage() {
                 {signalement.statut && signalement.statut === "traité" && <p className="text-center">Signalement déjà traité</p>}
                 {signalement.statut && signalement.statut !== "traité" && <>
                     <div className="d-flex flex-column flex-lg-row justify-content-around align-items-center">
-                        <button type="button" className="rounded-4 border-0 text-white orange p-3 my-2" onClick={() => {setShow("lier")}}>Lier à un problème déjà existant</button>
-                        <button type="button" className="rounded-4 border-0 text-white orange p-3 my-2" onClick={() => {setShow("priorite")}}>Affecter une priorité</button>
+                        <button disabled={show === "priorite"} type="button" className="rounded-4 border-0 text-white orange p-3 my-2" onClick={() => {setShow("lier")}}>Lier à un problème déjà existant</button>
+                        <button disabled={show === "lier"} type="button" className="rounded-4 border-0 text-white orange p-3 my-2" onClick={() => {setShow("priorite")}}>Affecter une priorité</button>
                     </div>
                     {show === "priorite" && <div className="d-flex flex-column align-items-center">
                         <div className="d-flex justify-content-center align-items-center w-100">
-                            <span onClick={() => {setPriorite("faible")}} className={`${(priorite === "faible")? "bg-secondary text-white" : "bg-white text-black"} p-1 rounded-start-2`}>Faible</span>
-                            <span onClick={() => {setPriorite("moyenne")}} className={`${(priorite === "moyenne")? "bg-secondary text-white" : "bg-white text-black"} p-1`}>Moyenne</span>
-                            <span onClick={() => {setPriorite("élevée")}} className={`${(priorite === "élevée")? "bg-secondary text-white" : "bg-white text-black"} p-1 rounded-end-2`}>Élevée</span>
+                            <span onClick={() => {setPriorite("faible")}} className={`${(priorite === "faible")? "bg-secondary text-white" : "bg-white text-black"} p-2 pointer rounded-start-2 border-end`}>Faible</span>
+                            <span onClick={() => {setPriorite("moyenne")}} className={`${(priorite === "moyenne")? "bg-secondary text-white" : "bg-white text-black"} p-2 pointer`}>Moyenne</span>
+                            <span onClick={() => {setPriorite("élevée")}} className={`${(priorite === "élevée")? "bg-secondary text-white" : "bg-white text-black"} p-2 pointer rounded-end-2 border-start`}>Élevée</span>
                         </div>
                         <button type="button" className="rounded-4 border-0 text-white orange p-3 my-4" onClick={handlePriority}>Confirmer</button>
                         {loading2 && <Loader />}
@@ -109,9 +109,9 @@ export default function ManageSignalementPage() {
                         {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
                     </div>}
                     {show === "lier" && <div>
-                        <h5>Fiches problèmes existantes et similaires au signalement</h5>
-                        <p>Cliquez sur une d'entre elles pour confirmer lui lier le signalement</p>
-                        {similarProblems.length === 0 && <p>Aucune fiche problème existante traitant du sujet du signalement.</p>}
+                        <h5 className="mt-5 mb-3 text-center">Fiches problèmes existantes et similaires au signalement</h5>
+                        <p className="mb-4 text-center">Cliquez sur une d'entre elles pour confirmer lui lier le signalement</p>
+                        {similarProblems.length === 0 && <p className="mb-4 text-center fw-bold">Aucune fiche problème existante traitant du sujet du signalement.</p>}
                         {similarProblems.length !== 0 && <List>
                             {similarProblems.map((problem, index) => {
                                 return <div key={index} onClick={() => {setChosenToLink(problem); setOpen(true);}}>

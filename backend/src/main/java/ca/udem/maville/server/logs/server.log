@@ -1,6 +1,452 @@
-2025-07-27 23:16:59 INFO  ca.udem.maville.server.Server - 
+2025-07-28 00:39:10 INFO  ca.udem.maville.server.Server - 
 ========== 🚀 Server started on port 7070 ==========
 
-2025-07-28 00:13:33 INFO  ca.udem.maville.server.Server - 
+2025-07-28 00:39:26 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-28 00:39:26 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-28 00:39:26 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-28 00:39:26 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-28 00:39:26 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-28 00:39:27 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-28 00:39:31 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-28 00:39:32 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-28 00:39:32 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-28 00:39:32 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f4d2665c12e91918fa820","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"235 rue Ontario","description":"Une coupure d'électricité affecte tout le quartier. On n'y voit plus rien nous!","statut":"en attente","resident":"687f39b1dd23af6de7e0ce67","createdAt":"2025-07-22T04:34:46.958-04:00","updatedAt":"2025-07-22T04:54:16.827-04:00"}]
+------------------------
+
+2025-07-28 00:39:32 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-28 00:39:32 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f4d2665c12e91918fa820","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"235 rue Ontario","description":"Une coupure d'électricité affecte tout le quartier. On n'y voit plus rien nous!","statut":"en attente","resident":"687f39b1dd23af6de7e0ce67","createdAt":"2025-07-22T04:34:46.958-04:00","updatedAt":"2025-07-22T04:54:16.827-04:00"}]
+------------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/687f4d2665c12e91918fa820
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/probleme/getSimilar?quartier=undefined&type=undefined
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: POST
+  Access-Control-Request-Headers: access-control-allow-origin,content-type
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/687f4d2665c12e91918fa820
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/probleme/getSimilar?quartier=undefined&type=undefined
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: POST
+  Access-Control-Request-Headers: access-control-allow-origin,content-type
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/687f4d2665c12e91918fa820
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/probleme/getSimilar?quartier=undefined&type=undefined
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+  Content-Length: 18
+  Content-Type: application/json
+Body:
+{"description":""}
+---------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/probleme/getSimilar?quartier=undefined&type=undefined
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+  Content-Length: 18
+  Content-Type: application/json
+Body:
+{"description":""}
+---------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[]
+------------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[]
+------------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f4d2665c12e91918fa820","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"235 rue Ontario","description":"Une coupure d'électricité affecte tout le quartier. On n'y voit plus rien nous!","statut":"vu","resident":"687f39b1dd23af6de7e0ce67","createdAt":"2025-07-22T04:34:46.958-04:00","updatedAt":"2025-07-28T00:39:50.634-04:00"}
+------------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/687f4d2665c12e91918fa820
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/probleme/getSimilar?quartier=Ville-Marie&type=Travaux+Gaz%20Ou%20Electricit%C3%A9
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: POST
+  Access-Control-Request-Headers: access-control-allow-origin,content-type
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f4d2665c12e91918fa820","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"235 rue Ontario","description":"Une coupure d'électricité affecte tout le quartier. On n'y voit plus rien nous!","statut":"vu","resident":"687f39b1dd23af6de7e0ce67","createdAt":"2025-07-22T04:34:46.958-04:00","updatedAt":"2025-07-28T00:39:50.634-04:00"}
+------------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/probleme/getSimilar?quartier=Ville-Marie&type=Travaux+Gaz%20Ou%20Electricit%C3%A9
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+  Content-Length: 99
+  Content-Type: application/json
+Body:
+{"description":"Une coupure d'électricité affecte tout le quartier. On n'y voit plus rien nous!"}
+---------------------
+
+2025-07-28 00:39:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[]
+------------------------
+
+2025-07-28 00:49:48 INFO  ca.udem.maville.server.Server - 
 ========== 🛑 Server stopped ==========
 
