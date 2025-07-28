@@ -154,6 +154,34 @@ public class ProblemController {
     }
 
     /**
+     * Cette route permet de récupérer toutes les fiches problèmes qui sont dans un quartier
+     * particulier et ont un type particulier de problème qu'elles traitent.
+     * Elle nécessite deux query parameters :
+     * - quartier : le quartier ciblé
+     * - type : le type de travail nécessaire
+     * @param ctx qui représente le contexte de la requête
+     */
+    public void getSimilar(Context ctx) {
+        try {
+            String quartier = ctx.queryParam("quartier");
+            String type = ctx.queryParam("type");
+
+            if(quartier == null || type == null || quartier.isEmpty() || type.isEmpty()) {
+                ctx.status(400).result("{\"message\": \"Les query parameters quartier et type sont requis.\"}").contentType("application/json");
+                return;
+            }
+
+            List<FicheProbleme> similar = ProblemDAO.findSimilar(quartier, type);
+
+            ctx.status(200).json(similar).contentType("application/json");
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
+    /**
      * Cette méthode permet d'ajouter un résident à la liste des résidents du problème
      * et un signalement à la liste des signalement du problème.
      * Utile lorsqu'un problème à déjà été créé pour un signalement.

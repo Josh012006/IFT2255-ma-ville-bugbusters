@@ -1,5 +1,10 @@
 import { useParams } from "react-router-dom";
 import useRequest from "../../hooks/UseRequest";
+import { useEffect, useState } from "react";
+import type Signalement from "../../interfaces/Signalement";
+import Loader from "../../components/Loader";
+import Problem from "../../interfaces/Problem";
+import { isSimilar } from "../../utils/isSimilar";
 
 
 /**
@@ -17,11 +22,49 @@ export default function ManageSignalementPage() {
 
     const signalementId = useParams().id;
 
-    const response = useRequest("/signalement/" + signalementId, "GET")
+    const [signalement, setSignalement] = useState<Signalement | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [loading1, setLoading1] = useState<boolean>(true);
+
+    const [similarProblems, setSimilarProblems] = useState<Problem[]>([]);
+
+    const response = useRequest("/signalement/" + signalementId, "GET");
+    const response1 = useRequest("/probleme/getSimilar?quartier=" + signalement?.quartier.replace(" ", "+") + "&type=" + signalement?.typeProbleme.replace(" ", "+"), "GET");
+
+
+    useEffect(() => {
+        if(response && response.status === 200) {
+            setSignalement(response.data);
+        }
+        setLoading(false);
+    }, [response]);
+
+    useEffect(() => {
+        if(response1 && response1.status === 200) {
+            if(signalement) {
+                const similar : Problem[] = [];
+                for(const problem of response1.data) {
+                    const myProblem = problem as Problem;
+                    if(isSimilar(signalement.description, myProblem.description)) {
+                        similar.push(myProblem);
+                    }
+                }
+
+                setSimilarProblems(similar);
+            }
+        }
+        setLoading1(false);
+    }, [response1, signalement])
+
+
 
     return(
         <div>
-
+            <h1 className="mt-5 mb-3 text-center">Nouveaux signalements</h1>
+            {(loading || loading1) && <Loader />}
+            {!loading && !loading1 && signalement && <div>
+                
+            </div>}
         </div>
     );
 

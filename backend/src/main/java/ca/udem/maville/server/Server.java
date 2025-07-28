@@ -149,6 +149,11 @@ public class Server {
                     path("/getAll", () -> {
                         get(problemController::getAll);
                     });
+                    // Le path getSimilar nécessite deux query parameters
+                    // quartier et type.
+                    path("/getSimilar", () -> {
+                        get(problemController::getSimilar);
+                    });
                     post(problemController::create);
                     path("/{id}", () -> {
                         get(problemController::getById);

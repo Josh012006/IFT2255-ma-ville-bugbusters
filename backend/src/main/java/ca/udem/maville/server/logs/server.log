@@ -221,3 +221,3462 @@ Body:
 [{"id":"687f50671444a9cff09df8e3","user":"687f39b1dd23af6de7e0ce69","message":"Une nouvelle fiche problème qui pourrait vous intéresser a été créée.","statut":"lue","url":"/prestataire/probleme/687f50651444a9cff09df8e1","createdAt":"2025-07-22T04:48:39.037-04:00","updatedAt":"2025-07-27T01:17:01.157-04:00"},{"id":"687f57bb1444a9cff09df8eb","user":"687f39b1dd23af6de7e0ce69","message":"Votre candidature au projet Résolution de la coupure d'électricité - Ontarioa été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.","statut":"lue","url":null,"createdAt":"2025-07-22T05:19:55.821-04:00","updatedAt":"2025-07-27T01:58:10.058-04:00"},{"id":"687f587d1444a9cff09df8ee","user":"687f39b1dd23af6de7e0ce69","message":"Merci pour votre intérêt pour les problèmes de la ville de Montréal. Nous avons le regret de vous annoncer que votre candidature au projet Résolution de la coupure d'électricité - Ontarioa été réjetée. La raison est la suivante : Votre budget dépasse celui acceptable..","statut":"lue","url":null,"createdAt":"2025-07-22T05:23:09.646-04:00","updatedAt":"2025-07-27T01:58:26.376-04:00"},{"id":"687f63b1776dddd8d3b230d0","user":"687f39b1dd23af6de7e0ce69","message":"Votre candidature au projet Résolution de la coupure d'électricité - Ontarioa été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.","statut":"lue","url":null,"createdAt":"2025-07-22T06:10:57.021-04:00","updatedAt":"2025-07-27T01:58:47.246-04:00"}]
 ------------------------
 
+2025-07-27 21:31:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/getAll/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:31:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/getAll/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:31:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:31:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 21:31:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 21:31:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:31:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-27 21:31:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:31:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-27 21:31:55 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f50671444a9cff09df8e3","user":"687f39b1dd23af6de7e0ce69","message":"Une nouvelle fiche problème qui pourrait vous intéresser a été créée.","statut":"lue","url":"/prestataire/probleme/687f50651444a9cff09df8e1","createdAt":"2025-07-22T04:48:39.037-04:00","updatedAt":"2025-07-27T01:17:01.157-04:00"},{"id":"687f57bb1444a9cff09df8eb","user":"687f39b1dd23af6de7e0ce69","message":"Votre candidature au projet Résolution de la coupure d'électricité - Ontarioa été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.","statut":"lue","url":null,"createdAt":"2025-07-22T05:19:55.821-04:00","updatedAt":"2025-07-27T01:58:10.058-04:00"},{"id":"687f587d1444a9cff09df8ee","user":"687f39b1dd23af6de7e0ce69","message":"Merci pour votre intérêt pour les problèmes de la ville de Montréal. Nous avons le regret de vous annoncer que votre candidature au projet Résolution de la coupure d'électricité - Ontarioa été réjetée. La raison est la suivante : Votre budget dépasse celui acceptable..","statut":"lue","url":null,"createdAt":"2025-07-22T05:23:09.646-04:00","updatedAt":"2025-07-27T01:58:26.376-04:00"},{"id":"687f63b1776dddd8d3b230d0","user":"687f39b1dd23af6de7e0ce69","message":"Votre candidature au projet Résolution de la coupure d'électricité - Ontarioa été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.","statut":"lue","url":null,"createdAt":"2025-07-22T06:10:57.021-04:00","updatedAt":"2025-07-27T01:58:47.246-04:00"}]
+------------------------
+
+2025-07-27 21:31:55 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:31:55 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f50671444a9cff09df8e3","user":"687f39b1dd23af6de7e0ce69","message":"Une nouvelle fiche problème qui pourrait vous intéresser a été créée.","statut":"lue","url":"/prestataire/probleme/687f50651444a9cff09df8e1","createdAt":"2025-07-22T04:48:39.037-04:00","updatedAt":"2025-07-27T01:17:01.157-04:00"},{"id":"687f57bb1444a9cff09df8eb","user":"687f39b1dd23af6de7e0ce69","message":"Votre candidature au projet Résolution de la coupure d'électricité - Ontarioa été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.","statut":"lue","url":null,"createdAt":"2025-07-22T05:19:55.821-04:00","updatedAt":"2025-07-27T01:58:10.058-04:00"},{"id":"687f587d1444a9cff09df8ee","user":"687f39b1dd23af6de7e0ce69","message":"Merci pour votre intérêt pour les problèmes de la ville de Montréal. Nous avons le regret de vous annoncer que votre candidature au projet Résolution de la coupure d'électricité - Ontarioa été réjetée. La raison est la suivante : Votre budget dépasse celui acceptable..","statut":"lue","url":null,"createdAt":"2025-07-22T05:23:09.646-04:00","updatedAt":"2025-07-27T01:58:26.376-04:00"},{"id":"687f63b1776dddd8d3b230d0","user":"687f39b1dd23af6de7e0ce69","message":"Votre candidature au projet Résolution de la coupure d'électricité - Ontarioa été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.","statut":"lue","url":null,"createdAt":"2025-07-22T06:10:57.021-04:00","updatedAt":"2025-07-27T01:58:47.246-04:00"}]
+------------------------
+
+2025-07-27 21:32:11 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/resident/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:11 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/resident/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:11 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 21:32:11 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 21:32:11 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/resident/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:11 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f39b1dd23af6de7e0ce64","nom":"John Doe","adresseCourriel":"johndoe@example.com","abonnementsQuartier":["Ville-Marie"],"adresse":"123 rue Ontario","codePostal":"H2X 1Y4","quartier":"Ville-Marie","abonnementsRue":["123 rue Ontario"],"dateNaissance":"2003-09-25T04:00:00.000Z"},{"id":"687f39b1dd23af6de7e0ce65","nom":"Jane Smith","adresseCourriel":"janesmith@example.com","abonnementsQuartier":["Le Plateau-Mont-Royal","Côte-des-Neiges–Notre-Dame-de-Grâce"],"adresse":"456 avenue du Mont-Royal","codePostal":"H2H 1J5","quartier":"Le Plateau-Mont-Royal","abonnementsRue":["456 avenue du Mont-Royal"],"dateNaissance":"1995-06-15T04:00:00.000Z"},{"id":"687f39b1dd23af6de7e0ce66","nom":"Carlos Méndez","adresseCourriel":"carlosm@example.com","abonnementsQuartier":["Rosemont–La Petite-Patrie"],"adresse":"789 rue Beaubien Est","codePostal":"H2S 2G1","quartier":"Rosemont–La Petite-Patrie","abonnementsRue":["789 rue Beaubien Est"],"dateNaissance":"1988-03-10T05:00:00.000Z"},{"id":"687f39b1dd23af6de7e0ce67","nom":"Élise Tremblay","adresseCourriel":"elise.tremblay@example.com","abonnementsQuartier":["Ville-Marie"],"adresse":"456 rue Sainte-Catherine Est","codePostal":"H2L 2C5","quartier":"Ville-Marie","abonnementsRue":["456 rue Sainte-Catherine Est"],"dateNaissance":"1992-06-12T04:00:00.000Z"},{"id":"687f39b1dd23af6de7e0ce68","nom":"Mathieu Gagnon","adresseCourriel":"mathieu.gagnon@example.com","abonnementsQuartier":["Plateau-Mont-Royal"],"adresse":"789 avenue du Mont-Royal Est","codePostal":"H2J 1X3","quartier":"Plateau-Mont-Royal","abonnementsRue":["789 avenue du Mont-Royal Est"],"dateNaissance":"2000-11-05T05:00:00.000Z"}]
+------------------------
+
+2025-07-27 21:32:11 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/resident/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:11 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f39b1dd23af6de7e0ce64","nom":"John Doe","adresseCourriel":"johndoe@example.com","abonnementsQuartier":["Ville-Marie"],"adresse":"123 rue Ontario","codePostal":"H2X 1Y4","quartier":"Ville-Marie","abonnementsRue":["123 rue Ontario"],"dateNaissance":"2003-09-25T04:00:00.000Z"},{"id":"687f39b1dd23af6de7e0ce65","nom":"Jane Smith","adresseCourriel":"janesmith@example.com","abonnementsQuartier":["Le Plateau-Mont-Royal","Côte-des-Neiges–Notre-Dame-de-Grâce"],"adresse":"456 avenue du Mont-Royal","codePostal":"H2H 1J5","quartier":"Le Plateau-Mont-Royal","abonnementsRue":["456 avenue du Mont-Royal"],"dateNaissance":"1995-06-15T04:00:00.000Z"},{"id":"687f39b1dd23af6de7e0ce66","nom":"Carlos Méndez","adresseCourriel":"carlosm@example.com","abonnementsQuartier":["Rosemont–La Petite-Patrie"],"adresse":"789 rue Beaubien Est","codePostal":"H2S 2G1","quartier":"Rosemont–La Petite-Patrie","abonnementsRue":["789 rue Beaubien Est"],"dateNaissance":"1988-03-10T05:00:00.000Z"},{"id":"687f39b1dd23af6de7e0ce67","nom":"Élise Tremblay","adresseCourriel":"elise.tremblay@example.com","abonnementsQuartier":["Ville-Marie"],"adresse":"456 rue Sainte-Catherine Est","codePostal":"H2L 2C5","quartier":"Ville-Marie","abonnementsRue":["456 rue Sainte-Catherine Est"],"dateNaissance":"1992-06-12T04:00:00.000Z"},{"id":"687f39b1dd23af6de7e0ce68","nom":"Mathieu Gagnon","adresseCourriel":"mathieu.gagnon@example.com","abonnementsQuartier":["Plateau-Mont-Royal"],"adresse":"789 avenue du Mont-Royal Est","codePostal":"H2J 1X3","quartier":"Plateau-Mont-Royal","abonnementsRue":["789 avenue du Mont-Royal Est"],"dateNaissance":"2000-11-05T05:00:00.000Z"}]
+------------------------
+
+2025-07-27 21:32:12 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:12 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-27 21:32:12 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:12 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-27 21:32:15 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/getAll/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:15 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/getAll/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:15 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 21:32:15 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 21:32:15 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:15 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f4c3465c12e91918fa81f","user":"687f39b1dd23af6de7e0ce64","message":"Votre signalement à été traitée par le STPM. Vous serez notifié lorsqu'un projet pour le résoudre aura été créé.","statut":"lue","url":"/resident/signalement/687f44bc9a7fd43060f32b88","createdAt":"2025-07-22T04:30:44.344-04:00","updatedAt":"2025-07-27T03:29:10.508-04:00"},{"id":"687f4e5065c12e91918fa823","user":"687f39b1dd23af6de7e0ce64","message":"Votre signalement à été traitée par le STPM. Vous serez notifié lorsqu'un projet pour le résoudre aura été créé.","statut":"lue","url":"/resident/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:39:44.705-04:00","updatedAt":"2025-07-27T03:29:14.269-04:00"},{"id":"687f50661444a9cff09df8e2","user":"687f39b1dd23af6de7e0ce64","message":"Votre signalement à été traité par le STPM. Vous serez notifié lorsqu'un projet pour le résoudre aura été créé.","statut":"lue","url":"/resident/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:48:38.886-04:00","updatedAt":"2025-07-27T03:29:16.295-04:00"},{"id":"687f63b0776dddd8d3b230cd","user":"687f39b1dd23af6de7e0ce64","message":"Un nouveau projet a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.","statut":"lue","url":"/resident/projet/687f63b0776dddd8d3b230cc","createdAt":"2025-07-22T06:10:56.752-04:00","updatedAt":"2025-07-27T03:29:18.187-04:00"},{"id":"687f64c3776dddd8d3b230d1","user":"687f39b1dd23af6de7e0ce64","message":"Un nouveau projet a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.","statut":"lue","url":"/resident/projet/687f63b0776dddd8d3b230cc","createdAt":"2025-07-22T06:15:31.730-04:00","updatedAt":"2025-07-27T03:29:20.719-04:00"},{"id":"687f66bf62cfa253416dfe71","user":"687f39b1dd23af6de7e0ce64","message":"Les informations du projetRésolution de la coupure d'électricité - Ontario dans votre quartier ou votre rue a été modifié.","statut":"lue","url":"/resident/projet/687f63b0776dddd8d3b230cc","createdAt":"2025-07-22T06:23:59.089-04:00","updatedAt":"2025-07-27T03:29:22.547-04:00"},{"id":"6885d58e67d6e4f889d542e5","user":"687f39b1dd23af6de7e0ce64","message":"Un nouveau projet a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.","statut":"lue","url":"/resident/projet/687f63b0776dddd8d3b230cc","createdAt":"2025-07-22T06:15:31.730-04:00","updatedAt":"2025-07-27T03:32:16.949-04:00"}]
+------------------------
+
+2025-07-27 21:32:15 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:15 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f4c3465c12e91918fa81f","user":"687f39b1dd23af6de7e0ce64","message":"Votre signalement à été traitée par le STPM. Vous serez notifié lorsqu'un projet pour le résoudre aura été créé.","statut":"lue","url":"/resident/signalement/687f44bc9a7fd43060f32b88","createdAt":"2025-07-22T04:30:44.344-04:00","updatedAt":"2025-07-27T03:29:10.508-04:00"},{"id":"687f4e5065c12e91918fa823","user":"687f39b1dd23af6de7e0ce64","message":"Votre signalement à été traitée par le STPM. Vous serez notifié lorsqu'un projet pour le résoudre aura été créé.","statut":"lue","url":"/resident/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:39:44.705-04:00","updatedAt":"2025-07-27T03:29:14.269-04:00"},{"id":"687f50661444a9cff09df8e2","user":"687f39b1dd23af6de7e0ce64","message":"Votre signalement à été traité par le STPM. Vous serez notifié lorsqu'un projet pour le résoudre aura été créé.","statut":"lue","url":"/resident/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:48:38.886-04:00","updatedAt":"2025-07-27T03:29:16.295-04:00"},{"id":"687f63b0776dddd8d3b230cd","user":"687f39b1dd23af6de7e0ce64","message":"Un nouveau projet a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.","statut":"lue","url":"/resident/projet/687f63b0776dddd8d3b230cc","createdAt":"2025-07-22T06:10:56.752-04:00","updatedAt":"2025-07-27T03:29:18.187-04:00"},{"id":"687f64c3776dddd8d3b230d1","user":"687f39b1dd23af6de7e0ce64","message":"Un nouveau projet a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.","statut":"lue","url":"/resident/projet/687f63b0776dddd8d3b230cc","createdAt":"2025-07-22T06:15:31.730-04:00","updatedAt":"2025-07-27T03:29:20.719-04:00"},{"id":"687f66bf62cfa253416dfe71","user":"687f39b1dd23af6de7e0ce64","message":"Les informations du projetRésolution de la coupure d'électricité - Ontario dans votre quartier ou votre rue a été modifié.","statut":"lue","url":"/resident/projet/687f63b0776dddd8d3b230cc","createdAt":"2025-07-22T06:23:59.089-04:00","updatedAt":"2025-07-27T03:29:22.547-04:00"},{"id":"6885d58e67d6e4f889d542e5","user":"687f39b1dd23af6de7e0ce64","message":"Un nouveau projet a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.","statut":"lue","url":"/resident/projet/687f63b0776dddd8d3b230cc","createdAt":"2025-07-22T06:15:31.730-04:00","updatedAt":"2025-07-27T03:32:16.949-04:00"}]
+------------------------
+
+2025-07-27 21:32:44 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:44 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 21:32:44 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:45 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 21:32:48 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 21:32:48 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 21:32:48 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-22T04:17:32.212-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-22T04:23:03.860-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-22T04:34:47.042-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-22T05:09:57.914-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-22T05:17:32.153-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-22T05:21:05.370-04:00"}]
+------------------------
+
+2025-07-27 21:32:48 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:32:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-22T04:17:32.212-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-22T04:23:03.860-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-22T04:34:47.042-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-22T05:09:57.914-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-22T05:17:32.153-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-22T05:21:05.370-04:00"}]
+------------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/687f491c65c12e91918fa81c
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/687f491c65c12e91918fa81c
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/687f491c65c12e91918fa81c
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"}
+------------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/687f491c65c12e91918fa81c
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"}
+------------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:33:02 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 21:34:13 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:34:13 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 21:34:13 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:34:14 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 21:58:42 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:58:42 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:58:42 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:58:42 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 21:58:42 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 21:58:42 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:58:42 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 21:58:42 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:58:42 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 21:58:42 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[]
+------------------------
+
+2025-07-27 21:58:42 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 21:58:42 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[]
+------------------------
+
+2025-07-27 22:41:27 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:41:27 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:41:27 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:41:27 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:41:27 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:41:27 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:41:27 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[]
+------------------------
+
+2025-07-27 22:41:27 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:41:27 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:41:27 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:41:27 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[]
+------------------------
+
+2025-07-27 22:41:27 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:43:00 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:43:00 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:43:00 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:43:00 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:43:00 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:43:00 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-22T04:23:03.860-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-22T04:34:47.042-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-22T05:09:57.914-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-22T05:17:32.153-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-22T05:21:05.370-04:00"}]
+------------------------
+
+2025-07-27 22:43:00 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:43:00 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-22T04:23:03.860-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-22T04:34:47.042-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-22T05:09:57.914-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-22T05:17:32.153-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-22T05:21:05.370-04:00"}]
+------------------------
+
+2025-07-27 22:43:05 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:43:05 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:43:05 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:43:05 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:43:05 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:43:05 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[]
+------------------------
+
+2025-07-27 22:43:05 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:43:05 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[]
+------------------------
+
+2025-07-27 22:44:42 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:44:42 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:44:42 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:44:42 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:44:42 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:44:42 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:44:42 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:44:42 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:44:42 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:44:42 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-22T04:48:38.839-04:00"},{"id":"687f4d2665c12e91918fa820","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"235 rue Ontario","description":"Une coupure d'électricité affecte tout le quartier. On n'y voit plus rien nous!","statut":"en attente","resident":"687f39b1dd23af6de7e0ce67","createdAt":"2025-07-22T04:34:46.958-04:00","updatedAt":"2025-07-22T04:54:16.827-04:00"}]
+------------------------
+
+2025-07-27 22:44:42 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:44:42 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-22T04:48:38.839-04:00"},{"id":"687f4d2665c12e91918fa820","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"235 rue Ontario","description":"Une coupure d'électricité affecte tout le quartier. On n'y voit plus rien nous!","statut":"en attente","resident":"687f39b1dd23af6de7e0ce67","createdAt":"2025-07-22T04:34:46.958-04:00","updatedAt":"2025-07-22T04:54:16.827-04:00"}]
+------------------------
+
+2025-07-27 22:45:35 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:35 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:35 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:35 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:35 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:36 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-22T04:48:38.839-04:00"},{"id":"687f4d2665c12e91918fa820","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"235 rue Ontario","description":"Une coupure d'électricité affecte tout le quartier. On n'y voit plus rien nous!","statut":"en attente","resident":"687f39b1dd23af6de7e0ce67","createdAt":"2025-07-22T04:34:46.958-04:00","updatedAt":"2025-07-22T04:54:16.827-04:00"}]
+------------------------
+
+2025-07-27 22:45:36 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:36 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-22T04:48:38.839-04:00"},{"id":"687f4d2665c12e91918fa820","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"235 rue Ontario","description":"Une coupure d'électricité affecte tout le quartier. On n'y voit plus rien nous!","statut":"en attente","resident":"687f39b1dd23af6de7e0ce67","createdAt":"2025-07-22T04:34:46.958-04:00","updatedAt":"2025-07-22T04:54:16.827-04:00"}]
+------------------------
+
+2025-07-27 22:45:44 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:44 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:44 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:44 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:44 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:44 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-22T04:23:03.860-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-22T04:34:47.042-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-22T05:09:57.914-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-22T05:17:32.153-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-22T05:21:05.370-04:00"}]
+------------------------
+
+2025-07-27 22:45:44 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:44 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-22T04:23:03.860-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-22T04:34:47.042-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-22T05:09:57.914-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-22T05:17:32.153-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-22T05:21:05.370-04:00"}]
+------------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/687f55651444a9cff09df8e8
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/687f55651444a9cff09df8e8
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/687f55651444a9cff09df8e8
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-27T22:45:45.531-04:00"}
+------------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/687f55651444a9cff09df8e8
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-27T22:45:45.531-04:00"}
+------------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:45 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:46 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:46 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-22T04:23:03.860-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-22T04:34:47.042-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-27T22:45:45.531-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-22T05:17:32.153-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-22T05:21:05.370-04:00"}]
+------------------------
+
+2025-07-27 22:45:46 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:46 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-22T04:23:03.860-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-22T04:34:47.042-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-27T22:45:45.531-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-22T05:17:32.153-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-22T05:21:05.370-04:00"}]
+------------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/687f4a6765c12e91918fa81e
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/687f4a6765c12e91918fa81e
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/687f4a6765c12e91918fa81e
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-27T22:45:48.120-04:00"}
+------------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/687f4a6765c12e91918fa81e
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-27T22:45:48.120-04:00"}
+------------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-27T22:45:48.120-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-22T04:34:47.042-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-27T22:45:45.531-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-22T05:17:32.153-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-22T05:21:05.370-04:00"}]
+------------------------
+
+2025-07-27 22:45:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-27T22:45:48.120-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-22T04:34:47.042-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-27T22:45:45.531-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-22T05:17:32.153-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-22T05:21:05.370-04:00"}]
+------------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/687f4d2765c12e91918fa821
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/687f4d2765c12e91918fa821
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/687f4d2765c12e91918fa821
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-27T22:45:50.094-04:00"}
+------------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/687f4d2765c12e91918fa821
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-27T22:45:50.094-04:00"}
+------------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-27T22:45:48.120-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-27T22:45:50.094-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-27T22:45:45.531-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-22T05:17:32.153-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-22T05:21:05.370-04:00"}]
+------------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:50 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-27T22:45:48.120-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-27T22:45:50.094-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-27T22:45:45.531-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-22T05:17:32.153-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-22T05:21:05.370-04:00"}]
+------------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/687f572c1444a9cff09df8ea
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/687f572c1444a9cff09df8ea
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/687f572c1444a9cff09df8ea
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-27T22:45:52.103-04:00"}
+------------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/687f572c1444a9cff09df8ea
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-27T22:45:52.103-04:00"}
+------------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:52 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:53 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-27T22:45:48.120-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-27T22:45:50.094-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-27T22:45:45.531-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-27T22:45:52.103-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-22T05:21:05.370-04:00"}]
+------------------------
+
+2025-07-27 22:45:53 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:53 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-27T22:45:48.120-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-27T22:45:50.094-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-27T22:45:45.531-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-27T22:45:52.103-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-22T05:21:05.370-04:00"}]
+------------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/687f58011444a9cff09df8ed
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/notification/687f58011444a9cff09df8ed
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/687f58011444a9cff09df8ed
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-27T22:45:54.244-04:00"}
+------------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/687f58011444a9cff09df8ed
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-27T22:45:54.244-04:00"}
+------------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-27 22:45:55 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:55 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-27T22:45:48.120-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-27T22:45:50.094-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-27T22:45:45.531-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-27T22:45:52.103-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-27T22:45:54.244-04:00"}]
+------------------------
+
+2025-07-27 22:45:55 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:45:55 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f483b65c12e91918fa81a","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f483a65c12e91918fa819","createdAt":"2025-07-22T04:13:47.041-04:00","updatedAt":"2025-07-27T03:57:55.221-04:00"},{"id":"687f491c65c12e91918fa81c","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f491c65c12e91918fa81b","createdAt":"2025-07-22T04:17:32.211-04:00","updatedAt":"2025-07-27T21:33:02.297-04:00"},{"id":"687f4a6765c12e91918fa81e","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4a6765c12e91918fa81d","createdAt":"2025-07-22T04:23:03.858-04:00","updatedAt":"2025-07-27T22:45:48.120-04:00"},{"id":"687f4d2765c12e91918fa821","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"lue","url":"/stpm/signalement/687f4d2665c12e91918fa820","createdAt":"2025-07-22T04:34:47.042-04:00","updatedAt":"2025-07-27T22:45:50.094-04:00"},{"id":"687f55651444a9cff09df8e8","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f55651444a9cff09df8e7","createdAt":"2025-07-22T05:09:57.913-04:00","updatedAt":"2025-07-27T22:45:45.531-04:00"},{"id":"687f572c1444a9cff09df8ea","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f572c1444a9cff09df8e9","createdAt":"2025-07-22T05:17:32.152-04:00","updatedAt":"2025-07-27T22:45:52.103-04:00"},{"id":"687f58011444a9cff09df8ed","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/687f58011444a9cff09df8ec","createdAt":"2025-07-22T05:21:05.370-04:00","updatedAt":"2025-07-27T22:45:54.244-04:00"}]
+------------------------
+
+2025-07-27 22:46:17 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:46:17 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:46:17 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:46:17 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:46:17 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:46:17 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-22T04:48:38.839-04:00"},{"id":"687f4d2665c12e91918fa820","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"235 rue Ontario","description":"Une coupure d'électricité affecte tout le quartier. On n'y voit plus rien nous!","statut":"en attente","resident":"687f39b1dd23af6de7e0ce67","createdAt":"2025-07-22T04:34:46.958-04:00","updatedAt":"2025-07-22T04:54:16.827-04:00"}]
+------------------------
+
+2025-07-27 22:46:17 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:46:17 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-22T04:48:38.839-04:00"},{"id":"687f4d2665c12e91918fa820","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"235 rue Ontario","description":"Une coupure d'électricité affecte tout le quartier. On n'y voit plus rien nous!","statut":"en attente","resident":"687f39b1dd23af6de7e0ce67","createdAt":"2025-07-22T04:34:46.958-04:00","updatedAt":"2025-07-22T04:54:16.827-04:00"}]
+------------------------
+
+2025-07-27 22:47:30 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/687f4a6765c12e91918fa81d
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:47:30 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:47:30 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/687f4a6765c12e91918fa81d
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:47:31 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"vu","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-27T22:47:31.110-04:00"}
+------------------------
+
+2025-07-27 22:50:41 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/687f4a6765c12e91918fa81d
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: GET
+  Access-Control-Request-Headers: access-control-allow-origin
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:50:41 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-27 22:50:41 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/687f4a6765c12e91918fa81d
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Access-Control-Allow-Origin: http://localhost:5173
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-27 22:50:42 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"vu","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-27T22:47:31.110-04:00"}
+------------------------
+
+2025-07-27 23:07:07 INFO  ca.udem.maville.server.Server - 
+========== 🛑 Server stopped ==========
+
