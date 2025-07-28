@@ -216,6 +216,10 @@ public class Server {
 
         // La logique de formattage des logs du servers.
         app.before(ctx -> {
+            ctx.header("Access-Control-Allow-Origin", "http://localhost:5173");
+            ctx.header("Access-Control-Allow-Methods", "GET,POST,PATCH,PUT,DELETE,OPTIONS");
+            ctx.header("Access-Control-Allow-Headers", "Content-Type");
+
             Logger logger = LoggerFactory.getLogger("HTTP");
 
             StringBuilder sb = new StringBuilder();

@@ -28,19 +28,19 @@ export default function SideBar({show, setShow} : {show: boolean, setShow: React
                     <img height="55" src="/udem.png" alt="le logo de l'udem" className="m-2" />
                     <img height="35" src="/tab2.png" alt="sidebar icon" className="m-2 pointer d-block d-lg-none" onClick={() => {setShow(false)}} />
                 </div>
-                <MyLink to="/" className="text-white border-top border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Dashboard</MyLink>
+                <MyLink onClick={() => {setShow(false)}} to="/" className="text-white border-top border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Dashboard</MyLink>
                 {userType === "resident" && <>
-                    <MyLink to="/resident/projet/list" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Projets de Travaux</MyLink>
-                    <MyLink to="/resident/signalement" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Signalements</MyLink>
+                    <MyLink onClick={() => {setShow(false)}} to="/resident/projet/list" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Projets de Travaux</MyLink>
+                    <MyLink onClick={() => {setShow(false)}} to="/resident/signalement" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Signalements</MyLink>
                 </>}
                 {userType === "prestataire" && <>
-                    <MyLink to="/prestataire/projet/list" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Projets</MyLink>
-                    <MyLink to="/prestataire/candidature/list" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Candidatures</MyLink>
-                    <MyLink to="/prestataire/probleme/list" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Fiches problèmes</MyLink>
+                    <MyLink onClick={() => {setShow(false)}} to="/prestataire/projet/list" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Projets</MyLink>
+                    <MyLink onClick={() => {setShow(false)}} to="/prestataire/candidature/list" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Candidatures</MyLink>
+                    <MyLink onClick={() => {setShow(false)}} to="/prestataire/probleme/list" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Fiches problèmes</MyLink>
                 </>}
                 {userType === "stpm" && <>
-                    <MyLink to="/stpm/signalement/list" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Gérer les signalements</MyLink>
-                    <MyLink to="/stpm/candidature/list" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Gérer les candidatures</MyLink>
+                    <MyLink onClick={() => {setShow(false)}} to="/stpm/signalement/list" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Gérer les signalements</MyLink>
+                    <MyLink onClick={() => {setShow(false)}} to="/stpm/candidature/list" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Gérer les candidatures</MyLink>
                 </>}
             </div>
             <MyLink to="/auth" className="text-white border-top mt-5 border-1 border-white w-100 d-block p-3 text-center orange-clair" onClick={handleLogout}>Revenir à l'authentification</MyLink>

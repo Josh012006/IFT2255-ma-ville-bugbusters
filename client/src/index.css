@@ -141,8 +141,17 @@ footer {
   margin-left: 10px;
 }
 
+.adornment {
+  height: 56px;
+  width: 56px;
+}
+
 .valid-green {
   background-color: #09B285;
+}
+
+button.disabled:disabled {
+  background-color: #ff5659b2;
 }
 
 

@@ -3,8 +3,8 @@ package ca.udem.maville.server.controllers;
 import ca.udem.maville.hooks.UseRequest;
 import ca.udem.maville.server.dao.files.ProblemDAO;
 import ca.udem.maville.server.models.FicheProbleme;
-import ca.udem.maville.utils.ControllerHelper;
 import ca.udem.maville.utils.RequestType;
+import ca.udem.maville.utils.SimilarityUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.http.Context;
@@ -183,7 +183,7 @@ public class ProblemController {
             ArrayList<FicheProbleme> similar = new ArrayList<>();
 
             for(FicheProbleme probleme : found) {
-                if(ControllerHelper.isSimilar(description, probleme.getDescription(), 0.6)) {
+                if(SimilarityUtil.isSimilar(description, probleme.getDescription(), 0.2)) {
                     similar.add(probleme);
                 }
             }
@@ -200,8 +200,9 @@ public class ProblemController {
      * Cette méthode permet d'ajouter un résident à la liste des résidents du problème
      * et un signalement à la liste des signalement du problème.
      * Utile lorsqu'un problème à déjà été créé pour un signalement.
-     * Le body doit contenir le champ resident qui représente l'id du résident ayant fait le nouveau
-     * signalement et le champ signalement qui représente l'id de son signalement.
+     * Le body doit contenir les champs:
+     * - resident qui représente l'id du résident ayant fait le nouveau signalement
+     * - signalement qui représente l'id de son signalement.
      * Elle inclut de marquer le signalement comme traité, ce qui envoie une notification au résident.
      * @param ctx qui représente le contexte de la requête.
      */

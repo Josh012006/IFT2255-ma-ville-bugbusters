@@ -4,7 +4,7 @@ import type Resident from "../../interfaces/users/Resident";
 import { type AppDispatch, useAppSelector } from "../../redux/store";
 import { useState, useEffect, type FormEvent, type ReactNode } from "react";
 import { formatDate } from "../../utils/formatDate";
-import { Box, Modal, Chip, FormControl, Select, MenuItem, OutlinedInput, InputAdornment, type SelectChangeEvent } from "@mui/material";
+import { Box, Modal, Chip, FormControl, Select, MenuItem, OutlinedInput, InputAdornment, type SelectChangeEvent, Alert} from "@mui/material";
 import { QUARTIERS, type Quartier } from "../../types/Quartier";
 import { TYPE_TRAVAUX, type TypeTravaux } from "../../types/TypesTravaux";
 import Loader from "../../components/Loader";
@@ -26,24 +26,11 @@ export default function ProfilePage() {
     let userInfos : Prestataire | Resident | null = useAppSelector((state) => state.auth.infos);
 
     const dispatch = useDispatch<AppDispatch>();
-
     const [loading, setLoading] = useState(false);
 
 
-    type BodyType = 
-    | { abonnementsQuartier: Quartier[]; abonnementsRue: string[] }
-    | { abonnementsQuartier: Quartier[]; abonnementsType: TypeTravaux[] };
-
-    const initial: BodyType =
-    userType === "resident"
-        ? { abonnementsQuartier: [], abonnementsRue: [] }
-        : { abonnementsQuartier: [], abonnementsType: [] };
-
-    const [body, setBody] = useState<BodyType>(initial);
-
-    const { send, result } = useManualRequest();
-
     const [open, setOpen] = useState<boolean>(false);
+    const { send, result } = useManualRequest();
 
     const [listQuartiers, setListQuartiers] = useState(userInfos ? userInfos.abonnementsQuartier : []);
     const [quartierValue, setQuartierValue] = useState("");
@@ -52,45 +39,56 @@ export default function ProfilePage() {
     const [listRues, setListRues] = useState((userInfos && "abonnementsRue" in userInfos) ? (userInfos as Resident).abonnementsRue : []);
     const [rueValue, setRueValue] = useState("");
 
-    useEffect(() => {
-        if(userType === "resident") {
-            setBody({
-                abonnementsQuartier: listQuartiers,
-                abonnementsRue: listRues
-            });
-        } else if(userType === "prestataire") {
-            setBody({
-                abonnementsQuartier: listQuartiers,
-                abonnementsType: listTypes
-            });
-        }
-    }, [listQuartiers, listRues, listTypes, userType]);
-
-    const [submitted, setSubmitted] = useState(false);
 
     const handleSubmit = async (event : FormEvent) => {
         event.preventDefault();
 
-        setSubmitted(true);
+        let body = {};
+
+        if(userType === "resident") {
+            body = {
+                abonnementsQuartier: listQuartiers,
+                abonnementsRue: listRues
+            };
+        } else if(userType === "prestataire") {
+            body = {
+                abonnementsQuartier: listQuartiers,
+                abonnementsType: listTypes
+            };
+        }
+
+        setLoading(true);
+
+        // Faire la requête pour update les préférences
+        await send("/" + userType + "/" + userInfos?.id, "PATCH", JSON.stringify(body));
 
     }
 
+    const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
+
     useEffect(() => {
-        if(submitted) {
-            setLoading(true);
-
-            // Faire la requête pour update les préférences
-            send("/" + userType + "/" + userInfos?.id, "PATCH", JSON.stringify(body));
-            
-            if(result && result.status === 200) {
+        if(result) {
+            if(result.status === 200) {
                 setLoading(false);
+                setSuccess(true);
                 dispatch(loginInfos(result.data));
-                setOpen(false);
-                window.location.reload();
+            } else {
+                setLoading(false);
+                setError(true);
+                console.log("An error occured", result.data)
             }
-        }
 
-    }, [body, dispatch, result, send, submitted, userInfos?.id, userType])
+            setOpen(false);
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+        }
+    }, [dispatch, result])
+
+
+
+
 
     function presentationRest() : ReactNode {
         if(!userInfos)
@@ -224,8 +222,7 @@ export default function ProfilePage() {
                         endAdornment={
                             <InputAdornment position="end" sx={{ p: 0, m: 0 }}>
                                 <div
-                                    className="p-1 bg-success d-flex ml-1 rounded-end-1 align-items-center justify-content-center pointer"
-                                    style={{ height: '56px', width: "56px", }}
+                                    className="p-1 bg-success d-flex ml-1 rounded-end-1 align-items-center justify-content-center pointer adornment"
                                     onClick={handleAddRue}
                                 >
                                     <img
@@ -282,6 +279,8 @@ export default function ProfilePage() {
                                 </div>
                                 <form className="d-flex flex-column justify-content-around">
                                     {loading && <Loader />}
+                                    {success && <Alert severity="success">Opération réalisée avec succès.</Alert>}
+                                    {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
                                     <FormControl>
                                         <div className="my-2 d-flex flex-column">
                                             <label className="fw-bold">Abonnements quartiers</label>

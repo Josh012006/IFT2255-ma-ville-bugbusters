@@ -32,7 +32,7 @@ export default function NotificationsPage() {
 
     useEffect(() => {
         if (response && response.status === 200) {
-            setNotifications(response.data);
+            setNotifications(response.data.reverse());
         }
         setLoading(false);
     }, [response]);
@@ -42,7 +42,8 @@ export default function NotificationsPage() {
             <h1 className="mt-5 mb-3 text-center">Vos notifications</h1>
             <p className="mb-4 text-center">Cliquez sur une notification pour la lire et voir les détails</p>
             {loading && <Loader />}
-            {!loading && <><List>
+            {!loading && notifications.length === 0 && <p className="mb-4 text-center fw-bold">Aucune notification.</p>}
+            {!loading && notifications.length !== 0 && <><List>
                 {paginatedNotifications.map((notif, index) => {
                     return <MyLink className="text-black" to={"/notification/" + notif.id} key={index}>
                         <Divider component="li" />
