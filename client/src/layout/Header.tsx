@@ -5,6 +5,7 @@ import MyLink from "../components/MyLink";
 import { useDispatch } from "react-redux";
 import { updateHas } from "../redux/features/authSlice";
 import { fetchHas } from "../utils/fetchHas";
+import { getRandomHexColor } from "../utils/randomColor";
 
 /**
  * Le header de l'application. Il définit la mise en page (layout) de l'application.
@@ -44,8 +45,9 @@ export default function Header({setter}: {setter: Dispatch<SetStateAction<boolea
                         <img src="/notif.png" alt="cloche de notifications" width="30" height="30" />
                         <span className={`rounded-circle bg-danger ${has? "d-block" : "d-none"} position-absolute bottom-0 cloche`}></span>
                     </MyLink>
-                    {(userType !== "stpm") && <MyLink className="m-1 m-lg-4 px-2 pointer" to="/profile">
-                        <Avatar src="/profile.png" />
+                    {(userType !== "stpm") && userInfos && <MyLink className="m-1 m-lg-4 px-2 pointer" to="/profile">
+                        {userInfos.nom && <Avatar sx={{backgroundColor: getRandomHexColor()}}>{userInfos.nom.split(" ")[0][0]}{userInfos.nom.split(" ")[1][0]}</Avatar>}
+                        {!userInfos.nom && <Avatar src="/profile.png" />}
                     </MyLink>}
                 </div>
             </div>
