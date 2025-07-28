@@ -8,6 +8,11 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.*;
 
+/**
+ * This class regroups function to help find if two texts are similar in the subject they
+ * are covering. It is useful to find out if a problem has already been created for a new report
+ * from a resident.
+ */
 public final class SimilarityUtil {
 
     /** Stop‑words spécifiques à ton domaine */

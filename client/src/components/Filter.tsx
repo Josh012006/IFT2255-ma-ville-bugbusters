@@ -13,19 +13,20 @@ import { TYPE_TRAVAUX } from "../types/TypesTravaux";
  * Cette composante permet d'implémenter un filtrage des problèmes (par quartier, par type de travail et par priorité) et un filtrage
  * des projets (par quartier et par type travail). Elle affiche donc des éléments select pour que l'utilisateur puisse 
  * choisir l'option qu'il veut.
- * @param list qui représente la liste de projets ou de problèmes initiale à filtrer. Doit être un state pour permettre la réactivité.
+ * @param tab qui représente la liste de projets ou de problèmes initiale à filtrer. Doit être un state pour permettre la réactivité.
  * @param setTab qui est le setter du state de la liste triée. Cela veux dire qu'on doit avoir un state séparé pour le tableau initial et celui filtré
  * @returns ReactNode
  */
-export default function Filter({list, setFilteredTab} : {list: Projet[] | Problem[], setFilteredTab: React.Dispatch<React.SetStateAction<Projet[] | Problem[]>>}) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function Filter({tab, setFilteredTab} : {tab: Projet[] | Problem[], setFilteredTab: React.Dispatch<React.SetStateAction<any[]>>}) {
 
     const [quartier, setQuartier] = useState("All");
     const [typeTravail, setTypeTravail] = useState("All");
     const [priorite, setPriorite] = useState("All");
 
-    const [filtered, setFiltered] = useState(list);
+    const [filtered, setFiltered] = useState(tab);
 
-    const isProblem = "priorite" in list[0];
+    const isProblem = "priorite" in tab[0];
 
 
     // Handlers
@@ -45,33 +46,28 @@ export default function Filter({list, setFilteredTab} : {list: Projet[] | Proble
 
     // Filtrage par quartier
     useEffect(() => {
-        let filteredTab: Projet[] | Problem[];
+        let filteredTab: Projet[] | Problem[] = [];
+        
         if(isProblem) {
-            filteredTab = (quartier === "All") ? filtered as Problem[] : (filtered as Problem[]).filter((elem) => elem.quartier === quartier);
+            filteredTab = (quartier === "All") ? tab as Problem[] : (tab as Problem[]).filter((elem) => elem.quartier === quartier);
         } else {
-            filteredTab = (quartier === "All") ? filtered as Projet[] : (filtered as Projet[]).filter((elem) => elem.quartier === quartier); 
+            filteredTab = (quartier === "All") ? tab as Projet[] : (tab as Projet[]).filter((elem) => elem.quartier === quartier); 
         }
-        setFiltered(filteredTab);
-    }, [isProblem, filtered, quartier, setFilteredTab]);
 
-    // Gestion du filtrage par types travaux
-    useEffect(() => {
-        let filteredTab: Projet[] | Problem[];
         if(isProblem) {
-            filteredTab = (typeTravail === "All") ? filtered as Problem[] : (filtered as Problem[]).filter((elem) => elem.typeTravaux === typeTravail);
+            filteredTab = (typeTravail === "All") ? filteredTab as Problem[] : (filteredTab as Problem[]).filter((elem) => elem.typeTravaux === typeTravail);
         } else {
-            filteredTab = (typeTravail === "All") ? filtered as Projet[] : (filtered as Projet[]).filter((elem) => elem.typeTravaux === typeTravail); 
+            filteredTab = (typeTravail === "All") ? filteredTab as Projet[] : (filteredTab as Projet[]).filter((elem) => elem.typeTravaux === typeTravail); 
         }
-        setFiltered(filteredTab);
-    }, [isProblem, filtered, setFilteredTab, typeTravail]);
 
-    // Gestion du filtrage par priorité seulement si ce sont des fiches problèmes
-    useEffect(() => {
         if(isProblem) {
-            const filteredTab = (priorite === "All") ? filtered as Problem[] : (filtered as Problem[]).filter((elem) => elem.priorite === priorite);
-            setFiltered(filteredTab)
+            filteredTab = (priorite === "All") ? filteredTab as Problem[] : (filteredTab as Problem[]).filter((elem) => elem.priorite === priorite);
+            
         }
-    }, [isProblem, filtered, priorite, setFilteredTab]);
+        
+        setFiltered(filteredTab);
+
+    }, [isProblem, filtered, priorite, setFilteredTab, quartier, tab, typeTravail]);
 
 
     // Update l'utilisateur
@@ -81,14 +77,15 @@ export default function Filter({list, setFilteredTab} : {list: Projet[] | Proble
 
 
     return (
-        <div className="d-flex flex-column flex-lg-row justify-content-around align-items-center">
-            <div>
+        <div className="d-flex flex-column flex-lg-row justify-content-around align-items-center my-3">
+            <div className="d-flex flex-column justify-content-center align-items-center">
                 <InputLabel>Quartier</InputLabel>
                 <Select
                     value={quartier}
                     onChange={handleChangeQuartier}
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
+                    sx={{minWidth: "300px", margin: "10px"}}
                     >
                     <MenuItem value="All">All</MenuItem>
                     {QUARTIERS.map((quartier, index) => {
@@ -96,13 +93,14 @@ export default function Filter({list, setFilteredTab} : {list: Projet[] | Proble
                     })}
                 </Select>
             </div>
-            <div>
+            <div className="d-flex flex-column justify-content-center align-items-center">
                 <InputLabel>Type de travail</InputLabel>
                 <Select
                     value={typeTravail}
                     onChange={handleChangeType}
                     displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
+                    sx={{minWidth: "300px", margin: "10px"}}
                     >
                     <MenuItem value="All">All</MenuItem>
                     {TYPE_TRAVAUX.map((type, index) => {
@@ -110,12 +108,13 @@ export default function Filter({list, setFilteredTab} : {list: Projet[] | Proble
                     })}
                 </Select>
             </div>
-            {isProblem && <div><InputLabel>Priorite</InputLabel>
+            {isProblem && <div className="d-flex flex-column justify-content-center align-items-center"><InputLabel>Priorité</InputLabel>
             <Select
                 value={priorite}
                 onChange={handleChangePriorite}
                 displayEmpty
                 inputProps={{ 'aria-label': 'Without label' }}
+                sx={{minWidth: "300px", margin: "10px"}}
                 >
                 <MenuItem value="All">All</MenuItem>
                 <MenuItem value="faible">Faible</MenuItem>

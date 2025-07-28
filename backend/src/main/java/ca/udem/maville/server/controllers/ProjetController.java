@@ -35,7 +35,8 @@ public class ProjetController {
     }
 
     /**
-     * Cette route permet de récupérer tous les travaux prévus.
+     * Cette route permet de récupérer tous les travaux prévus qui sont soit en cours ou à venir
+     * dans les trois prochains mois.
      * @param ctx qui représente le contexte de la requête.
      */
     public void getAll(Context ctx) {

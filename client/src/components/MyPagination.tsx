@@ -29,7 +29,7 @@ export default function MyPagination<T>({
   if (data.length <= itemsPerPage) return null; // Pas de pagination nécessaire
 
   return (
-    <div className="mt-4 mb-2 d-flex align-items-center justify-content-center">
+    <div className="m-4 d-flex align-items-center justify-content-center">
       <Pagination
         count={totalPages}
         page={page}

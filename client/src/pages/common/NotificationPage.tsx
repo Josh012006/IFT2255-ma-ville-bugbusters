@@ -50,19 +50,14 @@ export default function NotificationPage() {
 
     return (
         <div>
-            <div className="position-relative d-flex">
-                <MyLink to="/notification/list" className="rounded-4 text-white orange py-2 px-3 m-3 pointer"><img width="20" src="/arrow.png" alt="flèche de retour" /></MyLink>
-            </div>
-            <div>
-                <h1 className="mt-5 mb-3 text-center">Notification</h1>
-                {loading && <Loader />}
-                {!loading && notification && <div className="mt-5 d-flex flex-column align-items-center">
-                    <p className="text-center"><b>Date:</b> {(notification.createdAt) ? formatDate(notification.createdAt) : ""}</p>
-                    <h6 className="m-1 text-center">Message</h6>
-                    <p className="m-2 text-center"><b>Message</b> : {notification.message}</p>
-                    {notification.url && <MyLink to={notification.url} className="rounded-4 text-white orange p-3 m-5">En savoir plus</MyLink>}
-                </div>}
-            </div>
+            <h1 className="mt-5 mb-3 text-center">Notification</h1>
+            {loading && <Loader />}
+            {!loading && notification && <div className="mt-5 d-flex flex-column align-items-center">
+                <p className="text-center"><b>Date:</b> {(notification.createdAt) ? formatDate(notification.createdAt) : ""}</p>
+                <h6 className="m-1 text-center">Message</h6>
+                <p className="m-2 text-center"><b>Message</b> : {notification.message}</p>
+                {notification.url && <MyLink to={notification.url} className="rounded-4 text-white orange p-3 m-5">En savoir plus</MyLink>}
+            </div>}
         </div>
     );
 }
