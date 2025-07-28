@@ -11,6 +11,7 @@ import Loader from "../../components/Loader";
 import useManualRequest from "../../hooks/UseManualRequest";
 import { useDispatch } from "react-redux";
 import { loginInfos } from "../../redux/features/authSlice";
+import { boxStyle } from "../../types/boxStyle";
 
 
 /**
@@ -64,20 +65,6 @@ export default function ProfilePage() {
             });
         }
     }, [listQuartiers, listRues, listTypes, userType]);
-
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        minWidth: 500,
-        bgcolor: 'white',
-        boxShadow: 24,
-        borderRadius: "20px",
-        pt: 2,
-        px: 4,
-        pb: 3,
-    };
 
     const [submitted, setSubmitted] = useState(false);
 
@@ -289,7 +276,7 @@ export default function ProfilePage() {
                             open={open}
                             onClose={() => {setOpen(false)}}
                         >
-                            <Box sx={{ ...style, display: "flex", flexDirection: "column", justifyContent: "space-around", padding: "20px", width: 400 }}>
+                            <Box sx={{ ...boxStyle, display: "flex", flexDirection: "column", justifyContent: "space-around", padding: "20px", width: 400 }}>
                                 <div className="w-100 d-flex justify-content-end align-items-center pointer" onClick={() => {setOpen(false)}}>
                                     <img src="/close_icon.png" alt="close icon" width="20"/>
                                 </div>

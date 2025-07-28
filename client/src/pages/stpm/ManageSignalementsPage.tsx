@@ -44,7 +44,7 @@ export default function ManageSignalementsPage() {
                         <Divider component="li" />
                         <ListItem className="d-flex align-items-center hover-white">
                             <ListItemText
-                                primary={<p>Problème de type <b>{signal.typeProbleme}</b> dans le quartier <b>{signal.quartier}</b> - {(signal.createdAt) ? formatDate(signal.createdAt) : ""}</p>}
+                                primary={<p>Problème de type <b>{signal.typeProbleme}</b> dans le quartier <b>{signal.quartier}</b> - {(signal.updatedAt) ? formatDate(signal.updatedAt) : ""}</p>}
                                 secondary={<span className="ellipsis">{signal.description}</span>}
                             />
                         </ListItem>

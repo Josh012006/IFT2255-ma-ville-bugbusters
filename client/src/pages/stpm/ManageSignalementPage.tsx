@@ -3,8 +3,10 @@ import useRequest from "../../hooks/UseRequest";
 import { useEffect, useState } from "react";
 import type Signalement from "../../interfaces/Signalement";
 import Loader from "../../components/Loader";
-import Problem from "../../interfaces/Problem";
-import { isSimilar } from "../../utils/isSimilar";
+import type Problem from "../../interfaces/Problem";
+import { Alert, Box, Divider, List, ListItem, ListItemText, Modal } from "@mui/material";
+import { boxStyle } from "../../types/boxStyle";
+import { formatDate } from "../../utils/formatDate";
 
 
 /**
@@ -29,7 +31,7 @@ export default function ManageSignalementPage() {
     const [similarProblems, setSimilarProblems] = useState<Problem[]>([]);
 
     const response = useRequest("/signalement/" + signalementId, "GET");
-    const response1 = useRequest("/probleme/getSimilar?quartier=" + signalement?.quartier.replace(" ", "+") + "&type=" + signalement?.typeProbleme.replace(" ", "+"), "GET");
+    const response1 = useRequest("/probleme/getSimilar?quartier=" + signalement?.quartier.replace(" ", "+") + "&type=" + signalement?.typeProbleme.replace(" ", "+"), "POST", JSON.stringify({description : signalement?.description ?? ""}));
 
 
     useEffect(() => {
@@ -40,30 +42,106 @@ export default function ManageSignalementPage() {
     }, [response]);
 
     useEffect(() => {
-        if(response1 && response1.status === 200) {
-            if(signalement) {
-                const similar : Problem[] = [];
-                for(const problem of response1.data) {
-                    const myProblem = problem as Problem;
-                    if(isSimilar(signalement.description, myProblem.description)) {
-                        similar.push(myProblem);
-                    }
-                }
-
-                setSimilarProblems(similar);
-            }
+        if(response1 && response1.status === 200 && signalement) {
+            setSimilarProblems(response1.data);
         }
         setLoading1(false);
-    }, [response1, signalement])
+    }, [response1, signalement]);
+
+
+    const [show, setShow] = useState<"lier" | "priorite" | "">("");
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
+
+    // Gérer l'attribution de priorité
+    const [priorite, setPriorite] = useState<"faible" | "moyenne" | "élevée">("faible");
+    const [loading2, setLoading2] = useState(false);
+
+    const handlePriority = () => {
+        setLoading2(true);
+
+        setLoading2(false);
+        // Set le succès ou l'échec et rediriger ou reload
+    }
+
+
+    // Gérer le cas où il choisi de lier
+    const [chosenToLink, setChosenToLink] = useState<Problem | null>(null);
+    const [open, setOpen] = useState(false);
+    const [loading3, setLoading3] = useState(false);
+
+    const handleLink = () => {
+        setLoading3(true);
+
+        setLoading3(false);
+        // Set le succès ou l'échec et rediriger ou reload
+    }
 
 
 
     return(
         <div>
-            <h1 className="mt-5 mb-3 text-center">Nouveaux signalements</h1>
+            <h1 className="mt-5 mb-3 text-center">Signalement</h1>
             {(loading || loading1) && <Loader />}
             {!loading && !loading1 && signalement && <div>
-                
+                <div className="mt-5 mb-3 d-flex flex-column align-items-center">
+                    <p><b>Type de problème</b> : {signalement.typeProbleme}</p>
+                    <p><b>Quartier</b> : {signalement.quartier}</p>
+                    <p><b>Localisation précise</b> : {signalement.localisation}</p>
+                    <p><b>Date de signalement</b> : {signalement.updatedAt? formatDate(signalement.updatedAt): ""}</p>
+                    <p className="my-2"><b>Description</b> : {signalement.description}</p>
+                </div>
+                {signalement.statut && signalement.statut === "traité" && <p className="text-center">Signalement déjà traité</p>}
+                {signalement.statut && signalement.statut !== "traité" && <>
+                    <div className="d-flex flex-column flex-lg-row justify-content-around align-items-center">
+                        <button type="button" className="rounded-4 border-0 text-white orange p-3 my-2" onClick={() => {setShow("lier")}}>Lier à un problème déjà existant</button>
+                        <button type="button" className="rounded-4 border-0 text-white orange p-3 my-2" onClick={() => {setShow("priorite")}}>Affecter une priorité</button>
+                    </div>
+                    {show === "priorite" && <div className="d-flex flex-column align-items-center">
+                        <div className="d-flex justify-content-center align-items-center w-100">
+                            <span onClick={() => {setPriorite("faible")}} className={`${(priorite === "faible")? "bg-secondary text-white" : "bg-white text-black"} p-1 rounded-start-2`}>Faible</span>
+                            <span onClick={() => {setPriorite("moyenne")}} className={`${(priorite === "moyenne")? "bg-secondary text-white" : "bg-white text-black"} p-1`}>Moyenne</span>
+                            <span onClick={() => {setPriorite("élevée")}} className={`${(priorite === "élevée")? "bg-secondary text-white" : "bg-white text-black"} p-1 rounded-end-2`}>Élevée</span>
+                        </div>
+                        <button type="button" className="rounded-4 border-0 text-white orange p-3 my-4" onClick={handlePriority}>Confirmer</button>
+                        {loading2 && <Loader />}
+                        {success && <Alert severity="success">Opération réalisée avec succès.</Alert>}
+                        {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
+                    </div>}
+                    {show === "lier" && <div>
+                        <h5>Fiches problèmes existantes et similaires au signalement</h5>
+                        <p>Cliquez sur une d'entre elles pour confirmer lui lier le signalement</p>
+                        {similarProblems.length === 0 && <p>Aucune fiche problème existante traitant du sujet du signalement.</p>}
+                        {similarProblems.length !== 0 && <List>
+                            {similarProblems.map((problem, index) => {
+                                return <div key={index} onClick={() => {setChosenToLink(problem); setOpen(true);}}>
+                                    <Divider component="li" />
+                                    <ListItem className="d-flex align-items-center hover-white">
+                                        <ListItemText
+                                            primary={<p><b>{problem.typeTravaux}</b> dans le quartier <b>{problem.quartier}</b></p>}
+                                            secondary={<span>{problem.description}</span>}
+                                        />
+                                    </ListItem>
+                                </div>
+                            })}
+                        </List>}
+                        <Modal
+                            open={open}
+                            onClose={() => {setOpen(false)}}
+                        >
+                            <Box sx={{ ...boxStyle, display: "flex", flexDirection: "column", justifyContent: "space-around", padding: "20px", width: 400 }}>
+                                <div className="w-100 d-flex justify-content-end align-items-center pointer" onClick={() => {setOpen(false)}}>
+                                    <img src="/close_icon.png" alt="close icon" width="20"/>
+                                </div>
+                                <p>Confirmez-vous l'opération ?</p>
+                                <button type="button" className="rounded-4 border-0 text-white orange p-3 my-4" onClick={handleLink}>Confirmer</button>
+                                {loading3 && <Loader />}
+                                {success && <Alert severity="success">Opération réalisée avec succès.</Alert>}
+                                {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
+                            </Box>
+                        </Modal>
+                    </div>}
+                </>}
             </div>}
         </div>
     );

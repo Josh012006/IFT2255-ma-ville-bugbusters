@@ -3,6 +3,7 @@ package ca.udem.maville.server.controllers;
 import ca.udem.maville.hooks.UseRequest;
 import ca.udem.maville.server.dao.files.ProblemDAO;
 import ca.udem.maville.server.models.FicheProbleme;
+import ca.udem.maville.utils.ControllerHelper;
 import ca.udem.maville.utils.RequestType;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -159,6 +160,7 @@ public class ProblemController {
      * Elle nécessite deux query parameters :
      * - quartier : le quartier ciblé
      * - type : le type de travail nécessaire
+     * Le body de la requête doit contenir la description du signalement.
      * @param ctx qui représente le contexte de la requête
      */
     public void getSimilar(Context ctx) {
@@ -171,7 +173,20 @@ public class ProblemController {
                 return;
             }
 
-            List<FicheProbleme> similar = ProblemDAO.findSimilar(quartier, type);
+            List<FicheProbleme> found = ProblemDAO.findSimilar(quartier, type);
+
+            JsonNode json = JavalinJackson.defaultMapper().readTree(ctx.body());
+
+            String description = json.get("description").asText();
+
+            // Faire le filtrage de similarité directement ici
+            ArrayList<FicheProbleme> similar = new ArrayList<>();
+
+            for(FicheProbleme probleme : found) {
+                if(ControllerHelper.isSimilar(description, probleme.getDescription(), 0.6)) {
+                    similar.add(probleme);
+                }
+            }
 
             ctx.status(200).json(similar).contentType("application/json");
 

@@ -59,7 +59,7 @@ export default function NotificationPage() {
                 {!loading && notification && <div className="mt-5 d-flex flex-column align-items-center">
                     <p className="text-center"><b>Date:</b> {(notification.createdAt) ? formatDate(notification.createdAt) : ""}</p>
                     <h6 className="m-1 text-center">Message</h6>
-                    <p className="m-2 text-center">{notification.message}</p>
+                    <p className="m-2 text-center"><b>Message</b> : {notification.message}</p>
                     {notification.url && <MyLink to={notification.url} className="rounded-4 text-white orange p-3 m-5">En savoir plus</MyLink>}
                 </div>}
             </div>
