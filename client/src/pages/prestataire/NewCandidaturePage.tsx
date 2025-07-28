@@ -72,10 +72,10 @@ export default function NewCandidaturePage() {
         setDateFin('');
         setRuesAffectees('');
         setErreur('');
-        setMessage("Candidature envoyée avec succès !");
+        setMessage("Votre candidature a été envoyée avec succès !");
     })
     .catch(() => {
-      setErreur("Une erreur est survenue.");
+      setErreur("Une erreur est survenue lors de l'envoi de la candidature.");
     });
   };
 
@@ -111,7 +111,7 @@ export default function NewCandidaturePage() {
         <div>
             <label>Type de travaux :</label>
             <select value={typeTravaux} onChange={(e) => setTypeTravaux(e.target.value)}>
-                <option value="">-- Choisir un type --</option>
+                <option value="">Choisir un type de travaux</option>
                 <option value="Travaux routiers">Travaux routiers</option>
                 <option value="Travaux de gaz ou électricité">Travaux de gaz ou électricité</option>
                 <option value="Construction ou rénovation">Construction ou rénovation</option>
@@ -144,6 +144,11 @@ export default function NewCandidaturePage() {
             <label>Rues affectées :</label><input value={ruesAffectees} 
             onChange={(e) => setRuesAffectees(e.target.value)} />
         </div>
+
+
+        // Affiche de message d'erreur ou d'envoi de candidature
+        {erreur && <p>{erreur}</p>}
+        {message && <p>{message}</p>}
 
         <button type="submit">Soumettre</button>
 
