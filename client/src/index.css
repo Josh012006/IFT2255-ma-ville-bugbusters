@@ -162,6 +162,7 @@ button.disabled:disabled {
 
 
 
+
 @media (min-width: 992px) {
   .sticky-lg-none {
     position: static !important;

@@ -40,15 +40,15 @@ export default function ManageSignalementPage() {
     useEffect(() => {
         if(response && response.status === 200) {
             setSignalement(response.data);
+            setLoading(false);
         }
-        setLoading(false);
     }, [response]);
 
     useEffect(() => {
         if(response1 && response1.status === 200 && signalement) {
             setSimilarProblems(response1.data);
-        }
-        setLoading1(false);
+            setLoading1(false);
+        } 
     }, [response1, signalement]);
 
 
@@ -140,8 +140,8 @@ export default function ManageSignalementPage() {
                 {signalement.statut && signalement.statut === "traité" && <p className="text-center">Signalement déjà traité</p>}
                 {signalement.statut && signalement.statut !== "traité" && <>
                     <div className="d-flex flex-column flex-lg-row justify-content-around align-items-center">
-                        <button disabled={disabled2} type="button" className="rounded-4 border-0 text-white orange p-3 my-2 disabled" onClick={() => {setShow("lier")}}>Lier à un problème déjà existant</button>
-                        <button disabled={disabled1} type="button" className="rounded-4 border-0 text-white orange p-3 my-2 disabled" onClick={() => {setShow("priorite")}}>Affecter une priorité</button>
+                        <button disabled={disabled2} type="button" className="rounded-3 border-0 text-white orange p-2 my-2 disabled" onClick={() => {setShow("lier")}}>Lier à un problème déjà existant</button>
+                        <button disabled={disabled1} type="button" className="rounded-3 border-0 text-white orange p-2 my-2 disabled" onClick={() => {setShow("priorite")}}>Affecter une priorité</button>
                     </div>
                     {show !== "" && <Divider className="my-3" />}
                     {show === "priorite" && <div className="d-flex flex-column align-items-center">

@@ -27,8 +27,8 @@ export default function ChoicePage() {
     useEffect(() => {
         if (response && response.status === 200) {
             setUsers(response.data);
+            setLoading(false);
         }
-        setLoading(false);
     }, [response]);
 
 

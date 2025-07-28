@@ -28,8 +28,9 @@ export default function ManageSignalementsPage() {
     useEffect(() => {
         if (response && response.status === 200) {
             setSignalements(response.data.reverse());
+            setLoading(false);
         }
-        setLoading(false);
+        
     }, [response]);
 
 
@@ -38,21 +39,23 @@ export default function ManageSignalementsPage() {
             <h1 className="mt-5 mb-3 text-center">Signalements non traités</h1>
             <p className="mb-4 text-center">Cliquez sur un signalement pour en voir les détails. Vous pourrez ensuite, soit le lier à une fiche problème existante ou encore en créer une nouvelle en lui affecter une priorité</p>
             {loading && <Loader />}
-            {!loading && signalements.length === 0 && <p className="mb-4 text-center fw-bold">Aucun nouveau signalement.</p>}
-            {!loading && signalements.length !== 0 && <><List>
-                {paginatedSignalements.map((signal, index) => {
-                    return <MyLink className="text-black" to={"/stpm/signalement/" + signal.id} key={index}>
-                        <Divider component="li" />
-                        <ListItem className="d-flex align-items-center hover-white">
-                            <ListItemText
-                                primary={<p>Problème de type <b>{signal.typeProbleme}</b> dans le quartier <b>{signal.quartier}</b> - {(signal.createdAt) ? formatDate(signal.createdAt) : ""}</p>}
-                                secondary={<span className="ellipsis">{signal.description}</span>}
-                            />
-                        </ListItem>
-                    </MyLink>
-                })}
-            </List>
-            <MyPagination itemsPerPage={15} data={signalements} setPaginatedData={setPaginatedSignalements}  />
+            {!loading && <>
+                {signalements.length === 0 && <p className="mb-4 text-center fw-bold">Aucun nouveau signalement.</p>}
+                {signalements.length !== 0 && <><List>
+                    {paginatedSignalements.map((signal, index) => {
+                        return <MyLink className="text-black" to={"/stpm/signalement/" + signal.id} key={index}>
+                            <Divider component="li" />
+                            <ListItem className="d-flex align-items-center hover-white">
+                                <ListItemText
+                                    primary={<p>Problème de type <b>{signal.typeProbleme}</b> dans le quartier <b>{signal.quartier}</b> - {(signal.createdAt) ? formatDate(signal.createdAt) : ""}</p>}
+                                    secondary={<span className="ellipsis">{signal.description}</span>}
+                                />
+                            </ListItem>
+                        </MyLink>
+                    })}
+                </List>
+                <MyPagination itemsPerPage={15} data={signalements} setPaginatedData={setPaginatedSignalements}  />
+                </>}
             </>}
         </div>
     );
