@@ -261,7 +261,7 @@ export default function ProfilePage() {
     }
 
     if(!userType || userType === "stpm" || !userInfos) {
-        return <Navigate to="/dashboard" replace />
+        return <Navigate to="/" replace />
     } else {
         return(
             <div className="p-5">

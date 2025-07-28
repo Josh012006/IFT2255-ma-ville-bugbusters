@@ -46,7 +46,7 @@ function App() {
                 <Route path="profile" element={<ProfilePage />} />
                 
                 {/* Route pour le dashboard des utilisateurs */}
-                <Route path="dashboard" element={<DashboardPage />} />
+                <Route index element={<DashboardPage />} />
 
                 {/* Routes pour les notifications des utilisateurs */}
                 <Route path="notification">

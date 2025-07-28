@@ -8,6 +8,7 @@ import { Divider, List, ListItem, ListItemText } from "@mui/material";
 import type Notification from "../../interfaces/users/Notification";
 import { formatDate } from "../../utils/formatDate";
 import MyLink from "../../components/MyLink";
+import MyPagination from "../../components/MyPagination";
 
 
 /**
@@ -20,11 +21,12 @@ import MyLink from "../../components/MyLink";
  */
 export default function NotificationsPage() {
     const userInfos : Prestataire | Resident | null = useAppSelector((state) => state.auth.infos);
-
     const userId = (userInfos)? userInfos.id : "507f1f77bcf86cd799439011";
 
     // Requête au backend
     const [notifications, setNotifications] = useState<Notification[]>([]);
+    const [paginatedNotifications, setPaginatedNotifications] = useState<Notification[]>([]);
+
     const [loading, setLoading] = useState<boolean>(true);
     const response = useRequest("/notification/getAll/" + userId, "GET");
 
@@ -41,7 +43,7 @@ export default function NotificationsPage() {
             <p className="mb-4 text-center">Cliquez sur une notification pour la lire et voir les détails</p>
             {loading && <Loader />}
             {!loading && <List>
-                {notifications.map((notif, index) => {
+                {paginatedNotifications.map((notif, index) => {
                     return <MyLink className="text-black" to={"/notification/" + notif.id} key={index}>
                         <Divider component="li" />
                         <ListItem className="d-flex align-items-center hover-white">
@@ -54,6 +56,7 @@ export default function NotificationsPage() {
                     </MyLink>
                 })}
             </List>}
+            <MyPagination itemsPerPage={15} data={notifications} setPaginatedData={setPaginatedNotifications}  />
         </div>
     );
 }

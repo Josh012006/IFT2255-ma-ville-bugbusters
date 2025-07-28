@@ -46,7 +46,7 @@ function HomePage() {
                         <img width="50" src="/prestataire.png" alt="prestataire" />
                         <h3 className="fs-5 mx-2">Prestataire</h3>
                     </MyLink>
-                    <MyLink to="/dashboard" className="mycard orange text-white rounded-4 p-3 m-5 d-flex border align-items-center justify-content-center" onClick={() => {handleUserType("stpm")}}>
+                    <MyLink to="/" className="mycard orange text-white rounded-4 p-3 m-5 d-flex border align-items-center justify-content-center" onClick={() => {handleUserType("stpm")}}>
                         <img width="50" src="/stpm.png" alt="Stpm agent" />
                         <h3 className="fs-5 mx-2">STPM</h3>
                     </MyLink>
