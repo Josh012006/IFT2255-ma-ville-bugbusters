@@ -11,9 +11,22 @@ import { useParams } from "react-router-dom";
 export default function NewCandidaturePage() {
     const ficheProbleme = useParams().problemId;
 
+    const [prestataire, setPrestataire] = useState('');
+    const [nomPrestataire, setNomPrestataire] = useState('');
+    const [numeroEntreprise, setNumeroEntreprise] = useState('');
+    const [titreProjet, setTitreProjet] = useState('');
+    const [description, setDescription] = useState('');
+    const [typeTravaux, setTypeTravaux] = useState('');
+    const [coutEstime, setCoutEstime] = useState('');
+    const [dateDebut, setDateDebut] = useState('');
+    const [dateFin, setDateFin] = useState('');
+    const [ruesAffectees, setRuesAffectees] = useState('');
+    const [erreur, setErreur] = useState('');
+
     return (
         <div>
 
         </div>
     );
 }
+
