@@ -28,7 +28,7 @@ export default function SideBar({show, setShow} : {show: boolean, setShow: React
                     <img height="55" src="/udem.png" alt="le logo de l'udem" className="m-2" />
                     <img height="35" src="/tab2.png" alt="sidebar icon" className="m-2 pointer d-block d-lg-none" onClick={() => {setShow(false)}} />
                 </div>
-                <MyLink to="/dashboard" className="text-white border-top border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Dashboard</MyLink>
+                <MyLink to="/" className="text-white border-top border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Dashboard</MyLink>
                 {userType === "resident" && <>
                     <MyLink to="/resident/projet/list" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Projets de Travaux</MyLink>
                     <MyLink to="/resident/signalement" className="text-white border-bottom border-1 border-white w-100 d-block p-3 text-center orange-clair">Signalements</MyLink>

@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import useRequest from "../../hooks/UseRequest";
 
 
 /**
@@ -15,6 +16,8 @@ import { useParams } from "react-router-dom";
 export default function ManageSignalementPage() {
 
     const signalementId = useParams().id;
+
+    const response = useRequest("/signalement/" + signalementId, "GET")
 
     return(
         <div>

@@ -42,7 +42,7 @@ export default function NotificationsPage() {
             <h1 className="mt-5 mb-3 text-center">Vos notifications</h1>
             <p className="mb-4 text-center">Cliquez sur une notification pour la lire et voir les détails</p>
             {loading && <Loader />}
-            {!loading && <List>
+            {!loading && <><List>
                 {paginatedNotifications.map((notif, index) => {
                     return <MyLink className="text-black" to={"/notification/" + notif.id} key={index}>
                         <Divider component="li" />
@@ -55,8 +55,9 @@ export default function NotificationsPage() {
                         </ListItem>
                     </MyLink>
                 })}
-            </List>}
+            </List>
             <MyPagination itemsPerPage={15} data={notifications} setPaginatedData={setPaginatedNotifications}  />
+            </>}
         </div>
     );
 }
