@@ -94,11 +94,14 @@ public class SignalementController {
     /**
      * Cette route permet de récupérer un signalement en particulier à
      * partir de son id. Elle marque automatiquement le signalement comme vu.
+     * Elle nécessite un query parameter stpm qui est un booléen qui précise si c'est le STPM
+     * qui a vu le signalement.
      * @param ctx représente le contexte de la requête.
      */
     public void getById(Context ctx) {
         try {
             String id = ctx.pathParam("id");
+            boolean isStpm = Boolean.parseBoolean(ctx.queryParam("stpm"));
 
             Signalement signalement = SignalementDAO.findById(new ObjectId(id));
 
@@ -107,7 +110,7 @@ public class SignalementController {
                 return;
             }
 
-            if(signalement.getStatut().equals("en attente")) {
+            if(isStpm && signalement.getStatut().equals("en attente")) {
                 signalement.setStatut("vu");
                 SignalementDAO.save(signalement);
             }
@@ -141,7 +144,7 @@ public class SignalementController {
     /**
      * Cette route permet de modifier seulement partiellement les informations
      * d'un signalement, connaissant son id.
-     * Le body doit contenir les champs à modifier avec la nouvelle information.
+     * Le body doit contenir tout l'objet de signalement avec les champs à modifier.
      * Assurez vous que la nouvelle information a le bon type.
      * La modification n'est possible que si le signalement n'a pas encore été vu ou traité.
      * NB: Elle remplace complètement les champs tableaux de la base de données par ceux envoyés.

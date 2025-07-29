@@ -1,3 +1,115 @@
-2025-07-29 16:02:26 INFO  ca.udem.maville.server.Server - 
+2025-07-29 18:27:49 INFO  ca.udem.maville.server.Server - 
 ========== 🚀 Server started on port 7070 ==========
+
+2025-07-29 18:28:01 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/candidature/688946a26980b3b3c145f88c?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-29 18:28:01 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-29 18:28:03 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-29 18:28:03 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-29 18:28:03 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-29 18:28:03 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688946a26980b3b3c145f88c","statut":"en attente","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"687f50651444a9cff09df8e1","numeroEntreprise":"NEQ12345678","titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-07-22T04:48:38.620-04:00","dateFin":"2025-08-30T03:48:38.620-04:00","ruesAffectees":["rue Ontario","rue Beaubien"],"coutEstime":98000.0,"createdAt":"2025-08-22T05:09:57.771-04:00","updatedAt":"2025-07-29T18:27:33.919-04:00"}
+------------------------
+
+2025-07-29 18:28:03 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/candidature/688946a26980b3b3c145f88c?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-29 18:28:03 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688946a26980b3b3c145f88c","statut":"en attente","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"687f50651444a9cff09df8e1","numeroEntreprise":"NEQ12345678","titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-07-22T04:48:38.620-04:00","dateFin":"2025-08-30T03:48:38.620-04:00","ruesAffectees":["rue Ontario","rue Beaubien"],"coutEstime":98000.0,"createdAt":"2025-08-22T05:09:57.771-04:00","updatedAt":"2025-07-29T18:27:33.919-04:00"}
+------------------------
 

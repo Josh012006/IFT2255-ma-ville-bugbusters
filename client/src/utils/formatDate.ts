@@ -18,3 +18,12 @@ export function formatDate(date: Date, withHour=true) {
     const formatted = `${day}/${month}/${year}` + ((withHour)? `  ${hour}:${minute}` : "");
     return formatted;
 }
+
+
+export const dateToInputValue = (date: Date | string) => {
+  if(typeof date === "string") {
+    return date.split("T")[0];
+  } else {
+    return date.toISOString().split("T")[0];
+  }
+};

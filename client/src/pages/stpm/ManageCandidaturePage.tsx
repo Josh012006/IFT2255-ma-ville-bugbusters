@@ -26,7 +26,7 @@ export default function ManageCandidaturePage() {
 
     const candidatureId = useParams().id;
 
-    const response = useRequest("/candidature/" + candidatureId, "GET");
+    const response = useRequest("/candidature/" + candidatureId + "?stpm=true", "GET");
 
     useEffect(() => {
         if(response) {

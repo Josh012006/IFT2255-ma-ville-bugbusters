@@ -119,12 +119,15 @@ public class CandidatureController {
 
     /**
      * Cette route permet de récupérer une candidature en particulier à
-     * partir de son id. Elle marque automatiquement la candidature comme vue
+     * partir de son id. Elle marque automatiquement la candidature comme vue.
+     * Elle nécessite un query parameter stpm qui est un booléen qui précise si c'est le STPM
+     * qui a vu le signalement.
      * @param ctx représente le contexte de la requête.
      */
     public void getById(Context ctx) {
         try {
             String id = ctx.pathParam("id");
+            boolean isStpm = Boolean.parseBoolean(ctx.queryParam("stpm"));
 
             Candidature candidature = CandidatureDAO.findById(new ObjectId(id));
 
@@ -133,7 +136,7 @@ public class CandidatureController {
                 return;
             }
 
-            if(candidature.getStatut().equals("en attente")) {
+            if(isStpm && candidature.getStatut().equals("en attente")) {
                 candidature.setStatut("vue");
                 CandidatureDAO.save(candidature);
             }
@@ -149,7 +152,7 @@ public class CandidatureController {
 
     /**
      * Cette route permet de modifier les informations d'une candidature, connaissant son id.
-     * Le body doit contenir les champs à modifier avec la nouvelle information.
+     * Le body doit contenir tout l'objet de candidature avec les champ modifiés.
      * Assurez vous que la nouvelle information a le bon type.
      * La modification n'est possible que si la candidature n'a pas encore été vue ou traitée.
      * NB: Elle remplace complètement les champs tableaux de la base de données par ceux envoyés.

@@ -103,7 +103,9 @@ public class ResidentController {
     /**
      * Cette route permet de modifier les préférences de notifications (abonnements)
      * d'un résident, connaissant son id.
-     * Le body doit contenir les champs à modifier avec la nouvelle information.
+     * Le body doit contenir les champs à modifier :
+     * - abonnementsQuartier: les nouveaux abonnements aux quartiers
+     * - abonnementsRue: les nouvelles rues auxquelles il est abonné
      * Assurez vous que la nouvelle information a le bon type.
      * NB: Elle remplace complètement les champs tableaux de la base de données par ceux envoyés.
      * @param ctx qui représente le contexte de la requête.

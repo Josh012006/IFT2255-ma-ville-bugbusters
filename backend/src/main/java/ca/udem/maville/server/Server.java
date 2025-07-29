@@ -133,6 +133,9 @@ public class Server {
                     });
                     post(candidatureController::create);
                     path("/{id}", () -> {
+                        // la route get nécessite un query parameter stpm
+                        // qui est un booléen qui précise si c'est le STPM
+                        // qui a vu la candidature.
                         get(candidatureController::getById);
                         patch(candidatureController::patch);
                         delete(candidatureController::delete);
@@ -192,6 +195,9 @@ public class Server {
                         get(signalementController::getByResident);
                     });
                     path("/{id}", () -> {
+                        // la route get nécessite un query parameter stpm
+                        // qui est un booléen qui précise si c'est le STPM
+                        // qui a vu le signalement.
                         get(signalementController::getById);
                         patch(signalementController::patch);
                         delete(signalementController::delete);

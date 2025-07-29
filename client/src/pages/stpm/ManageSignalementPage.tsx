@@ -34,7 +34,7 @@ export default function ManageSignalementPage() {
 
     const [similarProblems, setSimilarProblems] = useState<Problem[]>([]);
 
-    const response = useRequest("/signalement/" + signalementId, "GET");
+    const response = useRequest("/signalement/" + signalementId + "?stpm=true", "GET");
     const response1 = useRequest("/probleme/getSimilar?quartier=" + signalement?.quartier.replace(" ", "+") + "&type=" + signalement?.typeProbleme.replace(" ", "+"), "POST", JSON.stringify({description : signalement?.description ?? ""}));
 
 
