@@ -37,6 +37,17 @@ export default function PrestataireCandidaturePage() {
     });
     const [selectedCandidatureId, setSelectedCandidatureId] = useState<string | null>(null);  
 
+    useEffect(() => {
+    async function fetchCandidatures() {
+        const res = await useRequest("/candidatures/prestataire", "GET");
+        if (res.status === 200) {
+            setCandidatures(res.data);
+        }
+    }
+
+    fetchCandidatures();
+  }, []);
+
     return (
         <div>
 
