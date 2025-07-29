@@ -5,6 +5,9 @@ import ca.udem.maville.server.models.Projet;
 import dev.morphia.query.filters.Filters;
 import org.bson.types.ObjectId;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,12 +32,25 @@ public class ProjetDAO {
     }
 
     /**
-     * Récupère tous les projets de travaux présents dans la base de données.
+     * Récupère tous les projets de travaux présents dans la base de données et dont
+     * la date de fin est plus récente qu'il y a 2 mois et la date de début est plus ancienne
+     * que dans 4 mois
      * @return la liste des projets trouvés.
      */
     public static List<Projet> findAll(){
+        LocalDate today = LocalDate.now();
+        // Borne inférieure : il y a 2 mois
+        Date dateMin = Date.from(today.minusMonths(2).atStartOfDay(ZoneId.systemDefault()).toInstant());
+        // Borne supérieure : dans 4 mois
+        Date dateMax = Date.from(today.plusMonths(4).atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+
         return MongoConfig.getDatastore()
                 .find(Projet.class)
+                .filter(
+                        Filters.gt("dateFin", dateMin),
+                        Filters.lt("dateDebut", dateMax)
+                )
                 .iterator()
                 .toList();
     }

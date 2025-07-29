@@ -4,6 +4,7 @@ import ca.udem.maville.hooks.UseRequest;
 import ca.udem.maville.server.dao.files.ProblemDAO;
 import ca.udem.maville.server.models.FicheProbleme;
 import ca.udem.maville.utils.RequestType;
+import ca.udem.maville.utils.SimilarityUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.http.Context;
@@ -107,7 +108,7 @@ public class ProblemController {
                 String body = "{" +
                         "\"message\": \"Une nouvelle fiche problème qui pourrait vous intéresser a été créée.\"," +
                         "\"user\": \"" + id + "\"," +
-                        "\"url\": \"/probleme/" + newProblem.getId() + "\"" + // Todo: Vérifier l'url une fois l'interface finie.
+                        "\"url\": \"/prestataire/probleme/" + newProblem.getId() + "\"" +
                         "}";
                 String response1 = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 
@@ -154,11 +155,54 @@ public class ProblemController {
     }
 
     /**
+     * Cette route permet de récupérer toutes les fiches problèmes qui sont dans un quartier
+     * particulier et ont un type particulier de problème qu'elles traitent.
+     * Elle nécessite deux query parameters :
+     * - quartier : le quartier ciblé
+     * - type : le type de travail nécessaire
+     * Le body de la requête doit contenir la description du signalement.
+     * @param ctx qui représente le contexte de la requête
+     */
+    public void getSimilar(Context ctx) {
+        try {
+            String quartier = ctx.queryParam("quartier");
+            String type = ctx.queryParam("type");
+
+            if(quartier == null || type == null || quartier.isEmpty() || type.isEmpty()) {
+                ctx.status(400).result("{\"message\": \"Les query parameters quartier et type sont requis.\"}").contentType("application/json");
+                return;
+            }
+
+            List<FicheProbleme> found = ProblemDAO.findSimilar(quartier, type);
+
+            JsonNode json = JavalinJackson.defaultMapper().readTree(ctx.body());
+
+            String description = json.get("description").asText();
+
+            // Faire le filtrage de similarité directement ici
+            ArrayList<FicheProbleme> similar = new ArrayList<>();
+
+            for(FicheProbleme probleme : found) {
+                if(SimilarityUtil.isSimilar(description, probleme.getDescription(), 0.2)) {
+                    similar.add(probleme);
+                }
+            }
+
+            ctx.status(200).json(similar).contentType("application/json");
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
+    /**
      * Cette méthode permet d'ajouter un résident à la liste des résidents du problème
      * et un signalement à la liste des signalement du problème.
      * Utile lorsqu'un problème à déjà été créé pour un signalement.
-     * Le body doit contenir le champ resident qui représente l'id du résident ayant fait le nouveau
-     * signalement et le champ signalement qui représente l'id de son signalement.
+     * Le body doit contenir les champs:
+     * - resident qui représente l'id du résident ayant fait le nouveau signalement
+     * - signalement qui représente l'id de son signalement.
      * Elle inclut de marquer le signalement comme traité, ce qui envoie une notification au résident.
      * @param ctx qui représente le contexte de la requête.
      */

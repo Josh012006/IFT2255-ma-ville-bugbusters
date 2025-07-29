@@ -48,5 +48,25 @@ public class ProblemDAO {
         MongoConfig.getDatastore().save(problem);
     }
 
+    /**
+     * Permet de récupérer toutes les fiches problèmes dans un quartier et traitant
+     * d'un type particulier.
+     * @param quartier le quartier concerné
+     * @param typeTravail le type de travail nécessaire
+     * @return les problèmes trouvés
+     */
+    public static List<FicheProbleme> findSimilar(String quartier, String typeTravail) {
+        return MongoConfig.getDatastore()
+                .find(FicheProbleme.class)
+                .filter(
+                        Filters.or(
+                                Filters.eq("quartier", quartier),
+                                Filters.eq("typeTravaux", typeTravail)
+                        )
+                )
+                .iterator()
+                .toList();
+    }
+
 
 }

@@ -1,1 +1,196 @@
+html, body {
+  font-size: 16px;
+  height: 100%;
+  margin: 0;
+}
 
+main {
+  background-color: #F4F4F4;
+  min-height: 600px;
+}
+
+header {
+  min-height: 80px;
+}
+
+header, footer {
+  background-color: #FFFFFF;
+}
+
+.hover-white:hover {
+  background-color: white;
+}
+
+.dancing-script {
+  font-family: "Dancing Script", cursive;
+}
+
+.fade-in-out {
+  animation: fadeInOut 8s cubic-bezier(0.25, 1, 0.75, 1) forwards;
+}
+
+@keyframes fadeInOut {
+  0%   { opacity: 0; }
+  50%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.intro {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)), url("/back1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+
+.orange {
+  background-color: #FF5659;
+}
+
+.orange-clair:hover {
+  background-color: #FF7A75;
+}
+
+
+.mycard {
+  cursor: pointer;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.mycard3 {
+  cursor: pointer;
+  min-width: 200px;
+  max-width: 400px;
+  min-height: 50px;
+}
+
+.mycard1 {
+  cursor: pointer;
+  width: 350px;
+}
+
+.mycard2 {
+  cursor: pointer;
+  min-width: 300px;
+  min-height: 100px;
+}
+
+.mb-90 {
+  margin-bottom: 90px;
+}
+
+.layout {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+
+
+
+header {
+  grid-area: header;
+}
+
+main {
+  grid-area: main;
+}
+
+footer {
+  grid-area: footer;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+
+.giant {
+  font-size: 72px;
+}
+
+.cloche {
+  padding: 0.35rem !important;
+  right: 5px;
+}
+
+.p-35\/100 {
+  padding: 0.35rem !important;
+}
+
+.myspan {
+  max-width: 300px;
+}
+
+.h-fix {
+  height: 100vh;
+}
+
+.ellipsis {
+  display: block;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 1; /* nombre de lignes à afficher */
+  -webkit-line-clamp: 1; /* encore requis pour Safari */
+  -webkit-box-orient: vertical;
+}
+
+.small-notice {
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.adornment {
+  height: 56px;
+  width: 56px;
+}
+
+.valid-green {
+  background-color: #09B285;
+}
+
+button.disabled:disabled {
+  background-color: #ff5659b2;
+}
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 992px) {
+  .sticky-lg-none {
+    position: static !important;
+  }
+
+  .position-lg-static {
+    position: static !important;
+  }
+
+  .z-lg-0 {
+    z-index: 0 !important;
+  }
+
+  .mainlayout {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 100%;
+    grid-template-columns: 20% 80%;
+  }
+
+  main {
+    min-height: auto;
+  }
+}

@@ -59,6 +59,13 @@ public class Server {
         app = Javalin.create(config -> {
             config.router.contextPath = "/api";
 
+            // Configurer le cors pour accepter les requêtes du client
+            config.bundledPlugins.enableCors(cors -> {
+                cors.addRule(it -> {
+                    it.allowHost("http://localhost:5173");
+                });
+            });
+
             // Configurer le mapper pour ne pas avoir de problème pour passer automatiquement
             // de ObjectId à String et vice-versa.
             config.jsonMapper(
@@ -76,6 +83,9 @@ public class Server {
                 path("/notification", () -> {
                     path("/getAll/{user}", () -> {
                         get(notificationController::getAll);
+                    });
+                    path("/hasNotifications/{user}", () -> {
+                        get(notificationController::hasNotifications);
                     });
                     path("/{id}", () -> {
                         get(notificationController::getById);
@@ -123,6 +133,9 @@ public class Server {
                     });
                     post(candidatureController::create);
                     path("/{id}", () -> {
+                        // la route get nécessite un query parameter stpm
+                        // qui est un booléen qui précise si c'est le STPM
+                        // qui a vu la candidature.
                         get(candidatureController::getById);
                         patch(candidatureController::patch);
                         delete(candidatureController::delete);
@@ -138,6 +151,11 @@ public class Server {
                 path("/probleme", () -> {
                     path("/getAll", () -> {
                         get(problemController::getAll);
+                    });
+                    // Le path getSimilar nécessite deux query parameters
+                    // quartier et type.
+                    path("/getSimilar", () -> {
+                        post(problemController::getSimilar);
                     });
                     post(problemController::create);
                     path("/{id}", () -> {
@@ -161,8 +179,6 @@ public class Server {
                     path("/getByPrestataire/{user}", () -> {
                         get(projetController::getByPrestataire);
                     });
-                    // Il nécessite un query parameter candidature
-                    // qui représente l'id de la candidature qui a conduit au projet.
                     post(projetController::create);
                     path("/{id}", () -> {
                         get(projetController::getById);
@@ -179,6 +195,9 @@ public class Server {
                         get(signalementController::getByResident);
                     });
                     path("/{id}", () -> {
+                        // la route get nécessite un query parameter stpm
+                        // qui est un booléen qui précise si c'est le STPM
+                        // qui a vu le signalement.
                         get(signalementController::getById);
                         patch(signalementController::patch);
                         delete(signalementController::delete);
@@ -193,10 +212,18 @@ public class Server {
             });
         }).start(this.port);
 
+        app.options("/*", ctx -> {
+            ctx.status(204);
+        });
+
         logger.info("\n========== 🚀 Server started on port {} ==========\n", this.port);
 
         // La logique de formattage des logs du servers.
         app.before(ctx -> {
+            ctx.header("Access-Control-Allow-Origin", "http://localhost:5173");
+            ctx.header("Access-Control-Allow-Methods", "GET,POST,PATCH,PUT,DELETE,OPTIONS");
+            ctx.header("Access-Control-Allow-Headers", "Content-Type");
+
             Logger logger = LoggerFactory.getLogger("HTTP");
 
             StringBuilder sb = new StringBuilder();

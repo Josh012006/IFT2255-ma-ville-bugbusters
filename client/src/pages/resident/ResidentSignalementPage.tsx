@@ -9,6 +9,8 @@ import { useParams } from "react-router-dom";
  * @returns ReactNode
  */
 export default function ResidentSignalementPage() {
+
+    // Ne pas oublier  + "?stpm=false"
     const signalementId = useParams().id;
 
     return (

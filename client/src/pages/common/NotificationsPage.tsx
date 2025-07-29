@@ -1,6 +1,14 @@
+import { useState, useEffect } from "react";
+import useRequest from "../../hooks/UseRequest";
 import type { Prestataire } from "../../interfaces/users/Prestataire";
 import type Resident from "../../interfaces/users/Resident";
 import { useAppSelector } from "../../redux/store";
+import Loader from "../../components/Loader";
+import { Alert, Divider, List, ListItem, ListItemText } from "@mui/material";
+import type Notification from "../../interfaces/users/Notification";
+import { formatDate } from "../../utils/formatDate";
+import MyLink from "../../components/MyLink";
+import MyPagination from "../../components/MyPagination";
 
 
 /**
@@ -13,12 +21,54 @@ import { useAppSelector } from "../../redux/store";
  */
 export default function NotificationsPage() {
     const userInfos : Prestataire | Resident | null = useAppSelector((state) => state.auth.infos);
-
     const userId = (userInfos)? userInfos.id : "507f1f77bcf86cd799439011";
+
+    // Requête au backend
+    const [notifications, setNotifications] = useState<Notification[]>([]);
+    const [paginatedNotifications, setPaginatedNotifications] = useState<Notification[]>([]);
+
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState(false);
+    const response = useRequest("/notification/getAll/" + userId, "GET");
+
+    useEffect(() => {
+        if (response) {
+            if(response.status === 200) {
+                setNotifications(response.data.reverse());
+                setLoading(false);
+            } else {
+                console.log(response.data);
+                setLoading(false);
+                setError(true);
+            }
+        }
+    }, [response]);
 
     return(
         <div>
-
+            <h1 className="mt-5 mb-3 text-center">Vos notifications</h1>
+            <p className="mb-4 text-center">Cliquez sur une notification pour la lire et voir les détails</p>
+            {loading && <Loader />}
+            {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
+            {!loading && <>
+                {notifications.length === 0 && <p className="mb-4 text-center fw-bold">Aucune notification.</p>}
+                {notifications.length !== 0 && <><List>
+                    {paginatedNotifications.map((notif, index) => {
+                        return <MyLink className="text-black" to={"/notification/" + notif.id} key={index}>
+                            <Divider component="li" />
+                            <ListItem className="d-flex align-items-center hover-white">
+                                <ListItemText
+                                    primary={(notif.createdAt) ? formatDate(notif.createdAt) : ""}
+                                    secondary={<span className="ellipsis">{notif.message}</span>}
+                                />
+                                {notif.statut === "non lue" && <span className="rounded-circle bg-primary mx-3 p-1"></span>}
+                            </ListItem>
+                        </MyLink>
+                    })}
+                </List>
+                <MyPagination itemsPerPage={15} data={notifications} setPaginatedData={setPaginatedNotifications}  />
+                </>}
+            </>}
         </div>
     );
 }

@@ -29,6 +29,21 @@ public class NotificationDAO {
                 .toList();
     }
 
+    /**
+     * Cette fonction permet de vérifier si un utilisateur a au moins une notification non lue.
+     * @param userId qui représente l'id de l'utilisateur
+     * @return un booléen qui dit s'il a au moins une notification.
+     */
+    public static boolean hasNotifications(ObjectId userId) {
+        return MongoConfig.getDatastore().find(Notification.class)
+                .filter(Filters.and(
+                    Filters.eq("user", userId),
+                    Filters.eq("statut", "non lue")
+                ))
+                .iterator()
+                .hasNext();
+    }
+
 
     /**
      * Sauvegarde ou met à jour une notification.

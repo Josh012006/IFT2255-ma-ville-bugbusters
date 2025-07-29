@@ -23,7 +23,10 @@ public class CandidatureDAO {
     public static List<Candidature> findAll(){
         return MongoConfig.getDatastore()
                 .find(Candidature.class)
-                .filter(Filters.eq("statut","en attente"))
+                .filter(Filters.or(
+                    Filters.eq("statut","en attente"),
+                    Filters.eq("statut","vue")
+                ))
                 .iterator()
                 .toList();
     }

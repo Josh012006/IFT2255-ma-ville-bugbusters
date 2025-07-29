@@ -5,8 +5,10 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.Random;
 
+
+
 /**
- * Une fontion utilitaire qui regroupe de sfonctions qui sont utilisées dans les controllers.
+ * Une fontion utilitaire qui regroupe des fonctions qui sont utilisées dans les controllers.
  */
 public final class ControllerHelper {
 

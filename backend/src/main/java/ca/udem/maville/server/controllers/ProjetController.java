@@ -35,7 +35,8 @@ public class ProjetController {
     }
 
     /**
-     * Cette route permet de récupérer tous les travaux prévus.
+     * Cette route permet de récupérer tous les travaux prévus qui sont soit en cours ou à venir
+     * dans les trois prochains mois.
      * @param ctx qui représente le contexte de la requête.
      */
     public void getAll(Context ctx) {
@@ -181,7 +182,7 @@ public class ProjetController {
     /**
      * Cette route permet de modifier seulement partiellement les informations
      * d'un projet, connaissant son id.
-     * Le body doit contenir les champs à modifier avec la nouvelle information.
+     * Le body doit contenir tout l'objet de projet avec les champs à modifier.
      * Assurez vous que la nouvelle information a le bon type.
      * NB: Elle remplace complètement les champs tableaux de la base de données par ceux envoyés.
      * @param ctx qui représente le contexte de la requête.
@@ -251,7 +252,7 @@ public class ProjetController {
             String body = "{" +
                     "\"message\": \"" + message + "\"," +
                     "\"user\": \"" + userId + "\"," +
-                    "\"url\": \"/projet/" + projet.getId() + "\"" + // Todo: Vérifier l'url une fois l'interface finie.
+                    "\"url\": \"/resident/projet/" + projet.getId() + "\"" +
                     "}";
             String response2 = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 

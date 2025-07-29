@@ -11,12 +11,10 @@ import { useAppSelector } from "../../redux/store";
 export default function RequireAuth({role} : {role: string}) {
     const userType : string | null = useAppSelector((state) => state.auth.userType);
 
-    // if(userType === role) {
-    //     return <Outlet />
-    // } else {
-    //     return <Navigate to="/auth" replace />
-    // }
-
-    return <Outlet />
+    if(userType === role) {
+        return <Outlet />
+    } else {
+        return <Navigate to="/auth" replace />
+    }
 
 }
