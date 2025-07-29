@@ -48,6 +48,11 @@ export default function PrestataireCandidaturePage() {
     fetchCandidatures();
   }, []);
 
+    //Ouvrir ou refermer une card
+    const handleExpand = (id: string) => {
+        setExpandedId(expandedId === id ? null : id);
+    }; 
+
     return (
         <div>
 
