@@ -55,17 +55,49 @@ export default function PrestataireCandidaturePage() {
         setExpandedId(expandedId === id ? null : id);
     }; 
 
-    // Ouvrir la modale de modification et préremplir les champs
+        // Ouvrir la modale de modification et préremplir les champs
     const handleOpenModal = (cand: Candidature) => {
-    setSelectedCandidatureId(cand.id!);
-    setFormData({
-      titreProjet: cand.titreProjet,
-      description: cand.description,
-      dateDebut: cand.dateDebut?.substring(0, 10) || "",
-      dateFin: cand.dateFin?.substring(0, 10) || "",
-    });
-    setShowModal(true);
-  };
+        setSelectedCandidatureId(cand.id!);
+        setFormData({
+        titreProjet: cand.titreProjet,
+        description: cand.description,
+        dateDebut: cand.dateDebut?.substring(0, 10) || "",
+        dateFin: cand.dateFin?.substring(0, 10) || "",
+        });
+        setShowModal(true);
+    };
+
+    // Modification des champs de la modale
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    // Modification d'une candidature
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const res = await useRequest(`/candidature/${selectedCandidatureId}`, "PUT", formData);
+        if (res.status === 200) {
+        setCandidatures((prev) =>
+            prev.map((cand) =>
+            cand.id === selectedCandidatureId
+                ? { ...cand, ...formData }
+                : cand
+            )
+        );
+        setShowModal(false);
+        }
+    };
+
+    // Suppression d'une candidature
+    const handleDelete = async (id: string) => {
+        const confirm = window.confirm("Supprimer cette candidature ?");
+        if (confirm) {
+        const res = await useRequest(`/candidature/${id}`, "DELETE");
+        if (res.status === 200) {
+            setCandidatures((prev) => prev.filter((c) => c.id !== id));
+        }
+        }
+    };
 
     return (
         <div>
