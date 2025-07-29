@@ -13,6 +13,7 @@ import type { Candidature } from "../types/Candidature";
  * @returns ReactNode
  */ 
 
+
 const modalStyle = {
     position: "absolute" as const,
     top: "50%",
@@ -37,6 +38,7 @@ export default function PrestataireCandidaturePage() {
     });
     const [selectedCandidatureId, setSelectedCandidatureId] = useState<string | null>(null);  
 
+    // Recuperation des candidatures
     useEffect(() => {
     async function fetchCandidatures() {
         const res = await useRequest("/candidatures/prestataire", "GET");
@@ -48,10 +50,22 @@ export default function PrestataireCandidaturePage() {
     fetchCandidatures();
   }, []);
 
-    //Ouvrir ou refermer une card
+    // Ouvrir ou refermer une card
     const handleExpand = (id: string) => {
         setExpandedId(expandedId === id ? null : id);
     }; 
+
+    // Ouvrir la modale de modification et préremplir les champs
+    const handleOpenModal = (cand: Candidature) => {
+    setSelectedCandidatureId(cand.id!);
+    setFormData({
+      titreProjet: cand.titreProjet,
+      description: cand.description,
+      dateDebut: cand.dateDebut?.substring(0, 10) || "",
+      dateFin: cand.dateFin?.substring(0, 10) || "",
+    });
+    setShowModal(true);
+  };
 
     return (
         <div>
