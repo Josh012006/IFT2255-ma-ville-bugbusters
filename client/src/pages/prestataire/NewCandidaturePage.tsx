@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, type FormEvent } from "react";
-import { Box, Button, MenuItem, TextField, Alert, Stack, Chip, InputAdornment } from "@mui/material";
+import { Box, MenuItem, TextField, Alert, Stack, Chip, InputAdornment } from "@mui/material";
 import { TYPE_TRAVAUX } from "../../types/TypesTravaux";
 import Loader from "../../components/Loader";
 import { useAppSelector } from "../../redux/store";
@@ -225,7 +225,7 @@ export default function NewCandidaturePage() {
                             })}
                         </div>
 
-                        <Button className="rounded-4 border-0 text-white p-3 my-4" type="submit" variant="contained" sx={{ bgcolor: "#FF5659"}}>Soumettre</Button>
+                        <button className="rounded-4 border-0 text-white p-3 my-4 orange" type="submit">Soumettre</button>
                     </Stack>
                 </form>
             </Box>

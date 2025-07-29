@@ -79,7 +79,6 @@ export default function ProfilePage() {
                 console.log("An error occured", result.data)
             }
 
-            setOpen(false);
             setTimeout(() => {
                 window.location.reload();
             }, 1500);
@@ -278,9 +277,6 @@ export default function ProfilePage() {
                                     <img src="/close_icon.png" alt="close icon" width="20"/>
                                 </div>
                                 <form className="d-flex flex-column justify-content-around">
-                                    {loading && <Loader />}
-                                    {success && <Alert severity="success">Opération réalisée avec succès.</Alert>}
-                                    {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
                                     <FormControl>
                                         <div className="my-2 d-flex flex-column">
                                             <label className="fw-bold">Abonnements quartiers</label>
@@ -309,6 +305,11 @@ export default function ProfilePage() {
                                         </div>
                                     </FormControl>
                                     <button type="submit" className="rounded-4 border-0 text-white orange p-3 my-4" onClick={handleSubmit}>Soumettre</button>
+                                    <div className="my-1">
+                                        {loading && <Loader />}
+                                        {success && <Alert severity="success">Opération réalisée avec succès.</Alert>}
+                                        {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
+                                    </div>
                                 </form>
                             </Box>
                         </Modal>
