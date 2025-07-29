@@ -26,6 +26,16 @@ const modalStyle = {
 
 export default function PrestataireCandidaturePage() {
     const candidatureId = useParams().id;
+    const [candidatures, setCandidatures] = useState<Candidature[]>([]);
+    const [expandedId, setExpandedId] = useState<string | null>(null);
+    const [showModal, setShowModal] = useState(false);
+    const [formData, setFormData] = useState({
+        titreProjet: "",
+        description: "",
+        dateDebut: "",
+        dateFin: "",
+    });
+    const [selectedCandidatureId, setSelectedCandidatureId] = useState<string | null>(null);  
 
     return (
         <div>
