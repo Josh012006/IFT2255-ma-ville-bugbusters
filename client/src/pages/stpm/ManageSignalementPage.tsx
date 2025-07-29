@@ -29,6 +29,7 @@ export default function ManageSignalementPage() {
 
     const [signalement, setSignalement] = useState<Signalement | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const [error1, setError1] = useState(false);
     const [loading1, setLoading1] = useState<boolean>(true);
 
     const [similarProblems, setSimilarProblems] = useState<Problem[]>([]);
@@ -38,18 +39,30 @@ export default function ManageSignalementPage() {
 
 
     useEffect(() => {
-        if(response && response.status === 200) {
-            setSignalement(response.data);
-            setLoading(false);
+        if(response) {
+            if(response.status === 200) {
+                setSignalement(response.data);
+                setLoading(false);
+            } else {
+                console.log(response.data);
+                setLoading(false);
+                setError1(true);
+            }
         }
     }, [response]);
 
     useEffect(() => {
-        if(response1 && response1.status === 200 && signalement) {
-            setSimilarProblems(response1.data);
-            setLoading1(false);
-        } 
-    }, [response1, signalement]);
+        if(response && response1) {
+            if(response1.status === 200 && signalement) {
+                setSimilarProblems(response1.data);
+                setLoading1(false);
+            } else {
+                console.log(response1.data);
+                setLoading1(false);
+                setError1(true);
+            }
+        }
+    }, [response, response1, signalement]);
 
 
 
@@ -129,6 +142,7 @@ export default function ManageSignalementPage() {
         <div>
             <h1 className="mt-5 mb-3 text-center">Signalement</h1>
             {(loading || loading1) && <Loader />}
+            {error1 && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
             {!loading && !loading1 && signalement && <div>
                 <div className="mt-5 mb-3 d-flex flex-column align-items-center">
                     <p><b>Type de problème</b> : {signalement.typeProbleme}</p>

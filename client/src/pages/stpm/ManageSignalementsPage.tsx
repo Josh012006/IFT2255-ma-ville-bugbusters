@@ -3,7 +3,7 @@ import type Signalement from "../../interfaces/Signalement";
 import useRequest from "../../hooks/UseRequest";
 import Loader from "../../components/Loader";
 import MyPagination from "../../components/MyPagination";
-import { Divider, List, ListItem, ListItemText } from "@mui/material";
+import { Alert, Divider, List, ListItem, ListItemText } from "@mui/material";
 import MyLink from "../../components/MyLink";
 import { formatDate } from "../../utils/formatDate";
 
@@ -23,12 +23,19 @@ export default function ManageSignalementsPage() {
     // Requête au backend
 
     const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState(false);
     const response = useRequest("/signalement/getAll/", "GET");
 
     useEffect(() => {
-        if (response && response.status === 200) {
-            setSignalements(response.data.reverse());
-            setLoading(false);
+        if(response) {
+            if (response.status === 200) {
+                setSignalements(response.data.reverse());
+                setLoading(false);
+            } else {
+                console.log(response.data);
+                setLoading(false);
+                setError(true);
+            }
         }
         
     }, [response]);
@@ -39,6 +46,7 @@ export default function ManageSignalementsPage() {
             <h1 className="mt-5 mb-3 text-center">Signalements non traités</h1>
             <p className="mb-4 text-center">Cliquez sur un signalement pour en voir les détails. Vous pourrez ensuite, soit le lier à une fiche problème existante ou encore en créer une nouvelle en lui affecter une priorité</p>
             {loading && <Loader />}
+            {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
             {!loading && <>
                 {signalements.length === 0 && <p className="mb-4 text-center fw-bold">Aucun nouveau signalement.</p>}
                 {signalements.length !== 0 && <><List>

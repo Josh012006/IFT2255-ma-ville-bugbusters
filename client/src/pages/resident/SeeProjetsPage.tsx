@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type Projet from "../../interfaces/Projet";
 import useRequest from "../../hooks/UseRequest";
 import Loader from "../../components/Loader";
-import { Divider, List, ListItem, ListItemText } from "@mui/material";
+import { Alert, Divider, List, ListItem, ListItemText } from "@mui/material";
 import MyLink from "../../components/MyLink";
 import MyPagination from "../../components/MyPagination";
 import { formatDate } from "../../utils/formatDate";
@@ -28,14 +28,21 @@ export default function SeeProjetsPage() {
 
     
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     const response = useRequest("/projet/getAll/", "GET");
 
     useEffect(() => {
-        if (response && response.status === 200) {
-            setFetchedProjets(response.data.reverse());
-            setLoading(false);
-        }  
+        if(response) {
+            if (response.status === 200) {
+                setFetchedProjets(response.data.reverse());
+                setLoading(false);
+            } else {
+                console.log(response.data);
+                setLoading(false);
+                setError(true);
+            }
+        }
     }, [response]);
 
     useEffect(() => {
@@ -73,6 +80,7 @@ export default function SeeProjetsPage() {
             <h1 className="mt-5 mb-3 text-center">{(toShow === "coming"? "Projets à venir" : "Projets en cours")}</h1>
             <p className="mb-4 text-center">Cliquez sur un projet pour en voir les rues affectées, la priorité et autres détails.</p>
             {loading && <Loader />}
+            {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
             {!loading && <>
                 {projets.length === 0 && <p className="mb-4 text-center fw-bold">Aucun projet {(toShow === "coming")? "à venir" : "en cours"}.</p>}
                 {projets.length !== 0 && <>

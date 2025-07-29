@@ -58,6 +58,13 @@ header, footer {
   max-width: 400px;
 }
 
+.mycard3 {
+  cursor: pointer;
+  min-width: 200px;
+  max-width: 400px;
+  min-height: 50px;
+}
+
 .mycard1 {
   cursor: pointer;
   width: 350px;
@@ -69,8 +76,8 @@ header, footer {
   min-height: 100px;
 }
 
-.mb-150 {
-  margin-bottom: 150px;
+.mb-90 {
+  margin-bottom: 90px;
 }
 
 .layout {

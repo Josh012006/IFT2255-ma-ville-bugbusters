@@ -4,7 +4,7 @@ import type { Prestataire } from "../../interfaces/users/Prestataire";
 import type Resident from "../../interfaces/users/Resident";
 import { useAppSelector } from "../../redux/store";
 import Loader from "../../components/Loader";
-import { Divider, List, ListItem, ListItemText } from "@mui/material";
+import { Alert, Divider, List, ListItem, ListItemText } from "@mui/material";
 import type Notification from "../../interfaces/users/Notification";
 import { formatDate } from "../../utils/formatDate";
 import MyLink from "../../components/MyLink";
@@ -28,12 +28,19 @@ export default function NotificationsPage() {
     const [paginatedNotifications, setPaginatedNotifications] = useState<Notification[]>([]);
 
     const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState(false);
     const response = useRequest("/notification/getAll/" + userId, "GET");
 
     useEffect(() => {
-        if (response && response.status === 200) {
-            setNotifications(response.data.reverse());
-            setLoading(false);
+        if (response) {
+            if(response.status === 200) {
+                setNotifications(response.data.reverse());
+                setLoading(false);
+            } else {
+                console.log(response.data);
+                setLoading(false);
+                setError(true);
+            }
         }
     }, [response]);
 
@@ -42,6 +49,7 @@ export default function NotificationsPage() {
             <h1 className="mt-5 mb-3 text-center">Vos notifications</h1>
             <p className="mb-4 text-center">Cliquez sur une notification pour la lire et voir les détails</p>
             {loading && <Loader />}
+            {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
             {!loading && <>
                 {notifications.length === 0 && <p className="mb-4 text-center fw-bold">Aucune notification.</p>}
                 {notifications.length !== 0 && <><List>

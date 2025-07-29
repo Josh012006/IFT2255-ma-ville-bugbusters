@@ -8,6 +8,7 @@ import MyLink from "../../components/MyLink";
 import { useDispatch } from "react-redux";
 import { loginInfos } from "../../redux/features/authSlice";
 import Loader from "../../components/Loader";
+import { Alert } from "@mui/material";
 
 /**
  * La page de choix du profil. Elle est réservée uniquement aux prestataires ou aux résidents.
@@ -22,12 +23,19 @@ export default function ChoicePage() {
     // Requête au backend
     const [users, setUsers] = useState<Prestataire[] | Resident[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState(false);
     const response = useRequest("/" + userType + "/getAll", "GET");
 
     useEffect(() => {
-        if (response && response.status === 200) {
-            setUsers(response.data);
-            setLoading(false);
+        if (response ) {
+            if(response.status === 200) {
+                setUsers(response.data);
+                setLoading(false);
+            } else {
+                console.log(response.data);
+                setLoading(false);
+                setError(true);
+            }
         }
     }, [response]);
 
@@ -45,6 +53,7 @@ export default function ChoicePage() {
             <div className="d-flex flex-column justify-content-around align-items-center">
                 <h1 className="m-5">Choix du profil</h1>
                 {loading && <Loader />}
+                {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
                 {!loading &&<div className="p-3 min-vh-100 grid row">
                     {users.map((user, index) => {
                         if("abonnementsRue" in user) {

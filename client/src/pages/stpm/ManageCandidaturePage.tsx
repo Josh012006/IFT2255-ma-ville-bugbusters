@@ -22,15 +22,22 @@ export default function ManageCandidaturePage() {
 
     const [candidature, setCandidature] = useState<Candidature | null>(null);
     const [loading, setLoading] = useState(true);
+    const [error1, setError1] = useState(false);
 
     const candidatureId = useParams().id;
 
     const response = useRequest("/candidature/" + candidatureId, "GET");
 
     useEffect(() => {
-        if(response && response.status === 200) {
-            setCandidature(response.data);
-            setLoading(false);
+        if(response) {
+            if(response.status === 200) {
+                setCandidature(response.data);
+                setLoading(false);
+            } else {
+                console.log(response.data);
+                setLoading(false);
+                setError1(true);
+            }
         }
     }, [response]);
 
@@ -105,6 +112,7 @@ export default function ManageCandidaturePage() {
         <div>
             <h1 className="mt-5 mb-3 text-center">Candidature</h1>
             {loading && <Loader />}
+            {error1 && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
             {!loading && candidature && <div>
                 <div className="mt-5 mb-3 d-flex flex-column align-items-center">
                     <h5 className="fw-bold my-3">Projet proposé par {candidature.nomPrestataire} - {candidature.numeroEntreprise}</h5>

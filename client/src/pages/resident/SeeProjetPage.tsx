@@ -4,6 +4,7 @@ import type Projet from "../../interfaces/Projet";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader";
 import { formatDate } from "../../utils/formatDate";
+import { Alert } from "@mui/material";
 
 
 /**
@@ -16,13 +17,20 @@ export default function SeeProjetPage() {
 
     const [projet, setProjet] = useState<Projet | null>(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     const response = useRequest("/projet/" + projetId, "GET");
 
     useEffect(() => {
-        if(response && response.status === 200) {
-            setProjet(response.data);
-            setLoading(false);
+        if(response) {
+            if(response.status === 200) {
+                setProjet(response.data);
+                setLoading(false);
+            } else {
+                console.log(response.data);
+                setLoading(false);
+                setError(true);
+            }
         }
     }, [response]);
 
@@ -32,6 +40,7 @@ export default function SeeProjetPage() {
         <div>
             <h1 className="mt-5 mb-3 text-center">Projet</h1>
             {loading && <Loader />}
+            {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
             {!loading && projet && <div className="mt-5 mb-3 d-flex flex-column align-items-center">
                 <h5 className="fw-bold my-3">Projet proposé par {projet.nomPrestataire}</h5>
                 <p><b>Titre du projet</b> : {projet.titreProjet}</p>
