@@ -1,6 +1,14 @@
-import { useParams } from "react-router-dom";
-import { useState } from "react";
-import {Box,Button,MenuItem,TextField,Typography,Alert,Stack} from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState, type FormEvent } from "react";
+import { Box, Button, MenuItem, TextField, Alert, Stack, Chip, InputAdornment } from "@mui/material";
+import { TYPE_TRAVAUX } from "../../types/TypesTravaux";
+import Loader from "../../components/Loader";
+import { useAppSelector } from "../../redux/store";
+import type { Prestataire } from "../../interfaces/users/Prestataire";
+import type Candidature from "../../interfaces/Candidature";
+import useManualRequest from "../../hooks/UseManualRequest";
+
+
 /**
  * Cette page permet au prestataire de soumettre une nouvelle candidature pour une fiche problème qu'il a repéré.
  * Il faut donc utiliser un formulaire pour récupérer les informations nécessaires, les valider et les soumettre au backend.
@@ -9,184 +17,218 @@ import {Box,Button,MenuItem,TextField,Typography,Alert,Stack} from "@mui/materia
  * @returns ReactNode
  */
 
-    export default function NewCandidaturePage() {
-    const ficheProbleme = useParams().problemId;
+export default function NewCandidaturePage() {
 
-    const [prestataire, setPrestataire] = useState("");
-    const [nomPrestataire, setNomPrestataire] = useState("");
-    const [numeroEntreprise, setNumeroEntreprise] = useState("");
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+
+    const userInfos = useAppSelector(state =>  state.auth.infos) as Prestataire;
+
+    const ficheProbleme = useParams().problemId;
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [error1, setError1] = useState(false);
+    const [success, setSuccess] = useState(false);
+
     const [titreProjet, setTitreProjet] = useState("");
     const [description, setDescription] = useState("");
     const [typeTravaux, setTypeTravaux] = useState("");
     const [coutEstime, setCoutEstime] = useState("");
     const [dateDebut, setDateDebut] = useState("");
     const [dateFin, setDateFin] = useState("");
-    const [ruesAffectees, setRuesAffectees] = useState("");
-    const [erreur, setErreur] = useState("");
-    const [message, setMessage] = useState("");
+    const [ruesAffectees, setRuesAffectees] = useState<string[]>([]);
+    const [newRue, setNewRue] = useState("");
+    const [error2, setError2] = useState(false);
 
-    const handleSubmit = (e) => {
+
+    const handleAddRue = () => {
+        if(newRue !== "") {
+            const newList = [...ruesAffectees, newRue];
+            setRuesAffectees(newList);
+            setNewRue("");
+        }
+    }
+
+
+
+    const { send, result } = useManualRequest();
+
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        scrollToTop();
+        setError1(false);
+        setError2(false);
 
-        if (!prestataire || !nomPrestataire ||!ficheProbleme ||!numeroEntreprise ||!titreProjet ||!description ||
-            !typeTravaux ||!coutEstime ||!dateDebut ||!dateFin ||!ruesAffectees
-        ) {
-        setErreur("Tous les champs sont requis.");
-        return;
+        if(ruesAffectees.length === 0) {
+            setError2(true);
+            return;
+        }
+        
+        const date1 = new Date(dateDebut);
+        const date2 = new Date(dateFin);
+
+        if(date1 > date2) {
+            setError1(true);
+            return;
         }
 
-        const candidature = {
-        prestataire,
-        nomPrestataire,
-        ficheProbleme,
-        numeroEntreprise,
-        titreProjet,
-        description,
-        typeTravaux,
-        coutEstime: parseFloat(coutEstime),
-        dateDebut: new Date(dateDebut).toISOString(),
-        dateFin: new Date(dateFin).toISOString(),
-        ruesAffectees,
-        };
+        setLoading(true);
 
-        fetch("http://localhost:7070/candidatures", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(candidature),
-        })
-        .then((response) => response.json())
-        .then(() => {
-            setPrestataire("");
-            setNomPrestataire("");
-            setNumeroEntreprise("");
-            setTitreProjet("");
-            setDescription("");
-            setTypeTravaux("");
-            setCoutEstime("");
-            setDateDebut("");
-            setDateFin("");
-            setRuesAffectees("");
-            setErreur("");
-            setMessage("Votre candidature a été envoyée avec succès !");
-        })
-        .catch(() => {
-            setErreur("Une erreur est survenue lors de l'envoi de la candidature.");
-        });
+        const candidature = {
+            prestataire: userInfos?.id?? "",
+            nomPrestataire: userInfos?.nom,
+            ficheProbleme: ficheProbleme?? "",
+            numeroEntreprise: userInfos?.numeroEntreprise?? "",
+            titreProjet,
+            description,
+            typeTravaux,
+            coutEstime: parseFloat(coutEstime),
+            dateDebut: date1,
+            dateFin: date2,
+            ruesAffectees,
+        } as Candidature;
+
+        send("/candidature", "POST", JSON.stringify(candidature));
+        
     };
 
+    useEffect(() => {
+        if(result) {
+            if(result.status === 201) {
+                setLoading(false);
+                setSuccess(true);
+                setTimeout(() => {
+                    navigate("/prestataire/candidature/list")
+                }, 1500);
+            } else {
+                setLoading(false);
+                setError(true);
+                console.log("An error occured", result.data);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
+            }   
+        }
+    }, [navigate, result]);
+
     return (
-        <Box sx={{ maxWidth: 600, mx: "auto", mt: 4 }}>
-        <Typography variant="h5" gutterBottom>
-            Soumettre une candidature pour la fiche {ficheProbleme}
-        </Typography>
+        <div className="d-flex flex-column align-items-center">
+            <h1 className="mt-5 mb-3 text-center">Nouvelle candidature</h1>
+            <Box sx={{ width: 420, mx: 6, mt: 4, mb: 6 }}>
+                <form onSubmit={handleSubmit}>
+                    <div className="my-3">
+                        {loading && <Loader />}
+                        {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
+                        {error1 && <Alert severity="error">La date de début du projet doit venir avant celle de fin.</Alert>}
+                        {error2 && <Alert severity="error">Il est nécessaire de préciser les rues affectées.</Alert>}
+                        {success && <Alert severity="success">Opération réalisée avec succès.</Alert>}
+                    </div>
 
-        <form onSubmit={handleSubmit}>
-            <Stack spacing={2}>
-            <TextField
-                label="Prestataire"
-                value={prestataire}
-                onChange={(e) => setPrestataire(e.target.value)}
-                fullWidth
-            />
+                    <Stack spacing={2}>
 
-            <TextField
-                label="Nom de l'entreprise"
-                value={nomPrestataire}
-                onChange={(e) => setNomPrestataire(e.target.value)}
-                fullWidth
-            />
+                        <TextField
+                            label="Titre du projet"
+                            value={titreProjet}
+                            onChange={(e) => setTitreProjet(e.target.value)}
+                            fullWidth
+                            required
+                        />
 
-            <TextField
-                label="Numéro d'entreprise"
-                value={numeroEntreprise}
-                onChange={(e) => setNumeroEntreprise(e.target.value)}
-                fullWidth
-            />
+                        <TextField
+                            label="Description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            multiline
+                            rows={3}
+                            fullWidth
+                            required
+                        />
 
-            <TextField
-                label="Titre du projet"
-                value={titreProjet}
-                onChange={(e) => setTitreProjet(e.target.value)}
-                fullWidth
-            />
+                        <TextField
+                            select
+                            label="Type de travaux"
+                            value={typeTravaux}
+                            onChange={(e) => setTypeTravaux(e.target.value)}
+                            fullWidth
+                            required
+                        >
+                            {TYPE_TRAVAUX.map((option) => (
+                            <MenuItem key={option} value={option}>
+                                {option}
+                            </MenuItem>
+                            ))}
+                        </TextField>
 
-            <TextField
-                label="Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                multiline
-                rows={3}
-                fullWidth
-            />
+                        <TextField
+                            label="Coût estimé"
+                            type="number"
+                            value={coutEstime}
+                            onChange={(e) => setCoutEstime(e.target.value)}
+                            fullWidth
+                            required
+                        />
 
-            <TextField
-                select
-                label="Type de travaux"
-                value={typeTravaux}
-                onChange={(e) => setTypeTravaux(e.target.value)}
-                fullWidth
-            >
-                {[
-                "Travaux routiers",
-                "Travaux de gaz ou électricité",
-                "Construction ou rénovation",
-                "Entretien paysager",
-                "Travaux liés aux transports en commun",
-                "Travaux de signalisation et éclairage",
-                "Travaux souterrains",
-                "Travaux résidentiel",
-                "Entretien urbain",
-                "Entretien des réseaux de télécommunication",
-                ].map((option) => (
-                <MenuItem key={option} value={option}>
-                    {option}
-                </MenuItem>
-                ))}
-            </TextField>
+                        <TextField
+                            label="Date de début"
+                            type="date"
+                            value={dateDebut}
+                            onChange={(e) => setDateDebut(e.target.value)}
+                            slotProps={{inputLabel: { shrink: true } }}
+                            fullWidth
+                            required
+                        />
 
-            <TextField
-                label="Coût estimé"
-                type="number"
-                value={coutEstime}
-                onChange={(e) => setCoutEstime(e.target.value)}
-                fullWidth
-            />
+                        <TextField
+                            label="Date de fin"
+                            type="date"
+                            value={dateFin}
+                            onChange={(e) => setDateFin(e.target.value)}
+                            slotProps={{inputLabel: { shrink: true } }}
+                            fullWidth
+                            required
+                        />
 
-            <TextField
-                label="Date de début"
-                type="date"
-                value={dateDebut}
-                onChange={(e) => setDateDebut(e.target.value)}
-                InputLabelProps={{ shrink: true }}
-                fullWidth
-            />
+                        <TextField
+                            label="Rues affectées"
+                            type="text"
+                            value={newRue}
+                            onChange={(e) => {setNewRue(e?.target.value);}}
+                            fullWidth
+                            sx={{ height: '100%', pr: 0 }}
+                            slotProps={{
+                                input: {
+                                    style : {paddingRight: 0},
+                                    endAdornment : (
+                                        <InputAdornment position="end" sx={{ p: 0, m: 0 }}>
+                                            <div
+                                                className="p-1 bg-success d-flex ml-1 rounded-end-1 align-items-center justify-content-center pointer adornment"
+                                                onClick={handleAddRue}
+                                            >
+                                                <img
+                                                alt="validation icon"
+                                                src="/validate_icon.png"
+                                                width="20"
+                                                />
+                                            </div>
+                                        </InputAdornment>
+                                    )
+                                }
+                            }}
+                        />
+                        <div className="my-1">
+                            {ruesAffectees.map((rue, index) => {
+                                return <Chip className="m-1" key={index} label={rue} onDelete={() => {setRuesAffectees(list => list.filter(elem => elem !== rue))}} />
+                            })}
+                        </div>
 
-            <TextField
-                label="Date de fin"
-                type="date"
-                value={dateFin}
-                onChange={(e) => setDateFin(e.target.value)}
-                InputLabelProps={{ shrink: true }}
-                fullWidth
-            />
-
-            <TextField
-                label="Rues affectées"
-                value={ruesAffectees}
-                onChange={(e) => setRuesAffectees(e.target.value)}
-                fullWidth
-            />
-
-            {erreur && <Alert severity="error">{erreur}</Alert>}
-            {message && <Alert severity="success">{message}</Alert>}
-
-            <Button type="submit" variant="contained">
-                Soumettre
-            </Button>
-            </Stack>
-        </form>
-        </Box>
+                        <Button className="rounded-4 border-0 text-white p-3 my-4" type="submit" variant="contained" sx={{ bgcolor: "#FF5659"}}>Soumettre</Button>
+                    </Stack>
+                </form>
+            </Box>
+        </div>
     );
     }

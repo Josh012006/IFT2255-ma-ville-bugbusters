@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import {Button,Card,CardContent,Typography,Modal,TextField,Box,CardActions,} from "@mui/material";
-import useRequest from "../hooks/useRequest";
-import type { Candidature } from "../types/Candidature";
-import { Grid } from "@mui/material";
+// import { useEffect, useState } from "react";
+// import { useParams, useNavigate } from "react-router-dom";
+// import {Button,Card,CardContent,Typography,Modal,TextField,Box,CardActions,} from "@mui/material";
+// import useRequest from "../hooks/useRequest";
+// import type { Candidature } from "../types/Candidature";
+// import { Grid } from "@mui/material";
 
 /**
  * Cette page permet d'afficher une candidature d'un prestataire avec ses détails.
@@ -26,82 +26,82 @@ const modalStyle = {
 };
 
 export default function PrestataireCandidaturePage() {
-    const candidatureId = useParams().id;
-    const [candidatures, setCandidatures] = useState<Candidature[]>([]);
-    const [expandedId, setExpandedId] = useState<string | null>(null);
-    const [showModal, setShowModal] = useState(false);
-    const [formData, setFormData] = useState({
-        titreProjet: "",
-        description: "",
-        dateDebut: "",
-        dateFin: "",
-    });
-    const [selectedCandidatureId, setSelectedCandidatureId] = useState<string | null>(null);  
+//     const candidatureId = useParams().id;
+//     const [candidatures, setCandidatures] = useState<Candidature[]>([]);
+//     const [expandedId, setExpandedId] = useState<string | null>(null);
+//     const [showModal, setShowModal] = useState(false);
+//     const [formData, setFormData] = useState({
+//         titreProjet: "",
+//         description: "",
+//         dateDebut: "",
+//         dateFin: "",
+//     });
+//     const [selectedCandidatureId, setSelectedCandidatureId] = useState<string | null>(null);  
 
-    // Recuperation des candidatures
-    useEffect(() => {
-    async function fetchCandidatures() {
-        const res = await useRequest("/candidatures/prestataire", "GET");
-        if (res.status === 200) {
-            setCandidatures(res.data);
-        }
-    }
+//     // Recuperation des candidatures
+//     useEffect(() => {
+//     async function fetchCandidatures() {
+//         const res = await useRequest("/candidatures/prestataire", "GET");
+//         if (res.status === 200) {
+//             setCandidatures(res.data);
+//         }
+//     }
 
-    fetchCandidatures();
-  }, []);
+//     fetchCandidatures();
+//   }, []);
 
-    // Ouvrir ou refermer une card
-    const handleExpand = (id: string) => {
-        setExpandedId(expandedId === id ? null : id);
-    }; 
+//     // Ouvrir ou refermer une card
+//     const handleExpand = (id: string) => {
+//         setExpandedId(expandedId === id ? null : id);
+//     }; 
 
-    // Ouvrir la modale de modification et préremplir les champs
-    const handleOpenModal = (cand: Candidature) => {
-        setSelectedCandidatureId(cand.id!);
-        setFormData({
-        titreProjet: cand.titreProjet,
-        description: cand.description,
-        dateDebut: cand.dateDebut?.substring(0, 10) || "",
-        dateFin: cand.dateFin?.substring(0, 10) || "",
-        });
-        setShowModal(true);
-    };
+//     // Ouvrir la modale de modification et préremplir les champs
+//     const handleOpenModal = (cand: Candidature) => {
+//         setSelectedCandidatureId(cand.id!);
+//         setFormData({
+//         titreProjet: cand.titreProjet,
+//         description: cand.description,
+//         dateDebut: cand.dateDebut?.substring(0, 10) || "",
+//         dateFin: cand.dateFin?.substring(0, 10) || "",
+//         });
+//         setShowModal(true);
+//     };
 
-    // Modification des champs de la modale
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+//     // Modification des champs de la modale
+//     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+//         setFormData({ ...formData, [e.target.name]: e.target.value });
+//     };
 
-    // Modification d'une candidature
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        const res = await useRequest(`/candidature/${selectedCandidatureId}`, "PUT", formData);
-        if (res.status === 200) {
-        setCandidatures((prev) =>
-            prev.map((cand) =>
-            cand.id === selectedCandidatureId
-                ? { ...cand, ...formData }
-                : cand
-            )
-        );
-        setShowModal(false);
-        }
-    };
+//     // Modification d'une candidature
+//     const handleSubmit = async (e: React.FormEvent) => {
+//         e.preventDefault();
+//         const res = await useRequest(`/candidature/${selectedCandidatureId}`, "PUT", formData);
+//         if (res.status === 200) {
+//         setCandidatures((prev) =>
+//             prev.map((cand) =>
+//             cand.id === selectedCandidatureId
+//                 ? { ...cand, ...formData }
+//                 : cand
+//             )
+//         );
+//         setShowModal(false);
+//         }
+//     };
 
-    // Suppression d'une candidature
-    const handleDelete = async (id: string) => {
-        const confirm = window.confirm("Supprimer cette candidature ?");
-        if (confirm) {
-        const res = await useRequest(`/candidature/${id}`, "DELETE");
-        if (res.status === 200) {
-            setCandidatures((prev) => prev.filter((c) => c.id !== id));
-        }
-        }
-    };
+//     // Suppression d'une candidature
+//     const handleDelete = async (id: string) => {
+//         const confirm = window.confirm("Supprimer cette candidature ?");
+//         if (confirm) {
+//         const res = await useRequest(`/candidature/${id}`, "DELETE");
+//         if (res.status === 200) {
+//             setCandidatures((prev) => prev.filter((c) => c.id !== id));
+//         }
+//         }
+//     };
 
     return (
         <div style={{ padding: "2rem" }}>
-        <Typography variant="h4" gutterBottom>Mes candidatures</Typography>
+        {/* <Typography variant="h4" gutterBottom>Mes candidatures</Typography>
 
         <Grid container spacing={2}>
             {candidatures.map((cand) => (
@@ -189,7 +189,7 @@ export default function PrestataireCandidaturePage() {
                 </div>
             </form>
             </Box>
-        </Modal>
+        </Modal> */}
         </div>
   );
 }
