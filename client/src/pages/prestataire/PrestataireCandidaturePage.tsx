@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Button, Typography, Modal, TextField, Box, Alert,} from "@mui/material";
+import { Typography, Modal, TextField, Box, Alert,} from "@mui/material";
 import useRequest from "../../hooks/UseRequest";
 import type Candidature from "../../interfaces/Candidature";
 import Loader from "../../components/Loader";
@@ -147,8 +147,8 @@ export default function PrestataireCandidaturePage() {
                     {candidature.statut !== "en attente" && <p className="text-center">Votre candidature {(candidature.statut === "vue")? "est en cours de traitement par un agent." : "a déjà été traitée."}</p>}
                     {candidature.statut === "en attente" && (
                         <div className="d-flex flex-column flex-lg-row justify-content-around align-items-center">
-                            <Button className="rounded-4 border-0 text-white p-3 my-4" type="button" variant="contained" sx={{ bgcolor: "#FF5659"}} onClick={handleOpenModal}>Modifier</Button>
-                            <Button className="rounded-4 border-0 text-white p-3 my-4" type="button" variant="contained" color="error" onClick={() => setOpen2(true)}>Supprimer</Button>
+                            <button className="rounded-4 border-0 text-white p-3 my-4 orange" type="button" onClick={handleOpenModal}>Modifier</button>
+                            <button className="rounded-4 border-0 text-white p-3 my-4 bg-danger" type="button" onClick={() => setOpen2(true)}>Supprimer</button>
                         </div>
                     )}
                 </div>
@@ -227,7 +227,9 @@ export default function PrestataireCandidaturePage() {
                             required
                         />
 
-                        <Button className="rounded-4 border-0 text-white p-3 my-4" type="submit" variant="contained" sx={{ bgcolor: "#FF5659"}}>Confirmer</Button>
+                        <div className="d-flex justify-content-center align-items-center">
+                            <button className="rounded-4 border-0 text-white p-3 my-4 orange" type="submit">Confirmer</button>
+                        </div>
                     </form>
                     </Box>
                 </Modal>
