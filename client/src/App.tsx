@@ -81,7 +81,7 @@ function App() {
                         <Route index element={<ChoiceOptionSignalementPage />} />
                         <Route path="new" element={<NewSignalementPage />} />
                         <Route path="list" element={<ResidentSignalementsPage />} />
-                        <Route path=":id" element={<ResidentSignalementPage />} />   {/* On inclut aussi dans la page la modification du signalement */}
+                        <Route path=":id" element={<ResidentSignalementPage />} />   {/* On inclut aussi dans la page, la modification du signalement */}
                     </Route>
                 </Route>
 
