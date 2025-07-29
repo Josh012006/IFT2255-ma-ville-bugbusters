@@ -46,7 +46,7 @@ export default function Header({setter}: {setter: Dispatch<SetStateAction<boolea
                         <span className={`rounded-circle bg-danger ${has? "d-block" : "d-none"} position-absolute bottom-0 cloche`}></span>
                     </MyLink>
                     {(userType !== "stpm") && userInfos && <MyLink className="m-1 m-lg-4 px-2 pointer" to="/profile">
-                        {userInfos.nom && <Avatar sx={{backgroundColor: getRandomHexColor()}}>{userInfos.nom.split(" ")[0][0]}{userInfos.nom.split(" ")[1][0]}</Avatar>}
+                        {userInfos.nom && <Avatar sx={{backgroundColor: getRandomHexColor()}}>{userInfos.nom.split(" ")[0]? userInfos.nom.split(" ")[0][0] : ""}{userInfos.nom.split(" ")[1]? userInfos.nom.split(" ")[1][0] : ""}</Avatar>}
                         {!userInfos.nom && <Avatar src="/profile.png" />}
                     </MyLink>}
                 </div>

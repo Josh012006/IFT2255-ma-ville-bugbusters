@@ -59,7 +59,7 @@ export default function ChoicePage() {
                         if("abonnementsRue" in user) {
                             const resident = user as Resident;
                 
-                            return <div className={`col-12 d-flex align-items-center justify-content-center col-lg-4`}>
+                            return <div key={index} className={`col-12 d-flex align-items-center justify-content-center col-lg-4`}>
                                 <MyLink key={index} to="/" onClick={() => {handleInfos(resident)}} className={`mycard1 orange text-white rounded-4 p-3 m-5 border `}>
                                     <h5 className="fs-5 fw-bold text-center"> {resident.nom}</h5>
                                     <p><b>Quartier</b> : {resident.quartier}</p>
@@ -69,7 +69,7 @@ export default function ChoicePage() {
                             </div>
                         } else {
                             const prestataire = user as Prestataire;
-                            return <div className={`col-12 d-flex align-items-center justify-content-center col-lg-4`}>
+                            return <div key={index} className={`col-12 d-flex align-items-center justify-content-center col-lg-4`}>
                                 <MyLink to="/" onClick={() => {handleInfos(prestataire)}} className={`mycard1 orange text-white rounded-4 p-3 m-5 border`}>
                                     <h5 className="fs-5 fw-bold text-center">{prestataire.nom}</h5>
                                     <p><b>Quartiers couverts</b> : {prestataire.quartiers.join(", ")}</p>
