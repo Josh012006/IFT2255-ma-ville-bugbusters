@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import {Button,Card,CardContent,Typography,Modal,TextField,Box,CardActions,} from "@mui/material";
 import useRequest from "../hooks/useRequest";
 import type { Candidature } from "../types/Candidature";
-
+import { Grid } from "@mui/material";
 
 /**
  * Cette page permet d'afficher une candidature d'un prestataire avec ses détails.
@@ -55,7 +55,7 @@ export default function PrestataireCandidaturePage() {
         setExpandedId(expandedId === id ? null : id);
     }; 
 
-        // Ouvrir la modale de modification et préremplir les champs
+    // Ouvrir la modale de modification et préremplir les champs
     const handleOpenModal = (cand: Candidature) => {
         setSelectedCandidatureId(cand.id!);
         setFormData({
@@ -100,8 +100,96 @@ export default function PrestataireCandidaturePage() {
     };
 
     return (
-        <div>
+        <div style={{ padding: "2rem" }}>
+        <Typography variant="h4" gutterBottom>Mes candidatures</Typography>
 
+        <Grid container spacing={2}>
+            {candidatures.map((cand) => (
+            <Grid item xs={12} sm={6} md={4} key={cand.id}>
+                <Card>
+                <CardContent>
+                    <Typography variant="h6">{cand.titreProjet}</Typography>
+                    <Button onClick={() => handleExpand(cand.id!)} size="small">
+                    {expandedId === cand.id ? "Voir moins" : "Voir plus"}
+                    </Button>
+
+                    {expandedId === cand.id && (
+                    <div style={{ marginTop: "1rem" }}>
+                        <Typography><strong>Description:</strong> {cand.description}</Typography>
+                        <Typography><strong>Dates:</strong> {new Date(cand.dateDebut).toLocaleDateString()} ➜ {new Date(cand.dateFin).toLocaleDateString()}</Typography>
+                        <Typography><strong>Type de travaux:</strong> {cand.typeTravaux}</Typography>
+                        <Typography><strong>Coût estimé:</strong> {cand.coutEstime} $</Typography>
+                        <Typography><strong>Statut:</strong> {cand.statut}</Typography>
+
+                        {cand.statut === "en attente" && (
+                        <CardActions>
+                            <Button variant="contained" onClick={() => handleOpenModal(cand)}>
+                            Modifier
+                            </Button>
+                            <Button variant="outlined" color="error" onClick={() => handleDelete(cand.id!)}>
+                            Supprimer
+                            </Button>
+                        </CardActions>
+                        )}
+                    </div>
+                    )}
+                </CardContent>
+                </Card>
+            </Grid>
+            ))}
+        </Grid>
+
+        <Modal open={showModal} onClose={() => setShowModal(false)}>
+            <Box sx={modalStyle}>
+            <Typography variant="h6" gutterBottom>Modifier la candidature</Typography>
+            <form onSubmit={handleSubmit}>
+                <TextField
+                fullWidth
+                label="Titre du projet"
+                name="titreProjet"
+                value={formData.titreProjet}
+                onChange={handleChange}
+                margin="normal"
+                />
+                <TextField
+                fullWidth
+                label="Description"
+                name="description"
+                multiline
+                rows={3}
+                value={formData.description}
+                onChange={handleChange}
+                margin="normal"
+                />
+                <TextField
+                fullWidth
+                label="Date début"
+                name="dateDebut"
+                type="date"
+                value={formData.dateDebut}
+                onChange={handleChange}
+                InputLabelProps={{ shrink: true }}
+                margin="normal"
+                />
+                <TextField
+                fullWidth
+                label="Date fin"
+                name="dateFin"
+                type="date"
+                value={formData.dateFin}
+                onChange={handleChange}
+                InputLabelProps={{ shrink: true }}
+                margin="normal"
+                />
+                <div style={{ marginTop: "1rem" }}>
+                <Button type="submit" variant="contained">Enregistrer</Button>
+                <Button onClick={() => setShowModal(false)} style={{ marginLeft: "1rem" }}>
+                    Annuler
+                </Button>
+                </div>
+            </form>
+            </Box>
+        </Modal>
         </div>
-    );
+  );
 }
