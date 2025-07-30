@@ -45,7 +45,7 @@ export default function SeeProblemePage(): ReactNode {
             {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
             {!loading && probleme && 
                 <>
-                    <div>
+                    <div className="mt-5 mb-3 d-flex flex-column align-items-center">
                         <p>Problème de type <b>{probleme.typeTravaux}</b> dans le quartier <b>{probleme.quartier}</b></p>
                         <p><b>Priorité</b> : {probleme.priorite}</p>
                         <p><b>Nombre de signalements</b> : {probleme.signalements.length}</p>
@@ -53,11 +53,13 @@ export default function SeeProblemePage(): ReactNode {
                         <br />
                         <p className="my-2 mx-4 mx-lg-5"><b>Description du problème</b> : {probleme.description}</p>
                     </div>
-                    <button
-                        type="button"
-                        className="rounded-4 border-0 text-white p-3 my-4 orange"
-                        onClick={() => navigate(`/prestataire/candidature/new/${probleme.id}`)}
-                    >Soumettre une candidature</button>
+                    <div className='d-flex justify-content-center align-items-center m-2'>
+                        <button
+                            type="button"
+                            className="rounded-4 border-0 text-white p-3 my-4 orange"
+                            onClick={() => navigate(`/prestataire/candidature/new/${probleme.id}`)}
+                        >Soumettre une candidature</button>
+                    </div>
                 </>
             }
         </div>

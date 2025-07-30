@@ -113,17 +113,15 @@ export default function PrestataireCandidaturePage() {
             if(result.status === 200) {
                 setLoading1(false);
                 setSuccess1(true);
-                setTimeout(() => {
-                    navigate("/prestataire/candidature/list");
-                }, 1500);
             } else {
                 console.log("An error occured:", result.data);
                 setLoading1(false);
                 setError1(true);
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1500);
             }
+            
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
         }
     }, [navigate, result]);
 

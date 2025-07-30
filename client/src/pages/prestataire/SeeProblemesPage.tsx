@@ -49,7 +49,7 @@ export default function SeeProblemesPage(): ReactNode {
         {loading && <Loader />}
         {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
         {/* Liste */}
-        {!loading &&
+        {!loading && !error &&
             <>
                 {problemes.length === 0 && <p className="mb-4 text-center fw-bold">Aucune fiche problème trouvée.</p>}
                 {problemes.length !== 0 && <>

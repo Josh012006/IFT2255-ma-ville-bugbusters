@@ -46,7 +46,7 @@ export default function ManageCandidaturesPage() {
             <p className="mb-4 text-center">Cliquez sur un candidature pour en voir les détails. Vous pourrez ensuite l'accepter ou la refuser.</p>
             {loading && <Loader />}
             {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
-            {!loading && 
+            {!loading && !error && 
             <>
                 {candidatures.length === 0 && <p className="mb-4 text-center fw-bold">Aucune nouvelle candidature.</p>}
                 {candidatures.length !== 0 && <>

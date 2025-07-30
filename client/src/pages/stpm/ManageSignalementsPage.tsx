@@ -47,7 +47,7 @@ export default function ManageSignalementsPage() {
             <p className="mb-4 text-center">Cliquez sur un signalement pour en voir les détails. Vous pourrez ensuite, soit le lier à une fiche problème existante ou encore en créer une nouvelle en lui affecter une priorité</p>
             {loading && <Loader />}
             {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
-            {!loading && <>
+            {!loading && !error && <>
                 {signalements.length === 0 && <p className="mb-4 text-center fw-bold">Aucun nouveau signalement.</p>}
                 {signalements.length !== 0 && <><List>
                     {paginatedSignalements.map((signal, index) => {

@@ -50,7 +50,7 @@ export default function PrestataireCandidaturesPage() {
             <p className="mb-4 text-center">Cliquez sur un candidature pour en voir les détails. Si un agent de la STPM ne l'a pas encore vue, vous pourrez la modifier.</p>
             {loading && <Loader />}
             {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
-            {!loading && 
+            {!loading && !error && 
             <>
                 {candidatures.length === 0 && <p className="mb-4 text-center fw-bold">Aucune candidature.</p>}
                 {candidatures.length !== 0 && <>
