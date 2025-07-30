@@ -11,7 +11,7 @@ import useManualRequest from "../../hooks/UseManualRequest";
 
 /**
  * Cette page permet au résident de faire un nouveau signalement.
- * Elle contient principalement un formulaire avec les informations demandées et avlidées avant d'envoyer une requête
+ * Elle contient principalement un formulaire avec les informations demandées et validées avant d'envoyer une requête
  * au serveur avec les informations afin de créer le nouveau signalement.
  * @returns ReactNode
  */
@@ -33,14 +33,7 @@ export default function NewSignalementPage() {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
-        if (typeProbleme === "" || description === "" || localisation === "" || quartier === "") {
-            setError(true);
-            setErrorMessage("Veuillez remplir tous les champs obligatoires.");
-            return;
-        }
-
         setLoading(true);
-        setError(false);
 
         const signalement = {
             resident: userInfos?.id ?? "",
@@ -59,26 +52,29 @@ export default function NewSignalementPage() {
                 setLoading(false);
                 setSuccess(true);
                 setTimeout(() => {
-                    navigate("/dashboard");
+                    navigate("/resident/signalement/list");
                 }, 1500);
             } else {
                 setLoading(false);
                 setError(true);
-                setErrorMessage("Une erreur est survenue lors de la création du signalement.");
+                setErrorMessage("Un problème est survenu. Veuillez réessayer plus tard.");
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
             }
         }
     }, [navigate, result]);
 
     return (
         <Box sx={{ p: 4, maxWidth: 700, margin: "auto" }}>
-            {loading && <Loader />}
-            <h2>Signaler un nouveau problème</h2>
+            <h1 className="mt-5 mb-3 text-center">Signaler un problème</h1>
             <p>Veuillez remplir le formulaire ci-dessous pour signaler un nouveau problème dans votre quartier.</p>
 
             <form onSubmit={handleSubmit}>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 3, mt: 4 }}>
+                    {loading && <Loader />}
                     {error && <Alert severity="error">{errorMessage}</Alert>}
-                    {success && <Alert severity="success">Signalement envoyé avec succès ! Vous serez redirigé.</Alert>}
+                    {success && <Alert severity="success">Signalement envoyé avec succès. Un agent traitera votre signalement sous peu.</Alert>}
 
                     <TextField
                         select
@@ -128,9 +124,7 @@ export default function NewSignalementPage() {
                         required
                     />
 
-                    <button type="submit" className="btn btn-primary" disabled={loading || success}>
-                        Envoyer le signalement
-                    </button>
+                    <button className="rounded-4 border-0 text-white p-3 my-4 orange" type="submit">Soumettre</button>
                 </Box>
             </form>
         </Box>

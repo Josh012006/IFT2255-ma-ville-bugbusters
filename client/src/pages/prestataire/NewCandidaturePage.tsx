@@ -117,7 +117,8 @@ export default function NewCandidaturePage() {
 
     return (
         <div className="d-flex flex-column align-items-center">
-            <h1 className="mt-5 mb-3 text-center">Nouvelle candidature</h1>
+            <h1 className="mt-5 mb-3 text-center">Soumettre une candidature</h1>
+            <p>Veuillez remplir le formulaire ci-dessous pour soumettre une candidature pour la fiche problème.</p>
             <Box sx={{ width: 420, mx: 6, mt: 4, mb: 6 }}>
                 <form onSubmit={handleSubmit}>
                     <div className="my-3">
@@ -125,7 +126,7 @@ export default function NewCandidaturePage() {
                         {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
                         {error1 && <Alert severity="error">La date de début du projet doit venir avant celle de fin.</Alert>}
                         {error2 && <Alert severity="error">Il est nécessaire de préciser les rues affectées.</Alert>}
-                        {success && <Alert severity="success">Opération réalisée avec succès. Un agent du STPM traitera votre signalement sous peu.</Alert>}
+                        {success && <Alert severity="success">Candidature soumise avec succès. Un agent du STPM traitera votre signalement sous peu.</Alert>}
                     </div>
 
                     <Stack spacing={2}>
@@ -186,7 +187,7 @@ export default function NewCandidaturePage() {
                             label="Date de fin"
                             type="date"
                             value={dateFin}
-                            onChange={(e) => setDateFin(e.target.value)}
+                            onChange={(e) => setDateFin(e.target.value)} 
                             slotProps={{inputLabel: { shrink: true } }}
                             fullWidth
                             required

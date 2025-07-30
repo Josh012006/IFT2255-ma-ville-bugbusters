@@ -98,7 +98,7 @@ export default function PrestataireCandidaturePage() {
 
         setLoading1(true);
 
-        await send(`/candidature/${candidatureId}`, "PATCH", JSON.stringify(body));
+        await send(`/candidature/${candidatureId}`, "PATCH", JSON.stringify(body)); 
     };
 
     // Suppression d'une candidature
@@ -113,17 +113,25 @@ export default function PrestataireCandidaturePage() {
             if(result.status === 200) {
                 setLoading1(false);
                 setSuccess1(true);
+                setTimeout(() => {
+                    if(open1) {
+                        window.location.reload();
+                    } else if(open2) {
+                        navigate("/prestataire/candidature/list");
+                    }
+                }, 1500);
             } else {
                 console.log("An error occured:", result.data);
                 setLoading1(false);
                 setError1(true);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
             }
             
-            setTimeout(() => {
-                window.location.reload();
-            }, 1500);
+            
         }
-    }, [navigate, result]);
+    }, [navigate, open1, open2, result]);
 
     return (
         <div>

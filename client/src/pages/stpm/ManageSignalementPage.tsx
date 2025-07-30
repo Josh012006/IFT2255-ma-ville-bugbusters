@@ -158,7 +158,7 @@ export default function ManageSignalementPage() {
                         <button disabled={disabled1} type="button" className="rounded-3 border-0 text-white orange p-2 my-2 disabled" onClick={() => {setShow("priorite")}}>Affecter une priorité</button>
                     </div>
                     {show !== "" && <Divider className="my-3" />}
-                    {show === "priorite" && <div className="d-flex flex-column align-items-center">
+                    {show === "priorite" && <div className="d-flex flex-column align-items-center"> 
                         <div className="d-flex justify-content-center align-items-center w-100">
                             <span onClick={() => {setPriorite("faible")}} className={`${(priorite === "faible")? "bg-secondary text-white" : "bg-white text-black"} p-2 pointer rounded-start-2 border-end`}>Faible</span>
                             <span onClick={() => {setPriorite("moyenne")}} className={`${(priorite === "moyenne")? "bg-secondary text-white" : "bg-white text-black"} p-2 pointer`}>Moyenne</span>

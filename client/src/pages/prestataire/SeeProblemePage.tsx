@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Alert } from '@mui/material';
 import Loader from '../../components/Loader';
@@ -13,7 +13,7 @@ import { formatDate } from '../../utils/formatDate';
  * par rapport au problème. Cela le redirige vers la page de création de la candidature.
  * @returns ReactNode
  */
-export default function SeeProblemePage(): ReactNode {
+export default function SeeProblemePage() {
     const { id: problemId } = useParams<{ id: string }>();
 
     const [probleme, setProbleme] = useState<Problem | null>(null);
