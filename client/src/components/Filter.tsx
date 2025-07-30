@@ -26,7 +26,7 @@ export default function Filter({tab, setFilteredTab} : {tab: Projet[] | Problem[
 
     const [filtered, setFiltered] = useState(tab);
 
-    const isProblem = "priorite" in tab[0];
+    const isProblem : boolean = !("nbRapports" in tab[0]);
 
 
     // Handlers
@@ -62,7 +62,8 @@ export default function Filter({tab, setFilteredTab} : {tab: Projet[] | Problem[
 
         if(isProblem) {
             filteredTab = (priorite === "All") ? filteredTab as Problem[] : (filteredTab as Problem[]).filter((elem) => elem.priorite === priorite);
-            
+        } else {
+            filteredTab = (priorite === "All") ? filteredTab as Projet[] : (filteredTab as Projet[]).filter((elem) => elem.priorite === priorite);
         }
         
         setFiltered(filteredTab);
@@ -108,19 +109,20 @@ export default function Filter({tab, setFilteredTab} : {tab: Projet[] | Problem[
                     })}
                 </Select>
             </div>
-            {isProblem && <div className="d-flex flex-column justify-content-center align-items-center"><InputLabel>Priorité</InputLabel>
-            <Select
-                value={priorite}
-                onChange={handleChangePriorite}
-                displayEmpty
-                inputProps={{ 'aria-label': 'Without label' }}
-                sx={{minWidth: "300px", margin: "10px"}}
-                >
-                <MenuItem value="All">All</MenuItem>
-                <MenuItem value="faible">Faible</MenuItem>
-                <MenuItem value="moyenne">Moyenne</MenuItem>
-                <MenuItem value="élevée">Elevée</MenuItem>
-            </Select></div>}
+            <div className="d-flex flex-column justify-content-center align-items-center"><InputLabel>Priorité</InputLabel>
+                <Select
+                    value={priorite}
+                    onChange={handleChangePriorite}
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    sx={{minWidth: "300px", margin: "10px"}}
+                    >
+                    <MenuItem value="All">All</MenuItem>
+                    <MenuItem value="faible">Faible</MenuItem>
+                    <MenuItem value="moyenne">Moyenne</MenuItem>
+                    <MenuItem value="élevée">Elevée</MenuItem>
+                </Select>
+            </div>
         </div>
     );
 }

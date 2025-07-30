@@ -103,14 +103,14 @@ export default function NewCandidaturePage() {
                 setSuccess(true);
                 setTimeout(() => {
                     navigate("/prestataire/candidature/list")
-                }, 1500);
+                }, 2000);
             } else {
                 setLoading(false);
                 setError(true);
                 console.log("An error occured", result.data);
                 setTimeout(() => {
                     window.location.reload();
-                }, 1500);
+                }, 2000);
             }   
         }
     }, [navigate, result]);
@@ -125,7 +125,7 @@ export default function NewCandidaturePage() {
                         {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
                         {error1 && <Alert severity="error">La date de début du projet doit venir avant celle de fin.</Alert>}
                         {error2 && <Alert severity="error">Il est nécessaire de préciser les rues affectées.</Alert>}
-                        {success && <Alert severity="success">Opération réalisée avec succès.</Alert>}
+                        {success && <Alert severity="success">Opération réalisée avec succès. Un agent du STPM traitera votre signalement sous peu.</Alert>}
                     </div>
 
                     <Stack spacing={2}>

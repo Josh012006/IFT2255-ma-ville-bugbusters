@@ -21,7 +21,7 @@ export default function SeeProjetsPage() {
     
     const [fetchedProjets, setFetchedProjets] = useState<Projet[]>([]);
     const [projets, setProjets] = useState<Projet[]>([]);
-    const [paginatedProjets, setPaginatedProjets] = useState<Projet[]>([]);
+    const [paginatedProjets, setPaginatedProjets] = useState<Projet[]>([]); 
     const [filteredProjets, setFilteredProjets] = useState<Projet[]>([]);
 
     const [toShow, setToShow] = useState<"present" | "coming">("present");
@@ -82,30 +82,31 @@ export default function SeeProjetsPage() {
             {loading && <Loader />}
             {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
             {!loading && <>
-                {projets.length === 0 && <p className="mb-4 text-center fw-bold">Aucun projet {(toShow === "coming")? "à venir" : "en cours"}.</p>}
+                {projets.length === 0 && <p className="mb-4 text-center fw-bold">Aucun projet trouvé.</p>}
                 {projets.length !== 0 && <>
-                <Filter tab={projets} setFilteredTab={setFilteredProjets} />
-                <List>
-                    {paginatedProjets.map((projet, index) => {
-                        return <MyLink className="text-black" to={"/resident/projet/" + projet.id} key={index}>
-                            <Divider component="li" />
-                            <ListItem className="d-flex align-items-center hover-white">
-                                <ListItemText
-                                    primary={<>
-                                    <h5>{projet.titreProjet}</h5>
-                                    <p>Organisé par <b>{projet.nomPrestataire}</b></p>
-                                    <p><b>Type de travaux</b> : {projet.typeTravaux}</p>
-                                    <p><b>Quartier</b> : {projet.quartier}</p>
-                                    <p><b>Statut</b> : {projet.statut?? ""}</p>
-                                    <p><b>Période de réalisation prévue</b> : {formatDate(projet.dateDebut)} - {formatDate(projet.dateFin)}</p>
-                                    </>}
-                                    secondary={<span className="ellipsis">{projet.description}</span>}
-                                />
-                            </ListItem>
-                        </MyLink>
-                    })}
-                </List>
-                <MyPagination itemsPerPage={15} data={filteredProjets} setPaginatedData={setPaginatedProjets}  />
+                    <Filter tab={projets} setFilteredTab={setFilteredProjets} />
+                    {filteredProjets.length === 0 && <p className="mb-4 text-center fw-bold">Aucun projet trouvé.</p>}
+                    {filteredProjets.length !== 0 && <List>
+                        {paginatedProjets.map((projet, index) => {
+                            return <MyLink className="text-black" to={"/resident/projet/" + projet.id} key={index}>
+                                <Divider component="li" />
+                                <ListItem className="d-flex align-items-center hover-white">
+                                    <ListItemText
+                                        primary={<>
+                                        <h5>{projet.titreProjet}</h5>
+                                        <p>Organisé par <b>{projet.nomPrestataire}</b></p>
+                                        <p><b>Type de travaux</b> : {projet.typeTravaux}</p>
+                                        <p><b>Quartier</b> : {projet.quartier}</p>
+                                        <p><b>Statut</b> : {projet.statut?? ""}</p>
+                                        <p><b>Période de réalisation prévue</b> : {formatDate(projet.dateDebut)} - {formatDate(projet.dateFin)}</p>
+                                        </>}
+                                        secondary={<span className="ellipsis">{projet.description}</span>}
+                                    />
+                                </ListItem>
+                            </MyLink>
+                        })}
+                    </List>}
+                    <MyPagination itemsPerPage={15} data={filteredProjets} setPaginatedData={setPaginatedProjets}  />
                 </>}
             </>}
         </div>
