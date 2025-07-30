@@ -3,6 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { useRequest } from "../../hooks/UseRequest";
 import type  Projet  from "../../interfaces/Projet";
 import { useAppSelector } from "../../redux/store"
+import {
+    Container,
+    Typography,
+    TextField,
+    List,
+    ListItem,
+    ListItemText,
+    Paper,
+    CircularProgress,
+  } from "@mui/material";
 
 
 
@@ -13,43 +23,67 @@ import { useAppSelector } from "../../redux/store"
  */
 export default function PrestataireProjetsPage() {
     const navigate = useNavigate();
-    const userId = useAppSelector((state: any) => state.auth.userId);
-    const userType = useAppSelector((state: any) => state.auth.userType);
-    const [filtre, setFiltre] = useState("");
-  
-    const result = useRequest(`/projets/prestataire/${userId}`, "GET");
-    const projets: Projet[] = result?.data || [];
-  
-    const projetsFiltres = projets.filter((p) =>
-      p.titreProjet.toLowerCase().includes(filtre.toLowerCase())
-    );
-  
+  const userId = useAppSelector((state: any) => state.auth.userId);
+  const [filtre, setFiltre] = useState("");
+
+  const result = useRequest(`/projets/prestataire/${userId}`, "GET");
+  const projets: Projet[] = result?.data || [];
+
+  const projetsFiltres = projets.filter((p) =>
+    p.titreProjet.toLowerCase().includes(filtre.toLowerCase())
+  );
+
+  if (!result) {
     return (
-      <div className="p-6">
-        <h1 className="text-2xl font-bold mb-4">Mes projets</h1>
-  
-        <input
-          type="text"
-          placeholder="Filtrer par titre"
-          value={filtre}
-          onChange={(e) => setFiltre(e.target.value)}
-          className="border p-2 mb-4 w-full max-w-md"
-        />
-  
-        <ul className="space-y-4">
-          {projetsFiltres.map((p) => (
-            <li
-              key={p.id}
-              onClick={() => navigate(`/prestataire/projet/${p.id}`)}
-              className="border p-4 rounded shadow hover:bg-gray-50 cursor-pointer"
-            >
-              <h2 className="text-lg font-semibold">{p.titreProjet}</h2>
-              <p>{p.description}</p>
-              <p className="text-sm text-gray-600">Statut : {p.statut}</p>
-            </li>
-          ))}
-          {projetsFiltres.length === 0 && <p>Aucun projet trouvé.</p>}
-        </ul>
-      </div>
+      <Container sx={{ mt: 4 }}>
+        <CircularProgress />
+      </Container>
     );
   }
+
+  return (
+    <Container sx={{ mt: 4 }}>
+      <Typography variant="h4" gutterBottom>
+        Mes projets
+      </Typography>
+
+      <TextField
+        label="Filtrer par titre"
+        variant="outlined"
+        fullWidth
+        value={filtre}
+        onChange={(e) => setFiltre(e.target.value)}
+        sx={{ mb: 3 }}
+      />
+
+      {projetsFiltres.length === 0 ? (
+        <Typography>Aucun projet trouvé.</Typography>
+      ) : (
+        <List>
+          {projetsFiltres.map((p) => (
+            <Paper
+              key={p.id}
+              elevation={3}
+              sx={{ mb: 2, cursor: "pointer" }}
+              onClick={() => navigate(`/prestataire/projet/${p.id}`)}
+            >
+              <ListItem>
+                <ListItemText
+                  primary={p.titreProjet}
+                  secondary={
+                    <>
+                      <Typography variant="body2">{p.description}</Typography>
+                      <Typography variant="caption" color="text.secondary">
+                        Statut : {p.statut}
+                      </Typography>
+                    </>
+                  }
+                />
+              </ListItem>
+            </Paper>
+          ))}
+        </List>
+      )}
+    </Container>
+  );
+}
