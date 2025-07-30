@@ -841,3 +841,2353 @@ Body:
 {"id":"688950a84c37526a682a8e3b","ruesAffectees":["rue Ontario","rue Beaubien"],"abonnes":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-07-21T20:00:00.000-04:00","dateFin":"2025-08-13T20:00:00.000-04:00","ficheProbleme":"687f50651444a9cff09df8e1","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":98000.0,"priorite":"moyenne","nbRapports":0,"createdAt":"2025-07-29T18:52:24.115-04:00","updatedAt":"2025-07-29T18:52:24.156-04:00"}
 ------------------------
 
+2025-07-30 14:15:27 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:15:27 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:15:27 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:15:27 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:15:46 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: POST
+  Access-Control-Request-Headers: content-type
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:15:46 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-30 14:15:47 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/signalement
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+  Content-Length: 172
+  Content-Type: application/json
+Body:
+{"resident":"687f39b1dd23af6de7e0ce64","typeProbleme":"Travaux Routiers","description":"ddhkdkfhdfdf","localisation":"face de al rue Sherbrooke","quartier":"Saint-Laurent"}
+---------------------
+
+2025-07-30 14:15:47 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/notification
+Headers:
+  Connection: Upgrade, HTTP2-Settings
+  User-Agent: Java-http-client/23.0.1
+  Host: localhost:7070
+  HTTP2-Settings: AAEAAEAAAAIAAAAAAAMAAAAAAAQBAAAAAAUAAEAAAAYABgAA
+  Content-Length: 157
+  Upgrade: h2c
+  Content-Type: application/json; charset=UTF-8
+Body:
+{"message": "Un nouveau signalement a été créé par un résident.","user": "507f1f77bcf86cd799439011","url": "/stpm/signalement/688a615336e2b07c06772e76"}
+---------------------
+
+2025-07-30 14:15:47 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"688a615336e2b07c06772e77","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/688a615336e2b07c06772e76","createdAt":"2025-07-30T14:15:47.849-04:00","updatedAt":"2025-07-30T14:15:47.851-04:00"}
+------------------------
+
+2025-07-30 14:15:47 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"}
+------------------------
+
+2025-07-30 14:15:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getByResident/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:15:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f44bc9a7fd43060f32b88","quartier":"Ville-Marie","typeProbleme":"Travaux Routiers","localisation":"123 rue Ontario","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T03:58:53.249-04:00","updatedAt":"2025-07-28T04:09:45.424-04:00"},{"id":"687f491c65c12e91918fa81b","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:17:32.141-04:00","updatedAt":"2025-07-28T04:10:50.926-04:00"},{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-27T22:47:31.110-04:00"},{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"}]
+------------------------
+
+2025-07-30 14:15:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getByResident/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:15:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f44bc9a7fd43060f32b88","quartier":"Ville-Marie","typeProbleme":"Travaux Routiers","localisation":"123 rue Ontario","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T03:58:53.249-04:00","updatedAt":"2025-07-28T04:09:45.424-04:00"},{"id":"687f491c65c12e91918fa81b","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:17:32.141-04:00","updatedAt":"2025-07-28T04:10:50.926-04:00"},{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-27T22:47:31.110-04:00"},{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"}]
+------------------------
+
+2025-07-30 14:16:10 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a615336e2b07c06772e76?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:16:10 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"}
+------------------------
+
+2025-07-30 14:16:10 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a615336e2b07c06772e76?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:16:10 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"}
+------------------------
+
+2025-07-30 14:16:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: POST
+  Access-Control-Request-Headers: content-type
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:16:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-30 14:16:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/signalement
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+  Content-Length: 162
+  Content-Type: application/json
+Body:
+{"resident":"687f39b1dd23af6de7e0ce64","typeProbleme":"Travaux Routiers","description":"dgdg","localisation":"fddbd","quartier":"Mercier–Hochelaga-Maisonneuve"}
+---------------------
+
+2025-07-30 14:16:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/notification
+Headers:
+  Connection: Upgrade, HTTP2-Settings
+  User-Agent: Java-http-client/23.0.1
+  Host: localhost:7070
+  HTTP2-Settings: AAEAAEAAAAIAAAAAAAMAAAAAAAQBAAAAAAUAAEAAAAYABgAA
+  Content-Length: 157
+  Upgrade: h2c
+  Content-Type: application/json; charset=UTF-8
+Body:
+{"message": "Un nouveau signalement a été créé par un résident.","user": "507f1f77bcf86cd799439011","url": "/stpm/signalement/688a619136e2b07c06772e78"}
+---------------------
+
+2025-07-30 14:16:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"688a619136e2b07c06772e79","user":"507f1f77bcf86cd799439011","message":"Un nouveau signalement a été créé par un résident.","statut":"non lue","url":"/stpm/signalement/688a619136e2b07c06772e78","createdAt":"2025-07-30T14:16:49.344-04:00","updatedAt":"2025-07-30T14:16:49.346-04:00"}
+------------------------
+
+2025-07-30 14:16:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:16:50 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getByResident/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:16:51 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f44bc9a7fd43060f32b88","quartier":"Ville-Marie","typeProbleme":"Travaux Routiers","localisation":"123 rue Ontario","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T03:58:53.249-04:00","updatedAt":"2025-07-28T04:09:45.424-04:00"},{"id":"687f491c65c12e91918fa81b","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:17:32.141-04:00","updatedAt":"2025-07-28T04:10:50.926-04:00"},{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-27T22:47:31.110-04:00"},{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"},{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}]
+------------------------
+
+2025-07-30 14:16:51 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getByResident/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:16:51 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f44bc9a7fd43060f32b88","quartier":"Ville-Marie","typeProbleme":"Travaux Routiers","localisation":"123 rue Ontario","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T03:58:53.249-04:00","updatedAt":"2025-07-28T04:09:45.424-04:00"},{"id":"687f491c65c12e91918fa81b","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:17:32.141-04:00","updatedAt":"2025-07-28T04:10:50.926-04:00"},{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-27T22:47:31.110-04:00"},{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"},{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}]
+------------------------
+
+2025-07-30 14:16:56 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:16:56 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:16:56 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:16:56 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:17:19 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getByResident/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:17:19 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f44bc9a7fd43060f32b88","quartier":"Ville-Marie","typeProbleme":"Travaux Routiers","localisation":"123 rue Ontario","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T03:58:53.249-04:00","updatedAt":"2025-07-28T04:09:45.424-04:00"},{"id":"687f491c65c12e91918fa81b","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:17:32.141-04:00","updatedAt":"2025-07-28T04:10:50.926-04:00"},{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-27T22:47:31.110-04:00"},{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"},{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}]
+------------------------
+
+2025-07-30 14:17:19 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getByResident/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:17:19 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f44bc9a7fd43060f32b88","quartier":"Ville-Marie","typeProbleme":"Travaux Routiers","localisation":"123 rue Ontario","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T03:58:53.249-04:00","updatedAt":"2025-07-28T04:09:45.424-04:00"},{"id":"687f491c65c12e91918fa81b","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:17:32.141-04:00","updatedAt":"2025-07-28T04:10:50.926-04:00"},{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-27T22:47:31.110-04:00"},{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"},{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}]
+------------------------
+
+2025-07-30 14:17:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a615336e2b07c06772e76?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:17:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"}
+------------------------
+
+2025-07-30 14:17:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a615336e2b07c06772e76?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:17:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"}
+------------------------
+
+2025-07-30 14:17:23 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getByResident/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:17:23 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f44bc9a7fd43060f32b88","quartier":"Ville-Marie","typeProbleme":"Travaux Routiers","localisation":"123 rue Ontario","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T03:58:53.249-04:00","updatedAt":"2025-07-28T04:09:45.424-04:00"},{"id":"687f491c65c12e91918fa81b","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:17:32.141-04:00","updatedAt":"2025-07-28T04:10:50.926-04:00"},{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-27T22:47:31.110-04:00"},{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"},{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}]
+------------------------
+
+2025-07-30 14:17:23 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getByResident/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:17:23 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f44bc9a7fd43060f32b88","quartier":"Ville-Marie","typeProbleme":"Travaux Routiers","localisation":"123 rue Ontario","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T03:58:53.249-04:00","updatedAt":"2025-07-28T04:09:45.424-04:00"},{"id":"687f491c65c12e91918fa81b","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:17:32.141-04:00","updatedAt":"2025-07-28T04:10:50.926-04:00"},{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-27T22:47:31.110-04:00"},{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"},{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}]
+------------------------
+
+2025-07-30 14:19:47 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:19:47 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:19:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:19:48 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:19:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:19:48 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:19:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:19:48 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:24:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:24:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:26:35 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:26:35 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:28:26 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:28:26 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:28:26 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:28:26 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:28:26 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:28:26 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:28:26 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:28:26 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:29:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:29:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:29:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:29:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:29:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:29:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:29:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:29:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:30:25 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:30:25 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:30:25 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:30:25 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:30:25 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:30:25 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:30:25 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:30:25 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:31:10 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:31:10 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:31:11 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:31:11 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:31:11 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:31:11 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:31:11 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:31:11 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:32:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:32:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:32:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:32:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:32:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:32:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:32:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:32:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:34:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:34:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:34:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:34:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:34:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:34:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:34:49 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:34:49 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:35:19 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:35:19 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:35:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:35:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:35:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:35:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:35:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:35:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:38:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:38:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:38:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:38:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:38:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:38:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:38:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:38:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a619136e2b07c06772e78","quartier":"Mercier–Hochelaga-Maisonneuve","typeProbleme":"Travaux Routiers","localisation":"fddbd","description":"dgdg","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:16:49.260-04:00","updatedAt":"2025-07-30T14:16:49.260-04:00"}
+------------------------
+
+2025-07-30 14:38:44 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: DELETE
+  Access-Control-Request-Headers: content-type
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:38:44 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-30 14:38:44 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: DELETE
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+  Content-Length: 4
+  Content-Type: application/json
+Body:
+null
+---------------------
+
+2025-07-30 14:38:44 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"message": "Suppression réalisée avec succès."}
+------------------------
+
+2025-07-30 14:38:46 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:38:46 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:38:46 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 404 Not Found
+Body:
+{"message": "Aucun signalement avec un tel ID trouvé."}
+------------------------
+
+2025-07-30 14:38:46 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:38:46 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:38:46 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:38:46 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 404 Not Found
+Body:
+{"message": "Aucun signalement avec un tel ID trouvé."}
+------------------------
+
+2025-07-30 14:38:46 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:44:37 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:44:37 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:44:37 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:44:37 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 404 Not Found
+Body:
+{"message": "Aucun signalement avec un tel ID trouvé."}
+------------------------
+
+2025-07-30 14:44:37 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a619136e2b07c06772e78?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:44:37 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:44:37 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:44:37 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 404 Not Found
+Body:
+{"message": "Aucun signalement avec un tel ID trouvé."}
+------------------------
+
+2025-07-30 14:44:43 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getByResident/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:44:43 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f44bc9a7fd43060f32b88","quartier":"Ville-Marie","typeProbleme":"Travaux Routiers","localisation":"123 rue Ontario","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T03:58:53.249-04:00","updatedAt":"2025-07-28T04:09:45.424-04:00"},{"id":"687f491c65c12e91918fa81b","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:17:32.141-04:00","updatedAt":"2025-07-28T04:10:50.926-04:00"},{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-27T22:47:31.110-04:00"},{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"}]
+------------------------
+
+2025-07-30 14:44:43 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getByResident/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:44:43 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f44bc9a7fd43060f32b88","quartier":"Ville-Marie","typeProbleme":"Travaux Routiers","localisation":"123 rue Ontario","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T03:58:53.249-04:00","updatedAt":"2025-07-28T04:09:45.424-04:00"},{"id":"687f491c65c12e91918fa81b","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:17:32.141-04:00","updatedAt":"2025-07-28T04:10:50.926-04:00"},{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-27T22:47:31.110-04:00"},{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"}]
+------------------------
+
+2025-07-30 14:44:46 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a615336e2b07c06772e76?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:44:46 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"}
+------------------------
+
+2025-07-30 14:44:46 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a615336e2b07c06772e76?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:44:46 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"ddhkdkfhdfdf","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"}
+------------------------
+
+2025-07-30 14:44:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/688a615336e2b07c06772e76
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: PATCH
+  Access-Control-Request-Headers: content-type
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:44:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-30 14:44:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: PATCH
+URL: http://localhost:7070/api/signalement/688a615336e2b07c06772e76
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+  Content-Length: 319
+  Content-Type: application/json
+Body:
+{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"dufjlfkdlldkfkdfl","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:15:47.592-04:00"}
+---------------------
+
+2025-07-30 14:44:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"dufjlfkdlldkfkdfl","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:44:54.269-04:00"}
+------------------------
+
+2025-07-30 14:44:56 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:44:56 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a615336e2b07c06772e76?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:44:56 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:44:56 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"dufjlfkdlldkfkdfl","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:44:54.269-04:00"}
+------------------------
+
+2025-07-30 14:44:56 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/688a615336e2b07c06772e76?stpm=false
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:44:56 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:44:56 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a615336e2b07c06772e76","quartier":"Saint-Laurent","typeProbleme":"Travaux Routiers","localisation":"face de al rue Sherbrooke","description":"dufjlfkdlldkfkdfl","statut":"en attente","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-30T14:15:47.592-04:00","updatedAt":"2025-07-30T14:44:54.269-04:00"}
+------------------------
+
+2025-07-30 14:44:56 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 14:45:00 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/signalement/688a615336e2b07c06772e76
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: DELETE
+  Access-Control-Request-Headers: content-type
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:45:00 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-30 14:45:00 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: DELETE
+URL: http://localhost:7070/api/signalement/688a615336e2b07c06772e76
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+  Content-Length: 4
+  Content-Type: application/json
+Body:
+null
+---------------------
+
+2025-07-30 14:45:00 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"message": "Suppression réalisée avec succès."}
+------------------------
+
+2025-07-30 14:45:01 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getByResident/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:45:02 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f44bc9a7fd43060f32b88","quartier":"Ville-Marie","typeProbleme":"Travaux Routiers","localisation":"123 rue Ontario","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T03:58:53.249-04:00","updatedAt":"2025-07-28T04:09:45.424-04:00"},{"id":"687f491c65c12e91918fa81b","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:17:32.141-04:00","updatedAt":"2025-07-28T04:10:50.926-04:00"},{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-27T22:47:31.110-04:00"}]
+------------------------
+
+2025-07-30 14:45:02 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/signalement/getByResident/687f39b1dd23af6de7e0ce64
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 14:45:02 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f44bc9a7fd43060f32b88","quartier":"Ville-Marie","typeProbleme":"Travaux Routiers","localisation":"123 rue Ontario","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T03:58:53.249-04:00","updatedAt":"2025-07-28T04:09:45.424-04:00"},{"id":"687f491c65c12e91918fa81b","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:17:32.141-04:00","updatedAt":"2025-07-28T04:10:50.926-04:00"},{"id":"687f4a6765c12e91918fa81d","quartier":"Ville-Marie","typeProbleme":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","statut":"traité","resident":"687f39b1dd23af6de7e0ce64","createdAt":"2025-07-22T04:23:03.763-04:00","updatedAt":"2025-07-27T22:47:31.110-04:00"}]
+------------------------
+
+2025-07-30 14:57:17 INFO  ca.udem.maville.server.Server - 
+========== 🛑 Server stopped ==========
+

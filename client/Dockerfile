@@ -1,15 +1,21 @@
-# Étape 1 : image officielle Node
+# Étape 1 : Utiliser l’image officielle de Node
 FROM node:24.4.0
 
-# Étape 2 : définir le dossier de travail
+# Étape 2 : Définir le dossier de travail
 WORKDIR /app
 
-# Étape 3 : copier les dépendances et installer
+# Étape 3 : Copier les fichiers de dépendances
 COPY package*.json ./
-RUN npm install
 
-# Étape 4 : copier le reste du code source
+# Étape 4 : Installer proprement les dépendances
+# Supprime d’abord node_modules si présent et installe clean
+RUN rm -rf node_modules && npm install
+
+# Étape 5 : Copier le reste du code source
 COPY . .
 
-# Étape 5 : démarrer Vite (dev server)
+# Étape 6 : Exposer le port Vite par défaut
+EXPOSE 5173
+
+# Étape 7 : Démarrer le serveur de dev Vite
 CMD ["npm", "run", "dev"]
