@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Alert,
   List,
@@ -19,7 +19,7 @@ import { formatDate } from '../../utils/formatDate';
  * Lorsqu'on clique sur une fiche problème, on a accès à la page de visualisation individuelle de la fiche problème.
  * @returns ReactNode
  */
-export default function SeeProblemesPage(): ReactNode {
+export default function SeeProblemesPage() {
 
     const [problemes, setProblemes] = useState<Problem[]>([]);
     const [paginatedProblemes, setPaginatedProblemes] = useState<Problem[]>([]); 
