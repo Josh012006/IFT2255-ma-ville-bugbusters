@@ -69,7 +69,7 @@ export default function NewCandidaturePage() {
         }
         
         const date1 = new Date(dateDebut);
-        const date2 = new Date(dateFin);
+        const date2 = new Date(dateFin); 
 
         if(date1 > date2) {
             setError1(true);

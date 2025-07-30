@@ -50,7 +50,7 @@ export default function SeeProjetPage() {
                 <p><b>Rues affectées</b> : {projet.ruesAffectees.join(", ")}</p>
                 <br />
                 <p><b>Priorité</b> : {projet.priorite}</p>
-                <p><b>Coût estimé</b> : {projet.cout} $</p>
+                <p><b>Coût</b> : {projet.cout} $</p>
                 <p><b>Statut</b> : {projet.statut}</p>
                 <br/>
                 <p className="my-2 mx-4 mx-lg-5"><b>Description du projet</b> : {projet.description}</p>

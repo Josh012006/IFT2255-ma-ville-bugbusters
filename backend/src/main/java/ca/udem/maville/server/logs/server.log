@@ -225,3 +225,2319 @@ Body:
 {"result": false}
 ------------------------
 
+2025-07-30 11:07:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/probleme/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 11:07:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 11:07:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 11:07:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f50651444a9cff09df8e1","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","priorite":"moyenne","signalements":["687f4a6765c12e91918fa81d","687f4d2665c12e91918fa820"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"createdAt":"2025-07-22T04:48:38.620-04:00","updatedAt":"2025-07-28T04:16:15.009-04:00"},{"id":"68873048a4f0e1695c8799f6","typeTravaux":"Travaux Routiers","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","priorite":"faible","signalements":["687f44bc9a7fd43060f32b88"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:09:45.045-04:00","updatedAt":"2025-07-28T04:09:45.045-04:00"},{"id":"6887308aa4f0e1695c8799fb","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","priorite":"élevée","signalements":["687f491c65c12e91918fa81b"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:10:50.826-04:00","updatedAt":"2025-07-28T04:10:50.826-04:00"}]
+------------------------
+
+2025-07-30 11:07:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 11:07:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/probleme/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 11:07:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 11:07:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f50651444a9cff09df8e1","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","priorite":"moyenne","signalements":["687f4a6765c12e91918fa81d","687f4d2665c12e91918fa820"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"createdAt":"2025-07-22T04:48:38.620-04:00","updatedAt":"2025-07-28T04:16:15.009-04:00"},{"id":"68873048a4f0e1695c8799f6","typeTravaux":"Travaux Routiers","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","priorite":"faible","signalements":["687f44bc9a7fd43060f32b88"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:09:45.045-04:00","updatedAt":"2025-07-28T04:09:45.045-04:00"},{"id":"6887308aa4f0e1695c8799fb","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","priorite":"élevée","signalements":["687f491c65c12e91918fa81b"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:10:50.826-04:00","updatedAt":"2025-07-28T04:10:50.826-04:00"}]
+------------------------
+
+2025-07-30 11:07:24 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/probleme/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 11:07:24 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f50651444a9cff09df8e1","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","priorite":"moyenne","signalements":["687f4a6765c12e91918fa81d","687f4d2665c12e91918fa820"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"createdAt":"2025-07-22T04:48:38.620-04:00","updatedAt":"2025-07-28T04:16:15.009-04:00"},{"id":"68873048a4f0e1695c8799f6","typeTravaux":"Travaux Routiers","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","priorite":"faible","signalements":["687f44bc9a7fd43060f32b88"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:09:45.045-04:00","updatedAt":"2025-07-28T04:09:45.045-04:00"},{"id":"6887308aa4f0e1695c8799fb","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","priorite":"élevée","signalements":["687f491c65c12e91918fa81b"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:10:50.826-04:00","updatedAt":"2025-07-28T04:10:50.826-04:00"}]
+------------------------
+
+2025-07-30 11:07:24 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/probleme/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 11:07:24 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f50651444a9cff09df8e1","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","priorite":"moyenne","signalements":["687f4a6765c12e91918fa81d","687f4d2665c12e91918fa820"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"createdAt":"2025-07-22T04:48:38.620-04:00","updatedAt":"2025-07-28T04:16:15.009-04:00"},{"id":"68873048a4f0e1695c8799f6","typeTravaux":"Travaux Routiers","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","priorite":"faible","signalements":["687f44bc9a7fd43060f32b88"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:09:45.045-04:00","updatedAt":"2025-07-28T04:09:45.045-04:00"},{"id":"6887308aa4f0e1695c8799fb","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","priorite":"élevée","signalements":["687f491c65c12e91918fa81b"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:10:50.826-04:00","updatedAt":"2025-07-28T04:10:50.826-04:00"}]
+------------------------
+
+2025-07-30 11:08:45 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 11:08:45 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/probleme/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 11:08:45 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 11:08:45 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 11:08:45 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f50651444a9cff09df8e1","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","priorite":"moyenne","signalements":["687f4a6765c12e91918fa81d","687f4d2665c12e91918fa820"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"createdAt":"2025-07-22T04:48:38.620-04:00","updatedAt":"2025-07-28T04:16:15.009-04:00"},{"id":"68873048a4f0e1695c8799f6","typeTravaux":"Travaux Routiers","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","priorite":"faible","signalements":["687f44bc9a7fd43060f32b88"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:09:45.045-04:00","updatedAt":"2025-07-28T04:09:45.045-04:00"},{"id":"6887308aa4f0e1695c8799fb","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","priorite":"élevée","signalements":["687f491c65c12e91918fa81b"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:10:50.826-04:00","updatedAt":"2025-07-28T04:10:50.826-04:00"}]
+------------------------
+
+2025-07-30 11:08:45 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/probleme/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 11:08:45 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 11:08:45 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f50651444a9cff09df8e1","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","priorite":"moyenne","signalements":["687f4a6765c12e91918fa81d","687f4d2665c12e91918fa820"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"createdAt":"2025-07-22T04:48:38.620-04:00","updatedAt":"2025-07-28T04:16:15.009-04:00"},{"id":"68873048a4f0e1695c8799f6","typeTravaux":"Travaux Routiers","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","priorite":"faible","signalements":["687f44bc9a7fd43060f32b88"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:09:45.045-04:00","updatedAt":"2025-07-28T04:09:45.045-04:00"},{"id":"6887308aa4f0e1695c8799fb","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","priorite":"élevée","signalements":["687f491c65c12e91918fa81b"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:10:50.826-04:00","updatedAt":"2025-07-28T04:10:50.826-04:00"}]
+------------------------
+
+2025-07-30 12:32:31 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/probleme/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:32:31 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:32:31 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 12:32:32 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:32:32 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f50651444a9cff09df8e1","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","priorite":"moyenne","signalements":["687f4a6765c12e91918fa81d","687f4d2665c12e91918fa820"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"createdAt":"2025-07-22T04:48:38.620-04:00","updatedAt":"2025-07-28T04:16:15.009-04:00"},{"id":"68873048a4f0e1695c8799f6","typeTravaux":"Travaux Routiers","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","priorite":"faible","signalements":["687f44bc9a7fd43060f32b88"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:09:45.045-04:00","updatedAt":"2025-07-28T04:09:45.045-04:00"},{"id":"6887308aa4f0e1695c8799fb","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","priorite":"élevée","signalements":["687f491c65c12e91918fa81b"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:10:50.826-04:00","updatedAt":"2025-07-28T04:10:50.826-04:00"}]
+------------------------
+
+2025-07-30 12:32:32 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 12:32:32 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/probleme/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:32:32 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f50651444a9cff09df8e1","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","priorite":"moyenne","signalements":["687f4a6765c12e91918fa81d","687f4d2665c12e91918fa820"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"createdAt":"2025-07-22T04:48:38.620-04:00","updatedAt":"2025-07-28T04:16:15.009-04:00"},{"id":"68873048a4f0e1695c8799f6","typeTravaux":"Travaux Routiers","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","priorite":"faible","signalements":["687f44bc9a7fd43060f32b88"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:09:45.045-04:00","updatedAt":"2025-07-28T04:09:45.045-04:00"},{"id":"6887308aa4f0e1695c8799fb","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","priorite":"élevée","signalements":["687f491c65c12e91918fa81b"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:10:50.826-04:00","updatedAt":"2025-07-28T04:10:50.826-04:00"}]
+------------------------
+
+2025-07-30 12:32:35 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/probleme/6887308aa4f0e1695c8799fb
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:32:35 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"6887308aa4f0e1695c8799fb","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","priorite":"élevée","signalements":["687f491c65c12e91918fa81b"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:10:50.826-04:00","updatedAt":"2025-07-28T04:10:50.826-04:00"}
+------------------------
+
+2025-07-30 12:32:35 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/probleme/6887308aa4f0e1695c8799fb
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:32:36 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"6887308aa4f0e1695c8799fb","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","priorite":"élevée","signalements":["687f491c65c12e91918fa81b"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:10:50.826-04:00","updatedAt":"2025-07-28T04:10:50.826-04:00"}
+------------------------
+
+2025-07-30 12:36:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/candidature
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: POST
+  Access-Control-Request-Headers: content-type
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-30 12:36:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/candidature
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+  Content-Length: 482
+  Content-Type: application/json
+Body:
+{"prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"6887308aa4f0e1695c8799fb","numeroEntreprise":"NEQ12345678","titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","coutEstime":1000,"dateDebut":"2025-08-08T00:00:00.000Z","dateFin":"2025-08-16T00:00:00.000Z","ruesAffectees":["123 rue Ontario","test"]}
+---------------------
+
+2025-07-30 12:36:22 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/notification
+Headers:
+  Connection: Upgrade, HTTP2-Settings
+  User-Agent: Java-http-client/23.0.1
+  Host: localhost:7070
+  HTTP2-Settings: AAEAAEAAAAIAAAAAAAMAAAAAAAQBAAAAAAUAAEAAAAYABgAA
+  Content-Length: 164
+  Upgrade: h2c
+  Content-Type: application/json; charset=UTF-8
+Body:
+{"message": "Une nouvelle candidature a été déposée par un prestataire.","user": "507f1f77bcf86cd799439011","url": "/stpm/candidature/688a4a05817e788415e48c1a"}
+---------------------
+
+2025-07-30 12:36:22 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"688a4a06817e788415e48c1b","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/688a4a05817e788415e48c1a","createdAt":"2025-07-30T12:36:22.058-04:00","updatedAt":"2025-07-30T12:36:22.059-04:00"}
+------------------------
+
+2025-07-30 12:36:22 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"688a4a05817e788415e48c1a","statut":"en attente","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"6887308aa4f0e1695c8799fb","numeroEntreprise":"NEQ12345678","titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ruesAffectees":["123 rue Ontario","test"],"coutEstime":1000.0,"createdAt":"2025-07-30T12:36:21.759-04:00","updatedAt":"2025-07-30T12:36:21.759-04:00"}
+------------------------
+
+2025-07-30 12:36:24 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/candidature/getByPrestataire/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:24 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f55651444a9cff09df8e7","statut":"en attente","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"687f50651444a9cff09df8e1","numeroEntreprise":"NEQ12345678","titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-07-21T20:00:00.000-04:00","dateFin":"2025-08-13T20:00:00.000-04:00","ruesAffectees":["rue Ontario","rue Beaubien"],"coutEstime":98000.0,"createdAt":"2025-07-22T05:09:57.771-04:00","updatedAt":"2025-07-29T18:52:01.611-04:00"},{"id":"688a4a05817e788415e48c1a","statut":"en attente","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"6887308aa4f0e1695c8799fb","numeroEntreprise":"NEQ12345678","titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ruesAffectees":["123 rue Ontario","test"],"coutEstime":1000.0,"createdAt":"2025-07-30T12:36:21.759-04:00","updatedAt":"2025-07-30T12:36:21.759-04:00"}]
+------------------------
+
+2025-07-30 12:36:24 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/candidature/getByPrestataire/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:24 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f55651444a9cff09df8e7","statut":"en attente","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"687f50651444a9cff09df8e1","numeroEntreprise":"NEQ12345678","titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-07-21T20:00:00.000-04:00","dateFin":"2025-08-13T20:00:00.000-04:00","ruesAffectees":["rue Ontario","rue Beaubien"],"coutEstime":98000.0,"createdAt":"2025-07-22T05:09:57.771-04:00","updatedAt":"2025-07-29T18:52:01.611-04:00"},{"id":"688a4a05817e788415e48c1a","statut":"en attente","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"6887308aa4f0e1695c8799fb","numeroEntreprise":"NEQ12345678","titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ruesAffectees":["123 rue Ontario","test"],"coutEstime":1000.0,"createdAt":"2025-07-30T12:36:21.759-04:00","updatedAt":"2025-07-30T12:36:21.759-04:00"}]
+------------------------
+
+2025-07-30 12:36:30 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/probleme/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:30 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f50651444a9cff09df8e1","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","priorite":"moyenne","signalements":["687f4a6765c12e91918fa81d","687f4d2665c12e91918fa820"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"createdAt":"2025-07-22T04:48:38.620-04:00","updatedAt":"2025-07-28T04:16:15.009-04:00"},{"id":"68873048a4f0e1695c8799f6","typeTravaux":"Travaux Routiers","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","priorite":"faible","signalements":["687f44bc9a7fd43060f32b88"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:09:45.045-04:00","updatedAt":"2025-07-28T04:09:45.045-04:00"},{"id":"6887308aa4f0e1695c8799fb","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","priorite":"élevée","signalements":["687f491c65c12e91918fa81b"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:10:50.826-04:00","updatedAt":"2025-07-28T04:10:50.826-04:00"}]
+------------------------
+
+2025-07-30 12:36:30 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/probleme/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:30 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f50651444a9cff09df8e1","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il y a une coupure de courant dans le quartier depuis les derniers travaux sur la rue Ontario. Cela nous empêche de réaliser nos activités quotidiennes.","priorite":"moyenne","signalements":["687f4a6765c12e91918fa81d","687f4d2665c12e91918fa820"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"createdAt":"2025-07-22T04:48:38.620-04:00","updatedAt":"2025-07-28T04:16:15.009-04:00"},{"id":"68873048a4f0e1695c8799f6","typeTravaux":"Travaux Routiers","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Un panneau de signalisation se trouve être usé. Il n'est donc plus possible pour les automobilistes de conduire sûrement. Pouvez-vous y travailler?","priorite":"faible","signalements":["687f44bc9a7fd43060f32b88"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:09:45.045-04:00","updatedAt":"2025-07-28T04:09:45.045-04:00"},{"id":"6887308aa4f0e1695c8799fb","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","priorite":"élevée","signalements":["687f491c65c12e91918fa81b"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:10:50.826-04:00","updatedAt":"2025-07-28T04:10:50.826-04:00"}]
+------------------------
+
+2025-07-30 12:36:52 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:52 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-30 12:36:52 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:52 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-30 12:36:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/candidature/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f55651444a9cff09df8e7","statut":"en attente","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"687f50651444a9cff09df8e1","numeroEntreprise":"NEQ12345678","titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-07-21T20:00:00.000-04:00","dateFin":"2025-08-13T20:00:00.000-04:00","ruesAffectees":["rue Ontario","rue Beaubien"],"coutEstime":98000.0,"createdAt":"2025-07-22T05:09:57.771-04:00","updatedAt":"2025-07-29T18:52:01.611-04:00"},{"id":"688a4a05817e788415e48c1a","statut":"en attente","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"6887308aa4f0e1695c8799fb","numeroEntreprise":"NEQ12345678","titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ruesAffectees":["123 rue Ontario","test"],"coutEstime":1000.0,"createdAt":"2025-07-30T12:36:21.759-04:00","updatedAt":"2025-07-30T12:36:21.759-04:00"}]
+------------------------
+
+2025-07-30 12:36:54 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/candidature/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:54 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f55651444a9cff09df8e7","statut":"en attente","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"687f50651444a9cff09df8e1","numeroEntreprise":"NEQ12345678","titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-07-21T20:00:00.000-04:00","dateFin":"2025-08-13T20:00:00.000-04:00","ruesAffectees":["rue Ontario","rue Beaubien"],"coutEstime":98000.0,"createdAt":"2025-07-22T05:09:57.771-04:00","updatedAt":"2025-07-29T18:52:01.611-04:00"},{"id":"688a4a05817e788415e48c1a","statut":"en attente","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"6887308aa4f0e1695c8799fb","numeroEntreprise":"NEQ12345678","titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ruesAffectees":["123 rue Ontario","test"],"coutEstime":1000.0,"createdAt":"2025-07-30T12:36:21.759-04:00","updatedAt":"2025-07-30T12:36:21.759-04:00"}]
+------------------------
+
+2025-07-30 12:36:56 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:56 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"688938a0563fb6a02a032a84","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/6889389f563fb6a02a032a83","createdAt":"2025-07-29T17:09:52.366-04:00","updatedAt":"2025-07-29T17:10:31.156-04:00"},{"id":"688a4a06817e788415e48c1b","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/688a4a05817e788415e48c1a","createdAt":"2025-07-30T12:36:22.058-04:00","updatedAt":"2025-07-30T12:36:22.059-04:00"}]
+------------------------
+
+2025-07-30 12:36:56 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:56 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"688938a0563fb6a02a032a84","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/6889389f563fb6a02a032a83","createdAt":"2025-07-29T17:09:52.366-04:00","updatedAt":"2025-07-29T17:10:31.156-04:00"},{"id":"688a4a06817e788415e48c1b","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"non lue","url":"/stpm/candidature/688a4a05817e788415e48c1a","createdAt":"2025-07-30T12:36:22.058-04:00","updatedAt":"2025-07-30T12:36:22.059-04:00"}]
+------------------------
+
+2025-07-30 12:36:57 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/688a4a06817e788415e48c1b
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:57 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a06817e788415e48c1b","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/688a4a05817e788415e48c1a","createdAt":"2025-07-30T12:36:22.058-04:00","updatedAt":"2025-07-30T12:36:57.396-04:00"}
+------------------------
+
+2025-07-30 12:36:57 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/688a4a06817e788415e48c1b
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:57 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:57 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a06817e788415e48c1b","user":"507f1f77bcf86cd799439011","message":"Une nouvelle candidature a été déposée par un prestataire.","statut":"lue","url":"/stpm/candidature/688a4a05817e788415e48c1a","createdAt":"2025-07-30T12:36:22.058-04:00","updatedAt":"2025-07-30T12:36:57.396-04:00"}
+------------------------
+
+2025-07-30 12:36:57 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 12:36:57 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/507f1f77bcf86cd799439011
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:57 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 12:36:58 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/candidature/688a4a05817e788415e48c1a?stpm=true
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:58 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a05817e788415e48c1a","statut":"vue","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"6887308aa4f0e1695c8799fb","numeroEntreprise":"NEQ12345678","titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ruesAffectees":["123 rue Ontario","test"],"coutEstime":1000.0,"createdAt":"2025-07-30T12:36:21.759-04:00","updatedAt":"2025-07-30T12:36:58.094-04:00"}
+------------------------
+
+2025-07-30 12:36:58 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/candidature/688a4a05817e788415e48c1a?stpm=true
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:36:58 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a05817e788415e48c1a","statut":"vue","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"6887308aa4f0e1695c8799fb","numeroEntreprise":"NEQ12345678","titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ruesAffectees":["123 rue Ontario","test"],"coutEstime":1000.0,"createdAt":"2025-07-30T12:36:21.759-04:00","updatedAt":"2025-07-30T12:36:58.094-04:00"}
+------------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/projet
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: POST
+  Access-Control-Request-Headers: content-type
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/projet
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+  Content-Length: 42
+  Content-Type: application/json
+Body:
+{"candidature":"688a4a05817e788415e48c1a"}
+---------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/candidature/688a4a05817e788415e48c1a
+Headers:
+  Connection: Upgrade, HTTP2-Settings
+  User-Agent: Java-http-client/23.0.1
+  Host: localhost:7070
+  HTTP2-Settings: AAEAAEAAAAIAAAAAAAMAAAAAAAQBAAAAAAUAAEAAAAYABgAA
+  Upgrade: h2c
+  Content-Type: application/json; charset=UTF-8
+---------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a05817e788415e48c1a","statut":"vue","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"6887308aa4f0e1695c8799fb","numeroEntreprise":"NEQ12345678","titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ruesAffectees":["123 rue Ontario","test"],"coutEstime":1000.0,"createdAt":"2025-07-30T12:36:21.759-04:00","updatedAt":"2025-07-30T12:36:58.094-04:00"}
+------------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/probleme/6887308aa4f0e1695c8799fb
+Headers:
+  Connection: Upgrade, HTTP2-Settings
+  User-Agent: Java-http-client/23.0.1
+  Host: localhost:7070
+  HTTP2-Settings: AAEAAEAAAAIAAAAAAAMAAAAAAAQBAAAAAAUAAEAAAAYABgAA
+  Upgrade: h2c
+  Content-Type: application/json; charset=UTF-8
+---------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"6887308aa4f0e1695c8799fb","typeTravaux":"Travaux Gaz Ou Electricité","localisation":"123 rue Ontario","quartier":"Ville-Marie","description":"Il semble il y avoir une fuite de gaz dans les appartements du sous-sol de l'appartement.","priorite":"élevée","signalements":["687f491c65c12e91918fa81b"],"statut":"en attente","residents":["687f39b1dd23af6de7e0ce64"],"createdAt":"2025-07-28T04:10:50.826-04:00","updatedAt":"2025-07-28T04:10:50.826-04:00"}
+------------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/probleme/getReporters/6887308aa4f0e1695c8799fb
+Headers:
+  Connection: Upgrade, HTTP2-Settings
+  User-Agent: Java-http-client/23.0.1
+  Host: localhost:7070
+  HTTP2-Settings: AAEAAEAAAAIAAAAAAAMAAAAAAAQBAAAAAAUAAEAAAAYABgAA
+  Upgrade: h2c
+  Content-Type: application/json; charset=UTF-8
+---------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+["687f39b1dd23af6de7e0ce64"]
+------------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/resident/getConcerned?quartier=Ville-Marie&rues=123+rue+Ontario,test
+Headers:
+  Connection: Upgrade, HTTP2-Settings
+  User-Agent: Java-http-client/23.0.1
+  Host: localhost:7070
+  HTTP2-Settings: AAEAAEAAAAIAAAAAAAMAAAAAAAQBAAAAAAUAAEAAAAYABgAA
+  Upgrade: h2c
+  Content-Type: application/json; charset=UTF-8
+---------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"]
+------------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/notification
+Headers:
+  Connection: Upgrade, HTTP2-Settings
+  User-Agent: Java-http-client/23.0.1
+  Host: localhost:7070
+  HTTP2-Settings: AAEAAEAAAAIAAAAAAAMAAAAAAAQBAAAAAAUAAEAAAAYABgAA
+  Content-Length: 233
+  Upgrade: h2c
+  Content-Type: application/json; charset=UTF-8
+Body:
+{"message": "Un nouveau projet intitulé Réparation de la fuite de gaz a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.","user": "687f39b1dd23af6de7e0ce64","url": "/resident/projet/688a4a2d817e788415e48c1c"}
+---------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"688a4a2d817e788415e48c1d","user":"687f39b1dd23af6de7e0ce64","message":"Un nouveau projet intitulé Réparation de la fuite de gaz a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.","statut":"non lue","url":"/resident/projet/688a4a2d817e788415e48c1c","createdAt":"2025-07-30T12:37:01.703-04:00","updatedAt":"2025-07-30T12:37:01.704-04:00"}
+------------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/notification
+Headers:
+  Connection: Upgrade, HTTP2-Settings
+  User-Agent: Java-http-client/23.0.1
+  Host: localhost:7070
+  HTTP2-Settings: AAEAAEAAAAIAAAAAAAMAAAAAAAQBAAAAAAUAAEAAAAYABgAA
+  Content-Length: 233
+  Upgrade: h2c
+  Content-Type: application/json; charset=UTF-8
+Body:
+{"message": "Un nouveau projet intitulé Réparation de la fuite de gaz a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.","user": "687f39b1dd23af6de7e0ce67","url": "/resident/projet/688a4a2d817e788415e48c1c"}
+---------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"688a4a2d817e788415e48c1e","user":"687f39b1dd23af6de7e0ce67","message":"Un nouveau projet intitulé Réparation de la fuite de gaz a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.","statut":"non lue","url":"/resident/projet/688a4a2d817e788415e48c1c","createdAt":"2025-07-30T12:37:01.787-04:00","updatedAt":"2025-07-30T12:37:01.788-04:00"}
+------------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: PATCH
+URL: http://localhost:7070/api/candidature/markAsAccepted/688a4a05817e788415e48c1a
+Headers:
+  Connection: Upgrade, HTTP2-Settings
+  User-Agent: Java-http-client/23.0.1
+  Host: localhost:7070
+  HTTP2-Settings: AAEAAEAAAAIAAAAAAAMAAAAAAAQBAAAAAAUAAEAAAAYABgAA
+  Content-Length: 0
+  Upgrade: h2c
+  Content-Type: application/json; charset=UTF-8
+---------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/notification
+Headers:
+  Connection: Upgrade, HTTP2-Settings
+  User-Agent: Java-http-client/23.0.1
+  Host: localhost:7070
+  HTTP2-Settings: AAEAAEAAAAIAAAAAAAMAAAAAAAQBAAAAAAUAAEAAAAYABgAA
+  Content-Length: 201
+  Upgrade: h2c
+  Content-Type: application/json; charset=UTF-8
+Body:
+{"message": "Votre candidature au projet Réparation de la fuite de gaz a été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.","user": "687f39b1dd23af6de7e0ce69"}
+---------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"688a4a2d817e788415e48c1f","user":"687f39b1dd23af6de7e0ce69","message":"Votre candidature au projet Réparation de la fuite de gaz a été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.","statut":"non lue","url":null,"createdAt":"2025-07-30T12:37:01.877-04:00","updatedAt":"2025-07-30T12:37:01.877-04:00"}
+------------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a05817e788415e48c1a","statut":"acceptée","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"6887308aa4f0e1695c8799fb","numeroEntreprise":"NEQ12345678","titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ruesAffectees":["123 rue Ontario","test"],"coutEstime":1000.0,"createdAt":"2025-07-30T12:36:21.759-04:00","updatedAt":"2025-07-30T12:37:01.849-04:00"}
+------------------------
+
+2025-07-30 12:37:01 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"688a4a2d817e788415e48c1c","ruesAffectees":["123 rue Ontario","test"],"abonnes":["687f39b1dd23af6de7e0ce64"],"titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ficheProbleme":"6887308aa4f0e1695c8799fb","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":1000.0,"priorite":"élevée","nbRapports":0,"createdAt":"2025-07-30T12:37:01.558-04:00","updatedAt":"2025-07-30T12:37:01.605-04:00"}
+------------------------
+
+2025-07-30 12:37:03 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/candidature/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:03 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f55651444a9cff09df8e7","statut":"en attente","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"687f50651444a9cff09df8e1","numeroEntreprise":"NEQ12345678","titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-07-21T20:00:00.000-04:00","dateFin":"2025-08-13T20:00:00.000-04:00","ruesAffectees":["rue Ontario","rue Beaubien"],"coutEstime":98000.0,"createdAt":"2025-07-22T05:09:57.771-04:00","updatedAt":"2025-07-29T18:52:01.611-04:00"}]
+------------------------
+
+2025-07-30 12:37:03 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/candidature/getAll/
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:03 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f55651444a9cff09df8e7","statut":"en attente","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","ficheProbleme":"687f50651444a9cff09df8e1","numeroEntreprise":"NEQ12345678","titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","dateDebut":"2025-07-21T20:00:00.000-04:00","dateFin":"2025-08-13T20:00:00.000-04:00","ruesAffectees":["rue Ontario","rue Beaubien"],"coutEstime":98000.0,"createdAt":"2025-07-22T05:09:57.771-04:00","updatedAt":"2025-07-29T18:52:01.611-04:00"}]
+------------------------
+
+2025-07-30 12:37:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/prestataire/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f39b1dd23af6de7e0ce69","nom":"Groupe InfraTech","adresseCourriel":"infratech@groupe.com","abonnementsQuartier":["Ville-Marie","Rosemont–La Petite-Patrie","Le Plateau-Mont-Royal","Lachine"],"numeroEntreprise":"NEQ12345678","quartiers":["Ville-Marie","Rosemont–La Petite-Patrie"],"typesTravaux":["Travaux Routiers","Travaux Souterrains","Travaux Gaz Ou Electricité"],"abonnementsType":["Travaux Routiers","Travaux Souterrains","Entretien Paysager"]},{"id":"687f39b1dd23af6de7e0ce6a","nom":"Reno-Montréal","adresseCourriel":"contact@reno-mtl.ca","abonnementsQuartier":["Ville-Marie","Verdun"],"numeroEntreprise":"NEQ22334455","quartiers":["Ville-Marie","Verdun"],"typesTravaux":["Travaux Routiers","Travaux Résidentiel"],"abonnementsType":["Travaux Routiers","Travaux Résidentiel"]},{"id":"687f39b1dd23af6de7e0ce6b","nom":"ÉcoJardin Montréal","adresseCourriel":"services@ecojardin.ca","abonnementsQuartier":["Le Plateau-Mont-Royal","Verdun"],"numeroEntreprise":"NEQ99887766","quartiers":["Le Plateau-Mont-Royal","Verdun"],"typesTravaux":["Entretien Paysager","Travaux Résidentiel"],"abonnementsType":["Entretien Paysager","Travaux Résidentiel"]},{"id":"687f39b1dd23af6de7e0ce6c","nom":"SignalPro Inc.","adresseCourriel":"admin@signalpro.ca","abonnementsQuartier":["Le Plateau-Mont-Royal","Ahuntsic–Cartierville"],"numeroEntreprise":"NEQ77665544","quartiers":["Le Plateau-Mont-Royal","Ahuntsic–Cartierville"],"typesTravaux":["Travaux De Signalisation Et Eclairage","Travaux Souterrains"],"abonnementsType":["Travaux De Signalisation Et Eclairage","Travaux Souterrains"]},{"id":"687f39b1dd23af6de7e0ce6d","nom":"Services Urbains Inc.","adresseCourriel":"contact@servicesurbains.com","abonnementsQuartier":["LaSalle","Ville-Marie"],"numeroEntreprise":"NEQ3344556677","quartiers":["LaSalle","Ville-Marie"],"typesTravaux":["Entretien Urbain","Travaux Résidentiel"],"abonnementsType":["Entretien Urbain","Travaux Résidentiel"]}]
+------------------------
+
+2025-07-30 12:37:20 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/prestataire/getAll
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:20 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f39b1dd23af6de7e0ce69","nom":"Groupe InfraTech","adresseCourriel":"infratech@groupe.com","abonnementsQuartier":["Ville-Marie","Rosemont–La Petite-Patrie","Le Plateau-Mont-Royal","Lachine"],"numeroEntreprise":"NEQ12345678","quartiers":["Ville-Marie","Rosemont–La Petite-Patrie"],"typesTravaux":["Travaux Routiers","Travaux Souterrains","Travaux Gaz Ou Electricité"],"abonnementsType":["Travaux Routiers","Travaux Souterrains","Entretien Paysager"]},{"id":"687f39b1dd23af6de7e0ce6a","nom":"Reno-Montréal","adresseCourriel":"contact@reno-mtl.ca","abonnementsQuartier":["Ville-Marie","Verdun"],"numeroEntreprise":"NEQ22334455","quartiers":["Ville-Marie","Verdun"],"typesTravaux":["Travaux Routiers","Travaux Résidentiel"],"abonnementsType":["Travaux Routiers","Travaux Résidentiel"]},{"id":"687f39b1dd23af6de7e0ce6b","nom":"ÉcoJardin Montréal","adresseCourriel":"services@ecojardin.ca","abonnementsQuartier":["Le Plateau-Mont-Royal","Verdun"],"numeroEntreprise":"NEQ99887766","quartiers":["Le Plateau-Mont-Royal","Verdun"],"typesTravaux":["Entretien Paysager","Travaux Résidentiel"],"abonnementsType":["Entretien Paysager","Travaux Résidentiel"]},{"id":"687f39b1dd23af6de7e0ce6c","nom":"SignalPro Inc.","adresseCourriel":"admin@signalpro.ca","abonnementsQuartier":["Le Plateau-Mont-Royal","Ahuntsic–Cartierville"],"numeroEntreprise":"NEQ77665544","quartiers":["Le Plateau-Mont-Royal","Ahuntsic–Cartierville"],"typesTravaux":["Travaux De Signalisation Et Eclairage","Travaux Souterrains"],"abonnementsType":["Travaux De Signalisation Et Eclairage","Travaux Souterrains"]},{"id":"687f39b1dd23af6de7e0ce6d","nom":"Services Urbains Inc.","adresseCourriel":"contact@servicesurbains.com","abonnementsQuartier":["LaSalle","Ville-Marie"],"numeroEntreprise":"NEQ3344556677","quartiers":["LaSalle","Ville-Marie"],"typesTravaux":["Entretien Urbain","Travaux Résidentiel"],"abonnementsType":["Entretien Urbain","Travaux Résidentiel"]}]
+------------------------
+
+2025-07-30 12:37:21 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:21 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-30 12:37:21 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:21 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": true}
+------------------------
+
+2025-07-30 12:37:24 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:24 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"688938d5563fb6a02a032a85","user":"687f39b1dd23af6de7e0ce69","message":"Merci pour votre intérêt pour les problèmes de la ville de Montréal. Nous avons le regret de vous annoncer que votre candidature au projet Projet de réforme du quartier a été réjetée. La raison est la suivante : pas de description","statut":"lue","url":null,"createdAt":"2025-07-29T17:10:45.311-04:00","updatedAt":"2025-07-29T17:11:03.602-04:00"},{"id":"688950a84c37526a682a8e3f","user":"687f39b1dd23af6de7e0ce69","message":"Votre candidature au projet Résolution de la coupure d'électricité - Ontario a été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.","statut":"lue","url":null,"createdAt":"2025-07-29T18:52:24.520-04:00","updatedAt":"2025-07-29T18:52:48.921-04:00"},{"id":"688a4a2d817e788415e48c1f","user":"687f39b1dd23af6de7e0ce69","message":"Votre candidature au projet Réparation de la fuite de gaz a été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.","statut":"non lue","url":null,"createdAt":"2025-07-30T12:37:01.877-04:00","updatedAt":"2025-07-30T12:37:01.877-04:00"}]
+------------------------
+
+2025-07-30 12:37:24 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/getAll/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:24 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"688938d5563fb6a02a032a85","user":"687f39b1dd23af6de7e0ce69","message":"Merci pour votre intérêt pour les problèmes de la ville de Montréal. Nous avons le regret de vous annoncer que votre candidature au projet Projet de réforme du quartier a été réjetée. La raison est la suivante : pas de description","statut":"lue","url":null,"createdAt":"2025-07-29T17:10:45.311-04:00","updatedAt":"2025-07-29T17:11:03.602-04:00"},{"id":"688950a84c37526a682a8e3f","user":"687f39b1dd23af6de7e0ce69","message":"Votre candidature au projet Résolution de la coupure d'électricité - Ontario a été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.","statut":"lue","url":null,"createdAt":"2025-07-29T18:52:24.520-04:00","updatedAt":"2025-07-29T18:52:48.921-04:00"},{"id":"688a4a2d817e788415e48c1f","user":"687f39b1dd23af6de7e0ce69","message":"Votre candidature au projet Réparation de la fuite de gaz a été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.","statut":"non lue","url":null,"createdAt":"2025-07-30T12:37:01.877-04:00","updatedAt":"2025-07-30T12:37:01.877-04:00"}]
+------------------------
+
+2025-07-30 12:37:25 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/688a4a2d817e788415e48c1f
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:25 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a2d817e788415e48c1f","user":"687f39b1dd23af6de7e0ce69","message":"Votre candidature au projet Réparation de la fuite de gaz a été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.","statut":"lue","url":null,"createdAt":"2025-07-30T12:37:01.877-04:00","updatedAt":"2025-07-30T12:37:25.730-04:00"}
+------------------------
+
+2025-07-30 12:37:25 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/688a4a2d817e788415e48c1f
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:25 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:25 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a2d817e788415e48c1f","user":"687f39b1dd23af6de7e0ce69","message":"Votre candidature au projet Réparation de la fuite de gaz a été acceptée. Veuillez consulter vos projets récents pour visualiser le projet créé.","statut":"lue","url":null,"createdAt":"2025-07-30T12:37:01.877-04:00","updatedAt":"2025-07-30T12:37:25.730-04:00"}
+------------------------
+
+2025-07-30 12:37:25 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 12:37:25 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:25 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 12:37:28 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/projet/pgetByPrestataire/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:28 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 404 Not Found
+Body:
+{
+    "title": "Endpoint GET /projet/pgetByPrestataire/687f39b1dd23af6de7e0ce69 not found",
+    "status": 404,
+    "type": "https://javalin.io/documentation#endpointnotfound",
+    "details": {}
+}
+------------------------
+
+2025-07-30 12:37:28 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/projet/pgetByPrestataire/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:37:28 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 404 Not Found
+Body:
+{
+    "title": "Endpoint GET /projet/pgetByPrestataire/687f39b1dd23af6de7e0ce69 not found",
+    "status": 404,
+    "type": "https://javalin.io/documentation#endpointnotfound",
+    "details": {}
+}
+------------------------
+
+2025-07-30 12:38:32 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/projet/getByPrestataire/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:38:32 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f63b0776dddd8d3b230cc","ruesAffectees":["rue Ontario","rue Beaubien"],"abonnes":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-07-22T04:48:38.620-04:00","dateFin":"2025-08-30T03:48:38.620-04:00","ficheProbleme":"687f50651444a9cff09df8e1","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":98000.0,"priorite":"moyenne","nbRapports":9,"createdAt":"2025-07-22T06:10:56.506-04:00","updatedAt":"2025-07-22T06:23:58.599-04:00"},{"id":"68874898e088b3c34e78d095","ruesAffectees":["rue Ontario","rue Beaubien"],"abonnes":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-09-22T04:48:38.620-04:00","dateFin":"2025-11-30T02:48:38.620-05:00","ficheProbleme":"687f50651444a9cff09df8e1","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":98000.0,"priorite":"moyenne","nbRapports":0,"createdAt":"2025-07-28T05:53:28.696-04:00","updatedAt":"2025-07-28T05:53:28.741-04:00"},{"id":"688950a84c37526a682a8e3b","ruesAffectees":["rue Ontario","rue Beaubien"],"abonnes":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-07-21T20:00:00.000-04:00","dateFin":"2025-08-13T20:00:00.000-04:00","ficheProbleme":"687f50651444a9cff09df8e1","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":98000.0,"priorite":"moyenne","nbRapports":0,"createdAt":"2025-07-29T18:52:24.115-04:00","updatedAt":"2025-07-29T18:52:24.156-04:00"},{"id":"688a4a2d817e788415e48c1c","ruesAffectees":["123 rue Ontario","test"],"abonnes":["687f39b1dd23af6de7e0ce64"],"titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ficheProbleme":"6887308aa4f0e1695c8799fb","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":1000.0,"priorite":"élevée","nbRapports":0,"createdAt":"2025-07-30T12:37:01.558-04:00","updatedAt":"2025-07-30T12:37:01.605-04:00"}]
+------------------------
+
+2025-07-30 12:40:23 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:40:23 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/projet/getByPrestataire/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:40:23 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 12:40:24 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:40:24 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 12:40:24 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f63b0776dddd8d3b230cc","ruesAffectees":["rue Ontario","rue Beaubien"],"abonnes":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-07-22T04:48:38.620-04:00","dateFin":"2025-08-30T03:48:38.620-04:00","ficheProbleme":"687f50651444a9cff09df8e1","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":98000.0,"priorite":"moyenne","nbRapports":9,"createdAt":"2025-07-22T06:10:56.506-04:00","updatedAt":"2025-07-22T06:23:58.599-04:00"},{"id":"68874898e088b3c34e78d095","ruesAffectees":["rue Ontario","rue Beaubien"],"abonnes":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-09-22T04:48:38.620-04:00","dateFin":"2025-11-30T02:48:38.620-05:00","ficheProbleme":"687f50651444a9cff09df8e1","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":98000.0,"priorite":"moyenne","nbRapports":0,"createdAt":"2025-07-28T05:53:28.696-04:00","updatedAt":"2025-07-28T05:53:28.741-04:00"},{"id":"688950a84c37526a682a8e3b","ruesAffectees":["rue Ontario","rue Beaubien"],"abonnes":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-07-21T20:00:00.000-04:00","dateFin":"2025-08-13T20:00:00.000-04:00","ficheProbleme":"687f50651444a9cff09df8e1","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":98000.0,"priorite":"moyenne","nbRapports":0,"createdAt":"2025-07-29T18:52:24.115-04:00","updatedAt":"2025-07-29T18:52:24.156-04:00"},{"id":"688a4a2d817e788415e48c1c","ruesAffectees":["123 rue Ontario","test"],"abonnes":["687f39b1dd23af6de7e0ce64"],"titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ficheProbleme":"6887308aa4f0e1695c8799fb","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":1000.0,"priorite":"élevée","nbRapports":0,"createdAt":"2025-07-30T12:37:01.558-04:00","updatedAt":"2025-07-30T12:37:01.605-04:00"}]
+------------------------
+
+2025-07-30 12:40:24 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/projet/getByPrestataire/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:40:24 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+[{"id":"687f63b0776dddd8d3b230cc","ruesAffectees":["rue Ontario","rue Beaubien"],"abonnes":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-07-22T04:48:38.620-04:00","dateFin":"2025-08-30T03:48:38.620-04:00","ficheProbleme":"687f50651444a9cff09df8e1","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":98000.0,"priorite":"moyenne","nbRapports":9,"createdAt":"2025-07-22T06:10:56.506-04:00","updatedAt":"2025-07-22T06:23:58.599-04:00"},{"id":"68874898e088b3c34e78d095","ruesAffectees":["rue Ontario","rue Beaubien"],"abonnes":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-09-22T04:48:38.620-04:00","dateFin":"2025-11-30T02:48:38.620-05:00","ficheProbleme":"687f50651444a9cff09df8e1","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":98000.0,"priorite":"moyenne","nbRapports":0,"createdAt":"2025-07-28T05:53:28.696-04:00","updatedAt":"2025-07-28T05:53:28.741-04:00"},{"id":"688950a84c37526a682a8e3b","ruesAffectees":["rue Ontario","rue Beaubien"],"abonnes":["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"],"titreProjet":"Résolution de la coupure d'électricité - Ontario","description":"Depuis les travaux sur la rue Ontario, les câbles électriques ont été endommagés. Pour cette raison, les habitants du quartier n'ont plus accès au courant. Le projet a pour but de réparer les dégâts et si possible de renforcer les câbles électriques du quartier, faisant par la même une sorte de maintenance.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-07-21T20:00:00.000-04:00","dateFin":"2025-08-13T20:00:00.000-04:00","ficheProbleme":"687f50651444a9cff09df8e1","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":98000.0,"priorite":"moyenne","nbRapports":0,"createdAt":"2025-07-29T18:52:24.115-04:00","updatedAt":"2025-07-29T18:52:24.156-04:00"},{"id":"688a4a2d817e788415e48c1c","ruesAffectees":["123 rue Ontario","test"],"abonnes":["687f39b1dd23af6de7e0ce64"],"titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ficheProbleme":"6887308aa4f0e1695c8799fb","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":1000.0,"priorite":"élevée","nbRapports":0,"createdAt":"2025-07-30T12:37:01.558-04:00","updatedAt":"2025-07-30T12:37:01.605-04:00"}]
+------------------------
+
+2025-07-30 12:40:34 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/projet/688a4a2d817e788415e48c1c
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:40:34 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a2d817e788415e48c1c","ruesAffectees":["123 rue Ontario","test"],"abonnes":["687f39b1dd23af6de7e0ce64"],"titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ficheProbleme":"6887308aa4f0e1695c8799fb","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":1000.0,"priorite":"élevée","nbRapports":0,"createdAt":"2025-07-30T12:37:01.558-04:00","updatedAt":"2025-07-30T12:37:01.605-04:00"}
+------------------------
+
+2025-07-30 12:40:34 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/projet/688a4a2d817e788415e48c1c
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:40:34 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a2d817e788415e48c1c","ruesAffectees":["123 rue Ontario","test"],"abonnes":["687f39b1dd23af6de7e0ce64"],"titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ficheProbleme":"6887308aa4f0e1695c8799fb","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":1000.0,"priorite":"élevée","nbRapports":0,"createdAt":"2025-07-30T12:37:01.558-04:00","updatedAt":"2025-07-30T12:37:01.605-04:00"}
+------------------------
+
+2025-07-30 12:42:13 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/projet/688a4a2d817e788415e48c1c
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:42:13 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:42:33 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:42:33 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/projet/688a4a2d817e788415e48c1c
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:42:44 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 500 Server Error
+Body:
+{"message": "Une erreur est interne survenue! Veuillez réessayer plus tard."}
+------------------------
+
+2025-07-30 12:42:44 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 500 Server Error
+Body:
+{"message": "Une erreur est interne survenue! Veuillez réessayer plus tard."}
+------------------------
+
+2025-07-30 12:43:03 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 500 Server Error
+Body:
+{"message": "Une erreur est interne survenue! Veuillez réessayer plus tard."}
+------------------------
+
+2025-07-30 12:43:03 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 500 Server Error
+Body:
+{"message": "Une erreur est interne survenue! Veuillez réessayer plus tard."}
+------------------------
+
+2025-07-30 12:45:34 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:45:34 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/projet/688a4a2d817e788415e48c1c
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:45:37 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 12:45:37 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:45:37 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a2d817e788415e48c1c","ruesAffectees":["123 rue Ontario","test"],"abonnes":["687f39b1dd23af6de7e0ce64"],"titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ficheProbleme":"6887308aa4f0e1695c8799fb","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":1000.0,"priorite":"élevée","nbRapports":0,"createdAt":"2025-07-30T12:37:01.558-04:00","updatedAt":"2025-07-30T12:37:01.605-04:00"}
+------------------------
+
+2025-07-30 12:45:37 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/projet/688a4a2d817e788415e48c1c
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:45:37 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 12:45:38 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a2d817e788415e48c1c","ruesAffectees":["123 rue Ontario","test"],"abonnes":["687f39b1dd23af6de7e0ce64"],"titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"en cours","dateDebut":"2025-08-07T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ficheProbleme":"6887308aa4f0e1695c8799fb","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":1000.0,"priorite":"élevée","nbRapports":0,"createdAt":"2025-07-30T12:37:01.558-04:00","updatedAt":"2025-07-30T12:37:01.605-04:00"}
+------------------------
+
+2025-07-30 12:47:44 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: OPTIONS
+URL: http://localhost:7070/api/projet/688a4a2d817e788415e48c1c
+Headers:
+  Origin: http://localhost:5173
+  Accept: */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  Access-Control-Request-Method: PATCH
+  Access-Control-Request-Headers: content-type
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:47:45 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 204 No Content
+------------------------
+
+2025-07-30 12:47:45 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: PATCH
+URL: http://localhost:7070/api/projet/688a4a2d817e788415e48c1c
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+  Content-Length: 677
+  Content-Type: application/json
+Body:
+{"id":"688a4a2d817e788415e48c1c","ruesAffectees":["123 rue Ontario"],"abonnes":["687f39b1dd23af6de7e0ce64"],"titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"terminé","dateDebut":"2025-08-07T00:00:00.000Z","dateFin":"2025-08-16T00:00:00.000Z","ficheProbleme":"6887308aa4f0e1695c8799fb","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":1000,"priorite":"élevée","nbRapports":0,"createdAt":"2025-07-30T12:37:01.558-04:00","updatedAt":"2025-07-30T12:37:01.605-04:00"}
+---------------------
+
+2025-07-30 12:47:46 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/resident/getConcerned?quartier=Ville-Marie&rues=123+rue+Ontario
+Headers:
+  Connection: Upgrade, HTTP2-Settings
+  User-Agent: Java-http-client/23.0.1
+  Host: localhost:7070
+  HTTP2-Settings: AAEAAEAAAAIAAAAAAAMAAAAAAAQBAAAAAAUAAEAAAAYABgAA
+  Upgrade: h2c
+  Content-Type: application/json; charset=UTF-8
+---------------------
+
+2025-07-30 12:47:46 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+["687f39b1dd23af6de7e0ce64","687f39b1dd23af6de7e0ce67"]
+------------------------
+
+2025-07-30 12:47:47 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/notification
+Headers:
+  Connection: Upgrade, HTTP2-Settings
+  User-Agent: Java-http-client/23.0.1
+  Host: localhost:7070
+  HTTP2-Settings: AAEAAEAAAAIAAAAAAAMAAAAAAAQBAAAAAAUAAEAAAAYABgAA
+  Content-Length: 209
+  Upgrade: h2c
+  Content-Type: application/json; charset=UTF-8
+Body:
+{"message": "Les informations du projet Réparation de la fuite de gaz dans votre quartier ou votre rue a été modifié.","user": "687f39b1dd23af6de7e0ce64","url": "/resident/projet/688a4a2d817e788415e48c1c"}
+---------------------
+
+2025-07-30 12:47:47 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"688a4cb3817e788415e48c20","user":"687f39b1dd23af6de7e0ce64","message":"Les informations du projet Réparation de la fuite de gaz dans votre quartier ou votre rue a été modifié.","statut":"non lue","url":"/resident/projet/688a4a2d817e788415e48c1c","createdAt":"2025-07-30T12:47:47.088-04:00","updatedAt":"2025-07-30T12:47:47.096-04:00"}
+------------------------
+
+2025-07-30 12:47:47 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: POST
+URL: http://localhost:7070/api/notification
+Headers:
+  Connection: Upgrade, HTTP2-Settings
+  User-Agent: Java-http-client/23.0.1
+  Host: localhost:7070
+  HTTP2-Settings: AAEAAEAAAAIAAAAAAAMAAAAAAAQBAAAAAAUAAEAAAAYABgAA
+  Content-Length: 209
+  Upgrade: h2c
+  Content-Type: application/json; charset=UTF-8
+Body:
+{"message": "Les informations du projet Réparation de la fuite de gaz dans votre quartier ou votre rue a été modifié.","user": "687f39b1dd23af6de7e0ce67","url": "/resident/projet/688a4a2d817e788415e48c1c"}
+---------------------
+
+2025-07-30 12:47:47 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 201 Created
+Body:
+{"id":"688a4cb3817e788415e48c21","user":"687f39b1dd23af6de7e0ce67","message":"Les informations du projet Réparation de la fuite de gaz dans votre quartier ou votre rue a été modifié.","statut":"non lue","url":"/resident/projet/688a4a2d817e788415e48c1c","createdAt":"2025-07-30T12:47:47.351-04:00","updatedAt":"2025-07-30T12:47:47.375-04:00"}
+------------------------
+
+2025-07-30 12:47:47 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a2d817e788415e48c1c","ruesAffectees":["123 rue Ontario"],"abonnes":["687f39b1dd23af6de7e0ce64"],"titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"terminé","dateDebut":"2025-08-06T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ficheProbleme":"6887308aa4f0e1695c8799fb","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":1000.0,"priorite":"élevée","nbRapports":0,"createdAt":"2025-07-30T12:37:01.558-04:00","updatedAt":"2025-07-30T12:47:46.280-04:00"}
+------------------------
+
+2025-07-30 12:47:51 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:47:51 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/projet/688a4a2d817e788415e48c1c
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:47:51 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 12:47:51 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:47:51 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 12:47:52 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a2d817e788415e48c1c","ruesAffectees":["123 rue Ontario"],"abonnes":["687f39b1dd23af6de7e0ce64"],"titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"terminé","dateDebut":"2025-08-06T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ficheProbleme":"6887308aa4f0e1695c8799fb","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":1000.0,"priorite":"élevée","nbRapports":0,"createdAt":"2025-07-30T12:37:01.558-04:00","updatedAt":"2025-07-30T12:47:46.280-04:00"}
+------------------------
+
+2025-07-30 12:47:52 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/projet/688a4a2d817e788415e48c1c
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:47:52 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"id":"688a4a2d817e788415e48c1c","ruesAffectees":["123 rue Ontario"],"abonnes":["687f39b1dd23af6de7e0ce64"],"titreProjet":"Réparation de la fuite de gaz","description":"Le projet a pour but de repérer la source d'échappement du gaz et de la réparer.","typeTravaux":"Travaux Gaz Ou Electricité","statut":"terminé","dateDebut":"2025-08-06T20:00:00.000-04:00","dateFin":"2025-08-15T20:00:00.000-04:00","ficheProbleme":"6887308aa4f0e1695c8799fb","prestataire":"687f39b1dd23af6de7e0ce69","nomPrestataire":"Groupe InfraTech","quartier":"Ville-Marie","cout":1000.0,"priorite":"élevée","nbRapports":0,"createdAt":"2025-07-30T12:37:01.558-04:00","updatedAt":"2025-07-30T12:47:46.280-04:00"}
+------------------------
+
+2025-07-30 12:54:01 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:54:03 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+
+2025-07-30 12:54:03 INFO  HTTP - 
+--- Requête reçue ---
+Méthode: GET
+URL: http://localhost:7070/api/notification/hasNotifications/687f39b1dd23af6de7e0ce69
+Headers:
+  Origin: http://localhost:5173
+  Accept: application/json, text/plain, */*
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0
+  Referer: http://localhost:5173/
+  Sec-Fetch-Site: same-site
+  Sec-Fetch-Dest: empty
+  Host: localhost:7070
+  Accept-Encoding: gzip, deflate, br, zstd
+  Sec-Fetch-Mode: cors
+  sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"
+  sec-ch-ua-mobile: ?0
+  sec-ch-ua-platform: "Windows"
+  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+---------------------
+
+2025-07-30 12:54:03 INFO  HTTP - 
+--- Réponse envoyée ---
+Status: 200 OK
+Body:
+{"result": false}
+------------------------
+

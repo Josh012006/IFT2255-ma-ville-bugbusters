@@ -81,7 +81,7 @@ export default function SeeProjetsPage() {
             <p className="mb-4 text-center">Cliquez sur un projet pour en voir les rues affectées, la priorité et autres détails.</p>
             {loading && <Loader />}
             {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
-            {!loading && <>
+            {!loading && !error && <>
                 {projets.length === 0 && <p className="mb-4 text-center fw-bold">Aucun projet trouvé.</p>}
                 {projets.length !== 0 && <>
                     <Filter tab={projets} setFilteredTab={setFilteredProjets} />

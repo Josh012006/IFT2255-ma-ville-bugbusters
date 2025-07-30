@@ -50,7 +50,7 @@ export default function NotificationsPage() {
             <p className="mb-4 text-center">Cliquez sur une notification pour la lire et voir les détails</p>
             {loading && <Loader />}
             {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
-            {!loading && <>
+            {!loading && !error && <>
                 {notifications.length === 0 && <p className="mb-4 text-center fw-bold">Aucune notification.</p>}
                 {notifications.length !== 0 && <><List>
                     {paginatedNotifications.map((notif, index) => {
