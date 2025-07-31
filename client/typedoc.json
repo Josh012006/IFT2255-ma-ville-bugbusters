@@ -1,0 +1,6 @@
+{
+  "entryPoints": ["src"],
+  "out": "../rapport/docs-client",
+  "tsconfig": "./tsconfig.json",
+  "includeVersion": true
+}

@@ -19,6 +19,10 @@ const rootReducer = combineReducers({
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // 4. Création du store avec le middleware adapté
+/**
+ * Il s'agit du store qui stocke le sinformations sur l'utilisateur de l'application.
+ * Il implémente aussi une persistance de ses données pendant une certaine durée.
+ */
 export const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>

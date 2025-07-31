@@ -26,6 +26,10 @@ import PrestataireCandidaturePage from "./pages/prestataire/PrestataireCandidatu
 import SeeProblemesPage from "./pages/prestataire/SeeProblemesPage";
 import SeeProblemePage from "./pages/prestataire/SeeProblemePage";
 
+
+/**
+ * La configuration du routage de l'application avec React-router
+ */
 function App() {
 
   return (

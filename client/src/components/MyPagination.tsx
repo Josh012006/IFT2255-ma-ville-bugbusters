@@ -7,6 +7,15 @@ interface PaginationWrapperProps<T> {
   itemsPerPage?: number;
 }
 
+
+/**
+ * La classe qui s'occupe de la gestion de la pagination pour toutes les listes de l'application.
+ * @param data qui représente le tableau initial
+ * @param setPaginatedData qui représente un setter dans la classe qui utilise le composant pour set un state qui est censé 
+ * contenir les éléments de la page de la pagination actuellement affichée
+ * @param itemsPerPage qui précise le nombre maximal d'éléments par page.
+ * @return ReactNode
+ */
 export default function MyPagination<T>({
   data,
   setPaginatedData,

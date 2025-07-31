@@ -16,6 +16,10 @@ const initialState : InitialState = {
     infos: null
 };
 
+/**
+ * Le slice pour la gestion de l'authentification. Permet de stocker et d'update les informations sur l'utilisateur
+ * actuellement connecté. Très utile pour assurer la sécurité entre les pages et les rôles.
+ */
 const authSlice = createSlice({
     name: "auth",
     initialState,
