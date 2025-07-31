@@ -179,3 +179,25 @@ GitHub : [Josh012006](https://github.com/Josh012006)
 ## License et Droits d'auteurs
 
 Ce projet est sous la license MIT.
+
+Les informations par rapport aux images utilisées pour l'interface (client/public) sont :
+
+- back1.jpg - By TheoFbe - Content License pixabay
+- resident.png - By IconBaandar - Flaticon
+- prestataire.png - By SmashIcons - Flaticon
+- stpm.png - By surang - Flaticon
+- tab1.png - <a href="https://www.flaticon.com/authors/omoonstd" title="O.moonstd"> O.moonstd </a>
+- tab2.png - <a href="https://www.flaticon.com/authors/omoonstd" title="O.moonstd"> O.moonstd </a>
+- profile.png - <a href="https://www.flaticon.com/free-icons/user" title="user icons">User icons created by Becris - Flaticon</a>
+- notif.png - <a href="https://www.flaticon.com/free-icons/notification" title="notification icons">Notification icons created by Freepik - Flaticon</a>
+- candidature.png - <a href="https://www.flaticon.com/free-icons/poll" title="poll icons">Poll icons created by Freepik - Flaticon</a>
+- signalement.png - <a href="https://www.flaticon.com/free-icons/warning" title="warning icons">Warning icons created by Smashicons - Flaticon</a>
+- signalement1.png - <a href="https://www.flaticon.com/free-icons/under-construction" title="under construction icons">Under construction icons created by Aranagraphics - Flaticon</a>
+- probleme.png - <a href="https://www.flaticon.com/free-icons/problem" title="problem icons">Problem icons created by Design View - Flaticon</a>
+- projet.png - <a href="https://www.flaticon.com/free-icons/construction" title="construction icons">Construction icons created by Pause08 - Flaticon</a>
+- udem.png - https://www.sium.umontreal.ca/impression-couleur.html
+- udem_logo.png - https://www.sium.umontreal.ca/impression-couleur.html
+- arrow.png - <a href="https://www.flaticon.com/free-icons/back-arrow" title="back arrow icons">Back arrow icons created by Ilham Fitrotul Hayat - Flaticon</a>
+- validate_icon.png - Icons made by <a href="https://www.flaticon.com/authors/meaicon" title="meaicon"> meaicon </a>
+- close_icon.png - Icons made by <a href="https://www.flaticon.com/authors/bingge-liu" title="Bingge Liu"> Bingge Liu </a>
+- new.png - <a href="https://www.flaticon.com/free-icons/survey" title="survey icons">Survey icons created by Flat Icons - Flaticon</a>
