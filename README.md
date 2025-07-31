@@ -76,10 +76,10 @@ L'application propose les fonctionnalités suivantes :
 
 Premièrement, vous devez **cloner le répertoire** en utilisant git (voir le bouton Code en haut) et ensuite
 vous déplacer dans le dossier du projet :
-```bash
-  git clone https://github.com/IFT-2255/ift2255-ma-ville-bugbusters.git
-  cd ift2255-ma-ville-bugbusters
-```
+  ```bash
+    git clone https://github.com/IFT-2255/ift2255-ma-ville-bugbusters.git
+    cd ift2255-ma-ville-bugbusters
+  ```
 
 Une fois cela fait, vous disposez de deux options pour lancer l'application : 
 
@@ -88,13 +88,11 @@ Une fois cela fait, vous disposez de deux options pour lancer l'application :
 1. Démarrer le Docker Desktop.
 
 2. Lancer les conteneurs.
-```bash
-  docker-compose up
-```
+  ```bash
+    docker-compose up
+  ```
 
-3. Visualiser l'application
-
-Une fois le lancement fini, vous pouvez accéder à l'application à l'adresse http://localhost:5173/ . Bonne exploration !
+3. Une fois le lancement fini, vous pouvez accéder à l'application à l'adresse http://localhost:5173/ . Bonne exploration !
 
 
 
@@ -106,32 +104,32 @@ Ci-dessous les instructions pour installer, lancer et tester l'application sans 
 #### Le backend
 
 1. Se déplacer dans le dossier backend
-Ouvrir le dossier root dans un premier terminal et exécuter :
-```bash
-  cd backend
-```
+  Ouvrir le dossier root dans un premier terminal et exécuter :
+  ```bash
+    cd backend
+  ```
 
 2. Pour installer et lancer le server backend.
-```bash
-  mvn clean package
-  java -jar target/maVille-3.0-SNAPSHOT-jar-with-dependencies.jar
-```
-Le serveur démarre alors.
+  ```bash
+    mvn clean package
+    java -jar target/maVille-3.0-SNAPSHOT-jar-with-dependencies.jar
+  ```
+  Le serveur démarre alors.
 
 
 #### Le client
 
 1. Se déplacer dans le dossier client
-Ouvrir le dossier root dans un deuxième terminal et exécuter : 
-```bash
-  cd client
-```
+  Ouvrir le dossier root dans un deuxième terminal et exécuter : 
+  ```bash
+    cd client
+  ```
 
 2. Pour installer et lancer l'interface graphique.
-```bash
-  npm install
-  npm run dev
-```
+  ```bash
+    npm install
+    npm run dev
+  ```
 
 3. Vous pouvez accéder à l'application à l'adresse http://localhost:5173/ . Bonne exploration !
 
@@ -142,15 +140,15 @@ Ouvrir le dossier root dans un deuxième terminal et exécuter :
 Il est possible de tester le serveur Java : 
 
 1. Se déplacer dans le dossier backend
-Depuis le terminal dans le dossier root, exécuter :
-```bash
-  cd backend
-```
+  Depuis le terminal dans le dossier root, exécuter :
+  ```bash
+    cd backend
+  ```
 
 2. Pour lancer les tests JUnit
-```bash
-  mvn test
-```
+  ```bash
+    mvn test
+  ```
 
 ---
 
