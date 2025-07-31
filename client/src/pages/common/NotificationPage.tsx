@@ -62,7 +62,7 @@ export default function NotificationPage() {
             <h1 className="mt-5 mb-3 text-center">Notification</h1>
             {loading && <Loader />}
             {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
-            {!loading && notification && (notification.user === userInfos?.id || (notification.user === "507f1f77bcf86cd799439011" && userType === "stpm")) && <div className="mt-5 d-flex flex-column align-items-center">
+            {!loading && notification && (notification.user === userInfos?.id || (notification.user === "507f1f77bcf86cd799439011" && userType === "stpm")) && <div className="mt-5 mb-2 mx-2 d-flex flex-column align-items-center">
                 <p className="text-center"><b>Date:</b> {(notification.createdAt) ? formatDate(notification.createdAt) : ""}</p>
                 <h6 className="m-1 text-center">Message</h6>
                 <p className="m-2 text-center"><b>Message</b> : {notification.message}</p>

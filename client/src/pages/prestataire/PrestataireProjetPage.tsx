@@ -148,7 +148,7 @@ export default function PrestataireProjetPage() {
             {loading && <Loader />}
             {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
             {!loading && projet && projet.prestataire === userInfos?.id && <>
-                <div className="mt-5 mb-3 d-flex flex-column align-items-center">
+                <div className="mt-5 mb-3 mx-2 d-flex flex-column align-items-center">
                     <p><b>Titre du projet</b> : {projet.titreProjet}</p>
                     <p><b>Type de travaux requis</b> : {projet.typeTravaux}</p>
                     <p><b>Quartier</b> : {projet.quartier}</p>
@@ -197,6 +197,7 @@ export default function PrestataireProjetPage() {
                                 fullWidth
                                 required
                             >
+                                <MenuItem value="en cours">En cours</MenuItem>
                                 <MenuItem value="annulé">Annulé</MenuItem>
                                 <MenuItem value="suspendu">Suspendu</MenuItem>
                                 <MenuItem value="terminé">Terminé</MenuItem>

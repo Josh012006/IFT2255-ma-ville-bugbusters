@@ -34,7 +34,7 @@ public class ProblemController {
 
     /**
      * Cette route permet de récupérer tous les problèmes présents dans la base de
-     * données.
+     * données et qui ne sont pas encore traités.
      * @param ctx qui représente le contexte de la requête.
      */
     public void getAll(Context ctx) {

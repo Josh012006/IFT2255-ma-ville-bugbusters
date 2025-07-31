@@ -272,7 +272,7 @@ public class CandidatureController {
                 return;
             }
 
-            candidature.setStatut("rejetée");
+            candidature.setStatut("refusée");
             CandidatureDAO.save(candidature);
 
             // Prendre la raison du rejet dans le body et envoyer la notification

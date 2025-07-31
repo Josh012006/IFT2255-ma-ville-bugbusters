@@ -144,7 +144,7 @@ export default function ManageSignalementPage() {
             {(loading || loading1) && <Loader />}
             {error1 && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
             {!loading && !loading1 && signalement && <div>
-                <div className="mt-5 mb-3 d-flex flex-column align-items-center">
+                <div className="mt-5 mb-3 mx-2 d-flex flex-column align-items-center">
                     <p><b>Type de problème</b> : {signalement.typeProbleme}</p>
                     <p><b>Quartier</b> : {signalement.quartier}</p>
                     <p><b>Localisation précise</b> : {signalement.localisation}</p>

@@ -153,6 +153,14 @@ public class ProjetController {
                 throw new Exception(data3.get("message").asText());
             }
 
+            // Marquer la fiche problème comme traitée
+            String response6 = UseRequest.sendRequest(urlHead + "/probleme/markAsProcessed/" + probleme.getId(), RequestType.PATCH, null);
+            JsonNode json6 = mapper.readTree(response6);
+            JsonNode data6 = json6.get("data");
+            if(json6.get("status").asInt() != 200) {
+                throw new Exception(data6.get("message").asText());
+            }
+
             // Renvoyer le projet pour marquer le succès
             ctx.status(201).json(newProjet).contentType("application/json");
 

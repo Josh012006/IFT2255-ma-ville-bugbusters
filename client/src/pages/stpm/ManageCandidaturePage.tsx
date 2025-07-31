@@ -114,7 +114,7 @@ export default function ManageCandidaturePage() {
             {loading && <Loader />}
             {error1 && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
             {!loading && candidature && <div>
-                <div className="mt-5 mb-3 d-flex flex-column align-items-center">
+                <div className="mt-5 mb-3 mx-2 d-flex flex-column align-items-center">
                     <h5 className="fw-bold my-3">Projet proposé par {candidature.nomPrestataire} - {candidature.numeroEntreprise}</h5>
                     <p><b>Titre du projet</b> : {candidature.titreProjet}</p>
                     <p><b>Type de travaux requis</b> : {candidature.typeTravaux}</p>
@@ -124,7 +124,8 @@ export default function ManageCandidaturePage() {
                     <p><b>Date de candidature</b> : {candidature.createdAt? formatDate(candidature.createdAt): ""}</p>
                     <p className="my-2 mx-4 mx-lg-5"><b>Description du projet</b> : {candidature.description}</p>
                 </div>
-                <div className="d-flex flex-column flex-lg-row justify-content-around align-items-center">
+                {candidature.statut && (candidature.statut === "acceptée" || candidature.statut === "refusée") &&  <p className="text-center">Candidature déjà traitée</p>}
+                {candidature.statut && candidature.statut !== "acceptée" && candidature.statut !== "refusée" && <><div className="d-flex flex-column flex-lg-row justify-content-around align-items-center">
                     <button disabled={disabledAccept} type="button" className="rounded-3 border-0 text-white bg-success p-2 my-2 disabled" onClick={() => {setShow("accept"); setOpen(true)}}>Accepter</button>
                     <button disabled={disabledReject} type="button" className="rounded-3 border-0 text-white bg-danger p-2 my-2 disabled" onClick={() => {setShow("reject")}}>Refuser</button>
                 </div>
@@ -157,7 +158,7 @@ export default function ManageCandidaturePage() {
                         {success && <Alert severity="success">Opération réalisée avec succès.</Alert>}
                         {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
                     </div>
-                </div>}
+                </div>}</>}
             </div>}
         </div>
     );

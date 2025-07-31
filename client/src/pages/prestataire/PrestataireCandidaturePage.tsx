@@ -144,7 +144,7 @@ export default function PrestataireCandidaturePage() {
             {!loading && candidature && candidature.prestataire === userInfos?.id &&<div>
 
                 <div className="mt-3">
-                    <div className="mt-5 mb-3 d-flex flex-column align-items-center">
+                    <div className="mt-5 mb-3 mx-2 d-flex flex-column align-items-center">
                         <p><b>Titre du projet</b> : {candidature.titreProjet}</p>
                         <p><b>Type de travaux requis</b> : {candidature.typeTravaux}</p>
                         <p><b>Période de réalisation</b> : {formatDate(candidature.dateDebut, true)} - {formatDate(candidature.dateFin, true)}</p>

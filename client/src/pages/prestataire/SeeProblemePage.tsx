@@ -45,7 +45,7 @@ export default function SeeProblemePage() {
             {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
             {!loading && probleme && 
                 <>
-                    <div className="mt-5 mb-3 d-flex flex-column align-items-center">
+                    <div className="mt-5 mb-3 mx-2 d-flex flex-column align-items-center">
                         <p>Problème de type <b>{probleme.typeTravaux}</b> dans le quartier <b>{probleme.quartier}</b></p>
                         <p><b>Priorité</b> : {probleme.priorite}</p>
                         <p><b>Nombre de signalements</b> : {probleme.signalements.length}</p>

@@ -119,7 +119,7 @@ export default function ResidentSignalementPage() {
             {!loading && signalement && signalement.resident === userInfos?.id && <div>
 
                 <div className="mt-3">
-                    <div className="mt-5 mb-3 d-flex flex-column align-items-center">
+                    <div className="mt-5 mb-3 mx-2 d-flex flex-column align-items-center">
                         <p><b>Type de problème</b> : {signalement.typeProbleme}</p>
                         <p><b>Quartier</b> : {signalement.quartier}</p>
                         <p><b>Localisation précise</b> : {signalement.localisation}</p>

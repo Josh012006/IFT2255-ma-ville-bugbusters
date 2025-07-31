@@ -41,7 +41,7 @@ export default function SeeProjetPage() {
             <h1 className="mt-5 mb-3 text-center">Projet</h1>
             {loading && <Loader />}
             {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
-            {!loading && projet && <div className="mt-5 mb-3 d-flex flex-column align-items-center">
+            {!loading && projet && <div className="mt-5 mb-3 mx-2 d-flex flex-column align-items-center">
                 <h5 className="fw-bold my-3">Projet proposé par {projet.nomPrestataire}</h5>
                 <p><b>Titre du projet</b> : {projet.titreProjet}</p>
                 <p><b>Type de travaux requis</b> : {projet.typeTravaux}</p>

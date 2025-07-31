@@ -18,12 +18,13 @@ public class ProblemDAO {
 
 
     /**
-     * Récupère tous les problèmes routiers enregistrés.
+     * Récupère tous les problèmes routiers enregistrés non encore traités.
      * @return une liste de tous les problèmes.
      */
     public static List<FicheProbleme> findAll(){
         return MongoConfig.getDatastore()
                 .find(FicheProbleme.class)
+                .filter(Filters.eq("statut", "en attente"))
                 .iterator()
                 .toList();
     }
