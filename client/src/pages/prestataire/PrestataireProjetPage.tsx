@@ -7,6 +7,7 @@ import Loader from "../../components/Loader";
 import { dateToInputValue, formatDate } from "../../utils/formatDate";
 import useManualRequest from "../../hooks/UseManualRequest";
 import { boxStyle } from "../../types/boxStyle";
+import { useAppSelector } from "../../redux/store";
 
 type typeStatus = "en cours" | "annulé" | "suspendu" | "terminé";
 
@@ -23,6 +24,8 @@ type typeStatus = "en cours" | "annulé" | "suspendu" | "terminé";
 export default function PrestataireProjetPage() {
 
     const { id: projetId } = useParams();
+
+    const userInfos = useAppSelector(state => state.auth.infos);
     const navigate = useNavigate();
 
     const [projet, setProjet] = useState<Projet | null>(null);
@@ -144,7 +147,7 @@ export default function PrestataireProjetPage() {
             <h1 className="mt-5 mb-3 text-center">Projet</h1>
             {loading && <Loader />}
             {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
-            {!loading && projet && <>
+            {!loading && projet && projet.prestataire === userInfos?.id && <>
                 <div className="mt-5 mb-3 d-flex flex-column align-items-center">
                     <p><b>Titre du projet</b> : {projet.titreProjet}</p>
                     <p><b>Type de travaux requis</b> : {projet.typeTravaux}</p>
@@ -153,6 +156,7 @@ export default function PrestataireProjetPage() {
                     <p><b>Rues affectées</b> : {projet.ruesAffectees.join(", ")}</p>
                     <br />
                     <p><b>Priorité</b> : {projet.priorite}</p>
+                    <p><b>Nombre de rapports</b> : {projet.nbRapports}</p>
                     <p><b>Coût</b> : {projet.cout} $</p>
                     <p><b>Statut</b> : {projet.statut}</p>
                     <br/>

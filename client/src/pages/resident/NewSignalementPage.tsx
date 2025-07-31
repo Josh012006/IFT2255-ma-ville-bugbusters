@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Box, MenuItem, TextField, Alert } from "@mui/material";
 import { TYPE_TRAVAUX } from "../../types/TypesTravaux";
 import { QUARTIERS } from "../../types/Quartier";
@@ -16,6 +16,9 @@ import useManualRequest from "../../hooks/UseManualRequest";
  * @returns ReactNode
  */
 export default function NewSignalementPage() {
+
+    const myRef = useRef<HTMLElement | null>(null);
+
     const navigate = useNavigate();
     const userInfos = useAppSelector(state => state.auth.infos) as Resident;
     const { send, result } = useManualRequest();
@@ -32,6 +35,9 @@ export default function NewSignalementPage() {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        myRef.current?.scrollIntoView({
+            behavior: 'smooth'
+        });
 
         setLoading(true);
 
@@ -66,7 +72,7 @@ export default function NewSignalementPage() {
     }, [navigate, result]);
 
     return (
-        <Box sx={{ p: 4, maxWidth: 700, margin: "auto" }}>
+        <Box ref={myRef} sx={{ p: 4, maxWidth: 700, margin: "auto" }}>
             <h1 className="mt-5 mb-3 text-center">Signaler un problème</h1>
             <p>Veuillez remplir le formulaire ci-dessous pour signaler un nouveau problème dans votre quartier.</p>
 

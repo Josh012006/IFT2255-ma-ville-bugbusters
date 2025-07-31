@@ -51,7 +51,7 @@ export default function ChoicePage() {
     } else {
         return (
             <div className="d-flex flex-column justify-content-around align-items-center">
-                <h1 className="m-5">Choix du profil</h1>
+                <h1 className="m-5">Choix d'utilisateur</h1>
                 {loading && <Loader />}
                 {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
                 {!loading &&<div className="p-3 min-vh-100 grid row">

@@ -154,8 +154,10 @@ public class ResidentController {
         try {
             ArrayList<String> abonnementsQuartier1 = new ArrayList<>();
             abonnementsQuartier1.add("Ville-Marie");
+            abonnementsQuartier1.add("Le Plateau-Mont-Royal");
             ArrayList<String> abonnementsRue1 = new ArrayList<>();
             abonnementsRue1.add("123 rue Ontario");
+            abonnementsRue1.add("rue Clark");
             Resident resident1 = new Resident(new ObjectId(), "John Doe", "johndoe@example.com",
                     abonnementsQuartier1, abonnementsRue1, "123 rue Ontario", "H2X 1Y4",
                     "Ville-Marie", new GregorianCalendar(2003, Calendar.SEPTEMBER, 25).getTime());
@@ -189,12 +191,12 @@ public class ResidentController {
             ResidentDAO.save(resident4);
 
             ArrayList<String> abonnementsQuartier5 = new ArrayList<>();
-            abonnementsQuartier5.add("Plateau-Mont-Royal");
+            abonnementsQuartier5.add("Le Plateau-Mont-Royal");
             ArrayList<String> abonnementsRue5 = new ArrayList<>();
             abonnementsRue5.add("789 avenue du Mont-Royal Est");
             Resident resident5 = new Resident(new ObjectId(), "Mathieu Gagnon", "mathieu.gagnon@example.com",
                     abonnementsQuartier5, abonnementsRue5, "789 avenue du Mont-Royal Est", "H2J 1X3",
-                    "Plateau-Mont-Royal", new GregorianCalendar(2000, Calendar.NOVEMBER, 5).getTime());
+                    "Le Plateau-Mont-Royal", new GregorianCalendar(2000, Calendar.NOVEMBER, 5).getTime());
             ResidentDAO.save(resident5);
 
         } catch (Exception e) {

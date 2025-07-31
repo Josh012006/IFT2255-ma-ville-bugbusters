@@ -26,7 +26,7 @@ header, footer {
 }
 
 .fade-in-out {
-  animation: fadeInOut 8s cubic-bezier(0.25, 1, 0.75, 1) forwards;
+  animation: fadeInOut 5s cubic-bezier(0.25, 1, 0.75, 1) forwards;
 }
 
 @keyframes fadeInOut {

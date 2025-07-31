@@ -68,4 +68,17 @@ public class NotificationDAO {
 
     }
 
+    public static void deleteByUrl(String url){
+        List<Notification> found = MongoConfig.getDatastore()
+                .find(Notification.class)
+                .filter(Filters.eq("url", url))
+                .iterator()
+                .toList();
+        if(!found.isEmpty()) {
+            for(Notification notification : found){
+                MongoConfig.getDatastore().delete(notification);
+            }
+        }
+    }
+
 }

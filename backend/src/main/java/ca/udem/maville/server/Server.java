@@ -91,6 +91,12 @@ public class Server {
                         get(notificationController::getById);
                     });
                     post(notificationController::create);
+                    // Nécessite un query parameter signalement = true | false
+                    // pour savoir si c'est un signalement ou une candidature
+                    // qui a été supprimé.
+                    path("/deleteByUrl/{idObjet}", () -> {
+                        delete(notificationController::deleteByUrl);
+                    });
                 });
 
                 path("/prestataire", () -> {

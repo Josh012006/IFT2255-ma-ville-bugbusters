@@ -6,7 +6,7 @@ import type Resident from "../../interfaces/users/Resident";
 
 interface InitialState {
     has: boolean,
-    userType : "STPM" | "Prestataire" | "Resident" | null,
+    userType : "stpm" | "Prestataire" | "Resident" | null,
     infos: null | Prestataire | Resident,
 }
 

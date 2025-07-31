@@ -68,7 +68,7 @@ export default function Filter({tab, setFilteredTab} : {tab: Projet[] | Problem[
         
         setFiltered(filteredTab);
 
-    }, [isProblem, filtered, priorite, setFilteredTab, quartier, tab, typeTravail]);
+    }, [isProblem, priorite, setFilteredTab, quartier, tab, typeTravail]);
 
 
     // Update l'utilisateur

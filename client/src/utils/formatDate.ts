@@ -7,7 +7,7 @@ export function formatDate(date: Date, withHour=true) {
     }
 
     
-    const pad = n => n.toString().padStart(2, '0');
+    const pad = (n: number) => n.toString().padStart(2, '0');
 
     const day = pad(date.getDate());
     const month = pad(date.getMonth() + 1); // getMonth() est 0-based

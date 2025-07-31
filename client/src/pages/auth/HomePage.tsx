@@ -18,7 +18,7 @@ function HomePage() {
     useEffect(() => {
         setTimeout(() => {
             setShowCase(false);
-        }, 8000);
+        }, 5000);
     }, []);
 
     const handleUserType = (type : string) => {
@@ -36,7 +36,7 @@ function HomePage() {
 
             {!showCase && 
             <main className="d-flex flex-column justify-content-center align-items-center text-center min-vh-100">
-                <h1 className="mt-5 mb-90">Choix du type d'utilisateur</h1>
+                <h1 className="mt-5 mb-90">Choix du profil</h1>
                 <div className="d-flex flex-column flex-lg-row justify-content-around align-items-center">
                     <MyLink to="/auth/choix" className="mycard orange text-white rounded-4 p-2 m-5 border d-flex align-items-center justify-content-center" onClick={() => {handleUserType("resident")}}>
                         <img width="64" src="/resident.png" alt="résident" />

@@ -137,4 +137,30 @@ public class NotificationController {
         }
     }
 
+    /**
+     * Cette route permet de supprimer des notifications en se basant sur leur url
+     * de redirection. Elle est surtout utile lorsqu'un résident supprime un signalement ou prestataire
+     * supprime une candidature avant que le STPM le voit.
+     * Elle a besoin d'un paramètre de path qui est l'id du signalement ou de la candidature
+     * et d'un query parameter signalement = false | true pour pouvoir faire la distinction
+     * dans la recherche.
+     * @param ctx qui représente le context de la requête.
+     */
+    public void deleteByUrl(Context ctx) {
+        try {
+            String idObjet = ctx.pathParam("idObjet");
+            boolean isSignalement = Boolean.parseBoolean(ctx.queryParam("signalement"));
+
+            String url = ((isSignalement)? "/stpm/signalement/" : "/stpm/candidature/") + idObjet;
+
+            NotificationDAO.deleteByUrl(url);
+
+            // Renvoyer le message de succès
+            ctx.status(200).json("{\"message\": \"Suppression réalisée avec succès.\"}").contentType("application/json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(500).result("{\"message\": \"Une erreur est interne survenue! Veuillez réessayer plus tard.\"}").contentType("application/json");
+        }
+    }
+
 }

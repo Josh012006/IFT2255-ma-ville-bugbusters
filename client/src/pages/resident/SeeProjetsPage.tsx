@@ -35,7 +35,11 @@ export default function SeeProjetsPage() {
     useEffect(() => {
         if(response) {
             if (response.status === 200) {
-                setFetchedProjets(response.data.reverse());
+                setFetchedProjets(response.data.sort((a: Projet, b: Projet) => {
+                    const bTime = b.updatedAt ? new Date(b.updatedAt).getTime() : new Date().getTime();
+                    const aTime = a.updatedAt ? new Date(a.updatedAt).getTime() : new Date().getTime();
+                    return bTime - aTime;
+                }));
                 setLoading(false);
             } else {
                 console.log(response.data);

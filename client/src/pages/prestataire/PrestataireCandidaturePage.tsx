@@ -7,6 +7,7 @@ import Loader from "../../components/Loader";
 import { dateToInputValue, formatDate } from "../../utils/formatDate";
 import { boxStyle } from "../../types/boxStyle";
 import useManualRequest from "../../hooks/UseManualRequest";
+import { useAppSelector } from "../../redux/store";
 
 
 
@@ -21,6 +22,8 @@ export default function PrestataireCandidaturePage() {
 
     const navigate = useNavigate();
     const candidatureId = useParams().id;
+
+    const userInfos = useAppSelector(state => state.auth.infos);
 
     const res = useRequest("/candidature/" + (candidatureId?? "") + "?stpm=false", "GET");
     const [loading, setLoading] = useState(true);
@@ -138,7 +141,7 @@ export default function PrestataireCandidaturePage() {
             <h1 className="mt-5 mb-3 text-center">Candidature</h1>
             {loading && <Loader />}
             {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
-            {!loading && candidature && <div>
+            {!loading && candidature && candidature.prestataire === userInfos?.id &&<div>
 
                 <div className="mt-3">
                     <div className="mt-5 mb-3 d-flex flex-column align-items-center">

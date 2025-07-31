@@ -53,7 +53,7 @@ export default function ManageSignalementPage() {
 
     useEffect(() => {
         if(response && response1) {
-            if(response1.status === 200 && signalement) {
+            if(response1.status === 200) {
                 setSimilarProblems(response1.data);
                 setLoading1(false);
             } else {
@@ -62,7 +62,7 @@ export default function ManageSignalementPage() {
                 setError1(true);
             }
         }
-    }, [response, response1, signalement]);
+    }, [response, response1]);
 
 
 

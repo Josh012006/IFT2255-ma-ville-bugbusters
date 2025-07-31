@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Box, MenuItem, TextField, Alert, Stack, Chip, InputAdornment } from "@mui/material";
 import { TYPE_TRAVAUX } from "../../types/TypesTravaux";
 import Loader from "../../components/Loader";
@@ -19,10 +19,8 @@ import useManualRequest from "../../hooks/UseManualRequest";
 
 export default function NewCandidaturePage() {
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
+    
+    const myRef = useRef<HTMLDivElement | null>(null);
 
     const userInfos = useAppSelector(state =>  state.auth.infos) as Prestataire;
 
@@ -59,7 +57,9 @@ export default function NewCandidaturePage() {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        scrollToTop();
+        myRef.current?.scrollIntoView({
+            behavior: 'smooth'
+        });
         setError1(false);
         setError2(false);
 
@@ -116,7 +116,7 @@ export default function NewCandidaturePage() {
     }, [navigate, result]);
 
     return (
-        <div className="d-flex flex-column align-items-center">
+        <div ref={myRef} className="d-flex flex-column align-items-center">
             <h1 className="mt-5 mb-3 text-center">Soumettre une candidature</h1>
             <p>Veuillez remplir le formulaire ci-dessous pour soumettre une candidature pour la fiche problème.</p>
             <Box sx={{ width: 420, mx: 6, mt: 4, mb: 6 }}>

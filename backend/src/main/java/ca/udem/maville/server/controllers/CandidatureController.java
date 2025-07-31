@@ -197,6 +197,16 @@ public class CandidatureController {
 
             CandidatureDAO.delete(new ObjectId(id));
 
+            // Supprimer la notification
+            String response = UseRequest.sendRequest(urlHead + "/notification/deleteByUrl/" + id + "?signalement=false", RequestType.DELETE, null);
+
+            JsonNode json = JavalinJackson.defaultMapper().readTree(response);
+
+            if(json.get("status").asInt() != 200) {
+                JsonNode data = json.get("data");
+                throw new Exception(data.get("message").asText());
+            }
+
             // Renvoyer la réponse de succès
             ctx.status(200).result("{\"message\": \"Suppression réalisée avec succès.\"}").contentType("application/json");
         } catch (Exception e) {
@@ -276,7 +286,7 @@ public class CandidatureController {
 
             String body = "{" +
                     "\"message\": \"Merci pour votre intérêt pour les problèmes de la ville de Montréal. Nous avons le regret de vous annoncer " +
-                    "que votre candidature au projet " + candidature.getTitreProjet() + " a été réjetée. La raison est la suivante : " + json.get("raison").asText() + "\"," +
+                    "que votre candidature au projet " + candidature.getTitreProjet() + " a été réjetée. La raison est la suivante : " + json.get("raison").asText() + (json.get("raison").asText().endsWith(".") ? "" : ".") + "\"," +
                     "\"user\": \"" + candidature.getPrestataire() + "\"" +
                     "}";
             String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);

@@ -7,4 +7,4 @@ COPY . .
 RUN mvn clean package
 
 # Faire une liste, les étapes de compilation, etc.
-CMD ["java", "-jar", "target/maville-3.0-SNAPSHOT-jar-with-dependencies.jar"]
+CMD ["java", "-jar", "target/maVille-3.0-SNAPSHOT-jar-with-dependencies.jar"]

@@ -6,6 +6,7 @@ import useRequest from "../../hooks/UseRequest";
 import useManualRequest from "../../hooks/UseManualRequest";
 import type Signalement from "../../interfaces/Signalement";
 import { boxStyle } from "../../types/boxStyle";
+import { useAppSelector } from "../../redux/store";
 
 
 
@@ -17,6 +18,8 @@ import { boxStyle } from "../../types/boxStyle";
  */
 export default function ResidentSignalementPage() {
     const navigate = useNavigate();
+
+    const userInfos = useAppSelector(state => state.auth.infos);
     const { id:signalementId } = useParams();
 
     const res = useRequest(`/signalement/${signalementId}?stpm=false`, "GET");
@@ -113,7 +116,7 @@ export default function ResidentSignalementPage() {
             <h1 className="mt-5 mb-3 text-center">Signalement</h1>
             {loading && <Loader />}
             {error && <Alert severity="error">Un problème est survenu. Veuillez réessayer plus tard.</Alert>}
-            {!loading && signalement && <div>
+            {!loading && signalement && signalement.resident === userInfos?.id && <div>
 
                 <div className="mt-3">
                     <div className="mt-5 mb-3 d-flex flex-column align-items-center">

@@ -188,6 +188,16 @@ public class SignalementController {
 
             SignalementDAO.delete(new ObjectId(id));
 
+            // Supprimer la notification
+            String response = UseRequest.sendRequest(urlHead + "/notification/deleteByUrl/" + id + "?signalement=true", RequestType.DELETE, null);
+
+            JsonNode json = JavalinJackson.defaultMapper().readTree(response);
+
+            if(json.get("status").asInt() != 200) {
+                JsonNode data = json.get("data");
+                throw new Exception(data.get("message").asText());
+            }
+
             // Renvoyer la réponse de succès
             ctx.status(200).result("{\"message\": \"Suppression réalisée avec succès.\"}").contentType("application/json");
         } catch (Exception e) {
@@ -223,7 +233,7 @@ public class SignalementController {
             String body = "{" +
                     "\"message\": \"Votre signalement à été traité par le STPM. " + message + "\"," +
                     "\"user\": \"" + signalement.getResident() + "\"," +
-                    "\"url\": \"/signalement/" + signalement.getId() + "\"" +     // Todo: Vérifier une fois que l'interface est finie
+                    "\"url\": \"/resident/signalement/" + signalement.getId() + "\"" +
                     "}";
             String response = UseRequest.sendRequest(urlHead + "/notification", RequestType.POST, body);
 
