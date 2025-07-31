@@ -1,0 +1,11 @@
+ca.udem.maville
+ca.udem.maville.hooks
+ca.udem.maville.server
+ca.udem.maville.server.controllers
+ca.udem.maville.server.controllers.users
+ca.udem.maville.server.dao.config
+ca.udem.maville.server.dao.files
+ca.udem.maville.server.dao.files.users
+ca.udem.maville.server.models
+ca.udem.maville.server.models.users
+ca.udem.maville.utils
