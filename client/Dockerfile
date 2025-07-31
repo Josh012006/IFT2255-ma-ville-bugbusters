@@ -1,5 +1,5 @@
 # Étape 1 : Utiliser une image officielle stable de Node.js
-FROM node:20-slim
+FROM node:22.12.0-slim
 
 # Étape 2 : Définir le dossier de travail
 WORKDIR /app

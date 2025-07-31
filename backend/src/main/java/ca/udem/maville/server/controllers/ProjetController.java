@@ -137,6 +137,7 @@ public class ProjetController {
                 abonnes.add(new ObjectId(reporter.asText()));
             }
             newProjet.setAbonnes(abonnes);
+            newProjet.setNbRapports(probleme.getSignalements().toArray().length);
 
             // Sauvegarder le projet
             ProjetDAO.save(newProjet);

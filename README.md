@@ -1,55 +1,183 @@
 [![Compiler et tester](https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/test.yml/badge.svg)](https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/test.yml)
 [![Update Docker images](https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/docker.yml/badge.svg)](https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/docker.yml)
 
-# MAVILLE Application
+# MaVille Application
 
-Requires Java 21 and Maven.
 
-## Project description
+## Aperçu
+<img alt="start of application" src="/public/showcase.png">
+<table>
+  <tr>
+    <td>
+      <img alt="aperçu petit écran" src="/public/showcase1.png">
+    </td>
+    <td>
+      <img alt="aperçu ordinateur" src="/public/showcase2.png">
+    </td>
+  </tr>
+</table>
 
-MaVille is an app built to help the STPM agents manage correctly and easily public works. It's made in other to be a quick and simple
-way for agents, city residents and providers to communicate and keep updated regarding what happens in the city of Montreal.
-It includes features such as :
+---
 
-- For residents
-    - Problem reporting
-    - Real-time updates on public works projects
-- For service providers
-    - Real-time access to reported problems
-    - Ease of proposing projects to help the community
+## A propos du projet
 
-## Project structure
+**MaVille** est une application construite pour permettre une meilleure gestion des projets de la ville de Montréal. Elle
+propose trois profils d'utilisateur : le résident, le prestataire et l'agent de la STPM qui a un profil unique non nominatif.
+L'application propose les fonctionnalités suivantes : 
 
-- `README.md`  -> This file ;)
-- `pom.xml`    -> Maven project information
-- `.gitignore` -> Specifies which files are ignored by git 
-- `src/main`   -> Code for the app
-- `src/test`   -> Code for the tests
-- `rapport/`   -> The engineering report written in HTML
-- `visual_paradigm/` -> All our visual paradigm files
+- Pour le résident : 
+    - Le signalement de problème dans son quartier.
+    - La possibilité de voir les projets en cours et veux à venir dans la ville de Montréal.
+    - La possibilité de filtrer les projets par quartier, par type de travaux et par priorité pour une acquisition plus efficace de l'information.
+    - La possibilité de s'abonner à des quartiers ou des rues particulières de la ville de Montréal.
+    - La réception en temps réel de notification pour la création ou les mises à jour concernant tout projet impactant les rues ou les quartiers auxquels il est abonné.
 
-## Install, Run & Test 
+- Pour le prestataire : 
+    - La visualisation des fiches problèmes créées par les agents de la STPM à partir des signalements des résidents.
+    - La soumission d'une candidature pour une fiche problème.
+    - Le suivi en temps réel de la décision de l'agent de la STPM par rapport à la candidature.
+    - L'accès et la visualisation de tous les projets à sa charge.
+    - La possibilité de modifier ses projets.
+    - La possibilité de s'abonner à des quartiers ou des types de problèmes pour les signalements des résidents.
+    - La réception en temps réel de notification pour toute nouvelle fiche problème concernant les type de problèmes et les quartiers auxquels il est abonné.
 
-These are the instructions to compile, test and run the app in command line.
+- Pour l'agent de la STPM : 
+    - La possibilité de voir en temps réel les signalements des résidents de la ville de Montréal.
+    - La capacité d'attribuer une priorité à un signalement pour créer ainsi une fiche problème.
+    - La capacité de lier un signalement à une fiche problème déjà existante.
+    - La possibilité de voir en temps réel les candidatures des prestataires.
+    - La possibilité d'accepter une candidature, créant ainsi un nouveau projet.
+    - La possibilité de refuser une candidature en donnant une raison de refus.
+    - La réception en temps réel de notifications pour tout nouvea signalement ou toute nouvelle candidature.
 
-1. First you will need to clone the repository using git (see Code button above) and then move to the created folder
+---
 
+## Structure du projet
+
+- `README.md`            -> Ce fichier ;)
+- `LICENSE`              -> Le fichier de License du répertoire (license MIT).
+- `docker-compose.yml`   -> Le fichier Docker pour définir et exécuter les deux conteneurs de l'application.
+- `.gitignore`           -> Spécifie quels fichiers git doit ignorer.
+- `backend/pom.xml`      -> La configuration Maven pour le backend Java.
+- `backend/Dockerfile`   -> La configuration su conteneur docker pour le backend.
+- `backend/src/main`     -> Le code pour l'application.
+- `backend/src/test`     -> Le code pour les tests.
+- `client/package.json`  -> La configuration npm pour le client en React.js.
+- `client/Dockerfile`    -> La configuration su conteneur docker pour le client.
+- `client/src`           -> Le code source pour l'interface graphique en React.
+- `rapport/`             -> Le rapport technique du projet.
+- `visual_paradigm/`     -> Tous les fichiers visual paradigm.
+- `public`               -> Le dossier de fichiers statiques pour le README.
+- `.github/workflows`    -> Les github actions pour le CI.
+
+---
+
+## Installation et Lancement
+
+Premièrement, vous devez **cloner le répertoire** en utilisant git (voir le bouton Code en haut) et ensuite
+vous déplacer dans le dossier du projet :
 ```bash
   git clone https://github.com/IFT-2255/ift2255-ma-ville-bugbusters.git
   cd ift2255-ma-ville-bugbusters
 ```
 
+Une fois cela fait, vous disposez de deux options pour lancer l'application : 
 
-2. To Install & Run the app
+### Première option : Utiliser Docker
 
+1. Démarrer le Docker Desktop.
+
+2. Lancer les conteneurs.
 ```bash
-  mvn clean package
-  java -jar target/maVille-2.0-SNAPSHOT-jar-with-dependencies.jar
+  docker-compose up
 ```
 
+3. Visualiser l'application
 
-4. To run the JUnit Tests
+Une fois le lancement fini, vous pouvez accéder à l'application à l'adresse http://localhost:5173/ . Bonne exploration !
 
+
+
+### Deuxième option : Sans Docker
+
+**Il est nécessaire d'avoir Maven, Java 21 et Node.js version >=22.12.0 installés sur votre machine.**
+Ci-dessous les instructions pour installer, lancer et tester l'application sans docker. Cela se fait en deux parties : 
+
+#### Le backend
+
+1. Se déplacer dans le dossier backend
+Ouvrir le dossier root dans un premier terminal et exécuter :
+```bash
+  cd backend
+```
+
+2. Pour installer et lancer le server backend.
+```bash
+  mvn clean package
+  java -jar target/maVille-3.0-SNAPSHOT-jar-with-dependencies.jar
+```
+Le serveur démarre alors.
+
+
+#### Le client
+
+1. Se déplacer dans le dossier client
+Ouvrir le dossier root dans un deuxième terminal et exécuter : 
+```bash
+  cd client
+```
+
+2. Pour installer et lancer l'interface graphique.
+```bash
+  npm install
+  npm run dev
+```
+
+3. Vous pouvez accéder à l'application à l'adresse http://localhost:5173/ . Bonne exploration !
+
+---
+
+## Tests
+
+Il est possible de tester le serveur Java : 
+
+1. Se déplacer dans le dossier backend
+Depuis le terminal dans le dossier root, exécuter :
+```bash
+  cd backend
+```
+
+2. Pour lancer les tests JUnit
 ```bash
   mvn test
 ```
+
+---
+
+## Auteurs
+
+- **Cyreanne Candy Andrianefa**
+
+Github : [cyreanne0](https://github.com/cyreanne0)
+
+- **Zachary Bourgeois**
+
+GitHub : [zacmatsteal](https://github.com/zacmatsteal)
+
+- **Roxanne Cabedoce**
+
+Github : [cabedocer](https://github.com/cabedocer)
+
+- **Lallia Diakite**
+
+GitHub : [Lalllou](https://github.com/Lalllou)
+
+- **Josué Mongan**
+
+GitHub : [Josh012006](https://github.com/Josh012006)
+
+---
+
+## License et Droits d'auteurs
+
+Ce projet est sous la license MIT.
