@@ -8,25 +8,29 @@ import { QUARTIERS } from "../types/Quartier";
 import { TYPE_TRAVAUX } from "../types/TypesTravaux";
 
 
+interface FilterProps {
+    /**qui représente la liste de projets ou de problèmes initiale à filtrer. Doit être un state pour permettre la réactivité.*/
+    tab: Projet[] | Problem[], 
+    /**qui est le setter du state de la liste triée. Cela veux dire qu'on doit avoir un state séparé pour le tableau initial et celui filtré */  
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setFilteredTab: React.Dispatch<React.SetStateAction<any[]>>
+}
 
 /**
  * Cette composante permet d'implémenter un filtrage des problèmes (par quartier, par type de travail et par priorité) et un filtrage
  * des projets (par quartier et par type travail). Elle affiche donc des éléments select pour que l'utilisateur puisse 
  * choisir l'option qu'il veut.
- * @param tab qui représente la liste de projets ou de problèmes initiale à filtrer. Doit être un state pour permettre la réactivité.
- * @param setTab qui est le setter du state de la liste triée. Cela veux dire qu'on doit avoir un state séparé pour le tableau initial et celui filtré
  * @returns ReactNode
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function Filter({tab, setFilteredTab} : {tab: Projet[] | Problem[], setFilteredTab: React.Dispatch<React.SetStateAction<any[]>>}) {
+export default function Filter(props : FilterProps) {
+
+    const { tab, setFilteredTab } = props;
 
     const [quartier, setQuartier] = useState("All");
     const [typeTravail, setTypeTravail] = useState("All");
     const [priorite, setPriorite] = useState("All");
 
     const [filtered, setFiltered] = useState(tab);
-
-    const isProblem : boolean = !("nbRapports" in tab[0]);
 
 
     // Handlers
@@ -46,29 +50,24 @@ export default function Filter({tab, setFilteredTab} : {tab: Projet[] | Problem[
 
     // Filtrage par quartier
     useEffect(() => {
-        let filteredTab: Projet[] | Problem[] = [];
-        
-        if(isProblem) {
-            filteredTab = (quartier === "All") ? tab as Problem[] : (tab as Problem[]).filter((elem) => elem.quartier === quartier);
-        } else {
-            filteredTab = (quartier === "All") ? tab as Projet[] : (tab as Projet[]).filter((elem) => elem.quartier === quartier); 
+        let filteredTab = [...tab];
+
+        if (quartier !== "All") {
+            filteredTab = filteredTab.filter((elem) => elem.quartier === quartier);
         }
 
-        if(isProblem) {
-            filteredTab = (typeTravail === "All") ? filteredTab as Problem[] : (filteredTab as Problem[]).filter((elem) => elem.typeTravaux === typeTravail);
-        } else {
-            filteredTab = (typeTravail === "All") ? filteredTab as Projet[] : (filteredTab as Projet[]).filter((elem) => elem.typeTravaux === typeTravail); 
+        if (typeTravail !== "All") {
+            filteredTab = filteredTab.filter((elem) => elem.typeTravaux === typeTravail);
         }
 
-        if(isProblem) {
-            filteredTab = (priorite === "All") ? filteredTab as Problem[] : (filteredTab as Problem[]).filter((elem) => elem.priorite === priorite);
-        } else {
-            filteredTab = (priorite === "All") ? filteredTab as Projet[] : (filteredTab as Projet[]).filter((elem) => elem.priorite === priorite);
+        if (priorite !== "All") {
+            filteredTab = filteredTab.filter((elem) => elem.priorite === priorite);
         }
-        
-        setFiltered(filteredTab);
 
-    }, [isProblem, priorite, setFilteredTab, quartier, tab, typeTravail]);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setFiltered(filteredTab as any[]);
+    }, [tab, quartier, typeTravail, priorite, setFiltered]);
+
 
 
     // Update l'utilisateur
