@@ -20,9 +20,10 @@
     <div class="placeholder">
         <h4>Cadre</h4>
         <p>
-            Ce projet est dans le cadre du Cours IFT2255 - elle vise la conception et implantation des logiciels.
-            Il s’agit ici du deuxième jalon, qui nous amène à concrétiser nos réflexions précédentes en développant une première version fonctionnelle de l’application MaVille. 
-            L’objectif principal est de mettre en pratique les notions vues en cours comme l’analyse des besoins, la modélisation et la conception orientée objet  à travers une application en ligne de commande. 
+            Ce projet est dans le cadre du Cours IFT2255 - il vise la conception et implémentation des logiciels.
+            Il s’agit ici du troisième jalon, qui nous amène à rafiner notre implémentation précédente de l'application MaVille et à y intégrer les concepts de déploiement.
+            L’objectif principal est de mettre en pratique les notions vues en cours comme l’analyse des besoins, la modélisation, la conception orientée objet, l'implémentation
+            d'une interface graphique, le déploiement de l'application à travers Docker et les techniques de CI/CD grâce aux github actions.
             En plus du développement, nous devons produire un rapport HTML structuré et maintenir notre travail sur GitHub tout au long du processus.
         </p>
 
@@ -37,29 +38,29 @@
             <li>Réception de notifications ciblées.</li>
             <li>Signalement de problèmes routiers.</li>
             <li>Candidature à des projets de résolution de problèmes par les prestataires.</li>
-            <li>Suivi et gestion des projets par le STPM.</li>
+            <li>Suivi et gestion des signalements et des candidatures par le STPM.</li>
         </ul>
         <p>
-            L’application doit aussi intégrer une API ouverte de la Ville pour récupérer les données réelles des chantiers.
+            L’application doit aussi intégrer une API ouverte de la Ville pour récupérer les données réelles des chantiers. Elle doit aussi intégrée une persistance des données.
         </p>
 
         <h4>Repartition du travail</h4>
         <section id="glossaire">
         <dl class="glossaire">
             <dt>Cyreanne</dt>
-            <dd>Architecture et choix de conception + Rapport et Git</dd>
+            <dd>Implémentation client + Tests Unitaires + Architecture et choix de conception</dd>
 
             <dt>Lallia</dt>
-            <dd>Implémentation + test unitaire (en collaboration avec Josué)</dd>
+            <dd>Implémentation (client et backend) + Diagramme du domaine métier</dd>
 
             <dt>Roxanne</dt>
-            <dd>Diagramme de Classe bas niveau</dd>
+            <dd>Assignation des tâches + Diagramme des CUs + Diagramme de Classe bas niveau + Implémentation client</dd>
 
             <dt>Zachary</dt>
-            <dd>Diagramme de séquence</dd>
+            <dd>Prototype + Diagramme du processus métier + Diagramme de séquence + Implémentation client</dd>
 
             <dt>Josué</dt>
-            <dd>Implémentation + test unitaire (en collaboration avec Lallia)</dd>
+            <dd>Setup du projet + Implémentation (client et backend) + Gestion de l'équipe + Docker + Démo</dd>
         </dl>
 
         <h4>Corrections</h4>
@@ -67,6 +68,46 @@
     </section>
 
     </div>
+    </section>
+    
+    <h2>Conception</h2>
+    <section id="DiagrammeAct">
+        <h3>Diagramme des processus métier mise à jour</h3>
+        <div class="placeholder">
+            <img src="images/Diagramme_activite.jpg" alt="diagramme d'activités">
+        </div>
+    </section>
+
+    <section id="DiagrammeClasse">
+        <h3>Diagramme du domaine métier corrigé</h3>
+        <div class="placeholder" >
+            <img src="images/Class_Diagram_MaVille_DM1.jpg" alt="diagramme du domaine métier">
+        </div>
+        <h3>Diagramme de classes de bas niveau</h3>
+        <div class="placeholder" style="overflow: auto; border: 1px solid #ccc; max-width: 100%; max-height: 80vh;">
+            <img src="images/DiagrammeClasseDetailleDM3.png" alt="diagramme de classe détaillée" style="width: auto; height: auto; max-width: 3000px; max-height: none;">
+        </div>
+    </section>
+
+    <section id="DiagrammeSequence">
+        <h3>Diagrammes de séquence du Cas d'utilisation Signaler un problème Routier</h3>
+        <div class="placeholder" style="overflow: auto; border: 1px solid #ccc; max-width: 100%; max-height: 80vh;">
+            <img src="images/Diagramme_sequence-Signaler_probleme_routier.jpg" alt="diagramme de séquence 1" style="width: auto; height: auto; max-width: 3000px; max-height: none;">
+        </div>
+        <h3>Diagrammes de séquence du Cas d'utilisation Consulter les notifications</h3>
+        <div class="placeholder" style="overflow: auto; border: 1px solid #ccc; max-width: 100%; max-height: 80vh;">
+            <img src="images/Diagramme_sequence-Signaler_probleme_routier.jpg" alt="diagramme de séquence 2" style="width: auto; height: auto; max-width: 3000px; max-height: none;">
+        </div>
+    </section>
+
+    <section id="BesoinsFunct">
+        <h3>Diagramme de cas d'utilisation mise à jour</h3>
+        <div class="placeholder" >
+            <img src="images/DiagrammeCasUtilisationDM3.png" alt="diagramme de CU">
+        </div>
+        <div>
+            La description détaillée des cas d'utilisation : <a href="rapport_CU_DM3FINAL.pptx">Description détaillée des cas d'utilisation.</a>
+        </div>
     </section>
 
     <section id="Architecture">
@@ -77,83 +118,64 @@
                 Elle intègre aussi une architecture REST et une API fourni par la ville.
             </p>
             <ul>
-                <li>Couche client gérant l'interaction avec l'utilisateur.</li>
+                <li>Couche client qui est l'interface graphique chargée de gérer l'interaction avec l'utilisateur.</li>
                 <li>Couche server contenant la logique fonctionnelle.</li>
                 <li>Couche d'accés aux données se chargeant de l'initialisation et du stockage des données.</li>
             </ul>
-    
+
             <h4>Utilisateurs et leurs moyens de communiquer avec l'application</h4>
             <ul>
-                <li>Résident : peuvent consulter les travaux, faire des signalements et gérer les notifications.</li>
-                <li>Prestataire : peuvent soumenttre des projets de travaux, mettre à jour les informations sur le déroulement des travaux.</li>
-                <li>Agent de la STPM : peuvent valider ou rejetter les demandes pour les projets, affecte des prioritês aux problèmes signalés.
-                    Dans notre implémentation, il est représenté par le serveur qui réalise ces processus de manière automatique et aléatoire.
+                <li>
+                    <h5>Résident</h5>
+                    <li>Consulter les projets de travaux en cours et à venir.</li>
+                    <li>Faire des signalements.</li>
+                    <li>S'abonner à des quartiers ou à des rues particulières pour recevoir les notifications sur les événements les concernant.</li>
+                    <li>Recevoir les notifications pour le traitement de leurs signalements et pour la création et la mise à jour de projets.</li>
+                </li>
+                <li>
+                    <h5>Prestataire</h5>
+                    <li>Consulter les fiches problèmes créées par les agents de la STPM.</li>
+                    <li>Soumettre des candiatures pour des problèmes.</li>
+                    <li>Consulter leurs projets de travaux.</li>
+                    <li>Mettre à jour les informations sur le déroulement des travaux.</li>
+                    <li>S'abonner à des aurtiers ou à des types de travaux particuliers pour recevoir des notifications pour les nouvelles fiches problèmes entrant dans ces catégories.</li>
+                    <li>Recevoir les notifications de traitements de leurs candidatures et de création de fiches problèmes.</li>
+                </li>
+                <li>
+                    <h5>Agent de la STPM</h5>
+                    <li>Accepter ou refuser les candidatures.</li>
+                    <li>Affecter des priorités aux problèmes signalés.</li>
+                    <li>Recevoir les notifications de signalement et de candidature.</li>
                 </li>
             </ul>
 
             <h4>Composants liées au style d'architecture</h4>
 
             <ul>
-                <li>Couche client : affiche les menus, capte les entrées utilisateurs et redirige vers les bons cas d'utilisation</li>
+                <li>Couche client : affiche les menus, capte les entrées utilisateurs et redirige vers les bons cas d'utilisations.</li>
                 <li>Couche métier : traite les cas d'utilisation comme le signalement, les notifications etc...</li>
-                <li>Couche d'accès aux données : gère les entités comme les travaux, les projets, les problèmes, les utilisateurs dans des fichiers ou dans une base de données</li>
+                <li>Couche d'accès aux données : gère les entités comme les travaux, les projets, les problèmes, les utilisateurs dans la base de données.</li>
             </ul>
-            
+
             <h4>Composants additionnelles jouant un rôle clé</h4>
             <ul>
                 <li>
-                    Le composant UseRequest dans le package hooks permet de faciliter la communication entre le server et le client en
-                    centralisant la logique de requête HTTP etd e réception des réponses.
+                    Le composant UseRequest dans le package hooks permet de faciliter la communication entre les controllers du serveur en
+                    centralisant la logique de requête HTTP et de réception des réponses.
                 </li>
+                <li>Le package utils contient des fonctions utilitaires qui sont utiles au travail des controllers et du serveur.</li>
             </ul>
 
             <h4>Espace de stockage ou base de données</h4>
             <p>L'application stocke :</p>
             <ul>
-                <li>Les utilisateurs, les projets, les signalements et les problèmes etc...</li>
+                <li>Les utilisateurs, les projets, les signalements et les problèmes etc... dans une base de données MongoDB.</li>
             </ul>
 
             <h4>Services externes ou API</h4>
-            <p>On va intégrer l'application à l'API de la ville, qui fournit déjà des données sur les travaux en cours.</p>
+            <p>L'API de la ville de Montréal est intégrée à l'application. Elle fournit déjà des données sur quelques travaux en cours.</p>
 
-            <img src="images/Architecture.png" alt="Architecture">
-        </div>
-    </section>
-    
-
-    <section id="DiagrammeAct">
-        <h3>Diagramme des processus métier mise à jour</h3>
-        <div class="placeholder">
-            <img src="images/Diagramme_activite.jpg" alt="diagramme d'activités">
-        </div>
-    </section>
-
-    <section id="DiagrammeClasse">
-        <h3>Diagramme du domaine métier corrigé</h3>
-        <div class="placeholder">
-            <img src="images/diagramme_classes_DM1.jpg" alt="diagramme de classe">
-        </div>
-        <h3>Diagramme de classes de bas niveau</h3>
-        <div class="placeholder">
-            <img src="images/MaVille.png" alt="diagramme de classe">
-        </div>
-    </section>
-
-    <section id="DiagrammeSequence">
-        <h3>Diagrammes de séquence du Cas d'utilisation Signaler un problème Routier</h3>
-        <div class="placeholder">
-            <img src="images/Diagramme_sequence-Signaler_probleme_routier.jpg" alt="diagramme de séquence 1">
-        </div>
-        <h3>Diagrammes de séquence du Cas d'utilisation Consulter les notifications</h3>
-        <div class="placeholder">
-            <img src="images/Diagramme_sequence-Signaler_probleme_routier.jpg" alt="diagramme de séquence 2">
-        </div>
-    </section>
-
-    <section id="BesoinsFunct">
-        <h3>Diagramme de cas d'utilisation mise à jour</h3>
-        <div class="placeholder">
-            <img src="images/img_diagramme_cas_utilisations.png" alt="diagramme de CU">
+            <img src="images/architecture.png" alt="Architecture">
         </div>
     </section>
 
@@ -163,25 +185,59 @@
             <p>
                 L'architecture choisie, comme dit plus haut, est une architecture en couches qui représente aussi une architecture REST. 
                 <br>La logique a été de séparer complètement les tâches dans l'application pour permettre une meilleur cohésion.
-                <br>Nous avons trois packages principaux dans l'application. 
-                <br>Le premier est le package client. Il contient la classe MaVille et les classes Utilisateur, Prestataire, Resident, Notification, Projet, Signalement, FicheProbleme et Candidature. 
-                <br>La classe MaVille est celle avec laquelle le client (en Ligne de commande) communique. Elle lui affiche des prompts, recueille ses choix et ses entrées puis communique avec le reste de l'application pour chercher et lui renvoyer les informations dont il a besoin. 
-                <br>Ainsi, elle communique avec les autres classes du packages qui représentent chacune une entité de l'application (l'utilisateur, la fiche problème, un signalement, une candidature, etc.). Ces classes communiquent à leur tour avec le backend grâce aux deuxième package.
-                <br>Le deuxième package est le package hooks. Il contient juste la classe UseRequest qui représente une abstraction de la logique d'envoi et de réception de requêtes HTTP à une API. 
-                <br>Cette classe est conçue pour centraliser cette logique et permettre un envoi et une réception facile des données à travers toutes l'application. Elle fait donc le pont entre la partie client et le package server.
-                <br>Le troisième package est le package server. Il contient la classe Server, la Database et les controllers. Le Server, est un serveur Javalin. C'est lui qui intercepte, traite et redirige les requêtes client. 
-                <br>La classe Database comme son nom l'indique est l'endroit où on initialise les données à partir de l'API de Montréal et où on stocke les données de l'application entière. Elle contient en réalité une Map pour stocker chaque type d'entité. 
-                <br>En effet, pour chaque entité de l'application, il existe un Controller qui est chargé de s'occuper de tout ce qui la concerne. 
-                <br>Chaque Controller communique avec la base de données en impactant uniquement la Map qui le concerne. Cette division de la logique permet de réduire le couplage parce que en cas de bugs et de problème lors d'une procédure, on sait exactement à quel Controller s'adresser et ça facilite le debugging. 
-                <br>Ainsi, grâce à l'architecture en couches, la logique est répartie de manière à permettre une plus forte cohésion tout au long de l'application à travers la répartition des modules. 
+                <br>Nous avons trois partie principale dans l'application.
+                <br>La première partie est la partie client. Il s'agit tout simplement de l'interface graphique. Elle s'assure de la communication entre les utilisateurs et la partie serveur.
+                Elle leur affiche les messages, les formulaires et les informations dont ils ont besoin.
+                <br>La deuxième partie est la partie serveur.Il contient la classe Server, la Database et les controllers. Le Server, est un serveur Javalin. C'est lui qui intercepte, traite et redirige les requêtes client vers les controllers.
+                En effet, pour chaque entité de l'application, il existe un controller qui est chargé de s'occuper de tout ce qui la concerne. Ce controller communique aussi avec un fichier DAO (Data Access Object) unique qui est chargé d'impacter la base de données.
+                Chaque controller communique avec la base de données en impactant uniquement la collections de documents qui le concerne. Cette division de la logique permet de réduire le couplage parce que en cas de bugs et de problème lors d'une procédure, on sait exactement à quel controller s'adresser et ça facilite le debugging.
+                <br>La troisième partie est la partie base de données. C'est elle qui s'occupe du stockage et de la persistance des données. Nous avons utilisé une base de données non relationnelle, notamment de type MongoDB. La flexibilité de la structure des documents et le fait qu'ils sont stockés sous forme de
+                JSON par défaut facilite leur traitement par les autres parties de l'application.
+                <br>Ainsi, grâce à l'architecture en couches, la logique est répartie de manière à permettre une plus forte cohésion tout au long de l'application à travers la répartition des tâches et des processus.
                 <br>Et à travers l'architecture REST, on a un moyen plus efficace et plus centralisé de communication, ce qui réduit les relations d'interdépendances entre les classes et qui permet donc un faible couplage. Cela facilite aussi de nouvelles intégrations et des améliorations à l'application.
             </p>
         </div>
     </section>
+
+    <h2>Implémentation</h2>
+    <section id="explication_setup">
+        <h3>Explication de la configuration du projet</h3>
+        <h4>Le client</h4>
+        <p>
+            L'interface graphique est faite avec React.js et TypeScript. Elle nécessite Node.js ayant une version supérieure ou égale à 22.12.0. TypeScript permet d'asurer une sécurité de l'application niveau typage. Nous avons également intégré Redux-toolkit à l'application. Il permet pendant toute la durée de la session, d'avoir accès au
+            informations de l'utilisatuer connecté comme un état global. Il est utilisé pour permttre une sécurité entre les pages et entre les rôles.
+        </p>
+        <br>
+        <h4>Le server</h4>
+        <p>
+            Il utilise Java 21 et Maven pour sa configuration. Il s'agit d'un serveur Javalin. Il gère principalement la logique à travers les controllers. Ceux si communiquent avec la base de données en utilisant des fichiers DAO (Data Acess Object) à travers la bibliothèque Morphia. Il s'agit d'un ODM (Object-Document Mapper) léger qui permet de communiquer
+            avec la base données à partir de models et d'entités Java.
+        </p>
+        <br>
+        <h4>La base de données</h4>
+        <p>
+            Il s'agit d'un cluster gratuit MongoDB qui stocke les informations dans des collections et sous forme de documents JSON.
+        </p>
+    </section>
+
+    <section id="Documentation">
+        <h3>Documentation</h3>
+        <p>Une documentation TypeDoc a été faites pour la partie client. On peut la trouver ici : <a href="docs-client/index.html">Documentation client</a></p>
+        <p>Une documentation TypeDoc a été faites pour la partie client. On peut y accéder ici : <a href="docs-backend/index.html">Documentation backend</a></p>
+        <p>La couverture de tests a été générée avec le plugin JaCoco. Elle se trouve ici : <a href="couverture-tests/index.html">Couverture de tests JaCoco</a></p>
+    </section>
+
+    <section id="Démonstration">
+        <h3>Démonstration</h3>
+        <video controls>
+            <source src="demo.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la balise vidéo HTML5.
+        </video>
+    </section>
 </div>
 <footer>
     <p>&copy; 2025 BugBusters. Tous droits réservés.</p>
-    <p>DM2 IFT2255 - UdeM</p>
+    <p>DM3 IFT2255 - UdeM</p>
 </footer>
 </body>
 </html>
