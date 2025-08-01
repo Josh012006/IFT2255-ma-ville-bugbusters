@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Signalement.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.models</a> &gt; <span class="el_source">Signalement.java</span></div><h1>Signalement.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.models;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Id;
+import dev.morphia.annotations.PrePersist;
+import org.bson.types.ObjectId;
+
+import java.util.Date;
+
+/**
+ * Représente un signalement soumis par un résident concernant un problème.
+ * Contient des informations sur le type de problème, la localisation,
+ * la description, le statut, le résident associé et les dates de création et de mise à jour.
+ *
+ * Cette classe est stockée dans la collection MongoDB &quot;signalements&quot;
+ * et utilise Jackson pour la sérialisation JSON.
+ */
+@Entity(&quot;signalements&quot;)
+public class Signalement {
+
+    /**
+     * Identifiant unique du signalement.
+     */
+    @Id
+    private ObjectId id;
+
+    /**
+     * Quartier où le problème a été signalé.
+     */
+    private String quartier;
+
+    /**
+     * Type de problème signalé.
+     */
+    private String typeProbleme;
+
+    /**
+     * Localisation précise du problème.
+     */
+    private String localisation;
+
+    /**
+     * Description détaillée du problème.
+     */
+    private String description;
+
+    /**
+     * Statut actuel du signalement : &quot;en attente&quot; | &quot;vu&quot; | &quot;traité&quot;.
+     */
+<span class="pc" id="L51">    private String statut = &quot;en attente&quot;;</span>
+
+    /**
+     * Identifiant du résident ayant soumis le signalement.
+     */
+    private ObjectId resident;
+
+    /**
+     * Date de création du signalement.
+     * Sérialisée au format ISO 8601 en JSON.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;, timezone = &quot;America/Toronto&quot;)
+    private Date createdAt;
+
+    /**
+     * Date de dernière mise à jour du signalement.
+     * Sérialisée au format ISO 8601 en JSON.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;, timezone = &quot;America/Toronto&quot;)
+    private Date updatedAt;
+
+    /**
+     * Un hook pour mettre createdAt et updatedAt à jour automatiquement.
+     */
+    @PrePersist
+    public void prePersist() {
+<span class="nc" id="L77">        Date now = new Date();</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        if (createdAt == null) {</span>
+<span class="nc" id="L79">            createdAt = now; // Il est mise à jour une seule fois seulement</span>
+        }
+<span class="nc" id="L81">        updatedAt = now; // Toujours mis à jour à chaque save</span>
+<span class="nc" id="L82">    }</span>
+
+    /**
+     * Constructeur sans argument requis par Morphia.
+     */
+<span class="fc" id="L87">    public Signalement() {}</span>
+
+    /**
+     * Constructeur pour initialiser un signalement avec les champs principaux.
+     *
+     * @param id Identifiant unique.
+     * @param typeProbleme Type de problème.
+     * @param localisation Localisation précise.
+     * @param description Description détaillée.
+     * @param resident Résident ayant soumis le signalement.
+     * @param quartier Quartier du problème.
+     */
+    public Signalement(ObjectId id, String typeProbleme, String localisation, String description, ObjectId resident,
+<span class="nc" id="L100">                       String quartier) {</span>
+<span class="nc" id="L101">        this.id = id;</span>
+<span class="nc" id="L102">        this.typeProbleme = typeProbleme;</span>
+<span class="nc" id="L103">        this.quartier = quartier;</span>
+<span class="nc" id="L104">        this.localisation = localisation;</span>
+<span class="nc" id="L105">        this.description = description;</span>
+<span class="nc" id="L106">        this.resident = resident;</span>
+<span class="nc" id="L107">        this.statut = &quot;en attente&quot;;</span>
+<span class="nc" id="L108">        this.createdAt = new Date();</span>
+<span class="nc" id="L109">        this.updatedAt = new Date();</span>
+<span class="nc" id="L110">    }</span>
+
+    // Getters
+<span class="fc" id="L113">    public ObjectId getId() {return this.id;}</span>
+<span class="nc" id="L114">    public ObjectId getResident() { return this.resident; }</span>
+<span class="nc" id="L115">    public String getQuartier() { return this.quartier; }</span>
+    public String getTypeProbleme() {
+<span class="nc" id="L117">        return this.typeProbleme;</span>
+    }
+    public String getLocalisation() {
+<span class="nc" id="L120">        return this.localisation;</span>
+    }
+    public String getDescription() {
+<span class="nc" id="L123">        return this.description;</span>
+    }
+    public String getStatut() {
+<span class="nc" id="L126">        return this.statut;</span>
+    }
+<span class="nc" id="L128">    public Date getCreatedAt() { return this.createdAt; }</span>
+<span class="nc" id="L129">    public Date getUpdatedAt() { return this.updatedAt; }</span>
+
+    // Setters
+<span class="nc" id="L132">    public void setResident(ObjectId resident) { this.resident = resident; }</span>
+<span class="nc" id="L133">    public void setQuartier(String quartier) { this.quartier = quartier; }</span>
+<span class="nc" id="L134">    public void setTypeProbleme(String typeProbleme) { this.typeProbleme = typeProbleme; }</span>
+<span class="nc" id="L135">    public void setLocalisation(String localisation) { this.localisation = localisation; }</span>
+<span class="nc" id="L136">    public void setDescription(String description) { this.description = description; }</span>
+    public void setStatut(String statut) {
+<span class="fc" id="L138">        this.statut = statut;</span>
+<span class="fc" id="L139">    }</span>
+<span class="nc" id="L140">    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }</span>
+<span class="nc" id="L141">    public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

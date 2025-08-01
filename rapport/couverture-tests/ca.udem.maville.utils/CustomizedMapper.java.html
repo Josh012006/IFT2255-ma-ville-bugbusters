@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomizedMapper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.utils</a> &gt; <span class="el_source">CustomizedMapper.java</span></div><h1>CustomizedMapper.java</h1><pre class="source lang-java linenums">package ca.udem.maville.utils;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import org.bson.types.ObjectId;
+
+import java.io.IOException;
+
+/**
+ * Un mapper customisé pour le serveur Javalin pour
+ * parser correctement les informations recues du client
+ * surtout par rapport à la conversion entre String et ObjectId.
+ */
+<span class="nc" id="L16">public class CustomizedMapper {</span>
+
+    // Deserializer : JSON → ObjectId
+    private static class ObjectIdDeserializer extends JsonDeserializer&lt;ObjectId&gt; {
+        @Override
+        public ObjectId deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+<span class="nc" id="L22">            return new ObjectId(p.getValueAsString());</span>
+        }
+    }
+
+    // Serializer : ObjectId → JSON
+    private static class ObjectIdSerializer extends JsonSerializer&lt;ObjectId&gt; {
+        @Override
+        public void serialize(ObjectId value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+<span class="nc" id="L30">            gen.writeString(value.toHexString());</span>
+<span class="nc" id="L31">        }</span>
+    }
+
+    // Module Jackson personnalisé pour MongoDB
+    public static class MongoModule extends SimpleModule {
+<span class="nc" id="L36">        public MongoModule() {</span>
+<span class="nc" id="L37">            addDeserializer(ObjectId.class, new ObjectIdDeserializer());</span>
+<span class="nc" id="L38">            addSerializer(ObjectId.class, new ObjectIdSerializer());</span>
+<span class="nc" id="L39">        }</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

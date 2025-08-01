@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Server.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server</a> &gt; <span class="el_source">Server.java</span></div><h1>Server.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server;
+
+import ca.udem.maville.server.controllers.*;
+import ca.udem.maville.server.controllers.users.NotificationController;
+import ca.udem.maville.server.controllers.users.PrestataireController;
+import ca.udem.maville.server.controllers.users.ResidentController;
+import ca.udem.maville.utils.CustomizedMapper;
+import io.javalin.Javalin;
+import io.javalin.json.JavalinJackson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import static io.javalin.apibuilder.ApiBuilder.*;
+
+
+public class Server {
+
+<span class="nc" id="L18">    private int port = 7070;</span>
+    private Javalin app;
+
+<span class="nc" id="L21">    static final Logger logger = LoggerFactory.getLogger(Server.class);</span>
+
+    CandidatureController candidatureController;
+    SignalementController signalementController;
+    ProjetController projetController;
+    ProblemController problemController;
+    NotificationController notificationController;
+    ResidentController residentController;
+    PrestataireController prestataireController;
+
+<span class="nc" id="L31">    public Server() {}</span>
+<span class="nc" id="L32">    public Server(int port) {</span>
+<span class="nc" id="L33">        this.port = port;</span>
+<span class="nc" id="L34">    }</span>
+
+    public void start() {
+
+        // Création des instances de controllers
+<span class="nc" id="L39">        String urlHead = &quot;http://localhost:&quot; + port + &quot;/api&quot;;</span>
+
+<span class="nc" id="L41">        candidatureController = new CandidatureController(urlHead, logger);</span>
+<span class="nc" id="L42">        signalementController = new SignalementController(urlHead, logger);</span>
+<span class="nc" id="L43">        projetController = new ProjetController(urlHead, logger);</span>
+<span class="nc" id="L44">        problemController = new ProblemController(urlHead, logger);</span>
+<span class="nc" id="L45">        notificationController = new NotificationController(urlHead, logger);</span>
+<span class="nc" id="L46">        residentController = new ResidentController(urlHead, logger);</span>
+<span class="nc" id="L47">        prestataireController = new PrestataireController(urlHead, logger);</span>
+
+        // Les fonctions d'initialisation de la base de données. A lancer une seule fois.
+        // Elle sont placées là juste pour marquer la trace qu'elles ont vraiment été implémentées.
+        // Puisque les données sont persistantes, elle ont déjà été lancées comme dit une seule fois
+        // lorsque nous avons fait la configuration.
+        // Cela peut aussi être facilement remarqué au niveau de l'interface graphique par la présence des entités.
+//        projetController.initializeProjetsFromAPI();
+//        residentController.initializeResidents();
+//        prestataireController.initializePrestataires();
+
+        // Intitialisation du serveur sur le port
+<span class="nc" id="L59">        app = Javalin.create(config -&gt; {</span>
+<span class="nc" id="L60">            config.router.contextPath = &quot;/api&quot;;</span>
+
+            // Configurer le cors pour accepter les requêtes du client
+<span class="nc" id="L63">            config.bundledPlugins.enableCors(cors -&gt; {</span>
+<span class="nc" id="L64">                cors.addRule(it -&gt; {</span>
+<span class="nc" id="L65">                    it.allowHost(&quot;http://localhost:5173&quot;);</span>
+<span class="nc" id="L66">                });</span>
+<span class="nc" id="L67">            });</span>
+
+            // Configurer le mapper pour ne pas avoir de problème pour passer automatiquement
+            // de ObjectId à String et vice-versa.
+<span class="nc" id="L71">            config.jsonMapper(</span>
+                new JavalinJackson()
+<span class="nc" id="L73">                        .updateMapper(mapper -&gt; {</span>
+<span class="nc" id="L74">                            mapper.registerModule(new CustomizedMapper.MongoModule());</span>
+<span class="nc" id="L75">                        })</span>
+            );
+
+            // Ajout des controllers
+            // Pour chacun, voir la JavaDoc au dessus de la fonction dans
+            // la définition du controller pour voir les éléments requis.
+<span class="nc" id="L81">            config.router.apiBuilder(() -&gt; {</span>
+
+<span class="nc" id="L83">                path(&quot;/notification&quot;, () -&gt; {</span>
+<span class="nc" id="L84">                    path(&quot;/getAll/{user}&quot;, () -&gt; {</span>
+<span class="nc" id="L85">                        get(notificationController::getAll);</span>
+<span class="nc" id="L86">                    });</span>
+<span class="nc" id="L87">                    path(&quot;/hasNotifications/{user}&quot;, () -&gt; {</span>
+<span class="nc" id="L88">                        get(notificationController::hasNotifications);</span>
+<span class="nc" id="L89">                    });</span>
+<span class="nc" id="L90">                    path(&quot;/{id}&quot;, () -&gt; {</span>
+<span class="nc" id="L91">                        get(notificationController::getById);</span>
+<span class="nc" id="L92">                    });</span>
+<span class="nc" id="L93">                    post(notificationController::create);</span>
+                    // Nécessite un query parameter signalement = true | false
+                    // pour savoir si c'est un signalement ou une candidature
+                    // qui a été supprimé.
+<span class="nc" id="L97">                    path(&quot;/deleteByUrl/{idObjet}&quot;, () -&gt; {</span>
+<span class="nc" id="L98">                        delete(notificationController::deleteByUrl);</span>
+<span class="nc" id="L99">                    });</span>
+<span class="nc" id="L100">                });</span>
+
+<span class="nc" id="L102">                path(&quot;/prestataire&quot;, () -&gt; {</span>
+                    // Le path getConcerned nécessite deux query parameters
+                    // quartier et type.
+<span class="nc" id="L105">                    path(&quot;/getConcerned&quot;, () -&gt; {</span>
+<span class="nc" id="L106">                        get(prestataireController::getConcerned);</span>
+<span class="nc" id="L107">                    });</span>
+<span class="nc" id="L108">                    path(&quot;/getAll&quot;, () -&gt; {</span>
+<span class="nc" id="L109">                        get(prestataireController::getAll);</span>
+<span class="nc" id="L110">                    });</span>
+<span class="nc" id="L111">                    path(&quot;/{id}&quot;, () -&gt; {</span>
+<span class="nc" id="L112">                        get(prestataireController::getById);</span>
+<span class="nc" id="L113">                        patch(prestataireController::patch);</span>
+<span class="nc" id="L114">                    });</span>
+<span class="nc" id="L115">                });</span>
+
+<span class="nc" id="L117">                path(&quot;/resident&quot;, () -&gt; {</span>
+                    // Le path getConcerned nécessite deux query parameters
+                    // quartier et rues. Notons que rues peut contenir plusieurs
+                    // rues séparées par des virgules.
+<span class="nc" id="L121">                    path(&quot;/getConcerned&quot;, () -&gt; {</span>
+<span class="nc" id="L122">                        get(residentController::getConcerned);</span>
+<span class="nc" id="L123">                    });</span>
+<span class="nc" id="L124">                    path(&quot;/getAll&quot;, () -&gt; {</span>
+<span class="nc" id="L125">                        get(residentController::getAll);</span>
+<span class="nc" id="L126">                    });</span>
+<span class="nc" id="L127">                    path(&quot;/{id}&quot;, () -&gt; {</span>
+<span class="nc" id="L128">                        get(residentController::getById);</span>
+<span class="nc" id="L129">                        patch(residentController::patch);</span>
+<span class="nc" id="L130">                    });</span>
+<span class="nc" id="L131">                });</span>
+
+<span class="nc" id="L133">                path(&quot;/candidature&quot;, () -&gt; {</span>
+<span class="nc" id="L134">                    path(&quot;/getAll&quot;, () -&gt; {</span>
+<span class="nc" id="L135">                        get(candidatureController::getAll);</span>
+<span class="nc" id="L136">                    });</span>
+<span class="nc" id="L137">                    path(&quot;/getByPrestataire/{user}&quot;, () -&gt; {</span>
+<span class="nc" id="L138">                        get(candidatureController::getByPrestataire);</span>
+<span class="nc" id="L139">                    });</span>
+<span class="nc" id="L140">                    post(candidatureController::create);</span>
+<span class="nc" id="L141">                    path(&quot;/{id}&quot;, () -&gt; {</span>
+                        // la route get nécessite un query parameter stpm
+                        // qui est un booléen qui précise si c'est le STPM
+                        // qui a vu la candidature.
+<span class="nc" id="L145">                        get(candidatureController::getById);</span>
+<span class="nc" id="L146">                        patch(candidatureController::patch);</span>
+<span class="nc" id="L147">                        delete(candidatureController::delete);</span>
+<span class="nc" id="L148">                    });</span>
+<span class="nc" id="L149">                    path(&quot;/markAsAccepted/{id}&quot;, () -&gt; {</span>
+<span class="nc" id="L150">                        patch(candidatureController::markAsAccepted);</span>
+<span class="nc" id="L151">                    });</span>
+<span class="nc" id="L152">                    path(&quot;/markAsRejected/{id}&quot;, () -&gt; {</span>
+<span class="nc" id="L153">                        patch(candidatureController::markAsRejected);</span>
+<span class="nc" id="L154">                    });</span>
+<span class="nc" id="L155">                });</span>
+
+<span class="nc" id="L157">                path(&quot;/probleme&quot;, () -&gt; {</span>
+<span class="nc" id="L158">                    path(&quot;/getAll&quot;, () -&gt; {</span>
+<span class="nc" id="L159">                        get(problemController::getAll);</span>
+<span class="nc" id="L160">                    });</span>
+                    // Le path getSimilar nécessite deux query parameters
+                    // quartier et type.
+<span class="nc" id="L163">                    path(&quot;/getSimilar&quot;, () -&gt; {</span>
+<span class="nc" id="L164">                        post(problemController::getSimilar);</span>
+<span class="nc" id="L165">                    });</span>
+<span class="nc" id="L166">                    post(problemController::create);</span>
+<span class="nc" id="L167">                    path(&quot;/{id}&quot;, () -&gt; {</span>
+<span class="nc" id="L168">                        get(problemController::getById);</span>
+<span class="nc" id="L169">                    });</span>
+<span class="nc" id="L170">                    path(&quot;/addExisting/{id}&quot;, () -&gt; {</span>
+<span class="nc" id="L171">                        patch(problemController::addExisting);</span>
+<span class="nc" id="L172">                    });</span>
+<span class="nc" id="L173">                    path(&quot;/getReporters/{id}&quot;, () -&gt; {</span>
+<span class="nc" id="L174">                        get(problemController::getReporters);</span>
+<span class="nc" id="L175">                    });</span>
+<span class="nc" id="L176">                    path(&quot;/markAsProcessed/{id}&quot;, () -&gt; {</span>
+<span class="nc" id="L177">                        patch(problemController::markAsProcessed);</span>
+<span class="nc" id="L178">                    });</span>
+<span class="nc" id="L179">                });</span>
+
+<span class="nc" id="L181">                path(&quot;/projet&quot;, () -&gt; {</span>
+<span class="nc" id="L182">                    path(&quot;/getAll&quot;, () -&gt; {</span>
+<span class="nc" id="L183">                        get(projetController::getAll);</span>
+<span class="nc" id="L184">                    });</span>
+<span class="nc" id="L185">                    path(&quot;/getByPrestataire/{user}&quot;, () -&gt; {</span>
+<span class="nc" id="L186">                        get(projetController::getByPrestataire);</span>
+<span class="nc" id="L187">                    });</span>
+<span class="nc" id="L188">                    post(projetController::create);</span>
+<span class="nc" id="L189">                    path(&quot;/{id}&quot;, () -&gt; {</span>
+<span class="nc" id="L190">                        get(projetController::getById);</span>
+<span class="nc" id="L191">                        patch(projetController::patch);</span>
+<span class="nc" id="L192">                    });</span>
+<span class="nc" id="L193">                });</span>
+
+<span class="nc" id="L195">                path(&quot;/signalement&quot;, () -&gt; {</span>
+<span class="nc" id="L196">                    path(&quot;/getAll&quot;, () -&gt; {</span>
+<span class="nc" id="L197">                        get(signalementController::getAll);</span>
+<span class="nc" id="L198">                    });</span>
+<span class="nc" id="L199">                    post(signalementController::create);</span>
+<span class="nc" id="L200">                    path(&quot;/getByResident/{user}&quot;, () -&gt; {</span>
+<span class="nc" id="L201">                        get(signalementController::getByResident);</span>
+<span class="nc" id="L202">                    });</span>
+<span class="nc" id="L203">                    path(&quot;/{id}&quot;, () -&gt; {</span>
+                        // la route get nécessite un query parameter stpm
+                        // qui est un booléen qui précise si c'est le STPM
+                        // qui a vu le signalement.
+<span class="nc" id="L207">                        get(signalementController::getById);</span>
+<span class="nc" id="L208">                        patch(signalementController::patch);</span>
+<span class="nc" id="L209">                        delete(signalementController::delete);</span>
+<span class="nc" id="L210">                    });</span>
+                    // Il requiert un query parameter treated qui informe s'il
+                    // existe déjà un projet pour ce signalement
+<span class="nc" id="L213">                    path(&quot;/markAsProcessed/{id}&quot;, () -&gt; {</span>
+<span class="nc" id="L214">                        patch(signalementController::markAsProcessed);</span>
+<span class="nc" id="L215">                    });</span>
+<span class="nc" id="L216">                });</span>
+
+<span class="nc" id="L218">            });</span>
+<span class="nc" id="L219">        }).start(this.port);</span>
+
+<span class="nc" id="L221">        app.options(&quot;/*&quot;, ctx -&gt; {</span>
+<span class="nc" id="L222">            ctx.status(204);</span>
+<span class="nc" id="L223">        });</span>
+
+<span class="nc" id="L225">        logger.info(&quot;\n========== 🚀 Server started on port {} ==========\n&quot;, this.port);</span>
+
+        // La logique de formattage des logs du servers.
+<span class="nc" id="L228">        app.before(ctx -&gt; {</span>
+<span class="nc" id="L229">            ctx.header(&quot;Access-Control-Allow-Origin&quot;, &quot;http://localhost:5173&quot;);</span>
+<span class="nc" id="L230">            ctx.header(&quot;Access-Control-Allow-Methods&quot;, &quot;GET,POST,PATCH,PUT,DELETE,OPTIONS&quot;);</span>
+<span class="nc" id="L231">            ctx.header(&quot;Access-Control-Allow-Headers&quot;, &quot;Content-Type&quot;);</span>
+
+<span class="nc" id="L233">            Logger logger = LoggerFactory.getLogger(&quot;HTTP&quot;);</span>
+
+<span class="nc" id="L235">            StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L236">            sb.append(&quot;\n--- Requête reçue ---\n&quot;);</span>
+<span class="nc" id="L237">            sb.append(&quot;Méthode: &quot;).append(ctx.method()).append(&quot;\n&quot;);</span>
+<span class="nc" id="L238">            sb.append(&quot;URL: &quot;).append(ctx.fullUrl()).append(&quot;\n&quot;);</span>
+<span class="nc" id="L239">            sb.append(&quot;Headers:\n&quot;);</span>
+
+<span class="nc" id="L241">            ctx.headerMap().forEach((k, v) -&gt; sb.append(&quot;  &quot;).append(k).append(&quot;: &quot;).append(v).append(&quot;\n&quot;));</span>
+
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            if (!ctx.body().isEmpty()) {</span>
+<span class="nc" id="L244">                sb.append(&quot;Body:\n&quot;).append(ctx.body()).append(&quot;\n&quot;);</span>
+            }
+
+<span class="nc" id="L247">            sb.append(&quot;---------------------\n&quot;);</span>
+
+<span class="nc" id="L249">            logger.info(sb.toString());</span>
+<span class="nc" id="L250">        });</span>
+
+<span class="nc" id="L252">        app.after(ctx -&gt; {</span>
+<span class="nc" id="L253">            Logger logger = LoggerFactory.getLogger(&quot;HTTP&quot;);</span>
+
+<span class="nc" id="L255">            StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L256">            sb.append(&quot;\n--- Réponse envoyée ---\n&quot;);</span>
+<span class="nc" id="L257">            sb.append(&quot;Status: &quot;).append(ctx.status()).append(&quot;\n&quot;);</span>
+
+            // Tu peux logger ctx.result() si tu renvoies un string, ou encoder en JSON si besoin
+<span class="nc bnc" id="L260" title="All 2 branches missed.">            if (ctx.result() != null) {</span>
+<span class="nc" id="L261">                sb.append(&quot;Body:\n&quot;).append(ctx.result()).append(&quot;\n&quot;);</span>
+            }
+
+<span class="nc" id="L264">            sb.append(&quot;------------------------\n&quot;);</span>
+
+<span class="nc" id="L266">            logger.info(sb.toString());</span>
+<span class="nc" id="L267">        });</span>
+
+
+        // Appelle aussi serverStopping et serverStopped
+<span class="nc" id="L271">        Runtime.getRuntime().addShutdownHook(new Thread(() -&gt; {</span>
+<span class="nc" id="L272">            logger.info(&quot;\n========== 🛑 Server stopped ==========\n&quot;);</span>
+<span class="nc" id="L273">            app.stop();</span>
+<span class="nc" id="L274">        }));</span>
+
+
+<span class="nc" id="L277">    }</span>
+
+    public void stop() {
+<span class="nc" id="L280">        app.stop();</span>
+<span class="nc" id="L281">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

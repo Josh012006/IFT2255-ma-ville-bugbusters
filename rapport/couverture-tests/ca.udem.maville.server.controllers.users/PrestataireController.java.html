@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PrestataireController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.controllers.users</a> &gt; <span class="el_source">PrestataireController.java</span></div><h1>PrestataireController.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.controllers.users;
+
+import ca.udem.maville.server.dao.files.users.PrestataireDAO;
+import ca.udem.maville.server.models.users.Prestataire;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.javalin.http.Context;
+
+import io.javalin.json.JavalinJackson;
+import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * La controller qui gère les différentes interactions du client avec le serveur
+ * en tout ce qui concerne les prestataires.
+ */
+public class PrestataireController {
+    public String urlHead;
+    public Logger logger;
+
+<span class="fc" id="L25">    public PrestataireController(String urlHead, Logger logger) {</span>
+<span class="fc" id="L26">        this.urlHead = urlHead;</span>
+<span class="fc" id="L27">        this.logger = logger;</span>
+<span class="fc" id="L28">    }</span>
+
+    /**
+     * Cette route permet de récupérer tous les prestataires qui pourraient être intéressés
+     * par un problème déclaré. Elle a besoin de deux query parameters :
+     * Le paramètre quartier contient le nom du quartier où le problème est situé.
+     * Le paramètre type contient le nom du type de travail requis.
+     * @param ctx qui représente le contexte de la requête
+     */
+    public void getConcerned(Context ctx) {
+        try {
+<span class="nc" id="L39">            String quartier = ctx.queryParam(&quot;quartier&quot;);</span>
+<span class="nc" id="L40">            String type = ctx.queryParam(&quot;type&quot;);</span>
+
+<span class="nc bnc" id="L42" title="All 8 branches missed.">            if(quartier == null || type == null || quartier.isEmpty() || type.isEmpty()) {</span>
+<span class="nc" id="L43">                ctx.status(400).result(&quot;{\&quot;message\&quot;: \&quot;Les query parameters quartier et type sont requis.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L44">                return;</span>
+            }
+
+<span class="nc" id="L47">            List&lt;Prestataire&gt; concerned = PrestataireDAO.findToNotify(quartier, type);</span>
+<span class="nc" id="L48">            List&lt;String&gt; concernedIds = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            for(Prestataire prestataire : concerned) {</span>
+<span class="nc" id="L50">                concernedIds.add(prestataire.getId().toHexString());</span>
+<span class="nc" id="L51">            }</span>
+
+<span class="nc" id="L53">            ctx.status(200).json(concernedIds).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L54">        } catch (Exception e) {</span>
+<span class="nc" id="L55">            e.printStackTrace();</span>
+<span class="nc" id="L56">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L57">        }</span>
+<span class="nc" id="L58">    }</span>
+
+    /**
+     * Cette fonction permet de récupérer tous les prestataires
+     * de la base de données. Il est utile au niveau du choix de profil.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void getAll(Context ctx) {
+        try {
+<span class="fc" id="L67">            List&lt;Prestataire&gt; prestataires = PrestataireDAO.findAll();</span>
+
+<span class="nc" id="L69">            ctx.status(200).json(prestataires).contentType(&quot;application/json&quot;);</span>
+<span class="fc" id="L70">        } catch (Exception e) {</span>
+<span class="fc" id="L71">            e.printStackTrace();</span>
+<span class="fc" id="L72">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L73">        }</span>
+<span class="fc" id="L74">    }</span>
+
+    /**
+     * Cette route permet de récupérer les informations sur un prestataire donné
+     * en fonction de son id.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void getById(Context ctx) {
+        try {
+<span class="fc" id="L83">            String id = ctx.pathParam(&quot;id&quot;);</span>
+
+<span class="fc" id="L85">            Prestataire prestataire = PrestataireDAO.findById(new ObjectId(id));</span>
+
+<span class="fc bfc" id="L87" title="All 2 branches covered.">            if(prestataire == null) {</span>
+<span class="fc" id="L88">                ctx.status(404).result(&quot;{\&quot;message\&quot;: \&quot;Aucun prestataire avec un tel ID retrouvé.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="fc" id="L89">                return;</span>
+            }
+
+            // Renvoyer le prestataire
+<span class="nc" id="L93">            ctx.status(200).json(prestataire).contentType(&quot;application/json&quot;);</span>
+<span class="fc" id="L94">        } catch (Exception e) {</span>
+<span class="fc" id="L95">            e.printStackTrace();</span>
+<span class="fc" id="L96">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L97">        }</span>
+<span class="fc" id="L98">    }</span>
+
+    /**
+     * Cette route permet de modifier les préférences de notifications (abonnements)
+     * d'un prestataire, connaissant son id.
+     * Le body doit contenir les champs à modifier:
+     * - abonnementsQuartier : les nouveaux abonnements de quartier
+     * - abonnementsType: les nouveaux abonnements de type de travaux
+     * Assurez vous que la nouvelle information a le bon type.
+     * NB: Elle remplace complètement les champs tableaux de la base de données par ceux envoyés.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void patch(Context ctx) {
+        try {
+<span class="fc" id="L112">            String id = ctx.pathParam(&quot;id&quot;);</span>
+
+<span class="fc" id="L114">            Prestataire prestataire = PrestataireDAO.findById(new ObjectId(id));</span>
+
+<span class="fc bfc" id="L116" title="All 2 branches covered.">            if(prestataire == null) {</span>
+<span class="fc" id="L117">                ctx.status(404).result(&quot;{\&quot;message\&quot;: \&quot;Aucun prestataire avec un tel ID retrouvé.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="fc" id="L118">                return;</span>
+            }
+
+<span class="fc" id="L121">            ObjectMapper mapper = JavalinJackson.defaultMapper();</span>
+
+<span class="fc" id="L123">            JsonNode json = mapper.readTree(ctx.body());</span>
+
+<span class="fc" id="L125">            JsonNode json1 = json.get(&quot;abonnementsQuartier&quot;);</span>
+<span class="pc bpc" id="L126" title="2 of 4 branches missed.">            if(json1 != null &amp;&amp; json1.isArray()) {</span>
+<span class="fc" id="L127">                List&lt;String&gt; abonnementsQuartier = mapper.readerForListOf(String.class).readValue(json1);</span>
+<span class="fc" id="L128">                prestataire.setAbonnementsQuartier(abonnementsQuartier);</span>
+            }
+
+<span class="fc" id="L131">            JsonNode json2 = json.get(&quot;abonnementsType&quot;);</span>
+<span class="pc bpc" id="L132" title="2 of 4 branches missed.">            if(json2 != null &amp;&amp; json2.isArray()) {</span>
+<span class="fc" id="L133">                List&lt;String&gt; abonnementsType = mapper.readerForListOf(String.class).readValue(json2);</span>
+<span class="fc" id="L134">                prestataire.setAbonnementsType(abonnementsType);</span>
+            }
+
+<span class="fc" id="L137">            PrestataireDAO.save(prestataire);</span>
+
+<span class="nc" id="L139">            ctx.status(200).json(prestataire).contentType(&quot;application/json&quot;);</span>
+<span class="fc" id="L140">        } catch (Exception e) {</span>
+<span class="fc" id="L141">            e.printStackTrace();</span>
+<span class="fc" id="L142">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L143">        }</span>
+<span class="fc" id="L144">    }</span>
+
+    /**
+     * Cette fonction initialise la base de données avec les prestataires.
+     * Elle sera lancée une seule fois au premier test du serveur.
+     */
+    public void initializePrestataires() {
+        try {
+<span class="nc" id="L152">            ArrayList&lt;String&gt; abonnementsQuartier1 = new ArrayList&lt;&gt;(List.of(&quot;Ville-Marie&quot;, &quot;Rosemont–La Petite-Patrie&quot;));</span>
+<span class="nc" id="L153">            ArrayList&lt;String&gt; abonnementsType1 = new ArrayList&lt;&gt;(List.of(&quot;Travaux Routiers&quot;, &quot;Travaux Souterrains&quot;, &quot;Travaux Gaz Ou Electricité&quot;));</span>
+<span class="nc" id="L154">            Prestataire prestataire1 = new Prestataire(</span>
+                    new ObjectId(), &quot;Groupe InfraTech&quot;, &quot;infratech@groupe.com&quot;,
+                    abonnementsQuartier1, &quot;NEQ12345678&quot;,
+<span class="nc" id="L157">                    new ArrayList&lt;&gt;(List.of(&quot;Ville-Marie&quot;, &quot;Rosemont–La Petite-Patrie&quot;, &quot;Montréal-Nord&quot;)),</span>
+<span class="nc" id="L158">                    new ArrayList&lt;&gt;(List.of(&quot;Travaux Routiers&quot;, &quot;Travaux Souterrains&quot;, &quot;Travaux Gaz Ou Electricité&quot;, &quot;Entretien paysager&quot;)),</span>
+                    abonnementsType1
+            );
+<span class="nc" id="L161">            PrestataireDAO.save(prestataire1);</span>
+
+<span class="nc" id="L163">            ArrayList&lt;String&gt; abonnementsQuartier2 = new ArrayList&lt;&gt;(List.of(&quot;Ville-Marie&quot;, &quot;Verdun&quot;));</span>
+<span class="nc" id="L164">            ArrayList&lt;String&gt; abonnementsType2 = new ArrayList&lt;&gt;(List.of(&quot;Travaux Routiers&quot;, &quot;Travaux Résidentiel&quot;));</span>
+<span class="nc" id="L165">            Prestataire prestataire2 = new Prestataire(</span>
+                    new ObjectId(), &quot;Reno-Montréal&quot;, &quot;contact@reno-mtl.ca&quot;,
+                    abonnementsQuartier2, &quot;NEQ22334455&quot;,
+<span class="nc" id="L168">                    new ArrayList&lt;&gt;(List.of(&quot;Ville-Marie&quot;, &quot;Verdun&quot;, &quot;Saint-Laurent&quot;)),</span>
+<span class="nc" id="L169">                    new ArrayList&lt;&gt;(List.of(&quot;Travaux Routiers&quot;, &quot;Travaux Résidentiel&quot;)),</span>
+                    abonnementsType2
+            );
+<span class="nc" id="L172">            PrestataireDAO.save(prestataire2);</span>
+
+<span class="nc" id="L174">            ArrayList&lt;String&gt; abonnementsQuartier3 = new ArrayList&lt;&gt;(List.of(&quot;Le Plateau-Mont-Royal&quot;, &quot;Verdun&quot;));</span>
+<span class="nc" id="L175">            ArrayList&lt;String&gt; abonnementsType3 = new ArrayList&lt;&gt;(List.of(&quot;Entretien Paysager&quot;, &quot;Travaux Résidentiel&quot;));</span>
+<span class="nc" id="L176">            Prestataire prestataire3 = new Prestataire(</span>
+                    new ObjectId(), &quot;ÉcoJardin Montréal&quot;, &quot;services@ecojardin.ca&quot;,
+                    abonnementsQuartier3, &quot;NEQ99887766&quot;,
+<span class="nc" id="L179">                    new ArrayList&lt;&gt;(List.of(&quot;Le Plateau-Mont-Royal&quot;, &quot;Verdun&quot;)),</span>
+<span class="nc" id="L180">                    new ArrayList&lt;&gt;(List.of(&quot;Entretien Paysager&quot;, &quot;Travaux Résidentiel&quot;, &quot;Travaux Gaz Ou Electricité&quot;)),</span>
+                    abonnementsType3
+            );
+<span class="nc" id="L183">            PrestataireDAO.save(prestataire3);</span>
+
+<span class="nc" id="L185">            ArrayList&lt;String&gt; abonnementsQuartier4 = new ArrayList&lt;&gt;(List.of(&quot;Le Plateau-Mont-Royal&quot;, &quot;Ahuntsic–Cartierville&quot;));</span>
+<span class="nc" id="L186">            ArrayList&lt;String&gt; abonnementsType4 = new ArrayList&lt;&gt;(List.of(&quot;Travaux De Signalisation Et Eclairage&quot;, &quot;Travaux Souterrains&quot;));</span>
+<span class="nc" id="L187">            Prestataire prestataire4 = new Prestataire(</span>
+                    new ObjectId(), &quot;SignalPro Inc.&quot;, &quot;admin@signalpro.ca&quot;,
+                    abonnementsQuartier4, &quot;NEQ77665544&quot;,
+<span class="nc" id="L190">                    new ArrayList&lt;&gt;(List.of(&quot;Le Plateau-Mont-Royal&quot;, &quot;Ahuntsic–Cartierville&quot;)),</span>
+<span class="nc" id="L191">                    new ArrayList&lt;&gt;(List.of(&quot;Travaux De Signalisation Et Eclairage&quot;, &quot;Travaux Souterrains&quot;)),</span>
+                    abonnementsType4
+            );
+<span class="nc" id="L194">            PrestataireDAO.save(prestataire4);</span>
+
+<span class="nc" id="L196">            ArrayList&lt;String&gt; abonnementsQuartier5 = new ArrayList&lt;&gt;(List.of(&quot;LaSalle&quot;, &quot;Ville-Marie&quot;));</span>
+<span class="nc" id="L197">            ArrayList&lt;String&gt; abonnementsType5 = new ArrayList&lt;&gt;(List.of(&quot;Entretien Urbain&quot;, &quot;Travaux Résidentiel&quot;));</span>
+<span class="nc" id="L198">            Prestataire prestataire5 = new Prestataire(</span>
+                    new ObjectId(), &quot;Services Urbains Inc.&quot;, &quot;contact@servicesurbains.com&quot;,
+                    abonnementsQuartier5, &quot;NEQ3344556677&quot;,
+<span class="nc" id="L201">                    new ArrayList&lt;&gt;(List.of(&quot;LaSalle&quot;, &quot;Ville-Marie&quot;, &quot;Saint-Laurent&quot;)),</span>
+<span class="nc" id="L202">                    new ArrayList&lt;&gt;(List.of(&quot;Entretien Urbain&quot;, &quot;Travaux Résidentiel&quot;, &quot;Entretien Des Réseaux de Télécommunication&quot;)),</span>
+                    abonnementsType5
+            );
+<span class="nc" id="L205">            PrestataireDAO.save(prestataire5);</span>
+
+<span class="nc" id="L207">        } catch (Exception e) {</span>
+<span class="nc" id="L208">            e.printStackTrace();</span>
+<span class="nc" id="L209">        }</span>
+<span class="nc" id="L210">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

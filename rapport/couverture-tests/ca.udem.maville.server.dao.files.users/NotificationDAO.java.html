@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NotificationDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.dao.files.users</a> &gt; <span class="el_source">NotificationDAO.java</span></div><h1>NotificationDAO.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.dao.files.users;
+
+import ca.udem.maville.server.dao.config.MongoConfig;
+import ca.udem.maville.server.models.users.Notification;
+import dev.morphia.query.filters.Filters;
+import org.bson.types.ObjectId;
+
+import java.util.List;
+
+/**
+ * La classe NotificationDAO qui représente la couche d'interactions
+ * à la base de données pour tout ce qui concerne les notifications.
+ * Elle offre des méthodes statiques utilisées dans {@link ca.udem.maville.server.controllers.users.NotificationController}
+ * et qui agissent sur les documents stockés tout en suivant le model
+ * {@link ca.udem.maville.server.models.users.Notification}
+ */
+<span class="nc" id="L17">public class NotificationDAO {</span>
+
+    /**
+     * Récupère toutes les notifications destinées à un utilisateur.
+     * @param userId il s'agit de l'id de l'utilisateur.
+     * @return la liste des notifications trouvées.
+     */
+    public static List&lt;Notification&gt; findUserNotifications(ObjectId userId){
+<span class="nc" id="L25">        return MongoConfig.getDatastore()</span>
+<span class="nc" id="L26">                .find(Notification.class)</span>
+<span class="nc" id="L27">                .filter(Filters.eq(&quot;user&quot;, userId))</span>
+<span class="nc" id="L28">                .iterator()</span>
+<span class="nc" id="L29">                .toList();</span>
+    }
+
+    /**
+     * Cette fonction permet de vérifier si un utilisateur a au moins une notification non lue.
+     * @param userId qui représente l'id de l'utilisateur
+     * @return un booléen qui dit s'il a au moins une notification.
+     */
+    public static boolean hasNotifications(ObjectId userId) {
+<span class="nc" id="L38">        return MongoConfig.getDatastore().find(Notification.class)</span>
+<span class="nc" id="L39">                .filter(Filters.and(</span>
+<span class="nc" id="L40">                    Filters.eq(&quot;user&quot;, userId),</span>
+<span class="nc" id="L41">                    Filters.eq(&quot;statut&quot;, &quot;non lue&quot;)</span>
+                ))
+<span class="nc" id="L43">                .iterator()</span>
+<span class="nc" id="L44">                .hasNext();</span>
+    }
+
+
+    /**
+     * Sauvegarde ou met à jour une notification.
+     * @param notification qui représente la notification.
+     */
+    public static void save(Notification notification){
+<span class="nc" id="L53">        MongoConfig.getDatastore().save(notification);</span>
+<span class="nc" id="L54">    }</span>
+
+
+
+    /**
+     * Récupère une notification par son id.
+     * @param id qui est l'id de la notification à récupérer.
+     * @return la notification trouvée.
+     */
+    public static Notification findById(ObjectId id){
+<span class="nc" id="L64">        return MongoConfig.getDatastore()</span>
+<span class="nc" id="L65">                .find(Notification.class)</span>
+<span class="nc" id="L66">                .filter(Filters.eq(&quot;_id&quot;, id))</span>
+<span class="nc" id="L67">                .first();</span>
+
+    }
+
+    public static void deleteByUrl(String url){
+<span class="nc" id="L72">        List&lt;Notification&gt; found = MongoConfig.getDatastore()</span>
+<span class="nc" id="L73">                .find(Notification.class)</span>
+<span class="nc" id="L74">                .filter(Filters.eq(&quot;url&quot;, url))</span>
+<span class="nc" id="L75">                .iterator()</span>
+<span class="nc" id="L76">                .toList();</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        if(!found.isEmpty()) {</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            for(Notification notification : found){</span>
+<span class="nc" id="L79">                MongoConfig.getDatastore().delete(notification);</span>
+<span class="nc" id="L80">            }</span>
+        }
+<span class="nc" id="L82">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

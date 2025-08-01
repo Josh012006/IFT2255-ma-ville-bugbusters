@@ -119,17 +119,32 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.12</version>
                 <executions>
+                    <!-- Active l’agent JaCoCo pendant les tests -->
                     <execution>
+                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
+
+                    <!-- Génére le rapport lisible après les tests -->
                     <execution>
                         <id>report</id>
                         <phase>verify</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
+                        <configuration>
+                            <!-- Dossier personnalisé pour les rapports HTML -->
+                            <outputDirectory>${project.basedir}/target/couverture-tests</outputDirectory>
+
+                            <!-- Formats supplémentaires si besoin -->
+                            <formats>
+                                <format>HTML</format>
+                                <format>XML</format>
+                                <format>CSV</format>
+                            </formats>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

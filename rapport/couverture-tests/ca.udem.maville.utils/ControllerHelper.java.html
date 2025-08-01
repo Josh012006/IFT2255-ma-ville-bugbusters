@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ControllerHelper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.utils</a> &gt; <span class="el_source">ControllerHelper.java</span></div><h1>ControllerHelper.java</h1><pre class="source lang-java linenums">package ca.udem.maville.utils;
+
+
+import java.time.Instant;
+import java.util.Date;
+import java.util.Random;
+
+
+
+/**
+ * Une fontion utilitaire qui regroupe des fonctions qui sont utilisées dans les controllers.
+ */
+<span class="nc" id="L13">public final class ControllerHelper {</span>
+
+    public static String getTypeTravail(String reason, TypesTravaux[] typesTravaux) {
+<span class="nc bnc" id="L16" title="All 2 branches missed.">        if(reason.equals(&quot;Autre&quot;)) {</span>
+            // Si c'est Autre, en choisir un type de travail au hasard
+            // avec une répartition uniforme
+<span class="nc" id="L19">            int index = getRandomUniformInt(0, typesTravaux.length); // génère un entier entre 0 et array.length - 1</span>
+<span class="nc" id="L20">            return typesTravaux[index].getLabel();</span>
+        } else {
+            // Sinon, en regardant les résultats de la requête à l'API, on remarque
+            // que le reste est pour la plupart des travaux de construction ou rénovation
+<span class="nc" id="L24">            return TypesTravaux.constructionOuRenovation.getLabel();</span>
+        }
+    }
+
+    public static int getRandomUniformInt(int min, int max) {
+<span class="nc" id="L29">        Random random = new Random();</span>
+<span class="nc" id="L30">        return random.nextInt(min, max);</span>
+    }
+
+    public static double getRandomUniformDouble(double min, double max) {
+<span class="nc" id="L34">        Random random = new Random();</span>
+<span class="nc" id="L35">        return random.nextDouble(min, max);</span>
+    }
+
+    public static Date fromIsoString(String isoDate) {
+<span class="nc" id="L39">        Instant instant = Instant.parse(isoDate);</span>
+<span class="nc" id="L40">        return Date.from(instant);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

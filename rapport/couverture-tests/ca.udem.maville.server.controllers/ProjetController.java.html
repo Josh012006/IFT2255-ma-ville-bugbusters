@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProjetController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.controllers</a> &gt; <span class="el_source">ProjetController.java</span></div><h1>ProjetController.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.controllers;
+
+import ca.udem.maville.hooks.UseRequest;
+import ca.udem.maville.server.dao.files.ProjetDAO;
+import ca.udem.maville.server.models.Candidature;
+import ca.udem.maville.server.models.FicheProbleme;
+import ca.udem.maville.server.models.Projet;
+import ca.udem.maville.utils.ControllerHelper;
+import ca.udem.maville.utils.RequestType;
+import ca.udem.maville.utils.TypesTravaux;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.javalin.http.Context;
+
+import io.javalin.json.JavalinJackson;
+import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+
+import java.util.*;
+
+
+/**
+ * La controller qui gère les différentes interactions du client avec le serveur
+ * en tout ce qui concerne les projets.
+ */
+public class ProjetController {
+
+    public String urlHead;
+    public Logger logger;
+
+
+<span class="fc" id="L32">    public ProjetController(String urlHead, Logger logger) {</span>
+<span class="fc" id="L33">        this.urlHead = urlHead;</span>
+<span class="fc" id="L34">        this.logger = logger;</span>
+<span class="fc" id="L35">    }</span>
+
+    /**
+     * Cette route permet de récupérer tous les travaux prévus qui sont soit en cours ou à venir
+     * dans les trois prochains mois.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void getAll(Context ctx) {
+        try {
+<span class="fc" id="L44">            List&lt;Projet&gt; projets = ProjetDAO.findAll();</span>
+
+            // Envoyer le message de succès
+<span class="nc" id="L47">            ctx.status(200).json(projets).contentType(&quot;application/json&quot;);</span>
+<span class="fc" id="L48">        } catch (Exception e) {</span>
+<span class="fc" id="L49">            e.printStackTrace();</span>
+<span class="fc" id="L50">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L51">        }</span>
+<span class="fc" id="L52">    }</span>
+
+    /**
+     * Cette route permet de récupérer tous les projets d'un prestataire en particulier.
+     * Le paramètre de path user précise l'id du prestataire.
+     * @param ctx qui représente le contexte de la requête
+     */
+    public void getByPrestataire(Context ctx) {
+        try {
+<span class="nc" id="L61">            String idUser = ctx.pathParam(&quot;user&quot;);</span>
+
+<span class="nc" id="L63">            List&lt;Projet&gt; presProjets = ProjetDAO.findPrestataireProjet(new ObjectId(idUser));</span>
+
+            // Envoyer le message de succès
+<span class="nc" id="L66">            ctx.status(200).json(presProjets).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L67">        } catch (Exception e) {</span>
+<span class="nc" id="L68">            e.printStackTrace();</span>
+<span class="nc" id="L69">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L70">        }</span>
+<span class="nc" id="L71">    }</span>
+
+    /**
+     * Cette route permet de créer un nouveau projet pour un prestataire donné.
+     * Le body doit contenir uniquement :
+     * - candidature : qui est l'id de la candidature qui a conduit au projet.
+     * Le reste des informations en est tiré.
+     * Elle s'occupe automatiquement d'assigner les champs id et statut.
+     * Elle inclut l'envoi des notifications aux résidents ayant signalé le problème, à ceux s'étant abonnés et au
+     * prestataire ayant proposé la candidature.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void create(Context ctx) {
+        try {
+
+<span class="nc" id="L86">            ObjectMapper mapper = JavalinJackson.defaultMapper();</span>
+<span class="nc" id="L87">            JsonNode json2 = mapper.readTree(ctx.body());</span>
+<span class="nc" id="L88">            String candidature = json2.get(&quot;candidature&quot;).asText();</span>
+
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            if(candidature == null || candidature.isEmpty()) {</span>
+<span class="nc" id="L91">                ctx.status(400).result(&quot;{\&quot;message\&quot;: \&quot;Les query parameter candidature est requis.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L92">                return;</span>
+            }
+
+            // Récupérer les informations sur la candidature
+<span class="nc" id="L96">            String response4 = UseRequest.sendRequest(urlHead + &quot;/candidature/&quot; + candidature, RequestType.GET, null);</span>
+<span class="nc" id="L97">            JsonNode json4 = mapper.readTree(response4);</span>
+<span class="nc" id="L98">            JsonNode data4 = json4.get(&quot;data&quot;);</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">            if(json4.get(&quot;status&quot;).asInt() != 200) {</span>
+<span class="nc" id="L100">                throw new Exception(data4.get(&quot;message&quot;).asText());</span>
+            }
+
+<span class="nc" id="L103">            Candidature candidature1 = mapper.treeToValue(data4, Candidature.class);</span>
+
+            // Récupérer les informations sur la ficheProbleme
+<span class="nc" id="L106">            String response5 = UseRequest.sendRequest(urlHead + &quot;/probleme/&quot; + candidature1.getFicheProbleme().toHexString(), RequestType.GET, null);</span>
+<span class="nc" id="L107">            JsonNode json5 = mapper.readTree(response5);</span>
+<span class="nc" id="L108">            JsonNode data5 = json5.get(&quot;data&quot;);</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            if(json5.get(&quot;status&quot;).asInt() != 200) {</span>
+<span class="nc" id="L110">                throw new Exception(data5.get(&quot;message&quot;).asText());</span>
+            }
+
+<span class="nc" id="L113">            FicheProbleme probleme = mapper.treeToValue(data5, FicheProbleme.class);</span>
+
+            // Récupérer les informations sur le nouveau projet.
+<span class="nc" id="L116">            Projet newProjet = new Projet(new ObjectId(), candidature1.getTitreProjet(), candidature1.getRuesAffectees(), candidature1.getDescription(), candidature1.getTypeTravaux(),</span>
+<span class="nc" id="L117">                    candidature1.getDateDebut(), candidature1.getDateFin(), candidature1.getFicheProbleme(), candidature1.getPrestataire(), candidature1.getNomPrestataire(),</span>
+<span class="nc" id="L118">                    probleme.getQuartier(), candidature1.getCoutEstime(), probleme.getPriorite());</span>
+
+            // Récupérer tous les abonnés pour les ajouter à la liste des abonnes.
+
+<span class="nc" id="L122">            String response = UseRequest.sendRequest(urlHead + &quot;/probleme/getReporters/&quot; + newProjet.getFicheProbleme().toHexString(), RequestType.GET, null);</span>
+<span class="nc" id="L123">            JsonNode json = mapper.readTree(response);</span>
+
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            if(json.get(&quot;status&quot;).asInt() != 200) {</span>
+<span class="nc" id="L126">                throw new Exception(json.get(&quot;message&quot;).asText());</span>
+            }
+
+<span class="nc" id="L129">            JsonNode data = json.get(&quot;data&quot;);</span>
+
+<span class="nc bnc" id="L131" title="All 2 branches missed.">            if(!data.isArray()) {</span>
+<span class="nc" id="L132">                throw new Exception(&quot;Reporters n'est pas un tableau.&quot;);</span>
+            }
+
+<span class="nc" id="L135">            List&lt;ObjectId&gt; abonnes = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            for(JsonNode reporter : data) {</span>
+<span class="nc" id="L137">                abonnes.add(new ObjectId(reporter.asText()));</span>
+<span class="nc" id="L138">            }</span>
+<span class="nc" id="L139">            newProjet.setAbonnes(abonnes);</span>
+<span class="nc" id="L140">            newProjet.setNbRapports(probleme.getSignalements().toArray().length);</span>
+
+            // Sauvegarder le projet
+<span class="nc" id="L143">            ProjetDAO.save(newProjet);</span>
+
+            // Envoyer une notification à tout ceux qui sont concernés
+<span class="nc" id="L146">            this.notifyConcerned(newProjet, false);</span>
+
+            // Marquer la candidature comme acceptée. Cela inclut l'envoi de la notification au prestataire.
+<span class="nc" id="L149">            String response3 = UseRequest.sendRequest(urlHead + &quot;/candidature/markAsAccepted/&quot; + candidature, RequestType.PATCH, null);</span>
+<span class="nc" id="L150">            JsonNode json3 = mapper.readTree(response3);</span>
+<span class="nc" id="L151">            JsonNode data3 = json3.get(&quot;data&quot;);</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            if(json3.get(&quot;status&quot;).asInt() != 200) {</span>
+<span class="nc" id="L153">                throw new Exception(data3.get(&quot;message&quot;).asText());</span>
+            }
+
+            // Marquer la fiche problème comme traitée
+<span class="nc" id="L157">            String response6 = UseRequest.sendRequest(urlHead + &quot;/probleme/markAsProcessed/&quot; + probleme.getId(), RequestType.PATCH, null);</span>
+<span class="nc" id="L158">            JsonNode json6 = mapper.readTree(response6);</span>
+<span class="nc" id="L159">            JsonNode data6 = json6.get(&quot;data&quot;);</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">            if(json6.get(&quot;status&quot;).asInt() != 200) {</span>
+<span class="nc" id="L161">                throw new Exception(data6.get(&quot;message&quot;).asText());</span>
+            }
+
+            // Renvoyer le projet pour marquer le succès
+<span class="nc" id="L165">            ctx.status(201).json(newProjet).contentType(&quot;application/json&quot;);</span>
+
+<span class="nc" id="L167">        } catch (Exception e) {</span>
+<span class="nc" id="L168">            e.printStackTrace();</span>
+<span class="nc" id="L169">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L170">        }</span>
+<span class="nc" id="L171">    }</span>
+
+    /**
+     * Cette route permet de récupérer un projet en particulier grâce à son id.
+     * @param ctx représente le contexte de la requête.
+     */
+    public void getById(Context ctx) {
+        try {
+<span class="fc" id="L179">            String id = ctx.pathParam(&quot;id&quot;);</span>
+
+<span class="fc" id="L181">            Projet projet = ProjetDAO.findById(new ObjectId(id));</span>
+
+<span class="fc bfc" id="L183" title="All 2 branches covered.">            if(projet == null) {</span>
+<span class="fc" id="L184">                ctx.status(404).result(&quot;{\&quot;message\&quot;: \&quot;Aucun projet avec un tel ID trouvé.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="fc" id="L185">                return;</span>
+            }
+
+            // Renvoyer le projet
+<span class="nc" id="L189">            ctx.status(200).json(projet).contentType(&quot;application/json&quot;);</span>
+<span class="fc" id="L190">        } catch (Exception e) {</span>
+<span class="fc" id="L191">            e.printStackTrace();</span>
+<span class="fc" id="L192">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L193">        }</span>
+<span class="fc" id="L194">    }</span>
+
+    /**
+     * Cette route permet de modifier seulement partiellement les informations
+     * d'un projet, connaissant son id.
+     * Le body doit contenir tout l'objet de projet avec les champs à modifier.
+     * Assurez vous que la nouvelle information a le bon type.
+     * NB: Elle remplace complètement les champs tableaux de la base de données par ceux envoyés.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void patch(Context ctx) {
+        try {
+<span class="nc" id="L206">            String id = ctx.pathParam(&quot;id&quot;);</span>
+
+            // On vérifie que le projet existe vraiment.
+<span class="nc" id="L209">            Projet projet = ProjetDAO.findById(new ObjectId(id));</span>
+
+<span class="nc bnc" id="L211" title="All 2 branches missed.">            if(projet == null) {</span>
+<span class="nc" id="L212">                ctx.status(404).result(&quot;{\&quot;message\&quot;: \&quot;Aucun projet avec un tel ID trouvé.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L213">                return;</span>
+            }
+
+<span class="nc" id="L216">            Projet modifiedProjet = ctx.bodyAsClass(Projet.class);</span>
+
+<span class="nc" id="L218">            ProjetDAO.save(modifiedProjet);</span>
+
+            // Envoyer une notification à tout ceux qui sont abonnées au quartier ou aux rues
+<span class="nc" id="L221">            this.notifyConcerned(modifiedProjet, true);</span>
+
+<span class="nc" id="L223">            ctx.status(200).json(modifiedProjet).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L224">        } catch (Exception e) {</span>
+<span class="nc" id="L225">            e.printStackTrace();</span>
+<span class="nc" id="L226">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L227">        }</span>
+<span class="nc" id="L228">    }</span>
+
+    /**
+     * Cette fonction regroupe la logique d'envoi de notifications aux personnes intéressées, concernées ou abonnées au projet.
+     * @throws Exception quand l'information reçue n'a pas le bon format.
+     */
+    private void notifyConcerned(Projet projet, boolean updated) throws Exception {
+<span class="nc" id="L235">        ObjectMapper mapper = JavalinJackson.defaultMapper();</span>
+
+        // Envoyer des notifications à tous les abonnés (qui sont ici en réalité ceux ayant signalés) et aussi à ceux intéressés
+<span class="nc" id="L238">        Set&lt;String&gt; toSend = new HashSet&lt;&gt;();</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">        for(ObjectId abonne : projet.getAbonnes()) {</span>
+<span class="nc" id="L240">            toSend.add(abonne.toHexString());</span>
+<span class="nc" id="L241">        }</span>
+
+<span class="nc" id="L243">        String quartier = projet.getQuartier().replace(&quot; &quot;, &quot;+&quot;);</span>
+<span class="nc" id="L244">        List&lt;String&gt; ruesAffectees = projet.getRuesAffectees();</span>
+<span class="nc" id="L245">        String rues = String.join(&quot;,&quot;, ruesAffectees).replace(&quot; &quot;, &quot;+&quot;);</span>
+
+<span class="nc" id="L247">        String response1 = UseRequest.sendRequest(urlHead + &quot;/resident/getConcerned?quartier=&quot; + quartier + &quot;&amp;rues=&quot; + rues, RequestType.GET, null);</span>
+<span class="nc" id="L248">        JsonNode json1 = mapper.readTree(response1);</span>
+<span class="nc" id="L249">        JsonNode data1 = json1.get(&quot;data&quot;);</span>
+<span class="nc bnc" id="L250" title="All 2 branches missed.">        if(json1.get(&quot;status&quot;).asInt() != 200) {</span>
+<span class="nc" id="L251">            throw new Exception(data1.get(&quot;message&quot;).asText());</span>
+        }
+
+<span class="nc bnc" id="L254" title="All 2 branches missed.">        if(!data1.isArray()) {</span>
+<span class="nc" id="L255">            throw new Exception(&quot;Les résidents intéressés n'est pas un tableau.&quot;);</span>
+        }
+
+<span class="nc bnc" id="L258" title="All 2 branches missed.">        for(JsonNode element : data1) {</span>
+<span class="nc" id="L259">            toSend.add(element.asText());</span>
+<span class="nc" id="L260">        }</span>
+
+<span class="nc bnc" id="L262" title="All 2 branches missed.">        String message = (updated) ? &quot;Les informations du projet &quot; + projet.getTitreProjet() + &quot; dans votre quartier ou votre rue a été modifié.&quot; :</span>
+<span class="nc" id="L263">                &quot;Un nouveau projet intitulé &quot; + projet.getTitreProjet() + &quot; a été prévu dans le quartier ou les rues auxquels vous êtes abonnés.&quot;;</span>
+
+<span class="nc bnc" id="L265" title="All 2 branches missed.">        for(String userId : toSend) {</span>
+<span class="nc" id="L266">            String body = &quot;{&quot; +</span>
+                    &quot;\&quot;message\&quot;: \&quot;&quot; + message + &quot;\&quot;,&quot; +
+                    &quot;\&quot;user\&quot;: \&quot;&quot; + userId + &quot;\&quot;,&quot; +
+<span class="nc" id="L269">                    &quot;\&quot;url\&quot;: \&quot;/resident/projet/&quot; + projet.getId() + &quot;\&quot;&quot; +</span>
+                    &quot;}&quot;;
+<span class="nc" id="L271">            String response2 = UseRequest.sendRequest(urlHead + &quot;/notification&quot;, RequestType.POST, body);</span>
+
+<span class="nc" id="L273">            JsonNode json2 = mapper.readTree(response2);</span>
+
+<span class="nc bnc" id="L275" title="All 2 branches missed.">            if(json2.get(&quot;status&quot;).asInt() != 201) {</span>
+<span class="nc" id="L276">                JsonNode info = json2.get(&quot;data&quot;);</span>
+<span class="nc" id="L277">                logger.error(info.get(&quot;message&quot;).asText());</span>
+            }
+<span class="nc" id="L279">        }</span>
+<span class="nc" id="L280">    }</span>
+
+    /**
+     * Cette fonction initialise la base de données avec les projets de travaux venant de l'API de Montréal.
+     * Elle sera lancée une seule fois au premier test du serveur.
+     */
+    public void initializeProjetsFromAPI() {
+        try {
+<span class="nc" id="L288">            String publicApi = &quot;https://donnees.montreal.ca/api/3/action/datastore_search?resource_id=cc41b532-f12d-40fb-9f55-eb58c9a2b12b&quot;;</span>
+<span class="nc" id="L289">            String apiResponse = UseRequest.sendRequest(publicApi, RequestType.GET, null);</span>
+
+<span class="nc" id="L291">            ObjectMapper mapper = JavalinJackson.defaultMapper();</span>
+<span class="nc" id="L292">            JsonNode json = mapper.readTree(apiResponse);</span>
+
+<span class="nc" id="L294">            JsonNode data = json.get(&quot;data&quot;);</span>
+
+<span class="nc bnc" id="L296" title="All 2 branches missed.">            if(json.get(&quot;status&quot;).asInt() != 200) {</span>
+<span class="nc" id="L297">                throw new Exception(mapper.writeValueAsString(data));</span>
+            }
+
+<span class="nc bnc" id="L300" title="All 2 branches missed.">            for(JsonNode element : data.get(&quot;result&quot;).get(&quot;records&quot;)) {</span>
+                try {
+<span class="nc" id="L302">                    ObjectId id = new ObjectId(element.get(&quot;id&quot;).asText());</span>
+<span class="nc" id="L303">                    String quartier = element.get(&quot;boroughid&quot;).asText();</span>
+
+<span class="nc" id="L305">                    Date dateDebut = ControllerHelper.fromIsoString(element.get(&quot;duration_start_date&quot;).asText());</span>
+<span class="nc" id="L306">                    Date dateFin = ControllerHelper.fromIsoString(element.get(&quot;duration_end_date&quot;).asText());</span>
+
+<span class="nc" id="L308">                    String nomPrestataire = element.get(&quot;organizationname&quot;).asText();</span>
+<span class="nc" id="L309">                    ObjectId prestataire = new ObjectId();</span>
+
+<span class="nc" id="L311">                    ObjectId ficheProbleme = new ObjectId();</span>
+
+<span class="nc" id="L313">                    List&lt;String&gt; ruesAffectees = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L314">                    ruesAffectees.add(element.get(&quot;occupancy_name&quot;).asText());</span>
+
+<span class="nc" id="L316">                    String typeTravaux = ControllerHelper.getTypeTravail(element.get(&quot;reason_category&quot;).asText(), TypesTravaux.values());</span>
+
+                    // Générer le coût de manière aléatoire entre 2 000 000 $  et 9 700 000 $
+<span class="nc" id="L319">                    double randomDouble = ControllerHelper.getRandomUniformDouble(2, 9.7);</span>
+<span class="nc" id="L320">                    double cout = (int) ((Math.round(randomDouble * 100.0) / 100.0) * 1000000); // Prix final</span>
+
+<span class="nc" id="L322">                    String titreProjet = &quot;Projet de type &quot; + typeTravaux + &quot; offert par &quot; + nomPrestataire;</span>
+<span class="nc" id="L323">                    String description = &quot;Ce projet devrait affecter les rues &quot; + ruesAffectees.getFirst() +</span>
+                            &quot;. Mais pas d'inquiétude, ils ont pour but d'améliorer votre expérience de vie. &quot; +
+                            &quot;Merci de votre confiance!&quot;;
+
+<span class="nc" id="L327">                    String[] priorites = {&quot;faible&quot;, &quot;moyenne&quot;, &quot;élevée&quot;};</span>
+<span class="nc" id="L328">                    String priorite = priorites[ControllerHelper.getRandomUniformInt(0, priorites.length)];</span>
+
+<span class="nc" id="L330">                    Projet projet = new Projet(id, titreProjet, ruesAffectees, description, typeTravaux, dateDebut,</span>
+                            dateFin, ficheProbleme, prestataire, nomPrestataire, quartier, cout, priorite);
+
+<span class="nc" id="L333">                    ProjetDAO.save(projet);</span>
+
+<span class="nc" id="L335">                } catch(Exception e) {</span>
+<span class="nc" id="L336">                    e.printStackTrace();</span>
+<span class="nc" id="L337">                }</span>
+<span class="nc" id="L338">            }</span>
+
+
+
+<span class="nc" id="L342">        } catch (Exception e) {</span>
+<span class="nc" id="L343">            e.printStackTrace();</span>
+<span class="nc" id="L344">        }</span>
+<span class="nc" id="L345">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

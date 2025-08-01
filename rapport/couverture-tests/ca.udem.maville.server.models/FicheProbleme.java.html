@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FicheProbleme.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.models</a> &gt; <span class="el_source">FicheProbleme.java</span></div><h1>FicheProbleme.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.models;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Id;
+import dev.morphia.annotations.PrePersist;
+import org.bson.types.ObjectId;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Représente une fiche de problème dans le système.
+ * Contient des détails sur le type de travaux nécessaires, la localisation,
+ * le quartier, la description, la priorité, le statut, ainsi que les résidents
+ * et signalements associés.
+ *
+ * Cette classe est utilisée pour le stockage dans MongoDB via Morphia
+ * et pour la sérialisation JSON via Jackson.
+ */
+@Entity(&quot;problemes&quot;)
+public class FicheProbleme {
+
+    /**
+     * Identifiant unique MongoDB.
+     */
+    @Id
+    private ObjectId id;
+
+    /**
+     * Type de travaux requis.
+     */
+    private String typeTravaux;
+
+    /**
+     * Localisation précise du problème.
+     */
+    private String localisation;
+
+    /**
+     * Quartier où se situe le problème.
+     */
+    private String quartier;
+
+    /**
+     * Description détaillée du problème.
+     */
+    private String description;
+
+    /**
+     * Niveau de priorité du problème : &quot;faible&quot; | &quot;moyenne&quot; | &quot;élevée&quot;.
+     */
+    private String priorite;
+
+    /**
+     * Liste des identifiants des signalements associés.
+     */
+<span class="pc" id="L59">    private List&lt;ObjectId&gt; signalements = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * Statut actuel de la fiche de problème : &quot;en attente&quot; | &quot;traitée&quot;.
+     */
+<span class="pc" id="L64">    private String statut = &quot;en attente&quot;;</span>
+
+    /**
+     * Liste des identifiants des résidents concernés par ce problème.
+     */
+<span class="pc" id="L69">    private List&lt;ObjectId&gt; residents = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * Date de création de la fiche de problème.
+     * Sérialisée au format ISO 8601 dans le JSON.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;, timezone = &quot;America/Toronto&quot;)
+    private Date createdAt;
+
+    /**
+     * Date de dernière mise à jour de la fiche de problème.
+     * Sérialisée au format ISO 8601 dans le JSON.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;, timezone = &quot;America/Toronto&quot;)
+    private Date updatedAt;
+
+    /**
+     * Un hook pour mettre createdAt et updatedAt à jour automatiquement.
+     */
+    @PrePersist
+    public void prePersist() {
+<span class="nc" id="L90">        Date now = new Date();</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        if (createdAt == null) {</span>
+<span class="nc" id="L92">            createdAt = now; // Il est mise à jour une seule fois seulement</span>
+        }
+<span class="nc" id="L94">        updatedAt = now; // Toujours mis à jour à chaque save</span>
+<span class="nc" id="L95">    }</span>
+
+    /**
+     * Constructeur sans argument requis par Morphia.
+     */
+<span class="fc" id="L100">    public FicheProbleme() {}</span>
+
+    /**
+     * Constructeur permettant d'initialiser une fiche de problème avec les champs principaux.
+     *
+     * @param id Identifiant MongoDB.
+     * @param typeTravaux Type de travaux requis.
+     * @param localisation Localisation précise du problème.
+     * @param description Description détaillée du problème.
+     * @param priorite Niveau de priorité.
+     * @param quartier Quartier concerné.
+     */
+    public FicheProbleme(ObjectId id, String typeTravaux, String localisation, String description, String priorite,
+<span class="nc" id="L113">                         String quartier) {</span>
+<span class="nc" id="L114">        this.id = id;</span>
+<span class="nc" id="L115">        this.typeTravaux = typeTravaux;</span>
+<span class="nc" id="L116">        this.quartier = quartier;</span>
+<span class="nc" id="L117">        this.localisation = localisation;</span>
+<span class="nc" id="L118">        this.description = description;</span>
+<span class="nc" id="L119">        this.priorite = priorite;</span>
+<span class="nc" id="L120">        this.statut = &quot;en attente&quot;;</span>
+<span class="nc" id="L121">        this.createdAt = new Date();</span>
+<span class="nc" id="L122">        this.updatedAt = new Date();</span>
+<span class="nc" id="L123">    }</span>
+
+    // Getters
+<span class="nc" id="L126">    public String getTypeTravaux() { return this.typeTravaux; }</span>
+<span class="nc" id="L127">    public ObjectId getId() { return this.id; }</span>
+<span class="nc" id="L128">    public String getQuartier() { return this.quartier; }</span>
+<span class="nc" id="L129">    public String getLocalisation() { return this.localisation; }</span>
+<span class="nc" id="L130">    public String getDescription() { return this.description; }</span>
+<span class="nc" id="L131">    public String getPriorite() { return this.priorite; }</span>
+<span class="nc" id="L132">    public String getStatut() { return this.statut; }</span>
+<span class="nc" id="L133">    public Date getCreatedAt() { return this.createdAt; }</span>
+<span class="nc" id="L134">    public Date getUpdatedAt() { return this.updatedAt; }</span>
+<span class="nc" id="L135">    public List&lt;ObjectId&gt; getResidents() { return this.residents; }</span>
+<span class="nc" id="L136">    public List&lt;ObjectId&gt; getSignalements() { return this.signalements; }</span>
+
+    // Setters
+<span class="nc" id="L139">    public void setTypeTravaux(String typeTravaux) { this.typeTravaux = typeTravaux; }</span>
+<span class="nc" id="L140">    public void setQuartier(String quartier) { this.quartier = quartier; }</span>
+<span class="nc" id="L141">    public void setLocalisation(String localisation) { this.localisation = localisation; }</span>
+<span class="nc" id="L142">    public void setDescription(String description) { this.description = description; }</span>
+<span class="nc" id="L143">    public void setPriorite(String priorite) { this.priorite = priorite; }</span>
+<span class="nc" id="L144">    public void setStatut(String statut) { this.statut = statut; }</span>
+<span class="nc" id="L145">    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }</span>
+<span class="nc" id="L146">    public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }</span>
+<span class="nc" id="L147">    public void setResidents(List&lt;ObjectId&gt; residents) { this.residents = residents; }</span>
+<span class="nc" id="L148">    public void setSignalements(List&lt;ObjectId&gt; signalements) { this.signalements = signalements; }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

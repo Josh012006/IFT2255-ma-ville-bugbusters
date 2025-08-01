@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProjetDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.dao.files</a> &gt; <span class="el_source">ProjetDAO.java</span></div><h1>ProjetDAO.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.dao.files;
+
+import ca.udem.maville.server.dao.config.MongoConfig;
+import ca.udem.maville.server.models.Projet;
+import dev.morphia.query.filters.Filters;
+import org.bson.types.ObjectId;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * La classe ProjetDAO qui représente la couche d'interactions
+ * à la base de données pour tout ce qui concerne les projets.
+ * Elle offre des méthodes statiques utilisées dans {@link ca.udem.maville.server.controllers.ProjetController}
+ * et qui agissent sur les documents stockés tout en suivant le model
+ * {@link ca.udem.maville.server.models.Projet}
+ */
+<span class="nc" id="L20">public class ProjetDAO {</span>
+
+    /**
+     * Récupère un projet par son id.
+     * @param id qui est l'id du projet recherché.
+     * @return le projet trouvé.
+     */
+    public static Projet findById(ObjectId id){
+<span class="nc" id="L28">        return MongoConfig.getDatastore()</span>
+<span class="nc" id="L29">                .find(Projet.class)</span>
+<span class="nc" id="L30">                .filter(Filters.eq(&quot;_id&quot;, id))</span>
+<span class="nc" id="L31">                .first();</span>
+    }
+
+    /**
+     * Récupère tous les projets de travaux présents dans la base de données et dont
+     * la date de fin est plus récente qu'il y a 2 mois et la date de début est plus ancienne
+     * que dans 4 mois
+     * @return la liste des projets trouvés.
+     */
+    public static List&lt;Projet&gt; findAll(){
+<span class="nc" id="L41">        LocalDate today = LocalDate.now();</span>
+        // Borne inférieure : il y a 2 mois
+<span class="nc" id="L43">        Date dateMin = Date.from(today.minusMonths(2).atStartOfDay(ZoneId.systemDefault()).toInstant());</span>
+        // Borne supérieure : dans 4 mois
+<span class="nc" id="L45">        Date dateMax = Date.from(today.plusMonths(4).atStartOfDay(ZoneId.systemDefault()).toInstant());</span>
+
+
+<span class="nc" id="L48">        return MongoConfig.getDatastore()</span>
+<span class="nc" id="L49">                .find(Projet.class)</span>
+<span class="nc" id="L50">                .filter(</span>
+<span class="nc" id="L51">                        Filters.gt(&quot;dateFin&quot;, dateMin),</span>
+<span class="nc" id="L52">                        Filters.lt(&quot;dateDebut&quot;, dateMax)</span>
+                )
+<span class="nc" id="L54">                .iterator()</span>
+<span class="nc" id="L55">                .toList();</span>
+    }
+
+
+    /**
+     * Récupère les projets appartenant à un prestataire donné.
+     * @param userId qui représente l'id du prestataire.
+     * @return la liste des projets concernés.
+     */
+    public static List&lt;Projet&gt; findPrestataireProjet(ObjectId userId){
+<span class="nc" id="L65">        return MongoConfig.getDatastore()</span>
+<span class="nc" id="L66">                .find(Projet.class)</span>
+<span class="nc" id="L67">                .filter(Filters.eq(&quot;prestataire&quot;, userId))</span>
+<span class="nc" id="L68">                .iterator()</span>
+<span class="nc" id="L69">                .toList();</span>
+    }
+
+    /**
+     * Sauvegarde ou met à jour un projet.
+     * @param projet qui représente le projet à enregistrer.
+     */
+    public static void save (Projet projet){
+<span class="nc" id="L77">        MongoConfig.getDatastore().save(projet);</span>
+<span class="nc" id="L78">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

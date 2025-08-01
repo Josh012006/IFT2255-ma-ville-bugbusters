@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SignalementDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.dao.files</a> &gt; <span class="el_source">SignalementDAO.java</span></div><h1>SignalementDAO.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.dao.files;
+
+import ca.udem.maville.server.dao.config.MongoConfig;
+import ca.udem.maville.server.models.Signalement;
+import dev.morphia.query.filters.Filters;
+import org.bson.types.ObjectId;
+
+import java.util.List;
+
+/**
+ * La classe SignalementDAO qui représente la couche d'interactions
+ * à la base de données pour tout ce qui concerne les signalements.
+ * Elle offre des méthodes statiques utilisées dans {@link ca.udem.maville.server.controllers.SignalementController}
+ * et qui agissent sur les documents stockés tout en suivant le model
+ * {@link ca.udem.maville.server.models.Signalement}
+ */
+<span class="nc" id="L17">public class SignalementDAO {</span>
+
+    /**
+     * Récupère un signalement par son id.
+     * @param id qui est l'id du signalement recherché.
+     * @return le signalement trouvé.
+     */
+    public static Signalement findById(ObjectId id){
+<span class="nc" id="L25">        return MongoConfig.getDatastore()</span>
+<span class="nc" id="L26">                .find(Signalement.class)</span>
+<span class="nc" id="L27">                .filter(Filters.eq(&quot;_id&quot;, id))</span>
+<span class="nc" id="L28">                .first();</span>
+    }
+
+
+    /**
+     * Récupère tous les signalements ayant le statut &quot;en attente&quot;.
+     * @return la liste des signalements trouvés.
+     */
+    public static List&lt;Signalement&gt; findAll(){
+<span class="nc" id="L37">        return MongoConfig.getDatastore()</span>
+<span class="nc" id="L38">                .find(Signalement.class)</span>
+<span class="nc" id="L39">                .filter(Filters.or(</span>
+<span class="nc" id="L40">                        Filters.eq(&quot;statut&quot;, &quot;en attente&quot;),</span>
+<span class="nc" id="L41">                        Filters.eq(&quot;statut&quot;, &quot;vu&quot;)</span>
+                    )
+                )
+<span class="nc" id="L44">                .iterator()</span>
+<span class="nc" id="L45">                .toList();</span>
+
+    }
+
+
+    /**
+     * Récupère les signalements effectués par un résident donné.
+     * @param userId qui est l'id du résident.
+     * @return la liste des signalements retrouvés.
+     */
+    public static List&lt;Signalement&gt; findResidentSignalements(ObjectId userId){
+<span class="nc" id="L56">        return MongoConfig.getDatastore()</span>
+<span class="nc" id="L57">                .find(Signalement.class)</span>
+<span class="nc" id="L58">                .filter(Filters.eq(&quot;resident&quot;, userId))</span>
+<span class="nc" id="L59">                .iterator()</span>
+<span class="nc" id="L60">                .toList();</span>
+    }
+
+    /**
+     * Enregistre ou met à jour un signalement.
+     * @param signalement qui ets le signalement à enregistrer.
+     */
+    public static void save(Signalement signalement) {
+<span class="nc" id="L68">        MongoConfig.getDatastore().save(signalement);</span>
+<span class="nc" id="L69">    }</span>
+
+    /**
+     * Supprime un signalement de la base de données par son id.
+     * @param id représente l'id du signalement à supprimer.
+     */
+    public static void delete(ObjectId id) {
+<span class="nc" id="L76">        Signalement signalement = findById(id);</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        if(signalement != null){</span>
+<span class="nc" id="L78">            MongoConfig.getDatastore().delete(signalement);</span>
+        }
+<span class="nc" id="L80">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Utilisateur.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.models.users</a> &gt; <span class="el_source">Utilisateur.java</span></div><h1>Utilisateur.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.models.users;
+
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Id;
+import org.bson.types.ObjectId;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Classe de base abstraite représentant un utilisateur dans le système.
+ * Contient les propriétés communes aux utilisateurs telles que l'identifiant, le nom, l'adresse courriel
+ * et la liste des abonnements aux quartiers.
+ *
+ * Cette classe est stockée dans la collection &quot;utilisateurs&quot; de MongoDB,
+ * et utilise le discriminateur pour la gestion de l'héritage.
+ */
+@Entity(value = &quot;utilisateurs&quot;, useDiscriminator = true)
+public abstract class Utilisateur {
+
+    /**
+     * Identifiant unique MongoDB de l'utilisateur.
+     */
+    @Id
+    protected ObjectId id;
+
+    /**
+     * Nom de l'utilisateur.
+     */
+    protected String nom;
+
+    /**
+     * Adresse courriel de l'utilisateur.
+     */
+    protected String adresseCourriel;
+
+    /**
+     * Liste des abonnements aux quartiers pour cet utilisateur.
+     */
+<span class="pc" id="L40">    protected List&lt;String&gt; abonnementsQuartier = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * Constructeur sans argument requis par Morphia.
+     */
+<span class="nc" id="L45">    public Utilisateur() {}</span>
+
+    /**
+     * Constructeur permettant d'initialiser un utilisateur avec son identifiant, son nom, son courriel
+     * et sa liste de quartiers abonnés.
+     *
+     * @param id Identifiant MongoDB.
+     * @param nom Nom de l'utilisateur.
+     * @param adresseCourriel Adresse courriel de l'utilisateur.
+     * @param abonnementsQuartier Liste des quartiers abonnés.
+     */
+<span class="fc" id="L56">    public Utilisateur(ObjectId id, String nom, String adresseCourriel, ArrayList&lt;String&gt; abonnementsQuartier) {</span>
+<span class="fc" id="L57">        this.id = id;</span>
+<span class="fc" id="L58">        this.nom = nom;</span>
+<span class="fc" id="L59">        this.adresseCourriel = adresseCourriel;</span>
+<span class="fc" id="L60">        this.abonnementsQuartier = abonnementsQuartier;</span>
+<span class="fc" id="L61">    }</span>
+
+    // Getters
+<span class="nc" id="L64">    public ObjectId getId() { return this.id; }</span>
+<span class="nc" id="L65">    public String getNom() { return this.nom; }</span>
+<span class="nc" id="L66">    public String getAdresseCourriel() { return this.adresseCourriel; }</span>
+<span class="fc" id="L67">    public List&lt;String&gt; getAbonnementsQuartier() { return this.abonnementsQuartier; }</span>
+
+    // Setters
+<span class="nc" id="L70">    public void setNom(String nom) { this.nom = nom; }</span>
+<span class="fc" id="L71">    public void setAbonnementsQuartier(List&lt;String&gt; abonnementsQuartier) { this.abonnementsQuartier = abonnementsQuartier; }</span>
+<span class="nc" id="L72">    public void setAdresseCourriel(String adresseCourriel) { this.adresseCourriel = adresseCourriel; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

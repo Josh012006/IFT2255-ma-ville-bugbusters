@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Prestataire.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.models.users</a> &gt; <span class="el_source">Prestataire.java</span></div><h1>Prestataire.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.models.users;
+
+import dev.morphia.annotations.Entity;
+import org.bson.types.ObjectId;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Représente un utilisateur de type Prestataire dans le système.
+ * Hérite de la classe Utilisateur et inclut des attributs supplémentaires tels que
+ * le numéro d'entreprise, les quartiers desservis, les types de travaux proposés
+ * et les types d'abonnements.
+ *
+ * Cette classe utilise le mécanisme de discriminateur de Morphia pour le stockage
+ * dans MongoDB sous la collection &quot;utilisateurs&quot;.
+ */
+@Entity(discriminator = &quot;prestataires&quot;)
+public class Prestataire extends Utilisateur {
+
+    /**
+     * Numéro d'entreprise du prestataire.
+     */
+    private String numeroEntreprise;
+
+    /**
+     * Liste des quartiers desservis par le prestataire.
+     */
+    private List&lt;String&gt; quartiers;
+
+    /**
+     * Liste des types de travaux proposés par le prestataire.
+     */
+    private List&lt;String&gt; typesTravaux;
+
+    /**
+     * Liste des types d'abonnements du prestataire.
+     */
+<span class="pc" id="L39">    private List&lt;String&gt; abonnementsType = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * Constructeur sans arguments requis par Morphia.
+     */
+<span class="nc" id="L44">    public Prestataire() {}</span>
+
+    /**
+     * Constructeur permettant d'initialiser un prestataire avec tous ses champs.
+     *
+     * @param id Identifiant MongoDB.
+     * @param nom Nom du prestataire.
+     * @param adresseCourriel Adresse courriel.
+     * @param abonnementsQuartier Liste des quartiers abonnés.
+     * @param numeroEntreprise Numéro d'entreprise.
+     * @param quartiers Quartiers desservis.
+     * @param typesTravaux Types de travaux proposés.
+     * @param abonnementsType Types d'abonnements.
+     */
+    public Prestataire(ObjectId id, String nom, String adresseCourriel, ArrayList&lt;String&gt; abonnementsQuartier,
+                       String numeroEntreprise, ArrayList&lt;String&gt; quartiers, ArrayList&lt;String&gt; typesTravaux,
+                       ArrayList&lt;String&gt; abonnementsType) {
+<span class="fc" id="L61">        super(id, nom, adresseCourriel, abonnementsQuartier);</span>
+<span class="fc" id="L62">        this.numeroEntreprise = numeroEntreprise;</span>
+<span class="fc" id="L63">        this.quartiers = quartiers;</span>
+<span class="fc" id="L64">        this.typesTravaux = typesTravaux;</span>
+<span class="fc" id="L65">        this.abonnementsType = abonnementsType;</span>
+<span class="fc" id="L66">    }</span>
+
+    // Getters
+    public String getNumeroEntreprise() {
+<span class="nc" id="L70">        return this.numeroEntreprise;</span>
+    }
+    public List&lt;String&gt; getQuartiers() {
+<span class="nc" id="L73">        return this.quartiers;</span>
+    }
+    public List&lt;String&gt; getTypesTravaux() {
+<span class="nc" id="L76">        return this.typesTravaux;</span>
+    }
+<span class="fc" id="L78">    public List&lt;String&gt; getAbonnementsType() { return this.abonnementsType; }</span>
+
+    // Setters
+<span class="nc" id="L81">    public void setNumeroEntreprise(String numeroEntreprise) { this.numeroEntreprise = numeroEntreprise; }</span>
+<span class="nc" id="L82">    public void setQuartiers(List&lt;String&gt; quartiers) { this.quartiers = quartiers; }</span>
+<span class="nc" id="L83">    public void setTypesTravaux(List&lt;String&gt; typesTravaux) { this.typesTravaux = typesTravaux; }</span>
+<span class="fc" id="L84">    public void setAbonnementsType(List&lt;String&gt; abonnementsType) { this.abonnementsType = abonnementsType; }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

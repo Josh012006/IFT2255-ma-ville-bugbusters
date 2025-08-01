@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Notification.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.models.users</a> &gt; <span class="el_source">Notification.java</span></div><h1>Notification.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.models.users;
+
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Id;
+import dev.morphia.annotations.PrePersist;
+import org.bson.types.ObjectId;
+
+/**
+ * Représente une notification envoyée à un utilisateur.
+ * Cette classe est liée à la collection &quot;notifications&quot; dans la base de données.
+ */
+@Entity(&quot;notifications&quot;)
+public class Notification {
+
+    /**
+     * Identifiant unique de la notification.
+     */
+    @Id
+    private ObjectId id;
+
+    /**
+     * Identifiant MongoDB de l'utilisateur concerné.
+     */
+    private ObjectId user;
+    /**
+     * Le message de la notifiaction.
+     */
+    private String message;
+    /**
+     * Le statut de la notification : &quot;lue&quot; | &quot;non lue&quot;.
+     */
+<span class="pc" id="L35">    private String statut = &quot;non lue&quot;;</span>
+    /**
+     * Une url au cas où il y a un besoin de redirection.
+     * vers une autre page côté client.
+     */
+    private String url;
+
+    /**
+     * Date de création de la notification.
+     * Sérialisée au format ISO 8601 dans le JSON.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;, timezone = &quot;America/Toronto&quot;)
+    private Date createdAt;
+
+    /**
+     * Date de dernière mise à jour de la notification.
+     * Sérialisée au format ISO 8601 dans le JSON.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;, timezone = &quot;America/Toronto&quot;)
+    private Date updatedAt;
+
+    /**
+     * Un hook pour mettre createdAt et updatedAt à jour automatiquement.
+     */
+    @PrePersist
+    public void prePersist() {
+<span class="nc" id="L61">        Date now = new Date();</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (createdAt == null) {</span>
+<span class="nc" id="L63">            createdAt = now; // Il est mise à jour une seule fois seulement</span>
+        }
+<span class="nc" id="L65">        updatedAt = now; // Toujours mis à jour à chaque save</span>
+<span class="nc" id="L66">    }</span>
+
+    /**
+     * Constructeur par défaut requis pour Morphia et Jackson.
+     */
+<span class="nc" id="L71">    public Notification() {}</span>
+
+    /**
+     * Crée une nouvelle notification avec le message et l’utilisateur spécifiés.
+     * Définit automatiquement les dates de création et de mise à jour.
+     *
+     * @param message Le message de la notification.
+     * @param user L’ObjectId de l’utilisateur recevant la notification.
+     * @param url Url optionnel à inclure pour une redirection vers une page spécifique côté client.
+     */
+<span class="fc" id="L81">    public Notification(String message, ObjectId user, String url) {</span>
+<span class="fc" id="L82">        this.user = user;</span>
+<span class="fc" id="L83">        this.message = message;</span>
+<span class="fc" id="L84">        this.url = url;</span>
+<span class="fc" id="L85">        this.statut = &quot;non lue&quot;;</span>
+<span class="fc" id="L86">        this.createdAt = new Date();</span>
+<span class="fc" id="L87">        this.updatedAt = new Date();</span>
+<span class="fc" id="L88">    }</span>
+
+    // Getters
+<span class="nc" id="L91">    public ObjectId getId() { return this.id; }</span>
+<span class="fc" id="L92">    public ObjectId getUser() { return this.user; }</span>
+<span class="fc" id="L93">    public String getMessage() { return this.message; }</span>
+<span class="nc" id="L94">    public Date getCreatedAt() { return this.createdAt; }</span>
+<span class="nc" id="L95">    public Date getUpdatedAt() { return this.updatedAt; }</span>
+<span class="fc" id="L96">    public String getStatut() { return this.statut; }</span>
+<span class="fc" id="L97">    public String getUrl() { return this.url; }</span>
+
+    // Setters
+<span class="nc" id="L100">    public void setUser(ObjectId user) { this.user = user; }</span>
+<span class="nc" id="L101">    public void setMessage(String message) { this.message = message; }</span>
+<span class="nc" id="L102">    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }</span>
+<span class="nc" id="L103">    public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }</span>
+<span class="fc" id="L104">    public void setStatut(String statut) { this.statut = statut; }</span>
+<span class="nc" id="L105">    public void setUrl(String url) { this.url = url; }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

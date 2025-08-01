@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ResidentController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.controllers.users</a> &gt; <span class="el_source">ResidentController.java</span></div><h1>ResidentController.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.controllers.users;
+
+import ca.udem.maville.server.dao.files.users.ResidentDAO;
+import ca.udem.maville.server.models.users.Resident;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.javalin.http.Context;
+import io.javalin.json.JavalinJackson;
+import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+
+import java.util.*;
+
+
+/**
+ * La controller qui gère les différentes interactions du client avec le serveur
+ * en tout ce qui concerne les résidents.
+ */
+public class ResidentController {
+
+    public String urlHead;
+    public Logger logger;
+
+
+<span class="nc" id="L25">    public ResidentController(String urlHead, Logger logger) {</span>
+<span class="nc" id="L26">        this.urlHead = urlHead;</span>
+<span class="nc" id="L27">        this.logger = logger;</span>
+<span class="nc" id="L28">    }</span>
+
+
+    /**
+     * Cette route permet de récupérer tous les résidents qui pourraient être intéressés
+     * par les changements sur un projet. Elle a besoin de deux query parameters :
+     * Le paramètre quartier contient le nom du quartier où le problème est situé.
+     * Le paramètre rues qui contient les rues affectées par le projet en question séparées bien sûr par des virgules.
+     * @param ctx qui représente le contexte de la requête
+     */
+    public void getConcerned(Context ctx) {
+        try {
+<span class="nc" id="L40">            String quartier = ctx.queryParam(&quot;quartier&quot;);</span>
+<span class="nc" id="L41">            String rues = ctx.queryParam(&quot;rues&quot;);</span>
+
+<span class="nc bnc" id="L43" title="All 8 branches missed.">            if(quartier == null || rues == null || quartier.isEmpty() || rues.isEmpty()) {</span>
+<span class="nc" id="L44">                ctx.status(400).result(&quot;{\&quot;message\&quot;: \&quot;Les query parameters quartier et rues sont requis.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L45">                return;</span>
+            }
+
+<span class="nc" id="L48">            String[] ruesTab = rues.split(&quot;,&quot;);</span>
+<span class="nc" id="L49">            List&lt;Resident&gt; concerned = ResidentDAO.findToNotify(quartier, ruesTab);</span>
+
+<span class="nc" id="L51">            List&lt;String&gt; concernedIds = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            for(Resident resident : concerned) {</span>
+<span class="nc" id="L53">                concernedIds.add(resident.getId().toHexString());</span>
+<span class="nc" id="L54">            }</span>
+
+<span class="nc" id="L56">            ctx.status(200).json(concernedIds).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L57">        } catch (Exception e) {</span>
+<span class="nc" id="L58">            e.printStackTrace();</span>
+<span class="nc" id="L59">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L60">        }</span>
+<span class="nc" id="L61">    }</span>
+
+    /**
+     * Cette fonction permet de récupérer tous les résidents
+     * de la base de données. Il est utile au niveau du choix de profil.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void getAll(Context ctx) {
+        try {
+<span class="nc" id="L70">            List&lt;Resident&gt; residents = ResidentDAO.findAll();</span>
+
+<span class="nc" id="L72">            ctx.status(200).json(residents).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L73">        } catch (Exception e) {</span>
+<span class="nc" id="L74">            e.printStackTrace();</span>
+<span class="nc" id="L75">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L76">        }</span>
+<span class="nc" id="L77">    }</span>
+
+    /**
+     * Cette route permet de récupérer les informations sur un résident donné
+     * en fonction de son id.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void getById(Context ctx) {
+        try {
+<span class="nc" id="L86">            String id = ctx.pathParam(&quot;id&quot;);</span>
+
+<span class="nc" id="L88">            Resident resident = ResidentDAO.findById(new ObjectId(id));</span>
+
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            if(resident == null) {</span>
+<span class="nc" id="L91">                ctx.status(404).result(&quot;{\&quot;message\&quot;: \&quot;Aucun résident avec un tel ID retrouvé.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L92">                return;</span>
+            }
+
+            // Renvoyer le résident
+<span class="nc" id="L96">            ctx.status(200).json(resident).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L97">        } catch (Exception e) {</span>
+<span class="nc" id="L98">            e.printStackTrace();</span>
+<span class="nc" id="L99">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L100">        }</span>
+<span class="nc" id="L101">    }</span>
+
+    /**
+     * Cette route permet de modifier les préférences de notifications (abonnements)
+     * d'un résident, connaissant son id.
+     * Le body doit contenir les champs à modifier :
+     * - abonnementsQuartier: les nouveaux abonnements aux quartiers
+     * - abonnementsRue: les nouvelles rues auxquelles il est abonné
+     * Assurez vous que la nouvelle information a le bon type.
+     * NB: Elle remplace complètement les champs tableaux de la base de données par ceux envoyés.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void patch(Context ctx) {
+        try {
+<span class="nc" id="L115">            String id = ctx.pathParam(&quot;id&quot;);</span>
+
+<span class="nc" id="L117">            Resident resident = ResidentDAO.findById(new ObjectId(id));</span>
+
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            if(resident == null) {</span>
+<span class="nc" id="L120">                ctx.status(404).result(&quot;{\&quot;message\&quot;: \&quot;Aucun résident avec un tel ID retrouvé.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L121">                return;</span>
+            }
+
+<span class="nc" id="L124">            ObjectMapper mapper = JavalinJackson.defaultMapper();</span>
+
+<span class="nc" id="L126">            JsonNode json = mapper.readTree(ctx.body());</span>
+
+<span class="nc" id="L128">            JsonNode json1 = json.get(&quot;abonnementsQuartier&quot;);</span>
+<span class="nc bnc" id="L129" title="All 4 branches missed.">            if(json1 != null &amp;&amp; json1.isArray()) {</span>
+<span class="nc" id="L130">                List&lt;String&gt; abonnementsQuartier = mapper.readerForListOf(String.class).readValue(json1);</span>
+<span class="nc" id="L131">                resident.setAbonnementsQuartier(abonnementsQuartier);</span>
+            }
+
+<span class="nc" id="L134">            JsonNode json2 = json.get(&quot;abonnementsRue&quot;);</span>
+<span class="nc bnc" id="L135" title="All 4 branches missed.">            if(json2 != null &amp;&amp; json2.isArray()) {</span>
+<span class="nc" id="L136">                List&lt;String&gt; abonnementsRue = mapper.readerForListOf(String.class).readValue(json2);</span>
+<span class="nc" id="L137">                resident.setAbonnementsRue(abonnementsRue);</span>
+            }
+
+<span class="nc" id="L140">            ResidentDAO.save(resident);</span>
+
+<span class="nc" id="L142">            ctx.status(200).json(resident).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L143">        } catch (Exception e) {</span>
+<span class="nc" id="L144">            e.printStackTrace();</span>
+<span class="nc" id="L145">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L146">        }</span>
+<span class="nc" id="L147">    }</span>
+
+    /**
+     * Cette fonction initialise la base de données avec les résidents.
+     * Elle sera lancée une seule fois au premier test du serveur.
+     */
+    public void initializeResidents() {
+        try {
+<span class="nc" id="L155">            ArrayList&lt;String&gt; abonnementsQuartier1 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L156">            abonnementsQuartier1.add(&quot;Ville-Marie&quot;);</span>
+<span class="nc" id="L157">            abonnementsQuartier1.add(&quot;Le Plateau-Mont-Royal&quot;);</span>
+<span class="nc" id="L158">            ArrayList&lt;String&gt; abonnementsRue1 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L159">            abonnementsRue1.add(&quot;123 rue Ontario&quot;);</span>
+<span class="nc" id="L160">            abonnementsRue1.add(&quot;rue Clark&quot;);</span>
+<span class="nc" id="L161">            Resident resident1 = new Resident(new ObjectId(), &quot;John Doe&quot;, &quot;johndoe@example.com&quot;,</span>
+                    abonnementsQuartier1, abonnementsRue1, &quot;123 rue Ontario&quot;, &quot;H2X 1Y4&quot;,
+<span class="nc" id="L163">                    &quot;Ville-Marie&quot;, new GregorianCalendar(2003, Calendar.SEPTEMBER, 25).getTime());</span>
+<span class="nc" id="L164">            ResidentDAO.save(resident1);</span>
+
+<span class="nc" id="L166">            ArrayList&lt;String&gt; abonnementsQuartier2 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L167">            abonnementsQuartier2.add(&quot;Le Plateau-Mont-Royal&quot;);</span>
+<span class="nc" id="L168">            ArrayList&lt;String&gt; abonnementsRue2 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L169">            abonnementsRue2.add(&quot;456 avenue du Mont-Royal&quot;);</span>
+<span class="nc" id="L170">            Resident resident2 = new Resident(new ObjectId(), &quot;Jane Smith&quot;, &quot;janesmith@example.com&quot;,</span>
+                    abonnementsQuartier2, abonnementsRue2, &quot;456 avenue du Mont-Royal&quot;, &quot;H2H 1J5&quot;,
+<span class="nc" id="L172">                    &quot;Le Plateau-Mont-Royal&quot;, new GregorianCalendar(1995, Calendar.JUNE, 15).getTime());</span>
+<span class="nc" id="L173">            ResidentDAO.save(resident2);</span>
+
+<span class="nc" id="L175">            ArrayList&lt;String&gt; abonnementsQuartier3 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L176">            abonnementsQuartier3.add(&quot;Rosemont–La Petite-Patrie&quot;);</span>
+<span class="nc" id="L177">            ArrayList&lt;String&gt; abonnementsRue3 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L178">            abonnementsRue3.add(&quot;789 rue Beaubien Est&quot;);</span>
+<span class="nc" id="L179">            Resident resident3 = new Resident(new ObjectId(), &quot;Carlos Méndez&quot;, &quot;carlosm@example.com&quot;,</span>
+                    abonnementsQuartier3, abonnementsRue3, &quot;789 rue Beaubien Est&quot;, &quot;H2S 2G1&quot;,
+<span class="nc" id="L181">                    &quot;Rosemont–La Petite-Patrie&quot;, new GregorianCalendar(1988, Calendar.MARCH, 10).getTime());</span>
+<span class="nc" id="L182">            ResidentDAO.save(resident3);</span>
+
+<span class="nc" id="L184">            ArrayList&lt;String&gt; abonnementsQuartier4 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L185">            abonnementsQuartier4.add(&quot;Ville-Marie&quot;);</span>
+<span class="nc" id="L186">            ArrayList&lt;String&gt; abonnementsRue4 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L187">            abonnementsRue4.add(&quot;456 rue Sainte-Catherine Est&quot;);</span>
+<span class="nc" id="L188">            Resident resident4 = new Resident(new ObjectId(), &quot;Élise Tremblay&quot;, &quot;elise.tremblay@example.com&quot;,</span>
+                    abonnementsQuartier4, abonnementsRue4, &quot;456 rue Sainte-Catherine Est&quot;, &quot;H2L 2C5&quot;,
+<span class="nc" id="L190">                    &quot;Ville-Marie&quot;, new GregorianCalendar(1992, Calendar.JUNE, 12).getTime());</span>
+<span class="nc" id="L191">            ResidentDAO.save(resident4);</span>
+
+<span class="nc" id="L193">            ArrayList&lt;String&gt; abonnementsQuartier5 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L194">            abonnementsQuartier5.add(&quot;Le Plateau-Mont-Royal&quot;);</span>
+<span class="nc" id="L195">            ArrayList&lt;String&gt; abonnementsRue5 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L196">            abonnementsRue5.add(&quot;789 avenue du Mont-Royal Est&quot;);</span>
+<span class="nc" id="L197">            Resident resident5 = new Resident(new ObjectId(), &quot;Mathieu Gagnon&quot;, &quot;mathieu.gagnon@example.com&quot;,</span>
+                    abonnementsQuartier5, abonnementsRue5, &quot;789 avenue du Mont-Royal Est&quot;, &quot;H2J 1X3&quot;,
+<span class="nc" id="L199">                    &quot;Le Plateau-Mont-Royal&quot;, new GregorianCalendar(2000, Calendar.NOVEMBER, 5).getTime());</span>
+<span class="nc" id="L200">            ResidentDAO.save(resident5);</span>
+
+<span class="nc" id="L202">        } catch (Exception e) {</span>
+<span class="nc" id="L203">            e.printStackTrace();</span>
+<span class="nc" id="L204">        }</span>
+<span class="nc" id="L205">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

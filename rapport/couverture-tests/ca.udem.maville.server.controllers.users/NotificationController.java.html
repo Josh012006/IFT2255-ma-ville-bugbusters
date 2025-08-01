@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NotificationController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.controllers.users</a> &gt; <span class="el_source">NotificationController.java</span></div><h1>NotificationController.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.controllers.users;
+
+import ca.udem.maville.server.dao.files.users.NotificationDAO;
+import ca.udem.maville.server.models.users.Notification;
+import com.fasterxml.jackson.databind.JsonNode;
+import io.javalin.http.Context;
+
+import java.util.List;
+
+import io.javalin.json.JavalinJackson;
+import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+
+
+/**
+ * La controller qui gère les différentes interactions du client avec le serveur
+ * en tout ce qui concerne les notifications.
+ */
+public class NotificationController {
+    public String urlHead;
+    public Logger logger;
+
+<span class="fc" id="L23">    public NotificationController( String urlHead, Logger logger) {</span>
+<span class="fc" id="L24">        this.urlHead = urlHead;</span>
+<span class="fc" id="L25">        this.logger = logger;</span>
+<span class="fc" id="L26">    }</span>
+
+
+    /**
+     * Cette route permet de vérifier si l'utilisateur a des notifications non lues.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void hasNotifications(Context ctx) {
+        try {
+<span class="nc" id="L35">            String idUser = ctx.pathParam(&quot;user&quot;);</span>
+
+<span class="nc" id="L37">            boolean has = NotificationDAO.hasNotifications(new ObjectId(idUser));</span>
+
+            // Renvoyer les notifications trouvés pour l'utilisateur.
+<span class="nc" id="L40">            ctx.status(200).result(&quot;{\&quot;result\&quot;: &quot; + has + &quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L41">        } catch (Exception e) {</span>
+<span class="nc" id="L42">            e.printStackTrace();</span>
+<span class="nc" id="L43">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L44">        }</span>
+<span class="nc" id="L45">    }</span>
+
+
+    /**
+     * Cette route permet de récupérer une notification à partir de l'id.
+     * Elle marque directement la notification comme lue.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void getById(Context ctx) {
+        try {
+<span class="fc" id="L55">            String id = ctx.pathParam(&quot;id&quot;);</span>
+
+<span class="fc" id="L57">            Notification notification = NotificationDAO.findById(new ObjectId(id));</span>
+
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">            if(notification == null) {</span>
+<span class="nc" id="L60">                ctx.status(404).result(&quot;{\&quot;message\&quot;: \&quot;Aucune notification avec un tel ID trouvée.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L61">                return;</span>
+            }
+
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">            if(notification.getStatut().equals(&quot;non lue&quot;)) {</span>
+<span class="fc" id="L65">                notification.setStatut(&quot;lue&quot;);</span>
+<span class="fc" id="L66">                NotificationDAO.save(notification);</span>
+            }
+
+            // Renvoyer les notifications trouvés pour l'utilisateur.
+<span class="nc" id="L70">            ctx.status(200).json(notification).contentType(&quot;application/json&quot;);</span>
+<span class="fc" id="L71">        } catch (Exception e) {</span>
+<span class="fc" id="L72">            e.printStackTrace();</span>
+<span class="fc" id="L73">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L74">        }</span>
+<span class="fc" id="L75">    }</span>
+
+    /**
+     * Cette route permet de récupérer toutes les notifications d'un utilisateur.
+     * Le paramètre de path user contient l'id de l'utilisateur.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void getAll(Context ctx) {
+        try {
+<span class="fc" id="L84">            String idUser = ctx.pathParam(&quot;user&quot;);</span>
+
+<span class="fc" id="L86">            List&lt;Notification&gt; notifs = NotificationDAO.findUserNotifications(new ObjectId(idUser));</span>
+
+            // Renvoyer les notifications trouvés pour l'utilisateur.
+<span class="nc" id="L89">            ctx.status(200).json(notifs).contentType(&quot;application/json&quot;);</span>
+<span class="fc" id="L90">        } catch (Exception e) {</span>
+<span class="fc" id="L91">            e.printStackTrace();</span>
+<span class="fc" id="L92">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L93">        }</span>
+<span class="fc" id="L94">    }</span>
+
+    /**
+     * Cette route permet de créer une nouvelle notification pour un utilisateur.
+     * Le body doit contenir les informations suivantes :
+     * - user : qui est l'id de l'utilisateur auquel la notification est envoyée.
+     * - message: qui représente le message de la notification à envoyer.
+     * - url : qui est un champ optionnel qui permet de préciser une url de redirection.
+     * @param ctx qui représente le contexte de la requête.
+     */
+    public void create(Context ctx) {
+        try {
+<span class="fc" id="L106">            JsonNode json = JavalinJackson.defaultMapper().readTree(ctx.body());</span>
+
+<span class="fc" id="L108">            String message = null;</span>
+<span class="pc bpc" id="L109" title="1 of 2 branches missed.">            if(json.has(&quot;message&quot;)) {</span>
+<span class="fc" id="L110">                message = json.get(&quot;message&quot;).asText();</span>
+            }
+
+<span class="fc" id="L113">            String user = null;</span>
+<span class="pc bpc" id="L114" title="1 of 2 branches missed.">            if(json.has(&quot;user&quot;)) {</span>
+<span class="fc" id="L115">                user = json.get(&quot;user&quot;).asText();</span>
+            }
+
+<span class="pc bpc" id="L118" title="2 of 4 branches missed.">            if(user == null || message == null) {</span>
+<span class="nc" id="L119">                ctx.status(400).result(&quot;{\&quot;message\&quot;: \&quot;Les champs message et user sont obligatoires.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L120">                return;</span>
+            }
+
+<span class="fc" id="L123">            String url = null;</span>
+<span class="pc bpc" id="L124" title="1 of 2 branches missed.">            if(json.has(&quot;url&quot;)) {</span>
+<span class="fc" id="L125">                url = json.get(&quot;url&quot;).asText();</span>
+            }
+
+<span class="fc" id="L128">            Notification newNotif = new Notification(message, new ObjectId(user), url);</span>
+
+<span class="fc" id="L130">            NotificationDAO.save(newNotif);</span>
+            
+            // Renvoyer la nouvelle notification créée.
+<span class="nc" id="L133">            ctx.status(201).json(newNotif).contentType(&quot;application/json&quot;);</span>
+<span class="fc" id="L134">        } catch (Exception e) {</span>
+<span class="fc" id="L135">            e.printStackTrace();</span>
+<span class="fc" id="L136">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L137">        }</span>
+<span class="fc" id="L138">    }</span>
+
+    /**
+     * Cette route permet de supprimer des notifications en se basant sur leur url
+     * de redirection. Elle est surtout utile lorsqu'un résident supprime un signalement ou prestataire
+     * supprime une candidature avant que le STPM le voit.
+     * Elle a besoin d'un paramètre de path qui est l'id du signalement ou de la candidature
+     * et d'un query parameter signalement = false | true pour pouvoir faire la distinction
+     * dans la recherche.
+     * @param ctx qui représente le context de la requête.
+     */
+    public void deleteByUrl(Context ctx) {
+        try {
+<span class="nc" id="L151">            String idObjet = ctx.pathParam(&quot;idObjet&quot;);</span>
+<span class="nc" id="L152">            boolean isSignalement = Boolean.parseBoolean(ctx.queryParam(&quot;signalement&quot;));</span>
+
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            String url = ((isSignalement)? &quot;/stpm/signalement/&quot; : &quot;/stpm/candidature/&quot;) + idObjet;</span>
+
+<span class="nc" id="L156">            NotificationDAO.deleteByUrl(url);</span>
+
+            // Renvoyer le message de succès
+<span class="nc" id="L159">            ctx.status(200).json(&quot;{\&quot;message\&quot;: \&quot;Suppression réalisée avec succès.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L160">        } catch (Exception e) {</span>
+<span class="nc" id="L161">            e.printStackTrace();</span>
+<span class="nc" id="L162">            ctx.status(500).result(&quot;{\&quot;message\&quot;: \&quot;Une erreur est interne survenue! Veuillez réessayer plus tard.\&quot;}&quot;).contentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L163">        }</span>
+<span class="nc" id="L164">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

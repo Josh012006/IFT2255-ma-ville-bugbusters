@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PrestataireDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.dao.files.users</a> &gt; <span class="el_source">PrestataireDAO.java</span></div><h1>PrestataireDAO.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.dao.files.users;
+
+import ca.udem.maville.server.dao.config.MongoConfig;
+import ca.udem.maville.server.models.users.Prestataire;
+import dev.morphia.query.filters.Filters;
+import org.bson.types.ObjectId;
+
+import java.util.List;
+
+/**
+ * La classe PrestataireDAO qui représente la couche d'interactions
+ * à la base de données pour tout ce qui concerne les prestataires.
+ * Elle offre des méthodes statiques utilisées dans {@link ca.udem.maville.server.controllers.users.PrestataireController}
+ * et qui agissent sur les documents stockés tout en suivant le model
+ * {@link ca.udem.maville.server.models.users.Prestataire}
+ */
+<span class="nc" id="L17">public class PrestataireDAO {</span>
+
+
+    /**
+     * Récupère un prestataire par son id.
+     * @param id qui représente l'id du prestataire recherché.
+     * @return le prestataire trouvé.
+     */
+    public static Prestataire findById(ObjectId id){
+<span class="nc" id="L26">        return MongoConfig.getDatastore()</span>
+<span class="nc" id="L27">                .find(Prestataire.class)</span>
+<span class="nc" id="L28">                .filter(Filters.eq(&quot;_id&quot;, id))</span>
+<span class="nc" id="L29">                .first();</span>
+    }
+
+    
+    /**
+     * Récupère tous les prestataires.
+     * @return la liste des prestatatires trouvés.
+     */
+    public static List&lt;Prestataire&gt; findAll() {
+<span class="nc" id="L38">        return MongoConfig.getDatastore()</span>
+<span class="nc" id="L39">                .find(Prestataire.class)</span>
+<span class="nc" id="L40">                .iterator()</span>
+<span class="nc" id="L41">                .toList();</span>
+    }
+
+
+    /**
+     * Récupère tous les prestataires à notifier selon le quartier ou le type de travaux.
+     * @param quartier représente le quartier concerné.
+     * @param typeTravail représente le type de travail concerné.
+     * @return la liste des prestataires trouvés.
+     */
+    public static List&lt;Prestataire&gt; findToNotify(String quartier, String typeTravail) {
+<span class="nc" id="L52">        return MongoConfig.getDatastore()</span>
+<span class="nc" id="L53">                .find(Prestataire.class)</span>
+<span class="nc" id="L54">                .filter(</span>
+<span class="nc" id="L55">                    Filters.or(</span>
+<span class="nc" id="L56">                        Filters.eq(&quot;abonnementsQuartier&quot;, quartier),</span>
+<span class="nc" id="L57">                        Filters.eq(&quot;abonnementsType&quot;, typeTravail)</span>
+                    )
+                )
+<span class="nc" id="L60">                .iterator()</span>
+<span class="nc" id="L61">                .toList();</span>
+    }
+
+
+    /**
+     * Sauvegarde ou met à jour un prestataire.
+     * @param prestataire qui représente le prestataire.
+     */
+    public static void save(Prestataire prestataire) {
+<span class="nc" id="L70">        MongoConfig.getDatastore().save(prestataire);</span>
+<span class="nc" id="L71">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

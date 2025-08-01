@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Projet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.models</a> &gt; <span class="el_source">Projet.java</span></div><h1>Projet.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.models;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Id;
+import dev.morphia.annotations.PrePersist;
+import org.bson.types.ObjectId;
+
+import java.util.*;
+
+/**
+ * Représente un projet de travaux publics dans le système.
+ * Contient toutes les données relatives au projet, y compris la localisation,
+ * le type de travaux, le statut, l'entreprise associée, la fiche problème liée,
+ * ainsi que les listes des rues affectées et des abonnés.
+ *
+ * Cette classe est mappée à la collection &quot;projets&quot; dans MongoDB
+ * et sérialisée en JSON via Jackson.
+ */
+@Entity(&quot;projets&quot;)
+public class Projet {
+
+    /**
+     * Identifiant unique du projet.
+     */
+    @Id
+    private ObjectId id;
+
+    /**
+     * Liste des rues affectées par ce projet.
+     */
+    private List&lt;String&gt; ruesAffectees;
+
+    /**
+     * Liste des abonnés qui représente en réalité tout ceux ayant signalé le problème. C'est nécessaire
+     * au cas où le résident a signalé mais n'est pas abonné au quartier ou à la rue.
+     */
+<span class="pc" id="L38">    private List&lt;ObjectId&gt; abonnes = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * Titre du projet.
+     */
+    private String titreProjet;
+
+    /**
+     * Description du projet.
+     */
+    private String description;
+
+    /**
+     * Type de travaux impliqués dans le projet.
+     */
+    private String typeTravaux;
+
+    /**
+     * Statut actuel du projet : &quot;en cours&quot; | &quot;annulé&quot; | &quot;suspendu&quot; | &quot;terminé&quot;.
+     */
+<span class="pc" id="L58">    private String statut = &quot;en cours&quot;;</span>
+
+    /**
+     * Date de début du projet, sérialisée au format ISO 8601.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;, timezone = &quot;America/Toronto&quot;)
+    private Date dateDebut;
+
+    /**
+     * Date de fin du projet, sérialisée au format ISO 8601.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;, timezone = &quot;America/Toronto&quot;)
+    private Date dateFin;
+
+    /**
+     * Référence à la fiche problème associée.
+     */
+    private ObjectId ficheProbleme;
+
+    /**
+     * Référence à l'entreprise (prestataire) réalisant le projet.
+     */
+    private ObjectId prestataire;
+
+    /**
+     * Nom de l'entreprise prestataire.
+     */
+    private String nomPrestataire;
+
+    /**
+     * Quartier où le projet se déroule.
+     */
+    private String quartier;
+
+    /**
+     * Coût estimé du projet.
+     */
+    private double cout;
+
+    /**
+     * Niveau de priorité du projet.
+     */
+    private String priorite;
+
+    /**
+     * Nombre de rapports liés à ce projet.
+     */
+<span class="pc" id="L105">    private int nbRapports = 0;</span>
+
+    /**
+     * Date de création du projet, sérialisée au format ISO 8601.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;, timezone = &quot;America/Toronto&quot;)
+    private Date createdAt;
+
+    /**
+     * Date de dernière modification du projet, sérialisée au format ISO 8601.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;, timezone = &quot;America/Toronto&quot;)
+    private Date updatedAt;
+
+    /**
+     * Un hook pour mettre createdAt et updatedAt à jour automatiquement.
+     */
+    @PrePersist
+    public void prePersist() {
+<span class="nc" id="L124">        Date now = new Date();</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        if (createdAt == null) {</span>
+<span class="nc" id="L126">            createdAt = now; // Il est mise à jour une seule fois seulement</span>
+        }
+<span class="nc" id="L128">        updatedAt = now; // Toujours mis à jour à chaque save</span>
+<span class="nc" id="L129">    }</span>
+
+    /**
+     * Constructeur sans argument requis par Morphia.
+     */
+<span class="nc" id="L134">    public Projet() {}</span>
+
+    /**
+     * Constructeur permettant d'initialiser un projet avec ses champs principaux.
+     *
+     * @param id Identifiant unique.
+     * @param titreProjet Titre du projet.
+     * @param ruesAffectees Liste des rues affectées.
+     * @param description Description du projet.
+     * @param typeTravaux Type de travaux.
+     * @param dateDebut Date de début.
+     * @param dateFin Date de fin.
+     * @param ficheProbleme Référence à la fiche problème associée.
+     * @param prestataire Référence au prestataire.
+     * @param nomPrestataire Nom du prestataire.
+     * @param quartier Quartier du projet.
+     * @param cout Coût estimé.
+     * @param priorite Niveau de priorité.
+     */
+    public Projet(ObjectId id, String titreProjet, List&lt;String&gt; ruesAffectees, String description, String typeTravaux,
+                  Date dateDebut, Date dateFin, ObjectId ficheProbleme, ObjectId prestataire, String nomPrestataire,
+<span class="fc" id="L155">                  String quartier, double cout, String priorite) {</span>
+<span class="fc" id="L156">        this.id = id;</span>
+<span class="fc" id="L157">        this.ruesAffectees = ruesAffectees;</span>
+<span class="fc" id="L158">        this.abonnes = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L159">        this.titreProjet = titreProjet;</span>
+<span class="fc" id="L160">        this.description = description;</span>
+<span class="fc" id="L161">        this.typeTravaux = typeTravaux;</span>
+<span class="fc" id="L162">        this.dateDebut = dateDebut;</span>
+<span class="fc" id="L163">        this.dateFin = dateFin;</span>
+<span class="fc" id="L164">        this.ficheProbleme = ficheProbleme;</span>
+<span class="fc" id="L165">        this.quartier = quartier;</span>
+<span class="fc" id="L166">        this.cout = cout;</span>
+<span class="fc" id="L167">        this.prestataire = prestataire;</span>
+<span class="fc" id="L168">        this.nomPrestataire = nomPrestataire;</span>
+<span class="fc" id="L169">        this.statut = &quot;en cours&quot;;</span>
+<span class="fc" id="L170">        this.priorite = priorite;</span>
+<span class="fc" id="L171">        this.nbRapports = 0;</span>
+<span class="fc" id="L172">        this.createdAt = new Date();</span>
+<span class="fc" id="L173">        this.updatedAt = new Date();</span>
+<span class="fc" id="L174">    }</span>
+
+    // Getters
+<span class="nc" id="L177">    public ObjectId getId() { return this.id; }</span>
+<span class="nc" id="L178">    public String getTitreProjet() { return this.titreProjet; }</span>
+<span class="nc" id="L179">    public String getNomPrestataire() { return this.nomPrestataire; }</span>
+<span class="nc" id="L180">    public double getCout() { return this.cout; }</span>
+<span class="nc" id="L181">    public List&lt;ObjectId&gt; getAbonnes() { return this.abonnes; }</span>
+<span class="nc" id="L182">    public ObjectId getPrestataire() { return this.prestataire; }</span>
+<span class="nc" id="L183">    public List&lt;String&gt; getRuesAffectees() { return this.ruesAffectees; }</span>
+<span class="nc" id="L184">    public String getQuartier() { return this.quartier; }</span>
+<span class="nc" id="L185">    public String getDescription() { return this.description; }</span>
+<span class="nc" id="L186">    public String getTypeTravaux() { return this.typeTravaux; }</span>
+<span class="nc" id="L187">    public String getStatut() { return this.statut; }</span>
+<span class="nc" id="L188">    public Date getDateDebut() { return this.dateDebut; }</span>
+<span class="nc" id="L189">    public Date getDateFin() { return this.dateFin; }</span>
+<span class="nc" id="L190">    public ObjectId getFicheProbleme() { return this.ficheProbleme; }</span>
+<span class="nc" id="L191">    public String getPriorite() { return this.priorite; }</span>
+<span class="nc" id="L192">    public int getNbRapports() { return this.nbRapports; }</span>
+<span class="nc" id="L193">    public Date getCreatedAt() { return this.createdAt; }</span>
+<span class="nc" id="L194">    public Date getUpdatedAt() { return this.updatedAt; }</span>
+
+    // Setters
+<span class="nc" id="L197">    public void setTitreProjet(String titreProjet) { this.titreProjet = titreProjet; }</span>
+<span class="nc" id="L198">    public void setNomPrestataire(String nomPrestataire) { this.nomPrestataire = nomPrestataire; }</span>
+<span class="nc" id="L199">    public void setCout(double cout) { this.cout = cout; }</span>
+<span class="nc" id="L200">    public void setAbonnes(List&lt;ObjectId&gt; abonnes) { this.abonnes = abonnes; }</span>
+<span class="nc" id="L201">    public void setPrestataire(ObjectId prestataire) { this.prestataire = prestataire; }</span>
+<span class="nc" id="L202">    public void setRuesAffectees(List&lt;String&gt; ruesAffectees) { this.ruesAffectees = ruesAffectees; }</span>
+<span class="nc" id="L203">    public void setQuartier(String quartier) { this.quartier = quartier; }</span>
+<span class="nc" id="L204">    public void setDescription(String description) { this.description = description; }</span>
+<span class="nc" id="L205">    public void setTypeTravaux(String typeTravaux) { this.typeTravaux = typeTravaux; }</span>
+<span class="nc" id="L206">    public void setStatut(String statut) { this.statut = statut; }</span>
+<span class="nc" id="L207">    public void setDateDebut(Date dateDebut) { this.dateDebut = dateDebut; }</span>
+<span class="nc" id="L208">    public void setDateFin(Date dateFin) { this.dateFin = dateFin; }</span>
+<span class="nc" id="L209">    public void setFicheProbleme(ObjectId ficheProbleme) { this.ficheProbleme = ficheProbleme; }</span>
+<span class="nc" id="L210">    public void setPriorite(String priorite) { this.priorite = priorite; }</span>
+<span class="nc" id="L211">    public void setNbRapports(int nbRapports) { this.nbRapports = nbRapports; }</span>
+<span class="nc" id="L212">    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }</span>
+<span class="nc" id="L213">    public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

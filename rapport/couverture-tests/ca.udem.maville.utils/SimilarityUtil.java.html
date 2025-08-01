@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SimilarityUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.utils</a> &gt; <span class="el_source">SimilarityUtil.java</span></div><h1>SimilarityUtil.java</h1><pre class="source lang-java linenums">package ca.udem.maville.utils;
+
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.fr.FrenchAnalyzer;
+import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.*;
+
+/**
+ * This class regroups function to help find if two texts are similar in the subject they
+ * are covering. It is useful to find out if a problem has already been created for a new report
+ * from a resident.
+ */
+<span class="nc" id="L16">public final class SimilarityUtil {</span>
+
+    /** Stop‑words spécifiques à ton domaine */
+<span class="nc" id="L19">    private static final Set&lt;String&gt; CUSTOM_STOP_WORDS = Set.of(</span>
+            // Mots de liaison / stop‑words fréquents
+            &quot;rue&quot;, &quot;chemin&quot;, &quot;quartier&quot;, &quot;route&quot;, &quot;voie&quot;, &quot;avenue&quot;, &quot;allée&quot;, &quot;boulevard&quot;,
+            &quot;depuis&quot;, &quot;durant&quot;, &quot;pendant&quot;, &quot;en&quot;, &quot;le&quot;, &quot;la&quot;, &quot;les&quot;, &quot;un&quot;, &quot;une&quot;, &quot;des&quot;,
+
+            // Verbes / expressions trop fréquentes
+            &quot;être&quot;, &quot;avoir&quot;, &quot;faire&quot;, &quot;possible&quot;, &quot;impossible&quot;, &quot;peux&quot;, &quot;pouvoir&quot;,
+            &quot;merci&quot;, &quot;svp&quot;, &quot;s’il&quot;, &quot;vous&quot;, &quot;nous&quot;
+    );
+
+    /** Nombre minimum de termes informatifs communs pour valider une similarité */
+    private static final int MIN_COMMON_TERMS = 2;
+
+    public static boolean isSimilar(String text1, String text2, double threshold) throws IOException {
+<span class="nc" id="L33">        Map&lt;String, Integer&gt; freq1 = getTermFrequencies(text1);</span>
+<span class="nc" id="L34">        Map&lt;String, Integer&gt; freq2 = getTermFrequencies(text2);</span>
+
+        // Nombre de termes informatifs communs
+<span class="nc" id="L37">        long commonTerms = freq1.keySet().stream()</span>
+<span class="nc" id="L38">                .filter(freq2::containsKey)</span>
+<span class="nc" id="L39">                .count();</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (commonTerms &lt; MIN_COMMON_TERMS) {</span>
+<span class="nc" id="L41">            return false;</span>
+        }
+
+        // Construction des vecteurs pondérés (1 + log(tf))
+<span class="nc" id="L45">        Set&lt;String&gt; allTerms = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L46">        allTerms.addAll(freq1.keySet());</span>
+<span class="nc" id="L47">        allTerms.addAll(freq2.keySet());</span>
+
+<span class="nc" id="L49">        List&lt;Double&gt; vec1 = new ArrayList&lt;&gt;(allTerms.size());</span>
+<span class="nc" id="L50">        List&lt;Double&gt; vec2 = new ArrayList&lt;&gt;(allTerms.size());</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        for (String term : allTerms) {</span>
+<span class="nc" id="L52">            vec1.add(weightedTf(freq1.getOrDefault(term, 0)));</span>
+<span class="nc" id="L53">            vec2.add(weightedTf(freq2.getOrDefault(term, 0)));</span>
+<span class="nc" id="L54">        }</span>
+
+<span class="nc" id="L56">        double similarity = cosineSimilarity(vec1, vec2);</span>
+<span class="nc" id="L57">        System.out.printf(&quot;similarity=%.3f, commonTerms=%d%n&quot;, similarity, commonTerms);</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        return similarity &gt;= threshold;</span>
+    }
+
+    /** Transforme une fréquence brute en poids TF : 1 + log(tf), ou 0 si tf=0 */
+    private static double weightedTf(int tf) {
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        return tf &gt; 0 ? 1.0 + Math.log(tf) : 0.0;</span>
+    }
+
+    private static Map&lt;String, Integer&gt; getTermFrequencies(String text) throws IOException {
+<span class="nc" id="L67">        Map&lt;String, Integer&gt; frequencies = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L68">        Analyzer analyzer = new FrenchAnalyzer();  // gère déjà la plupart des stop‑words</span>
+<span class="nc" id="L69">        try (var tokenStream = analyzer.tokenStream(null, new StringReader(text))) {</span>
+<span class="nc" id="L70">            tokenStream.reset();</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            while (tokenStream.incrementToken()) {</span>
+<span class="nc" id="L72">                String term = tokenStream.getAttribute(CharTermAttribute.class).toString();</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">                if (isInformative(term)) {</span>
+<span class="nc" id="L74">                    frequencies.merge(term, 1, Integer::sum);</span>
+                }
+<span class="nc" id="L76">            }</span>
+<span class="nc" id="L77">            tokenStream.end();</span>
+        }
+<span class="nc" id="L79">        return frequencies;</span>
+    }
+
+    /** Filtre les termes trop courts ou dans la liste de stop‑words */
+    private static boolean isInformative(String term) {
+<span class="nc bnc" id="L84" title="All 4 branches missed.">        return term.length() &gt; 2 &amp;&amp; !CUSTOM_STOP_WORDS.contains(term);</span>
+    }
+
+    private static double cosineSimilarity(List&lt;Double&gt; vec1, List&lt;Double&gt; vec2) {
+<span class="nc" id="L88">        double dot = 0.0, norm1 = 0.0, norm2 = 0.0;</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        for (int i = 0; i &lt; vec1.size(); i++) {</span>
+<span class="nc" id="L90">            double v1 = vec1.get(i), v2 = vec2.get(i);</span>
+<span class="nc" id="L91">            dot   += v1 * v2;</span>
+<span class="nc" id="L92">            norm1 += v1 * v1;</span>
+<span class="nc" id="L93">            norm2 += v2 * v2;</span>
+        }
+<span class="nc" id="L95">        return dot / (Math.sqrt(norm1) * Math.sqrt(norm2) + 1e-10);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

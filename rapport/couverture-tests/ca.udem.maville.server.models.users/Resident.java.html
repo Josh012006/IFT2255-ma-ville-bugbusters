@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Resident.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maVille</a> &gt; <a href="index.source.html" class="el_package">ca.udem.maville.server.models.users</a> &gt; <span class="el_source">Resident.java</span></div><h1>Resident.java</h1><pre class="source lang-java linenums">package ca.udem.maville.server.models.users;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import dev.morphia.annotations.Entity;
+import org.bson.types.ObjectId;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Représente un utilisateur résident dans le système.
+ * Hérite de la classe Utilisateur et ajoute des attributs supplémentaires
+ * propres aux résidents, tels que l'adresse, le code postal, le quartier
+ * et la date de naissance.
+ *
+ * Cette classe est stockée dans la collection &quot;utilisateurs&quot; de MongoDB
+ * en utilisant le mécanisme de discriminateur de Morphia.
+ */
+@Entity(discriminator = &quot;residents&quot;)
+public class Resident extends Utilisateur {
+
+    /**
+     * Adresse du résident.
+     */
+    private String adresse;
+
+    /**
+     * Code postal de l'adresse du résident.
+     */
+    private String codePostal;
+
+    /**
+     * Quartier où habite le résident.
+     */
+    private String quartier;
+
+    /**
+     * La liste des rues auxquels le résident s'est abonné.
+     */
+<span class="nc" id="L41">    private List&lt;String&gt; abonnementsRue = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * Date de naissance du résident.
+     * Sérialisée sous forme de chaîne ISO 8601 dans le JSON.
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;, timezone = &quot;UTC&quot;)
+    private Date dateNaissance;
+
+    /**
+     * Constructeur sans argument requis par Morphia.
+     */
+<span class="nc" id="L53">    public Resident() {}</span>
+
+    /**
+     * Constructeur permettant d'initialiser un résident avec tous ses champs.
+     *
+     * @param id Identifiant MongoDB.
+     * @param nom Nom du résident.
+     * @param adresseCourriel Adresse courriel du résident.
+     * @param abonnementsQuartier Liste des quartiers abonnés.
+     * @param abonnementsRue Liste des rues auxquels il s'est abonné.
+     * @param adresse Adresse du résident.
+     * @param codePostal Code postal.
+     * @param quartier Quartier de résidence.
+     * @param dateNaissance Date de naissance.
+     */
+    public Resident(ObjectId id, String nom, String adresseCourriel, ArrayList&lt;String&gt; abonnementsQuartier,
+                    ArrayList&lt;String&gt; abonnementsRue, String adresse, String codePostal, String quartier, Date dateNaissance) {
+<span class="nc" id="L70">        super(id, nom, adresseCourriel, abonnementsQuartier);</span>
+<span class="nc" id="L71">        this.abonnementsRue = abonnementsRue;</span>
+<span class="nc" id="L72">        this.adresse = adresse;</span>
+<span class="nc" id="L73">        this.codePostal = codePostal;</span>
+<span class="nc" id="L74">        this.quartier = quartier;</span>
+<span class="nc" id="L75">        this.dateNaissance = dateNaissance;</span>
+<span class="nc" id="L76">    }</span>
+
+    // Getters
+<span class="nc" id="L79">    public String getAdresse() { return this.adresse; }</span>
+<span class="nc" id="L80">    public String getCodePostal() { return this.codePostal; }</span>
+<span class="nc" id="L81">    public String getQuartier() { return this.quartier; }</span>
+<span class="nc" id="L82">    public Date getDateNaissance() { return this.dateNaissance; }</span>
+<span class="nc" id="L83">    public List&lt;String&gt; getAbonnementsRue() { return this.abonnementsRue; }</span>
+
+    // Setters
+<span class="nc" id="L86">    public void setCodePostal(String codePostal) { this.codePostal = codePostal; }</span>
+<span class="nc" id="L87">    public void setAdresse(String adresse) { this.adresse = adresse; }</span>
+<span class="nc" id="L88">    public void setQuartier(String quartier) { this.quartier = quartier; }</span>
+<span class="nc" id="L89">    public void setDateNaissance(Date dateNaissance) { this.dateNaissance = dateNaissance; }</span>
+<span class="nc" id="L90">    public void setAbonnementsRue(List&lt;String&gt; abonnementsRue) { this.abonnementsRue = abonnementsRue; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
