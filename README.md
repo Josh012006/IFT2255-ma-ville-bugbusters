@@ -1,5 +1,11 @@
-[![Compiler et tester](https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/test.yml/badge.svg)](https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/test.yml)
-[![Update Docker images](https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/docker.yml/badge.svg)](https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/docker.yml)
+<p align="center">
+  <a href="https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/test.yml">
+    <img src="https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/test.yml/badge.svg" alt="Compiler et tester" />
+  </a>
+  <a href="https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/docker.yml">
+    <img src="https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/docker.yml/badge.svg" alt="Update Docker images" />
+  </a>
+</p>
 
 # MaVille Application
 
