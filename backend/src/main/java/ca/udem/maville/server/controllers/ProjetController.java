@@ -180,6 +180,11 @@ public class ProjetController {
 
             Projet projet = ProjetDAO.findById(new ObjectId(id));
 
+            if(projet == null) {
+                ctx.status(404).result("{\"message\": \"Aucun projet avec un tel ID trouvé.\"}").contentType("application/json");
+                return;
+            }
+
             // Renvoyer le projet
             ctx.status(200).json(projet).contentType("application/json");
         } catch (Exception e) {
@@ -204,7 +209,7 @@ public class ProjetController {
             Projet projet = ProjetDAO.findById(new ObjectId(id));
 
             if(projet == null) {
-                ctx.status(404).result("{\"message\": \"Aucun projet avec un tel ID trouvée.\"}").contentType("application/json");
+                ctx.status(404).result("{\"message\": \"Aucun projet avec un tel ID trouvé.\"}").contentType("application/json");
                 return;
             }
 
