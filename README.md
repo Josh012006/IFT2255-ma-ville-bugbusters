@@ -103,8 +103,7 @@ Ci-dessous les instructions pour installer, lancer et tester l'application sans 
 
 #### Le backend
 
-1. Se déplacer dans le dossier backend
-  Ouvrir le dossier root dans un premier terminal et exécuter :
+1. Se déplacer dans le dossier backend. Ouvrir le dossier root dans un premier terminal et exécuter :
   ```bash
     cd backend
   ```
@@ -119,8 +118,7 @@ Ci-dessous les instructions pour installer, lancer et tester l'application sans 
 
 #### Le client
 
-1. Se déplacer dans le dossier client
-  Ouvrir le dossier root dans un deuxième terminal et exécuter : 
+1. Se déplacer dans le dossier client. Ouvrir le dossier root dans un deuxième terminal et exécuter : 
   ```bash
     cd client
   ```
@@ -139,8 +137,7 @@ Ci-dessous les instructions pour installer, lancer et tester l'application sans 
 
 Il est possible de tester le serveur Java : 
 
-1. Se déplacer dans le dossier backend
-  Depuis le terminal dans le dossier root, exécuter :
+1. Se déplacer dans le dossier backend. Depuis le terminal dans le dossier root, exécuter :
   ```bash
     cd backend
   ```
