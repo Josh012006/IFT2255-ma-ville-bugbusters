@@ -86,8 +86,13 @@ vous déplacer dans le dossier du projet :
     git clone https://github.com/IFT-2255/ift2255-ma-ville-bugbusters.git
     cd ift2255-ma-ville-bugbusters
   ```
+Ensuite placer l'url de votre base de données `MONGO_URI` dans un fichier `.env` à l'intérieur de `ift2255-ma-ville-bugbusters/backend`.
+NB: Lorsque vous lancerez l'application, pour avoir des informations de base dans la base de données, il vous faudra 
+décommenter les lignes 54, 55 et 56 du fichier `ift2255-ma-ville-bugbusters/backend/src/main/java/ca/udem/maville/server/Server.java`.
+Ensuite lorsque vous lancerez l'application, la base de données sera remplie une fois avec les informations utilisateurs.
+A votre deuxième lancement, veuillez commenter ces trois lignes à nouveau.
 
-Une fois cela fait, vous disposez de deux options pour lancer l'application : 
+Une fois tout cela fait, vous disposez de deux options pour lancer l'application : 
 
 ### Première option : Utiliser Docker
 
