@@ -5,8 +5,6 @@ import dev.morphia.Datastore;
 import dev.morphia.Morphia;
 import io.github.cdimascio.dotenv.Dotenv;
 
-import static ca.udem.maville.server.Server.logger;
-
 /**
  * La classe de configuration de la base de données. Permet de s'y connecter facilement dans les
  * DAO files.
