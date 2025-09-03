@@ -1,37 +1,70 @@
+<!--<configuration>-->
+
+<!--    &lt;!&ndash; Appender console pour le client &ndash;&gt;-->
+<!--    <appender name="CLIENT_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <target>System.out</target>-->
+<!--        <encoder>-->
+<!--            <pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+<!--    &lt;!&ndash; Appender fichier pour le serveur &ndash;&gt;-->
+<!--    <appender name="SERVER_FILE" class="ch.qos.logback.core.FileAppender">-->
+<!--        <file>${user.dir}/src/main/java/ca/udem/maville/server/logs/server.log</file>-->
+<!--        <append>false</append>-->
+<!--        <encoder>-->
+<!--            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+<!--    &lt;!&ndash; Logger pour le serveur : vers fichier seulement &ndash;&gt;-->
+<!--    <logger name="ca.udem.maville.server" level="INFO" additivity="false">-->
+<!--        <appender-ref ref="SERVER_FILE" />-->
+<!--    </logger>-->
+
+<!--    &lt;!&ndash; Logger pour les logs HTTP (requêtes et réponses) &ndash;&gt;-->
+<!--    <logger name="HTTP" level="INFO" additivity="false">-->
+<!--        <appender-ref ref="SERVER_FILE" />-->
+<!--    </logger>-->
+
+<!--    &lt;!&ndash; Logger pour le client : vers console uniquement &ndash;&gt;-->
+<!--    <logger name="ca.udem.maville.client" level="DEBUG" additivity="false">-->
+<!--        <appender-ref ref="CLIENT_CONSOLE" />-->
+<!--    </logger>-->
+
+<!--    &lt;!&ndash; Logger racine désactivé (pas de logs inattendus) &ndash;&gt;-->
+<!--    <root level="OFF" />-->
+<!--</configuration>-->
+
 <configuration>
 
-    <!-- Appender console pour le client -->
-    <appender name="CLIENT_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- Appender console pour tous les logs -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <target>System.out</target>
         <encoder>
             <pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- Appender fichier pour le serveur -->
-    <appender name="SERVER_FILE" class="ch.qos.logback.core.FileAppender">
-        <file>${user.dir}/src/main/java/ca/udem/maville/server/logs/server.log</file>
-        <append>false</append>
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <!-- Logger pour le serveur : vers fichier seulement -->
+    <!-- Logger pour le serveur : maintenant vers console -->
     <logger name="ca.udem.maville.server" level="INFO" additivity="false">
-        <appender-ref ref="SERVER_FILE" />
+        <appender-ref ref="CONSOLE" />
     </logger>
 
-    <!-- Logger pour les logs HTTP (requêtes et réponses) -->
+    <!-- Logger pour les logs HTTP -->
     <logger name="HTTP" level="INFO" additivity="false">
-        <appender-ref ref="SERVER_FILE" />
+        <appender-ref ref="CONSOLE" />
     </logger>
 
-    <!-- Logger pour le client : vers console uniquement -->
+    <!-- Logger pour le client -->
     <logger name="ca.udem.maville.client" level="DEBUG" additivity="false">
-        <appender-ref ref="CLIENT_CONSOLE" />
+        <appender-ref ref="CONSOLE" />
     </logger>
 
-    <!-- Logger racine désactivé (pas de logs inattendus) -->
-    <root level="OFF" />
+    <!-- Logger racine : tous les logs vers console -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
 </configuration>
+
