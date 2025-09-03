@@ -80,13 +80,17 @@ L'application propose les fonctionnalités suivantes :
 
 ## Installation et Lancement
 
-Premièrement, vous devez **cloner le répertoire** en utilisant git (voir le bouton Code en haut) et ensuite
+1. Premièrement, vous devez **cloner le répertoire** en utilisant git (voir le bouton Code en haut) et ensuite
 vous déplacer dans le dossier du projet :
   ```bash
     git clone https://github.com/IFT-2255/ift2255-ma-ville-bugbusters.git
     cd ift2255-ma-ville-bugbusters
   ```
-Ensuite placer l'url de votre base de données `MONGO_URI` dans un fichier `.env` à l'intérieur de `ift2255-ma-ville-bugbusters/backend`.
+
+2. Deuxièmement, précisez l'url de l'api de votre backend `VITE_API_URL` dans un fichier `.env` à l'intérieur de `ift2255-ma-ville-bugbusters/client`.
+
+3. Finalement, placez l'url de votre base de données `MONGO_URI` et le port `PORT` (au besoin) dans un fichier `.env` à l'intérieur de `ift2255-ma-ville-bugbusters/backend`.
+
 NB: Lorsque vous lancerez l'application, pour avoir des informations de base dans la base de données, il vous faudra 
 décommenter les lignes 54, 55 et 56 du fichier `ift2255-ma-ville-bugbusters/backend/src/main/java/ca/udem/maville/server/Server.java`.
 Ensuite lorsque vous lancerez l'application, la base de données sera remplie une fois avec les informations utilisateurs.
