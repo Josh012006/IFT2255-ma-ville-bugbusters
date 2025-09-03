@@ -5,6 +5,7 @@ import ca.udem.maville.server.controllers.users.NotificationController;
 import ca.udem.maville.server.controllers.users.PrestataireController;
 import ca.udem.maville.server.controllers.users.ResidentController;
 import ca.udem.maville.utils.CustomizedMapper;
+import io.github.cdimascio.dotenv.Dotenv;
 import io.javalin.Javalin;
 import io.javalin.json.JavalinJackson;
 import org.slf4j.Logger;
@@ -28,7 +29,29 @@ public class Server {
     ResidentController residentController;
     PrestataireController prestataireController;
 
-    public Server() {}
+    public Server() {
+        // Essaie de charger le .env en local
+        Dotenv dotenv = null;
+        try {
+            dotenv = Dotenv.configure()
+                    .directory("backend")
+                    .ignoreIfMissing()  // ✅ ne crashe pas si le fichier n’existe pas
+                    .load();
+        } catch (Exception e) {
+            System.out.println("No .env file found, falling back to system environment variables.");
+        }
+
+        // Si .env existe → prend MONGO_URI depuis .env
+        // Sinon → prend la variable d’environnement système (prod/Koyeb)
+        if (dotenv != null && dotenv.get("PORT") != null) {
+            this.port = Integer.parseInt(dotenv.get("PORT", "7070"));
+        } else {
+            String portEnv = System.getenv("PORT");
+            if (portEnv != null) {
+                this.port = Integer.parseInt(portEnv);
+            }
+        }
+    }
     public Server(int port) {
         this.port = port;
     }
@@ -62,7 +85,7 @@ public class Server {
             // Configurer le cors pour accepter les requêtes du client
             config.bundledPlugins.enableCors(cors -> {
                 cors.addRule(it -> {
-                    it.allowHost("http://localhost:5173");
+                    it.allowHost("*");
                 });
             });
 
@@ -218,6 +241,9 @@ public class Server {
             });
         }).start("0.0.0.0",this.port);
 
+        // Config for Koyeb deployment
+        app.get("/health", ctx -> ctx.result("OK"));
+
         app.options("/*", ctx -> {
             ctx.status(204);
         });
@@ -226,7 +252,7 @@ public class Server {
 
         // La logique de formattage des logs du servers.
         app.before(ctx -> {
-            ctx.header("Access-Control-Allow-Origin", "http://localhost:5173");
+            ctx.header("Access-Control-Allow-Origin", "*");
             ctx.header("Access-Control-Allow-Methods", "GET,POST,PATCH,PUT,DELETE,OPTIONS");
             ctx.header("Access-Control-Allow-Headers", "Content-Type");
 
