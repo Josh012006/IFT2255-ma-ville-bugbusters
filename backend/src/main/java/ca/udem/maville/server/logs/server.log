@@ -1,64 +1,6 @@
-2025-08-23 16:19:16 INFO  ca.udem.maville.server.Server - 
+2025-09-03 01:47:21 INFO  ca.udem.maville.server.Server - 
 ========== 🚀 Server started on port 7070 ==========
 
-2025-08-23 16:19:20 INFO  HTTP - 
---- Requête reçue ---
-Méthode: GET
-URL: http://localhost:7070/api/prestataire/getAll
-Headers:
-  Origin: http://localhost:5173
-  Accept: application/json, text/plain, */*
-  Connection: keep-alive
-  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0
-  Referer: http://localhost:5173/
-  Sec-Fetch-Site: same-site
-  Sec-Fetch-Dest: empty
-  Host: localhost:7070
-  Accept-Encoding: gzip, deflate, br, zstd
-  Sec-Fetch-Mode: cors
-  sec-ch-ua: "Not;A=Brand";v="99", "Microsoft Edge";v="139", "Chromium";v="139"
-  sec-ch-ua-mobile: ?0
-  sec-ch-ua-platform: "Windows"
-  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
----------------------
-
-2025-08-23 16:19:20 ERROR ca.udem.maville.server.Server - hello
-2025-08-23 16:19:22 INFO  HTTP - 
---- Réponse envoyée ---
-Status: 200 OK
-Body:
-[{"id":"688b474f17c3a2d93d162215","nom":"Groupe InfraTech","adresseCourriel":"infratech@groupe.com","abonnementsQuartier":["Ville-Marie","Rosemont–La Petite-Patrie"],"numeroEntreprise":"NEQ12345678","quartiers":["Ville-Marie","Rosemont–La Petite-Patrie","Montréal-Nord"],"typesTravaux":["Travaux Routiers","Travaux Souterrains","Travaux Gaz Ou Electricité","Entretien paysager"],"abonnementsType":["Travaux Routiers","Travaux Souterrains","Travaux Gaz Ou Electricité"]},{"id":"688b474f17c3a2d93d162216","nom":"Reno-Montréal","adresseCourriel":"contact@reno-mtl.ca","abonnementsQuartier":["Ville-Marie","Verdun"],"numeroEntreprise":"NEQ22334455","quartiers":["Ville-Marie","Verdun","Saint-Laurent"],"typesTravaux":["Travaux Routiers","Travaux Résidentiel"],"abonnementsType":["Travaux Routiers","Travaux Résidentiel"]},{"id":"688b474f17c3a2d93d162217","nom":"ÉcoJardin Montréal","adresseCourriel":"services@ecojardin.ca","abonnementsQuartier":["Le Plateau-Mont-Royal","Verdun"],"numeroEntreprise":"NEQ99887766","quartiers":["Le Plateau-Mont-Royal","Verdun"],"typesTravaux":["Entretien Paysager","Travaux Résidentiel","Travaux Gaz Ou Electricité"],"abonnementsType":["Entretien Paysager","Travaux Résidentiel"]},{"id":"688b474f17c3a2d93d162218","nom":"SignalPro Inc.","adresseCourriel":"admin@signalpro.ca","abonnementsQuartier":["Le Plateau-Mont-Royal","Ahuntsic–Cartierville"],"numeroEntreprise":"NEQ77665544","quartiers":["Le Plateau-Mont-Royal","Ahuntsic–Cartierville"],"typesTravaux":["Travaux De Signalisation Et Eclairage","Travaux Souterrains"],"abonnementsType":["Travaux De Signalisation Et Eclairage","Travaux Souterrains"]},{"id":"688b474f17c3a2d93d162219","nom":"Services Urbains Inc.","adresseCourriel":"contact@servicesurbains.com","abonnementsQuartier":["LaSalle","Ville-Marie"],"numeroEntreprise":"NEQ3344556677","quartiers":["LaSalle","Ville-Marie","Saint-Laurent"],"typesTravaux":["Entretien Urbain","Travaux Résidentiel","Entretien Des Réseaux de Télécommunication"],"abonnementsType":["Entretien Urbain","Travaux Résidentiel"]}]
-------------------------
-
-2025-08-23 16:19:22 INFO  HTTP - 
---- Requête reçue ---
-Méthode: GET
-URL: http://localhost:7070/api/prestataire/getAll
-Headers:
-  Origin: http://localhost:5173
-  Accept: application/json, text/plain, */*
-  Connection: keep-alive
-  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0
-  Referer: http://localhost:5173/
-  Sec-Fetch-Site: same-site
-  Sec-Fetch-Dest: empty
-  Host: localhost:7070
-  Accept-Encoding: gzip, deflate, br, zstd
-  Sec-Fetch-Mode: cors
-  sec-ch-ua: "Not;A=Brand";v="99", "Microsoft Edge";v="139", "Chromium";v="139"
-  sec-ch-ua-mobile: ?0
-  sec-ch-ua-platform: "Windows"
-  Accept-Language: fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
----------------------
-
-2025-08-23 16:19:22 ERROR ca.udem.maville.server.Server - hello
-2025-08-23 16:19:22 INFO  HTTP - 
---- Réponse envoyée ---
-Status: 200 OK
-Body:
-[{"id":"688b474f17c3a2d93d162215","nom":"Groupe InfraTech","adresseCourriel":"infratech@groupe.com","abonnementsQuartier":["Ville-Marie","Rosemont–La Petite-Patrie"],"numeroEntreprise":"NEQ12345678","quartiers":["Ville-Marie","Rosemont–La Petite-Patrie","Montréal-Nord"],"typesTravaux":["Travaux Routiers","Travaux Souterrains","Travaux Gaz Ou Electricité","Entretien paysager"],"abonnementsType":["Travaux Routiers","Travaux Souterrains","Travaux Gaz Ou Electricité"]},{"id":"688b474f17c3a2d93d162216","nom":"Reno-Montréal","adresseCourriel":"contact@reno-mtl.ca","abonnementsQuartier":["Ville-Marie","Verdun"],"numeroEntreprise":"NEQ22334455","quartiers":["Ville-Marie","Verdun","Saint-Laurent"],"typesTravaux":["Travaux Routiers","Travaux Résidentiel"],"abonnementsType":["Travaux Routiers","Travaux Résidentiel"]},{"id":"688b474f17c3a2d93d162217","nom":"ÉcoJardin Montréal","adresseCourriel":"services@ecojardin.ca","abonnementsQuartier":["Le Plateau-Mont-Royal","Verdun"],"numeroEntreprise":"NEQ99887766","quartiers":["Le Plateau-Mont-Royal","Verdun"],"typesTravaux":["Entretien Paysager","Travaux Résidentiel","Travaux Gaz Ou Electricité"],"abonnementsType":["Entretien Paysager","Travaux Résidentiel"]},{"id":"688b474f17c3a2d93d162218","nom":"SignalPro Inc.","adresseCourriel":"admin@signalpro.ca","abonnementsQuartier":["Le Plateau-Mont-Royal","Ahuntsic–Cartierville"],"numeroEntreprise":"NEQ77665544","quartiers":["Le Plateau-Mont-Royal","Ahuntsic–Cartierville"],"typesTravaux":["Travaux De Signalisation Et Eclairage","Travaux Souterrains"],"abonnementsType":["Travaux De Signalisation Et Eclairage","Travaux Souterrains"]},{"id":"688b474f17c3a2d93d162219","nom":"Services Urbains Inc.","adresseCourriel":"contact@servicesurbains.com","abonnementsQuartier":["LaSalle","Ville-Marie"],"numeroEntreprise":"NEQ3344556677","quartiers":["LaSalle","Ville-Marie","Saint-Laurent"],"typesTravaux":["Entretien Urbain","Travaux Résidentiel","Entretien Des Réseaux de Télécommunication"],"abonnementsType":["Entretien Urbain","Travaux Résidentiel"]}]
-------------------------
-
-2025-08-23 16:20:17 INFO  ca.udem.maville.server.Server - 
+2025-09-03 01:47:50 INFO  ca.udem.maville.server.Server - 
 ========== 🛑 Server stopped ==========
 
