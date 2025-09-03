@@ -82,13 +82,6 @@ public class Server {
         app = Javalin.create(config -> {
             config.router.contextPath = "/api";
 
-            // Configurer le cors pour accepter les requêtes du client
-            config.bundledPlugins.enableCors(cors -> {
-                cors.addRule(it -> {
-                    it.allowHost("*");
-                });
-            });
-
             // Configurer le mapper pour ne pas avoir de problème pour passer automatiquement
             // de ObjectId à String et vice-versa.
             config.jsonMapper(
@@ -245,6 +238,9 @@ public class Server {
         app.get("/health", ctx -> ctx.result("OK"));
 
         app.options("/*", ctx -> {
+            ctx.header("Access-Control-Allow-Origin", "*");
+            ctx.header("Access-Control-Allow-Methods", "GET,POST,PATCH,PUT,DELETE,OPTIONS");
+            ctx.header("Access-Control-Allow-Headers", "Content-Type");
             ctx.status(204);
         });
 
@@ -252,6 +248,7 @@ public class Server {
 
         // La logique de formattage des logs du servers.
         app.before(ctx -> {
+            // Configurer le cors pour accepter les requêtes du client
             ctx.header("Access-Control-Allow-Origin", "*");
             ctx.header("Access-Control-Allow-Methods", "GET,POST,PATCH,PUT,DELETE,OPTIONS");
             ctx.header("Access-Control-Allow-Headers", "Content-Type");
