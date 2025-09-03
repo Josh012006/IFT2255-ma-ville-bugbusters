@@ -216,7 +216,7 @@ public class Server {
                 });
 
             });
-        }).start(this.port);
+        }).start("0.0.0.0",this.port);
 
         app.options("/*", ctx -> {
             ctx.status(204);

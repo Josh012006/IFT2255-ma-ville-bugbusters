@@ -6,7 +6,7 @@ export default function useManualRequest() {
   const [result, setResult] = useState<RequestResult | null>(null);
 
   const send = async (url: string, method: requestType = "GET", body?: string) => {
-    const urlHead = "http://localhost:7070/api";
+    const urlHead = import.meta.env.VITE_API_URL ?? "http://localhost:7070/api";
 
     try {
       const response = method === "GET"

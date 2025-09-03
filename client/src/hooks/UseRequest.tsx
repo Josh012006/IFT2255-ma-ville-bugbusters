@@ -10,7 +10,7 @@ export interface RequestResult {
 }
 
 export default function useRequest(url: string, method: requestType, body?: string) {
-  const urlHead = "http://localhost:7070/api";
+  const urlHead = import.meta.env.VITE_API_URL ?? "http://localhost:7070/api";
   const [result, setResult] = useState<RequestResult | null>(null);
 
 

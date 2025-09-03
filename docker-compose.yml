@@ -12,6 +12,8 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
+    env_file:
+      - ./client/.env
     ports:
       - "5173:5173"
     volumes:
