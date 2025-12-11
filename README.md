@@ -164,7 +164,7 @@ Il est possible de tester le serveur Java :
 
 ---
 
-## Auteurs
+## Auteurs (membres du groupe Bugbusters)
 
 - **Cyreanne Candy Andrianefa**
 
