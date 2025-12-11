@@ -1,9 +1,6 @@
-<p align="center">
-  [![Compiler et tester](https://github.com/Josh012006/IFT2255-ma-ville-bugbusters/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/Josh012006/IFT2255-ma-ville-bugbusters/actions/workflows/test.yml)
-  <a href="https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/docker.yml">
-    <img src="https://github.com/IFT-2255/ift2255-ma-ville-bugbusters/actions/workflows/docker.yml/badge.svg" alt="Update Docker images" />
-  </a>
-</p>
+
+[![Compiler et tester](https://github.com/Josh012006/IFT2255-ma-ville-bugbusters/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/Josh012006/IFT2255-ma-ville-bugbusters/actions/workflows/test.yml)
+
 
 # MaVille Application
 
