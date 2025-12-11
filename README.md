@@ -1,6 +1,8 @@
 
 [![Compiler et tester](https://github.com/Josh012006/IFT2255-ma-ville-bugbusters/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/Josh012006/IFT2255-ma-ville-bugbusters/actions/workflows/test.yml)
 
+[![Re-build les images docker](https://github.com/Josh012006/IFT2255-ma-ville-bugbusters/actions/workflows/docker.yml/badge.svg?branch=main)](https://github.com/Josh012006/IFT2255-ma-ville-bugbusters/actions/workflows/docker.yml)
+
 
 # MaVille Application
 
