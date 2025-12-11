@@ -27,7 +27,7 @@
 
 ## A propos du projet
 
-**MaVille** est une application construite pour permettre une meilleure gestion des projets de la ville de Montréal. Elle
+Il s'agit d'un projet réalisé par le groupe **Bugbusters** dans le cadre du cours de Génie logiciel. **MaVille** est une application construite pour permettre une meilleure gestion des projets de la ville de Montréal. Elle
 propose trois profils d'utilisateur : le résident, le prestataire et l'agent de la STPM qui a un profil unique non nominatif.
 L'application propose les fonctionnalités suivantes : 
 
